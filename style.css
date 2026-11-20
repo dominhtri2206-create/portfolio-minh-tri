@@ -670,6 +670,8 @@ button, input, textarea, select {
   line-height: 1.75;
   margin-bottom: 32px;
   max-width: 600px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .hero-description strong {
@@ -868,6 +870,11 @@ button, input, textarea, select {
   left: -35px;
 }
 
+.badge-top-right {
+  top: -15px;
+  right: -30px;
+}
+
 .badge-bottom-right {
   bottom: 15px;
   right: -40px;
@@ -889,6 +896,10 @@ button, input, textarea, select {
 
 .float-anim-3 {
   animation: floatCard 5.5s ease-in-out 2s infinite;
+}
+
+.float-anim-4 {
+  animation: floatCard 5.8s ease-in-out 1.8s infinite;
 }
 
 @keyframes floatCard {
@@ -2839,6 +2850,11 @@ textarea.form-control {
     left: -15px;
   }
 
+  .badge-top-right {
+    top: -10px;
+    right: -15px;
+  }
+
   .badge-bottom-right {
     bottom: 0px;
     right: -15px;
@@ -2955,6 +2971,10 @@ textarea.form-control {
   .avatar-wrapper {
     width: 250px;
     height: 250px;
+  }
+
+  .badge-top-right {
+    display: none;
   }
 
   .education-card, .about-strengths-card, .skill-group, .contact-details-card, .form-wrapper-card {
