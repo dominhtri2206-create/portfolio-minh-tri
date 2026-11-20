@@ -683,66 +683,32 @@ button, input, textarea, select {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 40px;
-}
-
-/* Quick Metrics */
-.hero-stats {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding-top: 28px;
-  border-top: 1px solid var(--border-color);
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.stat-number {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--primary);
-  line-height: 1.2;
-}
-
-.stat-label {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 38px;
-  background-color: var(--border-color);
+  margin-bottom: 0;
 }
 
 /* Hero Avatar & Visual */
 .hero-visual {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  gap: 36px;
 }
 
 /* Khung thông tin AI Agent Portfolio */
 .hero-ai-badge {
-  width: 100%;
-  max-width: 440px;
+  display: inline-block;
+  width: fit-content;
+  max-width: 580px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 86, 179, 0.14);
   border-left: 4.5px solid var(--accent-orange);
   border-radius: var(--radius-lg);
-  padding: 13px 18px;
-  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.6);
+  padding: 12px 18px;
+  box-shadow: 0 8px 22px -4px rgba(15, 23, 42, 0.07), 0 0 0 1px rgba(226, 232, 240, 0.6);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  z-index: 5;
+  margin-bottom: 24px;
 }
 
 .hero-ai-badge:hover {
@@ -3067,15 +3033,6 @@ textarea.form-control {
     width: 100%;
   }
 
-  .hero-stats {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .stat-divider {
-    display: none;
-  }
-
   .avatar-wrapper {
     width: 250px;
     height: 250px;
@@ -3085,13 +3042,11 @@ textarea.form-control {
     display: none;
   }
 
-  .hero-visual {
-    gap: 22px;
-  }
-
   .hero-ai-badge {
     padding: 10px 14px;
+    width: 100%;
     max-width: 100%;
+    margin-bottom: 20px;
   }
 
   .ai-badge-text-main {
