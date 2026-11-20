@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đỗ Minh Trí | Portfolio - Digital Marketing & Video Creator</title>
+  <meta name="description" content="Portfolio cá nhân của Đỗ Minh Trí - Thực Tập Sinh Marketing, Quay dựng Video ngắn & Sáng tạo Nội dung. Tốt nghiệp loại Xuất Sắc Digital Marketing.">
+  <meta name="keywords" content="Đỗ Minh Trí, Portfolio, Digital Marketing, Video Editor, TikTok, Reels, Content Creator, FPT, Đà Nẵng">
+  <meta name="author" content="Đỗ Minh Trí">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Đỗ Minh Trí | Portfolio - Digital Marketing & Content Creator">
+  <meta property="og:description" content="Khám phá các dự án, kỹ năng và thành tích của Đỗ Minh Trí trong lĩnh vực Digital Marketing và Sáng tạo Video.">
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <nav class="nav-container">
+      <a href="#hero" class="brand-logo">
+        <span class="logo-accent">ĐMT</span><span class="logo-dot">.</span>
+        <span class="logo-sub">Portfolio</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Giới thiệu</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> Về tôi & Kỹ năng</a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link"><i class="fa-solid fa-layer-group"></i> Dự án</a></li>
+        <li class="nav-item"><a href="#achievements" class="nav-link"><i class="fa-solid fa-award"></i> Thành tích</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Liên hệ</a></li>
+      </ul>
+
+      <!-- Action Buttons in Nav -->
+      <div class="nav-actions">
+        <a href="CV.png" target="_blank" class="btn btn-sm btn-outline nav-cv-btn" download="CV_DoMinhTri.png">
+          <i class="fa-solid fa-file-arrow-down"></i> <span>Tải CV</span>
+        </a>
+        <a href="#contact" class="btn btn-sm btn-primary nav-contact-btn">
+          <span>Hợp tác ngay</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Mở menu điều hướng">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
+  <aside class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <span class="logo-accent">ĐMT</span><span class="logo-dot">.</span>
+      </div>
+      <button class="drawer-close" id="drawer-close" aria-label="Đóng menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="#hero" class="mobile-link active"><i class="fa-solid fa-house"></i> Giới thiệu</a></li>
+      <li><a href="#about" class="mobile-link"><i class="fa-solid fa-user"></i> Về tôi & Kỹ năng</a></li>
+      <li><a href="#projects" class="mobile-link"><i class="fa-solid fa-layer-group"></i> Dự án</a></li>
+      <li><a href="#achievements" class="mobile-link"><i class="fa-solid fa-award"></i> Thành tích</a></li>
+      <li><a href="#contact" class="mobile-link"><i class="fa-solid fa-paper-plane"></i> Liên hệ</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <a href="CV.png" target="_blank" class="btn btn-outline w-100 mb-2" download="CV_DoMinhTri.png">
+        <i class="fa-solid fa-file-arrow-down"></i> Tải CV
+      </a>
+      <a href="#contact" class="btn btn-primary w-100">
+        <i class="fa-solid fa-paper-plane"></i> Liên hệ ngay
+      </a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ==================== PHẦN 1: HERO SECTION ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-bg-decorations">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="grid-pattern"></div>
+      </div>
+
+      <div class="container hero-container">
+        <!-- Hero Text Content -->
+        <div class="hero-content reveal-left">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>Sẵn sàng cho cơ hội Thực tập & Dự án mới</span>
+          </div>
+
+          <h1 class="hero-title">
+            Xin chào, mình là <br>
+            <span class="text-highlight">Đỗ Minh Trí</span>
+            <span class="hero-alias">(Eric Do)</span>
+          </h1>
+
+          <!-- Châm ngôn sống (Motto) -->
+          <p class="hero-motto">
+            <i class="fa-solid fa-quote-left motto-icon"></i>
+            <span>I never lose. I either win or learn!</span>
+            <i class="fa-solid fa-quote-right motto-icon"></i>
+          </p>
+
+          <!-- Tuyên ngôn cá nhân (Mission Statement) -->
+          <blockquote class="hero-mission-quote">
+            <div class="mission-tag"><i class="fa-solid fa-compass"></i> Tuyên ngôn cá nhân</div>
+            <p class="mission-text">
+              “You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the strength in others.”
+            </p>
+          </blockquote>
+
+          <!-- Các thẻ nhãn (Badges) giới thiệu cá tính/thế mạnh -->
+          <div class="role-badge-container">
+            <span class="role-tag"><i class="fa-solid fa-bullhorn"></i> Digital Marketing & Sáng tạo nội dung</span>
+            <span class="role-separator">•</span>
+            <span class="role-tag"><i class="fa-solid fa-microphone-lines"></i> MC & Nghiên cứu</span>
+            <span class="role-separator">•</span>
+            <span class="role-tag"><i class="fa-solid fa-language"></i> Tiếng Anh & Tiếng Trung</span>
+          </div>
+
+          <!-- Đoạn văn giới thiệu bản thân -->
+          <p class="hero-description">
+            Chào bạn! Mình là <strong>Minh Trí (Eric)</strong> — người trẻ đam mê Digital Marketing, quay dựng video ngắn, cầm mic làm MC và chinh phục ngoại ngữ (Tiếng Anh & Tiếng Trung). Mình tin rằng mọi trải nghiệm đều là cơ hội để rèn giũa bản thân và tạo nên những giá trị tích cực cho cộng đồng.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary btn-lg">
+              <span>Xem dự án của tôi</span>
+              <i class="fa-solid fa-arrow-down-long"></i>
+            </a>
+            <a href="#contact" class="btn btn-outline btn-lg">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Liên hệ ngay</span>
+            </a>
+            <a href="CV.png" target="_blank" class="btn btn-ghost btn-lg" title="Xem trước bản CV">
+              <i class="fa-solid fa-eye"></i>
+              <span>Xem CV</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics / Key Strengths -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">Xuất Sắc</span>
+              <span class="stat-label">Tốt nghiệp FPT Polyschool</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">Top 2</span>
+              <span class="stat-label">Chân Trần Khởi Nghiệp</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">Top 35</span>
+              <span class="stat-label">Toàn quốc FPT Biz Talent</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Avatar Visual -->
+        <div class="hero-visual reveal-right">
+          <div class="avatar-wrapper">
+            <!-- Pulsing Rings -->
+            <div class="avatar-ring ring-1"></div>
+            <div class="avatar-ring ring-2"></div>
+
+            <!-- Avatar Container (Frame) -->
+            <div class="avatar-frame">
+              <!-- Default stylish placeholder illustration / image. User can replace 'avatar.jpg' or use CV.png -->
+              <img src="avatar.jpg" alt="Chân dung Đỗ Minh Trí" class="avatar-img" id="user-avatar" onerror="this.onerror=null; this.src='CV.png';">
+              <div class="avatar-overlay-hint" title="Đỗ Minh Trí - Digital Marketing & Video Creator">
+                <i class="fa-solid fa-user-check"></i>
+                <span>Đỗ Minh Trí</span>
+              </div>
+            </div>
+
+            <!-- Floating Badges on Hero Image -->
+            <div class="floating-badge badge-top-left float-anim-1">
+              <div class="badge-icon icon-orange"><i class="fa-brands fa-tiktok"></i></div>
+              <div class="badge-text">
+                <strong>Reels & TikTok</strong>
+                <span>Video ngắn bắt trend</span>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom-right float-anim-2">
+              <div class="badge-icon icon-orange"><i class="fa-solid fa-trophy"></i></div>
+              <div class="badge-text">
+                <strong>Á Quân Khởi Nghiệp</strong>
+                <span>Chân Trần Khởi Nghiệp Mùa 3</span>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom-left float-anim-3">
+              <div class="badge-icon icon-cyan"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div class="badge-text">
+                <strong>BTEC FPT Đà Nẵng</strong>
+                <span>Digital Marketing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PHẦN 2: VỀ TÔI, HỌC VẤN & KỸ NĂNG ==================== -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header text-center reveal-up">
+          <span class="section-tag"><i class="fa-solid fa-user-graduate"></i> Hành trình & Năng lực</span>
+          <h2 class="section-title">Về Tôi, Học Vấn & Kỹ Năng</h2>
+          <p class="section-subtitle">
+            Sự kết hợp giữa tư duy chiến lược marketing hiện đại, kỹ năng sản xuất nội dung đa phương tiện và tinh thần trách nhiệm cao của một trưởng nhóm.
+          </p>
+        </div>
+
+        <!-- Grid: Education & Philosophy -->
+        <div class="about-grid">
+          <!-- Timeline Học vấn -->
+          <div class="education-card reveal-left">
+            <div class="card-header-styled">
+              <div class="icon-circle icon-circle-blue">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div>
+                <h3 class="card-main-title">Lộ Trình Học Vấn</h3>
+                <p class="card-sub-title">Nền tảng đào tạo chuẩn quốc tế và thực hành chuyên sâu</p>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <!-- Item 1: BTEC FPT -->
+              <div class="timeline-item">
+                <div class="timeline-marker marker-current"></div>
+                <div class="timeline-content">
+                  <div class="timeline-badge badge-ongoing">09/2025 - Hiện tại</div>
+                  <h4 class="timeline-title">Cao đẳng Anh Quốc BTEC FPT Đà Nẵng</h4>
+                  <p class="timeline-major"><i class="fa-solid fa-book-bookmark"></i> Chuyên ngành: <strong>Digital Marketing</strong></p>
+                  <p class="timeline-desc">
+                    Tiếp cận chương trình đào tạo chuẩn Anh Quốc Pearson BTEC, tập trung phát triển tư duy nghiên cứu thị trường, chiến lược Marketing tích hợp (IMC), quản trị thương hiệu và phân tích hành vi người tiêu dùng kỹ thuật số.
+                  </p>
+                  <div class="timeline-tags">
+                    <span>IMC Strategy</span>
+                    <span>Global Mindset</span>
+                    <span>Brand Management</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2: FPT Polyschool -->
+              <div class="timeline-item">
+                <div class="timeline-marker marker-completed"></div>
+                <div class="timeline-content">
+                  <div class="timeline-badge badge-success">09/2023 - 09/2025</div>
+                  <div class="d-flex align-items-center gap-2">
+                    <h4 class="timeline-title">FPT Polyschool Bình Định</h4>
+                    <span class="honor-pill"><i class="fa-solid fa-medal"></i> Tốt nghiệp Xuất Sắc</span>
+                  </div>
+                  <p class="timeline-major"><i class="fa-solid fa-book-bookmark"></i> Chuyên ngành: <strong>Digital Marketing</strong></p>
+                  <p class="timeline-desc">
+                    Tốt nghiệp hệ Trung cấp với danh hiệu <strong>Xuất Sắc</strong>. Hoàn thành xuất sắc các đồ án thực tế về Content Marketing, thiết kế đồ họa truyền thông, tối ưu SEO website, chạy quảng cáo đa kênh và biên tập video ngắn.
+                  </p>
+                  <div class="timeline-tags">
+                    <span>Tốt nghiệp Xuất Sắc</span>
+                    <span>Thực chiến dự án</span>
+                    <span>Leader đồ án</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Giới thiệu phong cách làm việc & Điểm mạnh -->
+          <div class="about-strengths-card reveal-right">
+            <div class="card-header-styled">
+              <div class="icon-circle icon-circle-orange">
+                <i class="fa-solid fa-compass-drafting"></i>
+              </div>
+              <div>
+                <h3 class="card-main-title">Định Hướng & Thế Mạnh</h3>
+                <p class="card-sub-title">Cách tôi tạo ra giá trị cho doanh nghiệp</p>
+              </div>
+            </div>
+
+            <div class="strength-items">
+              <div class="strength-box">
+                <div class="strength-icon"><i class="fa-solid fa-film"></i></div>
+                <div class="strength-info">
+                  <h4>Bắt nhịp xu hướng Video ngắn</h4>
+                  <p>Nhạy bén với thị hiếu Gen Z trên TikTok/Reels, nắm vững cấu trúc Hook - Story - Call to action giữ chân người xem.</p>
+                </div>
+              </div>
+
+              <div class="strength-box">
+                <div class="strength-icon"><i class="fa-solid fa-users-gear"></i></div>
+                <div class="strength-info">
+                  <h4>Kinh nghiệm Trưởng nhóm (Leader)</h4>
+                  <p>Chủ động điều phối công việc, lập bảng phân công nhiệm vụ, giải quyết xung đột và cam kết đúng deadline chiến dịch.</p>
+                </div>
+              </div>
+
+              <div class="strength-box">
+                <div class="strength-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="strength-info">
+                  <h4>Tư duy thẩm mỹ & Dữ liệu</h4>
+                  <p>Không chỉ tạo nội dung đẹp mắt mà còn đo lường hiệu quả qua các chỉ số tương tác, reach và tỷ lệ chuyển đổi thực tế.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mini banner quote -->
+            <div class="quote-banner">
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <p class="quote-text">
+                "Nội dung xuất sắc là nội dung chạm đúng cảm xúc của khách hàng và giải quyết được bài toán tăng trưởng của thương hiệu."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== KỸ NĂNG (SKILLS) ==================== -->
+        <div class="skills-block mt-5">
+          <div class="skills-header text-center reveal-up">
+            <span class="sub-badge"><i class="fa-solid fa-screwdriver-wrench"></i> Năng lực thực chiến</span>
+            <h3 class="block-title">Kỹ Năng Nổi Bật</h3>
+            <p class="block-subtitle">Được tôi rèn luyện qua các kỳ học thực hành và đồ án thực tế</p>
+          </div>
+
+          <div class="skills-wrapper">
+            <!-- Kỹ năng chuyên môn -->
+            <div class="skill-group reveal-left">
+              <div class="group-title-bar">
+                <i class="fa-solid fa-laptop-code text-primary-color"></i>
+                <h4>Kỹ Năng Chuyên Môn (Hard Skills)</h4>
+              </div>
+
+              <div class="skills-grid">
+                <!-- Skill 1 -->
+                <div class="skill-card">
+                  <div class="skill-card-icon icon-video">
+                    <i class="fa-solid fa-video"></i>
+                  </div>
+                  <div class="skill-card-content">
+                    <h5>Chụp ảnh & Quay dựng video sản phẩm</h5>
+                    <p>Setup góc quay, ánh sáng, canh bố cục khung hình và xử lý hậu kỳ âm thanh, hình ảnh chuyên nghiệp.</p>
+                    <div class="skill-tools">
+                      <span class="tool-pill">CapCut Pro</span>
+                      <span class="tool-pill">Premiere Pro</span>
+                      <span class="tool-pill">Smartphone & Gimbal</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="skill-card">
+                  <div class="skill-card-icon icon-reels">
+                    <i class="fa-solid fa-clapperboard"></i>
+                  </div>
+                  <div class="skill-card-content">
+                    <h5>Biên tập nội dung ngắn (Reels, TikTok, Story)</h5>
+                    <p>Thiết kế kịch bản 15-60s, tạo điểm nhấn 3 giây đầu tiên (Hook), chèn hiệu ứng chuyển cảnh và âm nhạc thịnh hành.</p>
+                    <div class="skill-tools">
+                      <span class="tool-pill">TikTok Creator</span>
+                      <span class="tool-pill">Instagram Reels</span>
+                      <span class="tool-pill">Trending Audio</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="skill-card">
+                  <div class="skill-card-icon icon-design">
+                    <i class="fa-solid fa-palette"></i>
+                  </div>
+                  <div class="skill-card-content">
+                    <h5>Thiết kế ấn phẩm bằng Canva</h5>
+                    <p>Thiết kế banner truyền thông, infographic, poster quảng cáo, bài đăng đa slide (carousel) đồng bộ nhận diện.</p>
+                    <div class="skill-tools">
+                      <span class="tool-pill">Canva Pro</span>
+                      <span class="tool-pill">Social Kit</span>
+                      <span class="tool-pill">Brand Identity</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="skill-card">
+                  <div class="skill-card-icon icon-pen">
+                    <i class="fa-solid fa-pen-nib"></i>
+                  </div>
+                  <div class="skill-card-content">
+                    <h5>Lên ý tưởng & Viết caption</h5>
+                    <p>Xây dựng ý tưởng nội dung sáng tạo, viết câu chữ gần gũi, giật tít hấp dẫn kết hợp lời kêu gọi hành động (CTA) kích thích tương tác.</p>
+                    <div class="skill-tools">
+                      <span class="tool-pill">Copywriting</span>
+                      <span class="tool-pill">Storytelling</span>
+                      <span class="tool-pill">AIDA / PAS Model</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="skill-card full-span">
+                  <div class="skill-card-icon icon-plan">
+                    <i class="fa-solid fa-calendar-check"></i>
+                  </div>
+                  <div class="skill-card-content">
+                    <h5>Lên kế hoạch & Quản lý dự án</h5>
+                    <p>Thiết lập Content Calendar tuần/tháng, phân công nhiệm vụ thành viên, theo dõi tiến độ và đo lường KPI hoàn thành.</p>
+                    <div class="skill-tools">
+                      <span class="tool-pill">Notion</span>
+                      <span class="tool-pill">Trello</span>
+                      <span class="tool-pill">Content Calendar</span>
+                      <span class="tool-pill">Excel Sheets</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kỹ năng mềm -->
+            <div class="skill-group reveal-right">
+              <div class="group-title-bar">
+                <i class="fa-solid fa-heart-pulse text-orange-color"></i>
+                <h4>Kỹ Năng Mềm (Soft Skills)</h4>
+              </div>
+
+              <div class="soft-skills-grid">
+                <!-- Soft 1 -->
+                <div class="soft-card">
+                  <div class="soft-icon-wrap bg-blue-subtle">
+                    <i class="fa-solid fa-people-group"></i>
+                  </div>
+                  <h5>Làm việc nhóm & Quản lý thời gian</h5>
+                  <p>Kinh nghiệm làm trưởng nhóm trong nhiều đồ án học tập; biết lắng nghe, chia sẻ trách nhiệm và kiểm soát deadline chặt chẽ.</p>
+                  <div class="soft-progress-bar">
+                    <div class="progress-fill fill-blue" style="width: 95%;"></div>
+                  </div>
+                </div>
+
+                <!-- Soft 2 -->
+                <div class="soft-card">
+                  <div class="soft-icon-wrap bg-orange-subtle">
+                    <i class="fa-solid fa-comments"></i>
+                  </div>
+                  <h5>Giao tiếp phối hợp linh hoạt</h5>
+                  <p>Truyền đạt ý tưởng rõ ràng, dễ hiểu giữa các thành viên và giảng viên; linh hoạt xử lý tình huống phát sinh trong dự án.</p>
+                  <div class="soft-progress-bar">
+                    <div class="progress-fill fill-orange" style="width: 90%;"></div>
+                  </div>
+                </div>
+
+                <!-- Soft 3 -->
+                <div class="soft-card">
+                  <div class="soft-icon-wrap bg-purple-subtle">
+                    <i class="fa-solid fa-lightbulb"></i>
+                  </div>
+                  <h5>Tư duy thẩm mỹ & Sáng tạo nội dung</h5>
+                  <p>Gu thẩm mỹ hiện đại về màu sắc, bố cục và nhịp điệu video; không ngừng tìm tòi các phong cách thịnh hành mới trên mạng xã hội.</p>
+                  <div class="soft-progress-bar">
+                    <div class="progress-fill fill-purple" style="width: 92%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PHẦN 3: DỰ ÁN TIÊU BIỂU & THÀNH TÍCH ==================== -->
+    <section class="section projects-section bg-light-gradient" id="projects">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header text-center reveal-up">
+          <span class="section-tag"><i class="fa-solid fa-briefcase"></i> Sản phẩm thực chiến</span>
+          <h2 class="section-title">Dự Án Tiêu Biểu</h2>
+          <p class="section-subtitle">
+            Các dự án thực tế tôi đã trực tiếp lập kế hoạch, điều phối nhóm và sản xuất ấn phẩm với vai trò <strong>Trưởng Nhóm (Leader)</strong>.
+          </p>
+        </div>
+
+        <!-- Project Cards Grid (3 Dự án mẫu) -->
+        <div class="projects-grid">
+          <!-- Project Card 1 -->
+          <article class="project-card reveal-up" data-project-id="1">
+            <div class="project-thumb-container">
+              <!-- Placeholder Image for Project (User can replace with real images) -->
+              <div class="project-thumb-placeholder thumb-gradient-1">
+                <i class="fa-brands fa-tiktok project-watermark"></i>
+                <div class="thumb-badge">Video Marketing</div>
+                <div class="thumb-actions">
+                  <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(1)">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> Xem nhanh
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="role-badge"><i class="fa-solid fa-crown"></i> Trưởng nhóm</span>
+                <span class="platform-badge"><i class="fa-brands fa-instagram"></i> Reels & TikTok</span>
+              </div>
+
+              <h3 class="project-title">1. Dự Án Content Marketing & Video Ngắn (Reels/TikTok)</h3>
+              
+              <p class="project-excerpt">
+                Xây dựng chuỗi video ngắn định dạng dọc giới thiệu dòng sản phẩm đồ uống/thời trang cho giới trẻ. Trực tiếp lên kịch bản, quay dựng và tối ưu âm thanh bắt trend.
+              </p>
+
+              <div class="project-highlights">
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Nghiên cứu thị hiếu Gen Z</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Kịch bản 3 giây đầu thu hút (Hook)</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Tối ưu tỷ lệ giữ chân người xem (Watch Time)</div>
+              </div>
+
+              <div class="project-tech-tags">
+                <span class="tag">CapCut Pro</span>
+                <span class="tag">Premiere</span>
+                <span class="tag">TikTok Trends</span>
+                <span class="tag">Canva</span>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-outline btn-sm w-100" onclick="openProjectModal(1)">
+                  <span>Xem chi tiết dự án</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 2 -->
+          <article class="project-card reveal-up delay-1" data-project-id="2">
+            <div class="project-thumb-container">
+              <div class="project-thumb-placeholder thumb-gradient-2">
+                <i class="fa-solid fa-chart-line project-watermark"></i>
+                <div class="thumb-badge">SEO & Research</div>
+                <div class="thumb-actions">
+                  <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(2)">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> Xem nhanh
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="role-badge"><i class="fa-solid fa-crown"></i> Trưởng nhóm</span>
+                <span class="platform-badge"><i class="fa-solid fa-globe"></i> SEO & Analytics</span>
+              </div>
+
+              <h3 class="project-title">2. Dự Án SEO & Nghiên Cứu Thị Trường Ngành Hàng</h3>
+              
+              <p class="project-excerpt">
+                Phân tích đối thủ cạnh tranh, nghiên cứu bộ từ khóa theo hành trình mua sắm của khách hàng (Buyer's Journey) và lập kế hoạch tối ưu cấu trúc nội dung Onpage.
+              </p>
+
+              <div class="project-highlights">
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Phân tích Insight & Đối thủ</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Lập bộ từ khóa 100+ keywords tiềm năng</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Tối ưu bài viết chuẩn SEO & UI/UX</div>
+              </div>
+
+              <div class="project-tech-tags">
+                <span class="tag">Google Search Console</span>
+                <span class="tag">Keyword Planner</span>
+                <span class="tag">Excel Analytics</span>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-outline btn-sm w-100" onclick="openProjectModal(2)">
+                  <span>Xem chi tiết dự án</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 3 -->
+          <article class="project-card reveal-up delay-2" data-project-id="3">
+            <div class="project-thumb-container">
+              <div class="project-thumb-placeholder thumb-gradient-3">
+                <i class="fa-solid fa-bullseye project-watermark"></i>
+                <div class="thumb-badge">Brand Campaign</div>
+                <div class="thumb-actions">
+                  <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(3)">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> Xem nhanh
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="role-badge"><i class="fa-solid fa-crown"></i> Trưởng nhóm</span>
+                <span class="platform-badge"><i class="fa-solid fa-flag"></i> IMC Campaign</span>
+              </div>
+
+              <h3 class="project-title">3. Chiến Dịch Lập Kế Hoạch & Triển Khai Nội Dung Thương Hiệu</h3>
+              
+              <p class="project-excerpt">
+                Xây dựng chiến dịch truyền thông đa kênh cho thương hiệu trong dịp lễ/mở bán mới. Thiết lập thông điệp cốt lõi, ma trận nội dung và quản trị tiến độ thực thi.
+              </p>
+
+              <div class="project-highlights">
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Lên lịch Content Calendar đa kênh</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Thiết kế bộ nhận diện ấn phẩm mạng xã hội</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Điều phối 5 thành viên hoàn thành đúng hạn</div>
+              </div>
+
+              <div class="project-tech-tags">
+                <span class="tag">Notion Team</span>
+                <span class="tag">Canva Brand Kit</span>
+                <span class="tag">Meta Business Suite</span>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-outline btn-sm w-100" onclick="openProjectModal(3)">
+                  <span>Xem chi tiết dự án</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="project-hint-banner reveal-up">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Các thẻ dự án đã có cấu trúc chuẩn bị sẵn. Bạn có thể nhấn vào nút "Xem chi tiết" để xem popup mô tả đầy đủ quy trình và cập nhật hình ảnh sản phẩm thực tế!</span>
+        </div>
+
+        <!-- ==================== THÀNH TÍCH TIÊU BIỂU ==================== -->
+        <div class="achievements-block mt-6" id="achievements">
+          <div class="section-header text-center reveal-up">
+            <span class="section-tag section-tag-orange"><i class="fa-solid fa-trophy"></i> Dấu mốc tự hào</span>
+            <h2 class="section-title">Thành Tích Nổi Bật</h2>
+            <p class="section-subtitle">
+              Sự ghi nhận cho tinh thần dấn thân, bản lĩnh khởi nghiệp và năng lực chuyên môn xuất sắc qua các đấu trường thực chiến.
+            </p>
+          </div>
+
+          <div class="achievements-grid">
+            <!-- Achievement 1: Top 2 Chân Trần Khởi Nghiệp -->
+            <div class="achievement-card reveal-up">
+              <div class="achievement-icon icon-orange">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <div class="achievement-content">
+                <div class="achievement-year">Mùa 3 - 2025</div>
+                <h3 class="achievement-title">Top 2 Cuộc Thi "Chân Trần Khởi Nghiệp" - Mùa 3</h3>
+                <p class="achievement-desc">
+                  Dự án <strong>Smart Mini Storage</strong> — Mô hình dịch vụ lưu trữ đồ bằng thùng thông minh tiện lợi dành cho gia đình, sinh viên và khách du lịch có không gian lưu trữ hạn chế.
+                </p>
+                <div class="achievement-badge"><i class="fa-solid fa-medal"></i> Á Quân Khởi Nghiệp</div>
+              </div>
+            </div>
+
+            <!-- Achievement 2: Top 35 FPT Biz Talent -->
+            <div class="achievement-card reveal-up delay-1">
+              <div class="achievement-icon icon-gold">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div class="achievement-content">
+                <div class="achievement-year">Năm 2025</div>
+                <h3 class="achievement-title">Top 35 Toàn Quốc FPT Biz Talent 2025</h3>
+                <p class="achievement-desc">
+                  Vượt qua hàng trăm đội thi tài năng trẻ trên toàn quốc trong cuộc thi kinh doanh và giải quyết bài toán Marketing thực tế cho doanh nghiệp.
+                </p>
+                <div class="achievement-badge"><i class="fa-solid fa-star"></i> Cuộc thi uy tín cấp quốc gia</div>
+              </div>
+            </div>
+
+            <!-- Achievement 3: MOS World Championship -->
+            <div class="achievement-card reveal-up delay-2">
+              <div class="achievement-icon icon-blue">
+                <i class="fa-solid fa-earth-americas"></i>
+              </div>
+              <div class="achievement-content">
+                <div class="achievement-year">Năm 2025</div>
+                <h3 class="achievement-title">Tham gia MOS World Championship 2025</h3>
+                <p class="achievement-desc">
+                  Đại diện tham gia Vô địch Tin học Văn phòng Thế giới - MOS World Championship, khẳng định kỹ năng xử lý dữ liệu tin học văn phòng quốc tế.
+                </p>
+                <div class="achievement-badge"><i class="fa-solid fa-earth-americas"></i> Đấu trường quốc tế</div>
+              </div>
+            </div>
+
+            <!-- Achievement 4: Sinh viên xuất sắc -->
+            <div class="achievement-card reveal-up delay-3">
+              <div class="achievement-icon icon-cyan">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="achievement-content">
+                <div class="achievement-year">2023 - 2025</div>
+                <h3 class="achievement-title">Sinh Viên Có Thành Tích Học Tập Xuất Sắc</h3>
+                <p class="achievement-desc">
+                  Liên tục đạt kết quả học tập và rèn luyện xuất sắc tại FPT Polyschool Bình Định; nhận khen thưởng của nhà trường trong các kỳ học.
+                </p>
+                <div class="achievement-badge"><i class="fa-solid fa-award"></i> Danh hiệu học thuật</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PHẦN 4: LIÊN HỆ & THAM CHIẾU ==================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header text-center reveal-up">
+          <span class="section-tag"><i class="fa-solid fa-address-book"></i> Kết nối hợp tác</span>
+          <h2 class="section-title">Thông Tin Liên Hệ</h2>
+          <p class="section-subtitle">
+            Tôi luôn sẵn sàng đón nhận các cơ hội Thực tập sinh Marketing, dự án sáng tạo nội dung hoặc trao đổi chuyên môn. Hãy kết nối với tôi!
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Cột thông tin liên hệ trực tiếp & Người tham chiếu -->
+          <div class="contact-info-col reveal-left">
+            <!-- Thẻ liên hệ chính -->
+            <div class="contact-details-card">
+              <h3 class="info-block-title">
+                <i class="fa-solid fa-paper-plane text-primary-color"></i>
+                Thông Tin Trực Tiếp
+              </h3>
+
+              <div class="contact-item">
+                <div class="contact-icon icon-email">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="label">Email liên hệ:</span>
+                  <a href="mailto:dominhtri2206@gmail.com" class="value link-hover" id="email-text">dominhtri2206@gmail.com</a>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('dominhtri2206@gmail.com', 'Đã sao chép Email!')" title="Sao chép email">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon icon-phone">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="label">Số điện thoại:</span>
+                  <a href="tel:0934454099" class="value link-hover" id="phone-text">0934 454 099</a>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('0934454099', 'Đã sao chép Số điện thoại!')" title="Sao chép số điện thoại">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon icon-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="label">Địa chỉ hiện tại:</span>
+                  <span class="value">152 Phan Thanh, Thanh Khê, TP. Đà Nẵng</span>
+                </div>
+              </div>
+
+              <!-- Quick direct buttons -->
+              <div class="contact-quick-actions">
+                <a href="tel:0934454099" class="btn btn-outline btn-sm">
+                  <i class="fa-solid fa-phone-volume"></i> Gọi điện ngay
+                </a>
+                <a href="mailto:dominhtri2206@gmail.com" class="btn btn-outline btn-sm">
+                  <i class="fa-solid fa-envelope-open-text"></i> Gửi email
+                </a>
+              </div>
+            </div>
+
+            <!-- Thẻ Người Tham Chiếu (Reference) -->
+            <div class="reference-card mt-4">
+              <div class="reference-badge">
+                <i class="fa-solid fa-user-check"></i> Người Tham Chiếu (Reference)
+              </div>
+              <div class="reference-body">
+                <div class="ref-avatar-circle">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <div class="ref-details">
+                  <h4 class="ref-name">Cô Nguyễn Thị Thanh Tâm</h4>
+                  <p class="ref-role">Giảng viên bộ môn Digital Marketing</p>
+                  <div class="ref-contact">
+                    <i class="fa-solid fa-phone text-primary-color"></i>
+                    <span>SĐT liên hệ: <strong>0937.272.236</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="reference-note">
+                <i class="fa-solid fa-circle-check text-success"></i>
+                <span>Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại trường.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột Form gửi tin nhắn nhanh -->
+          <div class="contact-form-col reveal-right">
+            <div class="form-wrapper-card">
+              <div class="form-header">
+                <h3 class="form-title">Gửi Lời Nhắn Nhanh</h3>
+                <p class="form-desc">Hãy để lại thông tin hoặc yêu cầu tuyển dụng, tôi sẽ phản hồi trong vòng 24 giờ!</p>
+              </div>
+
+              <form id="contact-form" class="modern-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                  <label for="name" class="form-label">Họ và tên của bạn <span class="required">*</span></label>
+                  <div class="input-with-icon">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-half">
+                    <label for="email" class="form-label">Địa chỉ Email <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                      <i class="fa-regular fa-envelope"></i>
+                      <input type="email" id="email" name="email" class="form-control" placeholder="name@company.com" required>
+                    </div>
+                  </div>
+                  <div class="form-group col-half">
+                    <label for="phone" class="form-label">Số điện thoại</label>
+                    <div class="input-with-icon">
+                      <i class="fa-solid fa-phone"></i>
+                      <input type="tel" id="phone" name="phone" class="form-control" placeholder="09xx xxx xxx">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="subject" class="form-label">Mục đích liên hệ <span class="required">*</span></label>
+                  <div class="input-with-icon">
+                    <i class="fa-solid fa-tag"></i>
+                    <select id="subject" name="subject" class="form-control" required>
+                      <option value="" disabled selected>Chọn mục đích liên hệ</option>
+                      <option value="internship">Cơ hội Thực tập sinh Marketing</option>
+                      <option value="video-freelance">Quay dựng Video ngắn / Freelance</option>
+                      <option value="content-creation">Sáng tạo nội dung & Quản trị Fanpage/TikTok</option>
+                      <option value="other">Trao đổi công việc khác</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label">Nội dung tin nhắn <span class="required">*</span></label>
+                  <div class="input-with-icon textarea-icon">
+                    <i class="fa-regular fa-message"></i>
+                    <textarea id="message" name="message" rows="4" class="form-control" placeholder="Nhập chi tiết yêu cầu, mô tả công việc hoặc lời nhắn của bạn..." required></textarea>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100 btn-submit" id="submit-btn">
+                  <span>Gửi tin nhắn ngay</span>
+                  <i class="fa-solid fa-paper-plane"></i>
+                </button>
+              </form>
+
+              <!-- Form Success State (hidden by default) -->
+              <div id="form-success-message" class="form-success-box" style="display: none;">
+                <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h4>Cảm ơn bạn đã liên hệ!</h4>
+                <p>Tin nhắn của bạn đã được ghi nhận. Đỗ Minh Trí sẽ kiểm tra email và liên lạc lại với bạn trong thời gian sớm nhất.</p>
+                <button class="btn btn-outline btn-sm mt-3" onclick="resetContactForm()">
+                  <i class="fa-solid fa-rotate-left"></i> Gửi tin nhắn khác
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#hero" class="brand-logo footer-logo">
+          <span class="logo-accent">ĐMT</span><span class="logo-dot">.</span>
+        </a>
+        <p class="footer-bio">
+          Đỗ Minh Trí — Thực Tập Sinh Marketing | Quay dựng Video ngắn & Sáng tạo Nội dung. Sẵn sàng mang đến những ý tưởng tươi mới và năng lượng tích cực cho đội ngũ của bạn.
+        </p>
+      </div>
+
+      <div class="footer-center">
+        <h4 class="footer-heading">Liên kết nhanh</h4>
+        <ul class="footer-links">
+          <li><a href="#hero"><i class="fa-solid fa-angle-right"></i> Giới thiệu</a></li>
+          <li><a href="#about"><i class="fa-solid fa-angle-right"></i> Học vấn & Kỹ năng</a></li>
+          <li><a href="#projects"><i class="fa-solid fa-angle-right"></i> Dự án tiêu biểu</a></li>
+          <li><a href="#achievements"><i class="fa-solid fa-angle-right"></i> Thành tích</a></li>
+          <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Liên hệ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-right">
+        <h4 class="footer-heading">Tài liệu & Hồ sơ</h4>
+        <p class="footer-cv-desc">Tải bản CV đầy đủ kèm thông tin xác thực quá trình học tập và giải thưởng.</p>
+        <a href="CV.png" target="_blank" class="btn btn-outline btn-sm mb-3" download="CV_DoMinhTri.png">
+          <i class="fa-solid fa-download"></i> Tải bản CV hoàn chỉnh
+        </a>
+        <div class="footer-contact-direct">
+          <p><i class="fa-solid fa-phone"></i> 0934 454 099</p>
+          <p><i class="fa-solid fa-envelope"></i> dominhtri2206@gmail.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p>© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả. Thiết kế chuyên nghiệp, tối ưu hóa giao diện người dùng (UI/UX).</p>
+        <a href="#hero" class="back-to-top-text">Về đầu trang <i class="fa-solid fa-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ==================== MODAL CHI TIẾT DỰ ÁN ==================== -->
+  <div class="modal-backdrop" id="project-modal-backdrop" onclick="closeProjectModal()"></div>
+  <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close-btn" onclick="closeProjectModal()" aria-label="Đóng cửa sổ">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="modal-content" id="modal-content-container">
+      <!-- Content dynamically populated by script.js -->
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
