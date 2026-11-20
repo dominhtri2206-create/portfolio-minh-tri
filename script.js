@@ -516,13 +516,13 @@ function showToast(message, duration = 3000) {
 }
 
 /* -------------------------------------------------------------------
-   9. CONTACT FORM INTERACTION
+   9. CONTACT FORM INTERACTION (NETLIFY FORMS READY)
 ------------------------------------------------------------------- */
 function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  // Real-time simple input feedback
+  // Real-time simple input feedback for required fields
   const inputs = form.querySelectorAll('.form-control');
   inputs.forEach(input => {
     input.addEventListener('blur', () => {
@@ -533,60 +533,7 @@ function initContactForm() {
       }
     });
   });
-}
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const form = document.getElementById('contact-form');
-  const submitBtn = document.getElementById('submit-btn');
-  const successBox = document.getElementById('form-success-message');
-
-  if (!form || !submitBtn) return;
-
-  // Get values
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value.trim();
-
-  if (!name || !email || !message) {
-    showToast('Vui lòng điền đầy đủ các trường bắt buộc (*)');
-    return;
-  }
-
-  // Button loading state
-  const originalBtnHtml = submitBtn.innerHTML;
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = `
-    <i class="fa-solid fa-spinner fa-spin"></i>
-    <span>Đang gửi tin nhắn...</span>
-  `;
-
-  // Simulate network request
-  setTimeout(() => {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalBtnHtml;
-
-    // Show success view
-    form.style.display = 'none';
-    if (successBox) {
-      successBox.style.display = 'block';
-    }
-
-    showToast(`Cảm ơn bạn ${name}! Tin nhắn đã được gửi thành công.`);
-  }, 900);
-}
-
-function resetContactForm() {
-  const form = document.getElementById('contact-form');
-  const successBox = document.getElementById('form-success-message');
-
-  if (form) {
-    form.reset();
-    form.style.display = 'flex';
-  }
-  if (successBox) {
-    successBox.style.display = 'none';
-  }
+  // Netlify Forms: Native submit is allowed without preventDefault
+  // to ensure Netlify servers receive real form submissions.
 }

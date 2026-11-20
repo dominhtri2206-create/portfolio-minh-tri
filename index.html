@@ -922,7 +922,15 @@
                 <p class="form-desc">Hãy để lại thông tin hoặc yêu cầu tuyển dụng, tôi sẽ phản hồi trong vòng 24 giờ!</p>
               </div>
 
-              <form id="contact-form" class="modern-form" onsubmit="handleFormSubmit(event)">
+              <form id="contact-form" class="modern-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                <!-- Input ẩn bắt buộc để Netlify Forms nhận diện đúng tên form -->
+                <input type="hidden" name="form-name" value="contact">
+
+                <!-- Ô honeypot chặn spam bot (ẩn với người dùng thật) -->
+                <p style="display: none;">
+                  <label>Không điền ô này nếu bạn là người dùng: <input name="bot-field"></label>
+                </p>
+
                 <div class="form-group">
                   <label for="name" class="form-label">Họ và tên của bạn <span class="required">*</span></label>
                   <div class="input-with-icon">
