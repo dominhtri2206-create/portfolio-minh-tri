@@ -2047,6 +2047,355 @@ button, input, textarea, select {
 }
 
 /* -------------------------------------------------------------------
+   10C. ACTIVITIES & COMMUNITY SECTION
+------------------------------------------------------------------- */
+.activities-section {
+  background: #ffffff;
+  border-top: 1px solid var(--border-color);
+  padding: 95px 0;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.activity-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.activity-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(0, 86, 179, 0.35);
+}
+
+.act-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: #0f172a;
+  cursor: pointer;
+}
+
+.act-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform var(--transition-smooth);
+}
+
+.activity-card:hover .act-img {
+  transform: scale(1.04);
+}
+
+.act-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 2;
+}
+
+.act-img-wrapper:hover .act-img-overlay {
+  opacity: 1;
+}
+
+.act-zoom-btn {
+  background: #ffffff;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transform: translateY(6px);
+  transition: transform var(--transition-fast);
+}
+
+.act-img-wrapper:hover .act-zoom-btn {
+  transform: translateY(0);
+}
+
+.act-floating-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.badge-leader {
+  background: rgba(234, 88, 12, 0.92);
+}
+
+.badge-event {
+  background: rgba(37, 99, 235, 0.92);
+}
+
+.badge-volunteer {
+  background: rgba(16, 185, 129, 0.92);
+}
+
+.act-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.act-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.act-org-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.act-term-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.act-role-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.act-meta-info {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.act-meta-item {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.act-meta-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 2px;
+}
+
+.act-meta-value {
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.act-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.act-card-action {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* -------------------------------------------------------------------
+   10D. IMAGE LIGHTBOX MODAL
+------------------------------------------------------------------- */
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.image-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-dialog {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  width: 100%;
+  max-height: 94vh;
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.94);
+  transition: transform var(--transition-base);
+}
+
+.image-lightbox.active .lightbox-dialog {
+  transform: scale(1);
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(15, 23, 42, 0.75);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  transition: all var(--transition-fast);
+}
+
+.lightbox-close-btn:hover {
+  background: var(--accent-orange);
+  transform: rotate(90deg);
+}
+
+.lightbox-img-wrapper {
+  background: #0b1120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 68vh;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 66vh;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-footer {
+  padding: 16px 24px;
+  background: #ffffff;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.lightbox-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lightbox-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #10b981;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lightbox-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.lightbox-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* -------------------------------------------------------------------
    11. CONTACT SECTION & REFERENCE CARD
 ------------------------------------------------------------------- */
 .contact-layout {
@@ -2806,27 +3155,27 @@ textarea.form-control {
 @media (max-width: 1200px) and (min-width: 993px) {
   .nav-container {
     padding-inline: 16px;
-    gap: 12px;
+    gap: 10px;
   }
 
   .nav-menu {
-    gap: 6px;
-    margin: 0 8px;
+    gap: 4px;
+    margin: 0 4px;
   }
 
   .nav-link {
-    padding: 6px 12px;
-    font-size: 0.88rem;
-    gap: 6px;
+    padding: 6px 10px;
+    font-size: 0.84rem;
+    gap: 5px;
   }
 
   .nav-actions {
-    gap: 8px;
+    gap: 6px;
   }
 
   .nav-actions .btn-sm {
-    padding: 6px 12px;
-    font-size: 0.82rem;
+    padding: 6px 10px;
+    font-size: 0.8rem;
   }
 }
 
@@ -2886,7 +3235,7 @@ textarea.form-control {
     gap: 28px;
   }
 
-  .projects-grid {
+  .projects-grid, .activities-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -2954,7 +3303,7 @@ textarea.form-control {
     grid-column: span 1;
   }
 
-  .projects-grid {
+  .projects-grid, .activities-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2982,6 +3331,38 @@ textarea.form-control {
   .project-modal {
     padding: 24px;
     width: 95%;
+  }
+
+  .lightbox-dialog {
+    width: 96%;
+    max-height: 92vh;
+  }
+
+  .lightbox-img-wrapper {
+    max-height: 56vh;
+    padding: 6px;
+  }
+
+  .lightbox-img {
+    max-height: 54vh;
+  }
+
+  .lightbox-footer {
+    padding: 14px 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .lightbox-actions {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .lightbox-actions .btn {
+    flex: 1;
+    justify-content: center;
   }
 
   .modal-grid {

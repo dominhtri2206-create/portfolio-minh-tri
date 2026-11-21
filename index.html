@@ -43,6 +43,7 @@
         <li class="nav-item"><a href="#projects" class="nav-link"><i class="fa-solid fa-layer-group"></i> Dự án</a></li>
         <li class="nav-item"><a href="#achievements" class="nav-link"><i class="fa-solid fa-award"></i> Thành tích</a></li>
         <li class="nav-item"><a href="#certificates" class="nav-link"><i class="fa-solid fa-certificate"></i> Chứng chỉ</a></li>
+        <li class="nav-item"><a href="#activities" class="nav-link"><i class="fa-solid fa-users"></i> Hoạt động</a></li>
         <li class="nav-item"><a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Liên hệ</a></li>
       </ul>
 
@@ -82,6 +83,7 @@
       <li><a href="#projects" class="mobile-link"><i class="fa-solid fa-layer-group"></i> Dự án</a></li>
       <li><a href="#achievements" class="mobile-link"><i class="fa-solid fa-award"></i> Thành tích</a></li>
       <li><a href="#certificates" class="mobile-link"><i class="fa-solid fa-certificate"></i> Chứng chỉ</a></li>
+      <li><a href="#activities" class="mobile-link"><i class="fa-solid fa-users"></i> Hoạt động</a></li>
       <li><a href="#contact" class="mobile-link"><i class="fa-solid fa-paper-plane"></i> Liên hệ</a></li>
     </ul>
     <div class="drawer-footer">
@@ -750,12 +752,12 @@
           <div class="cert-card-grid">
             <!-- Left: Certificate Image Preview with click-to-open file navigation -->
             <div class="cert-image-wrapper">
-              <a href="certificate-mos-excel.jpg" target="_blank" class="cert-img-link" title="Nhấp vào để mở file ảnh chứng chỉ gốc (certificate-mos-excel.jpg)">
+              <a href="certificate-mos-excel.jpg" target="_blank" class="cert-img-link" onclick="event.preventDefault(); openLightbox('certificate-mos-excel.jpg', 'Chứng chỉ Microsoft Office Specialist: Excel 2019 Associate — Đỗ Minh Trí')" title="Nhấp vào để phóng to xem rõ chứng chỉ">
                 <img src="certificate-mos-excel.jpg" alt="Chứng chỉ Microsoft Office Specialist: Excel 2019 Associate - Đỗ Minh Trí" class="cert-main-img">
                 <div class="cert-img-overlay">
                   <div class="cert-zoom-btn">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    <span>Mở file chứng chỉ</span>
+                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    <span>Phóng to chứng chỉ</span>
                   </div>
                 </div>
               </a>
@@ -804,10 +806,10 @@
               </div>
 
               <div class="cert-actions-group">
-                <a href="certificate-mos-excel.jpg" target="_blank" class="btn btn-primary btn-sm" title="Điều hướng đến file chứng chỉ">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                  <span>Xem file chứng chỉ</span>
-                </a>
+                <button type="button" class="btn btn-primary btn-sm" onclick="openLightbox('certificate-mos-excel.jpg', 'Chứng chỉ Microsoft Office Specialist: Excel 2019 Associate — Đỗ Minh Trí')" title="Xem ảnh chứng chỉ phóng to">
+                  <i class="fa-solid fa-expand"></i>
+                  <span>Phóng to chứng chỉ</span>
+                </button>
                 <a href="certificate-mos-excel.jpg" download="ChungChi_MOS_Excel_DoMinhTri.jpg" class="btn btn-outline btn-sm">
                   <i class="fa-solid fa-download"></i>
                   <span>Tải ảnh về máy</span>
@@ -816,6 +818,146 @@
                   <i class="fa-solid fa-shield-halved"></i>
                   <span>Xác thực Certiport</span>
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PHẦN: HOẠT ĐỘNG & CỘNG ĐỒNG ==================== -->
+    <section class="section activities-section" id="activities">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header text-center reveal-up">
+          <span class="section-tag"><i class="fa-solid fa-users"></i> Đóng góp xã hội & Kỹ năng</span>
+          <h2 class="section-title">Hoạt Động & Cộng Đồng</h2>
+          <p class="section-subtitle">
+            Tích cực tham gia các hoạt động ngoại khóa, phong trào thanh niên và công tác tổ chức sự kiện, thể hiện tinh thần lãnh đạo, trách nhiệm xã hội và khả năng kết nối đội ngũ.
+          </p>
+        </div>
+
+        <!-- Activities 3-Card Grid -->
+        <div class="activities-grid">
+          <!-- Thẻ 1: Pegasus -->
+          <div class="activity-card reveal-up">
+            <div class="act-img-wrapper" onclick="openLightbox('act-pegasus.jpg', 'Phó Chủ tịch Pegasus — Ban Điều hành Nhiệm kỳ I')" title="Bấm vào để phóng to xem rõ">
+              <img src="act-pegasus.jpg" alt="Phó Chủ tịch (Vice President) — Ban Điều hành Nhiệm kỳ I Pegasus" class="act-img" loading="lazy">
+              <div class="act-img-overlay">
+                <span class="act-zoom-btn">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  <span>Phóng to ảnh</span>
+                </span>
+              </div>
+              <span class="act-floating-badge badge-leader">
+                <i class="fa-solid fa-crown"></i> Ban Điều hành
+              </span>
+            </div>
+            <div class="act-body">
+              <div class="act-badge-row">
+                <span class="act-org-tag"><i class="fa-solid fa-shield-halved"></i> Pegasus</span>
+                <span class="act-term-tag"><i class="fa-regular fa-clock"></i> Nhiệm kỳ I</span>
+              </div>
+              <h3 class="act-role-title">Phó Chủ tịch (Vice President) — Ban Điều hành Nhiệm kỳ I</h3>
+              <div class="act-meta-info">
+                <div class="act-meta-item">
+                  <span class="act-meta-label">Đơn vị tổ chức</span>
+                  <span class="act-meta-value">Pegasus</span>
+                </div>
+                <div class="act-meta-item">
+                  <span class="act-meta-label">Thời gian</span>
+                  <span class="act-meta-value">Nhiệm kỳ I</span>
+                </div>
+              </div>
+              <p class="act-desc">
+                Thể hiện tinh thần trách nhiệm cao, điều phối đội ngũ và hoàn thành xuất sắc nhiệm vụ trong vai trò Phó Chủ tịch nhiệm kỳ I.
+              </p>
+              <div class="act-card-action">
+                <button type="button" class="btn btn-outline btn-sm w-100" onclick="openLightbox('act-pegasus.jpg', 'Phó Chủ tịch Pegasus — Ban Điều hành Nhiệm kỳ I')">
+                  <i class="fa-solid fa-expand"></i> Xem ảnh minh chứng
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thẻ 2: Lễ Tốt nghiệp BTEC FPT 2026 -->
+          <div class="activity-card reveal-up">
+            <div class="act-img-wrapper" onclick="openLightbox('act-graduation.jpg', 'Thành viên Ban Tổ chức — Lễ Tốt nghiệp BTEC FPT 2026')" title="Bấm vào để phóng to xem rõ">
+              <img src="act-graduation.jpg" alt="Thành viên Ban Tổ chức Lễ Tốt nghiệp BTEC FPT 2026" class="act-img" loading="lazy">
+              <div class="act-img-overlay">
+                <span class="act-zoom-btn">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  <span>Phóng to ảnh</span>
+                </span>
+              </div>
+              <span class="act-floating-badge badge-event">
+                <i class="fa-solid fa-star"></i> Ban Tổ chức Sự kiện
+              </span>
+            </div>
+            <div class="act-body">
+              <div class="act-badge-row">
+                <span class="act-org-tag"><i class="fa-solid fa-graduation-cap"></i> BTEC FPT</span>
+                <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> 25/10/2026</span>
+              </div>
+              <h3 class="act-role-title">Thành viên Ban Tổ chức (Organizing Committee)</h3>
+              <div class="act-meta-info">
+                <div class="act-meta-item">
+                  <span class="act-meta-label">Sự kiện & Đơn vị</span>
+                  <span class="act-meta-value">Lễ Tốt nghiệp BTEC FPT 2026</span>
+                </div>
+                <div class="act-meta-item">
+                  <span class="act-meta-label">Thời gian & Địa điểm</span>
+                  <span class="act-meta-value">25/10/2026 tại Đà Nẵng</span>
+                </div>
+              </div>
+              <p class="act-desc">
+                Trực tiếp đóng góp và phối hợp vận hành sự kiện trọng đại cấp trường, đảm bảo trải nghiệm chuyên nghiệp cho sinh viên và khách mời.
+              </p>
+              <div class="act-card-action">
+                <button type="button" class="btn btn-outline btn-sm w-100" onclick="openLightbox('act-graduation.jpg', 'Thành viên Ban Tổ chức — Lễ Tốt nghiệp BTEC FPT 2026')">
+                  <i class="fa-solid fa-expand"></i> Xem ảnh minh chứng
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thẻ 3: Dự án thiện nguyện Hành Trình Yêu Thương -->
+          <div class="activity-card reveal-up">
+            <div class="act-img-wrapper" onclick="openLightbox('act-thien-nguyen.jpg', 'Tình nguyện viên đóng góp tích cực — Hành Trình Yêu Thương Số 4')" title="Bấm vào để phóng to xem rõ">
+              <img src="act-thien-nguyen.jpg" alt="Tình nguyện viên Dự án thiện nguyện Hành Trình Yêu Thương - Số thứ 4" class="act-img" loading="lazy">
+              <div class="act-img-overlay">
+                <span class="act-zoom-btn">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  <span>Phóng to ảnh</span>
+                </span>
+              </div>
+              <span class="act-floating-badge badge-volunteer">
+                <i class="fa-solid fa-heart"></i> Thiện nguyện cộng đồng
+              </span>
+            </div>
+            <div class="act-body">
+              <div class="act-badge-row">
+                <span class="act-org-tag"><i class="fa-solid fa-hand-holding-heart"></i> BTEC FPT & Fusion Club</span>
+                <span class="act-term-tag"><i class="fa-solid fa-location-dot"></i> Đà Nẵng</span>
+              </div>
+              <h3 class="act-role-title">Tình nguyện viên đóng góp tích cực</h3>
+              <div class="act-meta-info">
+                <div class="act-meta-item">
+                  <span class="act-meta-label">Sự kiện</span>
+                  <span class="act-meta-value">Dự án thiện nguyện "Hành Trình Yêu Thương - Số thứ 4" (BTEC FPT & Fusion Club)</span>
+                </div>
+                <div class="act-meta-item">
+                  <span class="act-meta-label">Địa điểm thực hiện</span>
+                  <span class="act-meta-value">Mái Ấm Tình Thương (Ngũ Hành Sơn, Đà Nẵng)</span>
+                </div>
+              </div>
+              <p class="act-desc">
+                Tham gia tổ chức và lan tỏa giá trị tích cực tại Mái Ấm Tình Thương (Ngũ Hành Sơn, Đà Nẵng).
+              </p>
+              <div class="act-card-action">
+                <button type="button" class="btn btn-outline btn-sm w-100" onclick="openLightbox('act-thien-nguyen.jpg', 'Tình nguyện viên đóng góp tích cực — Hành Trình Yêu Thương Số 4')">
+                  <i class="fa-solid fa-expand"></i> Xem ảnh minh chứng
+                </button>
               </div>
             </div>
           </div>
@@ -1023,6 +1165,7 @@
           <li><a href="#projects"><i class="fa-solid fa-angle-right"></i> Dự án tiêu biểu</a></li>
           <li><a href="#achievements"><i class="fa-solid fa-angle-right"></i> Thành tích</a></li>
           <li><a href="#certificates"><i class="fa-solid fa-angle-right"></i> Chứng chỉ</a></li>
+          <li><a href="#activities"><i class="fa-solid fa-angle-right"></i> Hoạt động & Cộng đồng</a></li>
           <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Liên hệ</a></li>
         </ul>
       </div>
@@ -1061,6 +1204,33 @@
     </button>
     <div class="modal-content" id="modal-content-container">
       <!-- Content dynamically populated by script.js -->
+    </div>
+  </div>
+
+  <!-- ==================== MODAL PHÓNG TO ẢNH MINH CHỨNG ==================== -->
+  <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+    <div class="lightbox-dialog">
+      <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Đóng xem ảnh">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Ảnh minh chứng phóng to" class="lightbox-img">
+      </div>
+      <div class="lightbox-footer">
+        <div class="lightbox-info">
+          <span class="lightbox-badge"><i class="fa-solid fa-circle-check"></i> Ảnh minh chứng thực tế</span>
+          <h4 id="lightbox-title" class="lightbox-title"></h4>
+        </div>
+        <div class="lightbox-actions">
+          <a id="lightbox-download-link" href="#" target="_blank" class="btn btn-outline btn-sm" download>
+            <i class="fa-solid fa-download"></i> <span>Tải ảnh về máy</span>
+          </a>
+          <a id="lightbox-external-link" href="#" target="_blank" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở tab mới</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 

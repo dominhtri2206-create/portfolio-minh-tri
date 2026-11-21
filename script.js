@@ -446,13 +446,57 @@ function closeProjectModal() {
 
   if (modal) modal.classList.remove('active');
   if (backdrop) backdrop.classList.remove('active');
-  document.body.style.overflow = '';
+  
+  const lightbox = document.getElementById('image-lightbox');
+  if (!lightbox || !lightbox.classList.contains('active')) {
+    document.body.style.overflow = '';
+  }
 }
 
-// Close modal on Escape
+/**
+ * Image Lightbox Modal for Activities & Certificates
+ */
+function openLightbox(src, title) {
+  const lightbox = document.getElementById('image-lightbox');
+  const img = document.getElementById('lightbox-img');
+  const titleEl = document.getElementById('lightbox-title');
+  const dlLink = document.getElementById('lightbox-download-link');
+  const extLink = document.getElementById('lightbox-external-link');
+
+  if (!lightbox || !img) return;
+
+  img.src = src;
+  img.alt = title || 'Ảnh minh chứng phóng to';
+  if (titleEl) titleEl.textContent = title || 'Ảnh minh chứng';
+  if (dlLink) {
+    dlLink.href = src;
+    dlLink.setAttribute('download', src.split('/').pop());
+  }
+  if (extLink) {
+    extLink.href = src;
+  }
+
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('image-lightbox');
+  if (lightbox) {
+    lightbox.classList.remove('active');
+  }
+
+  const projectModal = document.getElementById('project-modal');
+  if (!projectModal || !projectModal.classList.contains('active')) {
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modals on Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeProjectModal();
+    closeLightbox();
   }
 });
 
