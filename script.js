@@ -447,8 +447,197 @@ function closeProjectModal() {
   if (modal) modal.classList.remove('active');
   if (backdrop) backdrop.classList.remove('active');
   
+  const activityModal = document.getElementById('activity-modal');
   const lightbox = document.getElementById('image-lightbox');
-  if (!lightbox || !lightbox.classList.contains('active')) {
+  const isOtherOpen = (activityModal && activityModal.classList.contains('active')) ||
+                      (lightbox && lightbox.classList.contains('active'));
+  if (!isOtherOpen) {
+    document.body.style.overflow = '';
+  }
+}
+
+/* -------------------------------------------------------------------
+   7B. ACTIVITY DETAILS MODAL POPUP & DATA
+------------------------------------------------------------------- */
+const activityDetailsData = {
+  1: {
+    id: 1,
+    title: "BBE Pegasus Chapter — Ban Lãnh Đạo Nhiệm Kỳ I",
+    role: "Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I",
+    organization: "BBE Pegasus Chapter",
+    timeLocation: "01/02/2026 – 30/09/2026",
+    badgeType: "Ban Lãnh đạo",
+    badgeClass: "badge-leader",
+    mainImage: "act-pegasus.jpg",
+    subPlaceholder1: "Ảnh hậu trường sinh hoạt & họp điều hành",
+    subPlaceholder2: "Ảnh tổ chức workshop & chia sẻ kỹ năng",
+    tasks: [
+      "Điều phối thành viên, phân công công việc cụ thể và giám sát tiến độ hoạt động trong ban lãnh đạo.",
+      "Xây dựng quy trình sinh hoạt định kỳ, chuẩn hóa tài liệu và duy trì kỷ luật sinh hoạt chuyên nghiệp.",
+      "Chủ trì tổ chức các buổi chia sẻ kỹ năng thực chiến và các hoạt động kết nối tinh thần đồng đội."
+    ],
+    result: "Duy trì độ gắn kết đội ngũ cao trong suốt nhiệm kỳ I, củng cố năng lực điều hành và xây dựng văn hóa đội nhóm vững mạnh."
+  },
+  2: {
+    id: 2,
+    title: "Lễ Tốt Nghiệp BTEC FPT 2026",
+    role: "Thành viên Ban Tổ chức (Organizing Committee)",
+    organization: "BTEC FPT",
+    timeLocation: "25/10/2026 tại Đà Nẵng",
+    badgeType: "Ban Tổ chức Sự kiện",
+    badgeClass: "badge-event",
+    mainImage: "act-graduation.jpg",
+    subPlaceholder1: "Ảnh hậu trường setup & vận hành sân khấu",
+    subPlaceholder2: "Ảnh điều phối tân cử nhân & đón tiếp khách mời",
+    tasks: [
+      "Phối hợp chuẩn bị công tác hậu cần, kỹ thuật âm thanh, ánh sáng và kiểm soát bố cục sân khấu lễ tốt nghiệp.",
+      "Trực tiếp hướng dẫn, điều phối hàng ngũ khách mời danh dự, phụ huynh và tân cử nhân trong suốt buổi lễ.",
+      "Xử lý nhanh nhạy và kịp thời các tình huống phát sinh tại khu vực sân khấu chính và luồng di chuyển."
+    ],
+    result: "Sự kiện diễn ra suôn sẻ, chỉn chu và để lại ấn tượng tốt đẹp trong lòng sinh viên cùng khách mời; rèn luyện khả năng ứng biến dưới áp lực cao."
+  },
+  3: {
+    id: 3,
+    title: "Dự Án Thiện Nguyện \"Hành Trình Yêu Thương - Số Thứ 4\"",
+    role: "Tình nguyện viên đóng góp tích cực",
+    organization: "BTEC FPT & Fusion Club",
+    timeLocation: "Ngũ Hành Sơn, Đà Nẵng",
+    badgeType: "Thiện nguyện cộng đồng",
+    badgeClass: "badge-volunteer",
+    mainImage: "act-thien-nguyen.jpg",
+    subPlaceholder1: "Ảnh chuẩn bị & phân loại quà tặng thiện nguyện",
+    subPlaceholder2: "Ảnh sinh hoạt, giao lưu trò chơi cùng các em nhỏ",
+    tasks: [
+      "Lên kế hoạch vận động, tiếp nhận và phân loại chu đáo các phần quà tặng gửi tới Mái Ấm Tình Thương.",
+      "Tổ chức hoạt động giao lưu văn nghệ, trò chơi tập thể sôi nổi, an toàn và kết nối cùng các em nhỏ.",
+      "Trực tiếp kết nối, lắng nghe, chăm sóc các em nhỏ tại Mái Ấm Tình Thương và hỗ trợ công tác hậu cần."
+    ],
+    result: "Lan tỏa tinh thần sẻ chia và gắn kết cộng đồng sinh viên; nuôi dưỡng lòng trắc ẩn và tinh thần trách nhiệm xã hội."
+  }
+};
+
+function openActivityModal(activityId) {
+  const data = activityDetailsData[activityId];
+  if (!data) return;
+
+  const modal = document.getElementById('activity-modal');
+  const backdrop = document.getElementById('activity-modal-backdrop');
+  const container = document.getElementById('act-modal-content-container');
+
+  if (!modal || !backdrop || !container) return;
+
+  const tasksHtml = data.tasks.map(item => `
+    <li class="modal-list-item">
+      <i class="fa-solid fa-circle-check text-primary-color"></i>
+      <span>${item}</span>
+    </li>
+  `).join('');
+
+  container.innerHTML = `
+    <div class="modal-activity-header">
+      <div class="modal-meta-row">
+        <span class="act-floating-badge ${data.badgeClass}" style="position: static; display: inline-flex;">
+          <i class="fa-solid fa-crown"></i> ${data.badgeType}
+        </span>
+        <span class="act-org-tag">${data.organization}</span>
+      </div>
+      <h2 class="modal-title" id="act-modal-title">${data.title}</h2>
+      <div class="modal-subtitle-row">
+        <div class="modal-role-highlight">
+          <i class="fa-solid fa-user-tie text-primary-color"></i>
+          <span><strong>Vai trò:</strong> ${data.role}</span>
+        </div>
+        <div class="modal-time-highlight">
+          <i class="fa-regular fa-calendar-check text-orange-color"></i>
+          <span><strong>Thời gian & Địa điểm:</strong> ${data.timeLocation}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Khung trưng bày hình ảnh -->
+    <div class="act-modal-gallery">
+      <div class="act-gallery-main" onclick="openLightbox('${data.mainImage}', '${data.title}')" title="Nhấp vào để phóng to xem rõ ảnh chứng nhận">
+        <img src="${data.mainImage}" alt="${data.title}" class="act-modal-main-img">
+        <div class="act-gallery-overlay">
+          <span class="gallery-zoom-pill">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <span>Phóng to ảnh chứng nhận</span>
+          </span>
+        </div>
+        <span class="gallery-badge-main">
+          <i class="fa-solid fa-certificate"></i> Ảnh chứng nhận chính
+        </span>
+      </div>
+
+      <div class="act-gallery-sub-grid">
+        <div class="act-sub-placeholder">
+          <div class="placeholder-icon"><i class="fa-solid fa-camera"></i></div>
+          <div class="placeholder-text">
+            <strong>${data.subPlaceholder1}</strong>
+            <span>Khu vực chờ cập nhật ảnh hậu trường</span>
+          </div>
+        </div>
+        <div class="act-sub-placeholder">
+          <div class="placeholder-icon"><i class="fa-solid fa-images"></i></div>
+          <div class="placeholder-text">
+            <strong>${data.subPlaceholder2}</strong>
+            <span>Khu vực chờ cập nhật ảnh hậu trường</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nội dung chi tiết: Nhiệm vụ & Kết quả -->
+    <div class="act-modal-details-grid">
+      <div class="act-details-section">
+        <div class="modal-section-title">
+          <i class="fa-solid fa-list-check text-primary-color"></i>
+          <span>Nhiệm vụ & Đóng góp chính</span>
+        </div>
+        <ul class="modal-list">
+          ${tasksHtml}
+        </ul>
+      </div>
+
+      <div class="act-details-section">
+        <div class="modal-section-title">
+          <i class="fa-solid fa-award text-orange-color"></i>
+          <span>Kết quả / Bài học rút ra</span>
+        </div>
+        <div class="act-result-card">
+          <p class="result-text">${data.result}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button type="button" class="btn btn-outline btn-sm" onclick="openLightbox('${data.mainImage}', '${data.title}')">
+        <i class="fa-solid fa-expand"></i> Phóng to ảnh chứng nhận
+      </button>
+      <button type="button" class="btn btn-ghost btn-sm" onclick="closeActivityModal()">
+        <i class="fa-solid fa-xmark"></i> Đóng
+      </button>
+    </div>
+  `;
+
+  backdrop.classList.add('active');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeActivityModal() {
+  const modal = document.getElementById('activity-modal');
+  const backdrop = document.getElementById('activity-modal-backdrop');
+
+  if (modal) modal.classList.remove('active');
+  if (backdrop) backdrop.classList.remove('active');
+
+  const projectModal = document.getElementById('project-modal');
+  const lightbox = document.getElementById('image-lightbox');
+  const isOtherOpen = (projectModal && projectModal.classList.contains('active')) ||
+                      (lightbox && lightbox.classList.contains('active'));
+
+  if (!isOtherOpen) {
     document.body.style.overflow = '';
   }
 }
@@ -487,7 +676,11 @@ function closeLightbox() {
   }
 
   const projectModal = document.getElementById('project-modal');
-  if (!projectModal || !projectModal.classList.contains('active')) {
+  const activityModal = document.getElementById('activity-modal');
+  const isOtherOpen = (projectModal && projectModal.classList.contains('active')) ||
+                      (activityModal && activityModal.classList.contains('active'));
+
+  if (!isOtherOpen) {
     document.body.style.overflow = '';
   }
 }
@@ -496,6 +689,7 @@ function closeLightbox() {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeProjectModal();
+    closeActivityModal();
     closeLightbox();
   }
 });
