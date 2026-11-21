@@ -775,3 +775,32 @@ function initContactForm() {
   // Netlify Forms: Native submit is allowed without preventDefault
   // to ensure Netlify servers receive real form submissions.
 }
+
+/* -------------------------------------------------------------------
+   10. CERTIFICATE DETAILS COLLAPSE TOGGLE
+------------------------------------------------------------------- */
+/**
+ * Toggle Collapsible Certificate Details (Xem thêm / Thu gọn thông tin)
+ */
+function toggleCertMeta(button) {
+  if (!button) return;
+  const wrapper = button.closest('.cert-meta-toggle-wrapper');
+  if (!wrapper) return;
+  const collapseEl = wrapper.querySelector('.cert-meta-collapse');
+  const toggleText = button.querySelector('.toggle-text');
+  if (!collapseEl) return;
+
+  const isExpanded = button.classList.contains('active');
+
+  if (isExpanded) {
+    button.classList.remove('active');
+    button.setAttribute('aria-expanded', 'false');
+    collapseEl.classList.remove('active');
+    if (toggleText) toggleText.textContent = 'Xem thêm thông tin';
+  } else {
+    button.classList.add('active');
+    button.setAttribute('aria-expanded', 'true');
+    collapseEl.classList.add('active');
+    if (toggleText) toggleText.textContent = 'Thu gọn thông tin';
+  }
+}
