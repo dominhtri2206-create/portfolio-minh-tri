@@ -45,27 +45,34 @@
 
       <!-- Desktop Nav Links -->
       <ul class="nav-menu" id="nav-menu">
-        <li class="nav-item"><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Giới thiệu</a>
+        <li class="nav-item"><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> <span data-i18n="nav.home">Giới thiệu</span></a>
         </li>
-        <li class="nav-item"><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> Về tôi & Kỹ năng</a>
+        <li class="nav-item"><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> <span data-i18n="nav.about">Về tôi & Kỹ năng</span></a>
         </li>
-        <li class="nav-item"><a href="#projects" class="nav-link"><i class="fa-solid fa-layer-group"></i> Dự án</a></li>
-        <li class="nav-item"><a href="#achievements" class="nav-link"><i class="fa-solid fa-award"></i> Thành tích</a>
+        <li class="nav-item"><a href="#projects" class="nav-link"><i class="fa-solid fa-layer-group"></i> <span data-i18n="nav.projects">Dự án</span></a></li>
+        <li class="nav-item"><a href="#achievements" class="nav-link"><i class="fa-solid fa-award"></i> <span data-i18n="nav.achievements">Thành tích</span></a>
         </li>
-        <li class="nav-item"><a href="#certificates" class="nav-link"><i class="fa-solid fa-certificate"></i> Chứng
-            chỉ</a></li>
-        <li class="nav-item"><a href="#activities" class="nav-link"><i class="fa-solid fa-users"></i> Hoạt động</a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Liên hệ</a>
+        <li class="nav-item"><a href="#certificates" class="nav-link"><i class="fa-solid fa-certificate"></i> <span data-i18n="nav.certificates">Chứng chỉ</span></a></li>
+        <li class="nav-item"><a href="#activities" class="nav-link"><i class="fa-solid fa-users"></i> <span data-i18n="nav.activities">Hoạt động</span></a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="nav.contact">Liên hệ</span></a>
         </li>
       </ul>
 
       <!-- Action Buttons in Nav -->
       <div class="nav-actions">
+        <!-- Language Switcher in Header -->
+        <div class="lang-switcher" id="desktop-lang-switcher" role="group" aria-label="Language Switcher">
+          <i class="fa-solid fa-globe lang-icon" aria-hidden="true"></i>
+          <button type="button" class="lang-btn active" data-lang="vi" aria-label="Tiếng Việt">VI</button>
+          <span class="lang-divider">|</span>
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </div>
+
         <a href="CV.png" target="_blank" class="btn btn-sm btn-outline nav-cv-btn" download="CV_DoMinhTri.png">
-          <i class="fa-solid fa-file-arrow-down"></i> <span>Tải CV</span>
+          <i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="nav.cv">Tải CV</span>
         </a>
         <a href="#contact" class="btn btn-sm btn-primary nav-contact-btn">
-          <span>Hợp tác ngay</span>
+          <span data-i18n="nav.collaborate">Hợp tác ngay</span>
         </a>
 
         <!-- Mobile Menu Toggle Button -->
@@ -89,21 +96,35 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
+
+    <!-- Mobile Language Switcher -->
+    <div class="drawer-lang-wrap">
+      <span class="drawer-lang-label">
+        <i class="fa-solid fa-globe text-primary-color"></i>
+        <span data-i18n="mobile.lang_label">Ngôn ngữ / Language:</span>
+      </span>
+      <div class="lang-switcher mobile-lang-switcher" id="drawer-lang-switcher" role="group" aria-label="Mobile Language Switcher">
+        <button type="button" class="lang-btn active" data-lang="vi" aria-label="Tiếng Việt">VI</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      </div>
+    </div>
+
     <ul class="mobile-menu-links">
-      <li><a href="#hero" class="mobile-link active"><i class="fa-solid fa-house"></i> Giới thiệu</a></li>
-      <li><a href="#about" class="mobile-link"><i class="fa-solid fa-user"></i> Về tôi & Kỹ năng</a></li>
-      <li><a href="#projects" class="mobile-link"><i class="fa-solid fa-layer-group"></i> Dự án</a></li>
-      <li><a href="#achievements" class="mobile-link"><i class="fa-solid fa-award"></i> Thành tích</a></li>
-      <li><a href="#certificates" class="mobile-link"><i class="fa-solid fa-certificate"></i> Chứng chỉ</a></li>
-      <li><a href="#activities" class="mobile-link"><i class="fa-solid fa-users"></i> Hoạt động</a></li>
-      <li><a href="#contact" class="mobile-link"><i class="fa-solid fa-paper-plane"></i> Liên hệ</a></li>
+      <li><a href="#hero" class="mobile-link active"><i class="fa-solid fa-house"></i> <span data-i18n="nav.home">Giới thiệu</span></a></li>
+      <li><a href="#about" class="mobile-link"><i class="fa-solid fa-user"></i> <span data-i18n="nav.about">Về tôi & Kỹ năng</span></a></li>
+      <li><a href="#projects" class="mobile-link"><i class="fa-solid fa-layer-group"></i> <span data-i18n="nav.projects">Dự án</span></a></li>
+      <li><a href="#achievements" class="mobile-link"><i class="fa-solid fa-award"></i> <span data-i18n="nav.achievements">Thành tích</span></a></li>
+      <li><a href="#certificates" class="mobile-link"><i class="fa-solid fa-certificate"></i> <span data-i18n="nav.certificates">Chứng chỉ</span></a></li>
+      <li><a href="#activities" class="mobile-link"><i class="fa-solid fa-users"></i> <span data-i18n="nav.activities">Hoạt động</span></a></li>
+      <li><a href="#contact" class="mobile-link"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="nav.contact">Liên hệ</span></a></li>
     </ul>
     <div class="drawer-footer">
       <a href="CV.png" target="_blank" class="btn btn-outline w-100 mb-2" download="CV_DoMinhTri.png">
-        <i class="fa-solid fa-file-arrow-down"></i> Tải CV
+        <i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="nav.cv">Tải CV</span>
       </a>
       <a href="#contact" class="btn btn-primary w-100">
-        <i class="fa-solid fa-paper-plane"></i> Liên hệ ngay
+        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="mobile.contact_now">Liên hệ ngay</span>
       </a>
     </div>
   </aside>
@@ -125,20 +146,20 @@
             <div class="ai-badge-content">
               <div class="ai-badge-row-main">
                 <span class="live-status-dot" aria-hidden="true"></span>
-                <span class="ai-badge-text-main">
+                <span class="ai-badge-text-main" data-i18n="hero.ai_badge_main">
                   Website Portfolio cá nhân được xây dựng bằng <strong>AI Agent (Google Antigravity)</strong> 🚀
                 </span>
               </div>
               <div class="ai-badge-row-sub">
-                <span class="ai-beta-tag"><i class="fa-solid fa-code-branch"></i> Phiên bản Beta</span>
+                <span class="ai-beta-tag"><i class="fa-solid fa-code-branch"></i> <span data-i18n="hero.ai_beta">Phiên bản Beta</span></span>
                 <span class="ai-sub-separator">|</span>
-                <span class="ai-badge-text-sub">Đang tiếp tục nâng cấp và hoàn thiện mỗi ngày</span>
+                <span class="ai-badge-text-sub" data-i18n="hero.ai_badge_sub">Đang tiếp tục nâng cấp và hoàn thiện mỗi ngày</span>
               </div>
             </div>
           </div>
 
           <h1 class="hero-title">
-            Xin chào, mình là <br>
+            <span data-i18n="hero.greeting">Xin chào, mình là</span> <br>
             <span class="text-highlight">Đỗ Minh Trí</span>
             <span class="hero-alias">(Eric Do)</span>
           </h1>
@@ -146,30 +167,30 @@
           <!-- Châm ngôn sống (Motto) -->
           <p class="hero-motto">
             <i class="fa-solid fa-quote-left motto-icon"></i>
-            <span>I never lose. I either win or learn!</span>
+            <span data-i18n="hero.motto">I never lose. I either win or learn!</span>
             <i class="fa-solid fa-quote-right motto-icon"></i>
           </p>
 
           <!-- Các thẻ nhãn (Badges) giới thiệu cá tính/thế mạnh (Vị trí 3) -->
           <div class="role-badge-container">
-            <span class="role-tag"><i class="fa-solid fa-robot"></i> Business & Ứng dụng AI Agent</span>
+            <span class="role-tag" data-i18n="hero.role_ai"><i class="fa-solid fa-robot"></i> Business & Ứng dụng AI Agent</span>
             <span class="role-separator">•</span>
-            <span class="role-tag"><i class="fa-solid fa-microphone-lines"></i> MC & Nghiên cứu</span>
+            <span class="role-tag" data-i18n="hero.role_mc"><i class="fa-solid fa-microphone-lines"></i> MC & Nghiên cứu</span>
             <span class="role-separator">•</span>
-            <span class="role-tag"><i class="fa-solid fa-language"></i> Tiếng Anh & Tiếng Trung</span>
+            <span class="role-tag" data-i18n="hero.role_lang"><i class="fa-solid fa-language"></i> Tiếng Anh & Tiếng Trung</span>
           </div>
 
           <!-- Tuyên ngôn cá nhân (Mission Statement) (Vị trí 4) -->
           <blockquote class="hero-mission-quote">
-            <div class="mission-tag"><i class="fa-solid fa-compass"></i> Tuyên ngôn cá nhân</div>
-            <p class="mission-text">
+            <div class="mission-tag"><i class="fa-solid fa-compass"></i> <span data-i18n="hero.mission_tag">Tuyên ngôn cá nhân</span></div>
+            <p class="mission-text" data-i18n="hero.mission_text">
               “You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the
               strength in others.”
             </p>
           </blockquote>
 
           <!-- Đoạn văn giới thiệu bản thân -->
-          <p class="hero-description">
+          <p class="hero-description" data-i18n="hero.description">
             Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và
             đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông,
             nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công
@@ -178,16 +199,16 @@
 
           <div class="hero-cta-group">
             <a href="#projects" class="btn btn-primary btn-lg">
-              <span>Xem dự án của tôi</span>
+              <span data-i18n="hero.cta_projects">Xem dự án của tôi</span>
               <i class="fa-solid fa-arrow-down-long"></i>
             </a>
             <a href="#contact" class="btn btn-outline btn-lg">
               <i class="fa-regular fa-paper-plane"></i>
-              <span>Liên hệ ngay</span>
+              <span data-i18n="hero.cta_contact">Liên hệ ngay</span>
             </a>
-            <a href="CV.png" target="_blank" class="btn btn-ghost btn-lg" title="Xem trước bản CV">
+            <a href="CV.png" target="_blank" class="btn btn-ghost btn-lg" title="Xem trước bản CV" data-i18n-title="hero.cta_cv_title">
               <i class="fa-solid fa-eye"></i>
-              <span>Xem CV</span>
+              <span data-i18n="hero.cta_cv">Xem CV</span>
             </a>
           </div>
         </div>
@@ -204,7 +225,7 @@
               <!-- Default stylish placeholder illustration / image. User can replace 'avatar.jpg' or use CV.png -->
               <img src="avatar.jpg" alt="Chân dung Đỗ Minh Trí" class="avatar-img" id="user-avatar"
                 onerror="this.onerror=null; this.src='CV.png';">
-              <div class="avatar-overlay-hint" title="Đỗ Minh Trí - Business & AI Agent Builder">
+              <div class="avatar-overlay-hint" title="Đỗ Minh Trí - Business & AI Agent Builder" data-i18n-title="hero.avatar_hint_title">
                 <i class="fa-solid fa-user-check"></i>
                 <span>Đỗ Minh Trí</span>
               </div>
@@ -215,7 +236,7 @@
               <div class="badge-icon icon-orange"><i class="fa-solid fa-robot"></i></div>
               <div class="badge-text">
                 <strong>Business & AI</strong>
-                <span>Ứng dụng AI Agent</span>
+                <span data-i18n="hero.badge_ai_sub">Ứng dụng AI Agent</span>
               </div>
             </div>
 
@@ -223,16 +244,16 @@
             <div class="floating-badge badge-top-right float-anim-4">
               <div class="badge-icon icon-blue"><i class="fa-solid fa-language"></i></div>
               <div class="badge-text">
-                <strong>Ngoại ngữ</strong>
-                <span>Tiếng Anh & Tiếng Trung</span>
+                <strong data-i18n="hero.badge_lang_title">Ngoại ngữ</strong>
+                <span data-i18n="hero.badge_lang_sub">Tiếng Anh & Tiếng Trung</span>
               </div>
             </div>
 
             <div class="floating-badge badge-bottom-right float-anim-2">
               <div class="badge-icon icon-orange"><i class="fa-solid fa-trophy"></i></div>
               <div class="badge-text">
-                <strong>Á Quân Khởi Nghiệp</strong>
-                <span>Chân Trần Khởi Nghiệp Mùa 3</span>
+                <strong data-i18n="hero.badge_award_title">Á Quân Khởi Nghiệp</strong>
+                <span data-i18n="hero.badge_award_sub">Chân Trần Khởi Nghiệp Mùa 3</span>
               </div>
             </div>
 
@@ -240,7 +261,7 @@
               <div class="badge-icon icon-cyan"><i class="fa-solid fa-graduation-cap"></i></div>
               <div class="badge-text">
                 <strong>BTEC FPT Đà Nẵng</strong>
-                <span>Digital Marketing</span>
+                <span data-i18n="hero.badge_edu_sub">Digital Marketing</span>
               </div>
             </div>
           </div>
@@ -253,9 +274,9 @@
       <div class="container">
         <!-- Section Header -->
         <div class="section-header text-center reveal-up">
-          <span class="section-tag"><i class="fa-solid fa-user-graduate"></i> Hành trình & Năng lực</span>
-          <h2 class="section-title">Về Tôi, Học Vấn & Kỹ Năng</h2>
-          <p class="section-subtitle">
+          <span class="section-tag"><i class="fa-solid fa-user-graduate"></i> <span data-i18n="about.tag">Hành trình & Năng lực</span></span>
+          <h2 class="section-title" data-i18n="about.title">Về Tôi, Học Vấn & Kỹ Năng</h2>
+          <p class="section-subtitle" data-i18n="about.subtitle">
             Sự kết hợp giữa tư duy Quản trị Kinh doanh (Business), khả năng ứng dụng AI Agent vào xây dựng sản phẩm thực tế, kỹ năng giao tiếp/MC và nền tảng Digital Marketing.
           </p>
         </div>
@@ -269,8 +290,8 @@
                 <i class="fa-solid fa-graduation-cap"></i>
               </div>
               <div>
-                <h3 class="card-main-title">Lộ Trình Học Vấn</h3>
-                <p class="card-sub-title">Nền tảng đào tạo chuẩn quốc tế và thực hành chuyên sâu</p>
+                <h3 class="card-main-title" data-i18n="about.edu_title">Lộ Trình Học Vấn</h3>
+                <p class="card-sub-title" data-i18n="about.edu_sub">Nền tảng đào tạo chuẩn quốc tế và thực hành chuyên sâu</p>
               </div>
             </div>
 
@@ -279,17 +300,17 @@
               <div class="timeline-item">
                 <div class="timeline-marker marker-current"></div>
                 <div class="timeline-content">
-                  <div class="timeline-badge badge-ongoing">09/2025 - Hiện tại</div>
+                  <div class="timeline-badge badge-ongoing" data-i18n="about.edu_btec_badge">09/2025 - Hiện tại</div>
                   <h4 class="timeline-title">Cao đẳng Anh Quốc BTEC FPT Đà Nẵng</h4>
-                  <p class="timeline-major"><i class="fa-solid fa-book-bookmark"></i> Chuyên ngành: <strong>Quản trị Kinh doanh (Business Administration)</strong></p>
-                  <p class="timeline-desc">
+                  <p class="timeline-major" data-i18n="about.edu_btec_major"><i class="fa-solid fa-book-bookmark"></i> Chuyên ngành: <strong>Quản trị Kinh doanh (Business Administration)</strong></p>
+                  <p class="timeline-desc" data-i18n="about.edu_btec_desc">
                     Tiếp cận chương trình đào tạo chuẩn Anh Quốc Pearson BTEC, tập trung phát triển tư duy kinh doanh hiện đại, quản trị dự án, đổi mới sáng tạo và ứng dụng công nghệ/AI vào giải quyết bài toán thực tế của doanh nghiệp.
                   </p>
                   <div class="timeline-tags">
-                    <span>Business Administration</span>
-                    <span>Tư duy khởi nghiệp</span>
-                    <span>AI & Đổi mới sáng tạo</span>
-                    <span>Quản trị dự án</span>
+                    <span data-i18n="about.edu_btec_t1">Business Administration</span>
+                    <span data-i18n="about.edu_btec_t2">Tư duy khởi nghiệp</span>
+                    <span data-i18n="about.edu_btec_t3">AI & Đổi mới sáng tạo</span>
+                    <span data-i18n="about.edu_btec_t4">Quản trị dự án</span>
                   </div>
                 </div>
               </div>
@@ -298,22 +319,21 @@
               <div class="timeline-item">
                 <div class="timeline-marker marker-completed"></div>
                 <div class="timeline-content">
-                  <div class="timeline-badge badge-success">09/2023 - 09/2025</div>
+                  <div class="timeline-badge badge-success" data-i18n="about.edu_poly_badge">09/2023 - 09/2025</div>
                   <div class="d-flex align-items-center gap-2">
                     <h4 class="timeline-title">FPT Polyschool Bình Định</h4>
-                    <span class="honor-pill"><i class="fa-solid fa-medal"></i> Tốt nghiệp Xuất Sắc</span>
+                    <span class="honor-pill"><i class="fa-solid fa-medal"></i> <span data-i18n="about.edu_poly_pill">Tốt nghiệp Xuất Sắc</span></span>
                   </div>
-                  <p class="timeline-major"><i class="fa-solid fa-book-bookmark"></i> Chuyên ngành: <strong>Digital
-                      Marketing</strong></p>
-                  <p class="timeline-desc">
+                  <p class="timeline-major" data-i18n="about.edu_poly_major"><i class="fa-solid fa-book-bookmark"></i> Chuyên ngành: <strong>Digital Marketing</strong></p>
+                  <p class="timeline-desc" data-i18n="about.edu_poly_desc">
                     Tốt nghiệp hệ Trung cấp với danh hiệu <strong>Xuất Sắc</strong>. Hoàn thành xuất sắc các đồ án thực
                     tế về Content Marketing, thiết kế đồ họa truyền thông, tối ưu SEO website, chạy quảng cáo đa kênh và
                     biên tập video ngắn.
                   </p>
                   <div class="timeline-tags">
-                    <span>Tốt nghiệp Xuất Sắc</span>
-                    <span>Thực chiến dự án</span>
-                    <span>Leader đồ án</span>
+                    <span data-i18n="about.edu_poly_t1">Tốt nghiệp Xuất Sắc</span>
+                    <span data-i18n="about.edu_poly_t2">Thực chiến dự án</span>
+                    <span data-i18n="about.edu_poly_t3">Leader đồ án</span>
                   </div>
                 </div>
               </div>
@@ -327,8 +347,8 @@
                 <i class="fa-solid fa-compass-drafting"></i>
               </div>
               <div>
-                <h3 class="card-main-title">Định Hướng & Thế Mạnh</h3>
-                <p class="card-sub-title">Cách tôi tạo ra giá trị cho doanh nghiệp</p>
+                <h3 class="card-main-title" data-i18n="about.str_title">Định Hướng & Thế Mạnh</h3>
+                <p class="card-sub-title" data-i18n="about.str_sub">Cách tôi tạo ra giá trị cho doanh nghiệp</p>
               </div>
             </div>
 
@@ -336,24 +356,24 @@
               <div class="strength-box">
                 <div class="strength-icon"><i class="fa-solid fa-robot"></i></div>
                 <div class="strength-info">
-                  <h4>Ứng dụng & Điều phối AI Agent</h4>
-                  <p>Xây dựng sản phẩm web, game mô phỏng và tối ưu quy trình làm việc tự động hóa bằng AI Coding Agent (Antigravity, GitHub, Netlify, Cloudflare Workers).</p>
+                  <h4 data-i18n="about.str_ai_title">Ứng dụng & Điều phối AI Agent</h4>
+                  <p data-i18n="about.str_ai_desc">Xây dựng sản phẩm web, game mô phỏng và tối ưu quy trình làm việc tự động hóa bằng AI Coding Agent (Antigravity, GitHub, Netlify, Cloudflare Workers).</p>
                 </div>
               </div>
 
               <div class="strength-box">
                 <div class="strength-icon"><i class="fa-solid fa-chart-line"></i></div>
                 <div class="strength-info">
-                  <h4>Tư duy Kinh doanh & Khởi nghiệp</h4>
-                  <p>Phân tích bài toán thị trường, lập kế hoạch dự án, phân bổ nguồn lực và điều phối đội nhóm linh hoạt (Á quân Chân Trần Khởi Nghiệp, Bán kết FPT Biz Talent).</p>
+                  <h4 data-i18n="about.str_biz_title">Tư duy Kinh doanh & Khởi nghiệp</h4>
+                  <p data-i18n="about.str_biz_desc">Phân tích bài toán thị trường, lập kế hoạch dự án, phân bổ nguồn lực và điều phối đội nhóm linh hoạt (Á quân Chân Trần Khởi Nghiệp, Bán kết FPT Biz Talent).</p>
                 </div>
               </div>
 
               <div class="strength-box">
                 <div class="strength-icon"><i class="fa-solid fa-microphone-lines"></i></div>
                 <div class="strength-info">
-                  <h4>Thuyết trình, MC & Ngoại ngữ</h4>
-                  <p>Tự tin dẫn dắt sân khấu, bảo vệ ý tưởng thuyết phục trước hội đồng chuyên môn và giao tiếp song ngữ chủ động (Tiếng Anh & Tiếng Trung).</p>
+                  <h4 data-i18n="about.str_mc_title">Thuyết trình, MC & Ngoại ngữ</h4>
+                  <p data-i18n="about.str_mc_desc">Tự tin dẫn dắt sân khấu, bảo vệ ý tưởng thuyết phục trước hội đồng chuyên môn và giao tiếp song ngữ chủ động (Tiếng Anh & Tiếng Trung).</p>
                 </div>
               </div>
             </div>
@@ -361,7 +381,7 @@
             <!-- Mini banner quote -->
             <div class="quote-banner">
               <i class="fa-solid fa-quote-left quote-icon"></i>
-              <p class="quote-text">
+              <p class="quote-text" data-i18n="about.quote_text">
                 "Công nghệ và AI là đòn bẩy gia tăng hiệu suất vượt bậc, còn tư duy kinh doanh và thấu hiểu con người chính là gốc rễ tạo nên giá trị bền vững."
               </p>
             </div>
@@ -371,9 +391,9 @@
         <!-- ==================== KỸ NĂNG (SKILLS) ==================== -->
         <div class="skills-block mt-5">
           <div class="skills-header text-center reveal-up">
-            <span class="sub-badge"><i class="fa-solid fa-screwdriver-wrench"></i> Năng lực thực chiến</span>
-            <h3 class="block-title">Kỹ Năng Nổi Bật</h3>
-            <p class="block-subtitle">Được tôi rèn luyện qua các kỳ học thực hành và đồ án thực tế</p>
+            <span class="sub-badge"><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="skills.tag">Năng lực thực chiến</span></span>
+            <h3 class="block-title" data-i18n="skills.title">Kỹ Năng Nổi Bật</h3>
+            <p class="block-subtitle" data-i18n="skills.subtitle">Được tôi rèn luyện qua các kỳ học thực hành và đồ án thực tế</p>
           </div>
 
           <div class="skills-wrapper">
@@ -381,7 +401,7 @@
             <div class="skill-group reveal-left">
               <div class="group-title-bar">
                 <i class="fa-solid fa-laptop-code text-primary-color"></i>
-                <h4>Kỹ Năng Chuyên Môn (Hard Skills)</h4>
+                <h4 data-i18n="skills.hard_title">Kỹ Năng Chuyên Môn (Hard Skills)</h4>
               </div>
 
               <div class="skills-grid">
@@ -391,8 +411,8 @@
                     <i class="fa-solid fa-robot"></i>
                   </div>
                   <div class="skill-card-content">
-                    <h5>Ứng dụng & Điều phối AI Agent</h5>
-                    <p>Xây dựng sản phẩm web, game mô phỏng và tối ưu quy trình làm việc bằng AI Coding Agent.</p>
+                    <h5 data-i18n="skills.s1_title">Ứng dụng & Điều phối AI Agent</h5>
+                    <p data-i18n="skills.s1_desc">Xây dựng sản phẩm web, game mô phỏng và tối ưu quy trình làm việc bằng AI Coding Agent.</p>
                     <div class="skill-tools">
                       <span class="tool-pill">Antigravity</span>
                       <span class="tool-pill">GitHub</span>
@@ -408,8 +428,8 @@
                     <i class="fa-solid fa-chart-line"></i>
                   </div>
                   <div class="skill-card-content">
-                    <h5>Tư duy Kinh doanh & Khởi nghiệp</h5>
-                    <p>Phân tích bài toán thị trường, lập kế hoạch dự án, phân bổ nguồn lực và điều phối đội nhóm đạt mục tiêu.</p>
+                    <h5 data-i18n="skills.s2_title">Tư duy Kinh doanh & Khởi nghiệp</h5>
+                    <p data-i18n="skills.s2_desc">Phân tích bài toán thị trường, lập kế hoạch dự án, phân bổ nguồn lực và điều phối đội nhóm đạt mục tiêu.</p>
                     <div class="skill-tools">
                       <span class="tool-pill">Business Model Canvas</span>
                       <span class="tool-pill">Nghiên cứu thị trường</span>
@@ -425,8 +445,8 @@
                     <i class="fa-solid fa-microphone-lines"></i>
                   </div>
                   <div class="skill-card-content">
-                    <h5>Thuyết trình, MC & Ngoại ngữ</h5>
-                    <p>Tự tin dẫn dắt sân khấu, bảo vệ ý tưởng thuyết phục trước đám đông và giao tiếp song ngữ chủ động.</p>
+                    <h5 data-i18n="skills.s3_title">Thuyết trình, MC & Ngoại ngữ</h5>
+                    <p data-i18n="skills.s3_desc">Tự tin dẫn dắt sân khấu, bảo vệ ý tưởng thuyết phục trước đám đông và giao tiếp song ngữ chủ động.</p>
                     <div class="skill-tools">
                       <span class="tool-pill">Dẫn chương trình (MC)</span>
                       <span class="tool-pill">Public Speaking</span>
@@ -442,8 +462,8 @@
                     <i class="fa-solid fa-video"></i>
                   </div>
                   <div class="skill-card-content">
-                    <h5>Quay dựng & Sản xuất Video ngắn</h5>
-                    <p>Bắt nhịp xu hướng TikTok/Reels, nắm vững cấu trúc Hook - Story - CTA, setup góc quay và xử lý hậu kỳ âm thanh, hình ảnh.</p>
+                    <h5 data-i18n="skills.s4_title">Quay dựng & Sản xuất Video ngắn</h5>
+                    <p data-i18n="skills.s4_desc">Bắt nhịp xu hướng TikTok/Reels, nắm vững cấu trúc Hook - Story - CTA, setup góc quay và xử lý hậu kỳ âm thanh, hình ảnh.</p>
                     <div class="skill-tools">
                       <span class="tool-pill">CapCut Pro</span>
                       <span class="tool-pill">Premiere Pro</span>
@@ -458,8 +478,8 @@
                     <i class="fa-solid fa-palette"></i>
                   </div>
                   <div class="skill-card-content">
-                    <h5>Thiết kế ấn phẩm truyền thông (Canva)</h5>
-                    <p>Thiết kế banner truyền thông, infographic, poster quảng cáo và bài đăng đa slide (carousel) đồng bộ nhận diện thương hiệu.</p>
+                    <h5 data-i18n="skills.s5_title">Thiết kế ấn phẩm truyền thông (Canva)</h5>
+                    <p data-i18n="skills.s5_desc">Thiết kế banner truyền thông, infographic, poster quảng cáo và bài đăng đa slide (carousel) đồng bộ nhận diện thương hiệu.</p>
                     <div class="skill-tools">
                       <span class="tool-pill">Canva Pro</span>
                       <span class="tool-pill">Social Kit</span>
@@ -474,8 +494,8 @@
                     <i class="fa-solid fa-pen-nib"></i>
                   </div>
                   <div class="skill-card-content">
-                    <h5>Sáng tạo nội dung & Copywriting</h5>
-                    <p>Xây dựng thông điệp nội dung chạm đúng insight người xem, giật tít hấp dẫn kết hợp công thức AIDA / PAS kích thích tương tác và chuyển đổi.</p>
+                    <h5 data-i18n="skills.s6_title">Sáng tạo nội dung & Copywriting</h5>
+                    <p data-i18n="skills.s6_desc">Xây dựng thông điệp nội dung chạm đúng insight người xem, giật tít hấp dẫn kết hợp công thức AIDA / PAS kích thích tương tác và chuyển đổi.</p>
                     <div class="skill-tools">
                       <span class="tool-pill">Copywriting</span>
                       <span class="tool-pill">Storytelling</span>
@@ -491,7 +511,7 @@
             <div class="skill-group reveal-right">
               <div class="group-title-bar">
                 <i class="fa-solid fa-heart-pulse text-orange-color"></i>
-                <h4>Kỹ Năng Mềm (Soft Skills)</h4>
+                <h4 data-i18n="skills.soft_title">Kỹ Năng Mềm (Soft Skills)</h4>
               </div>
 
               <div class="soft-skills-grid">
@@ -500,8 +520,8 @@
                   <div class="soft-icon-wrap bg-blue-subtle">
                     <i class="fa-solid fa-people-group"></i>
                   </div>
-                  <h5>Làm việc nhóm & Quản lý thời gian</h5>
-                  <p>Kinh nghiệm làm trưởng nhóm trong nhiều đồ án học tập; biết lắng nghe, chia sẻ trách nhiệm và kiểm
+                  <h5 data-i18n="skills.soft1_title">Làm việc nhóm & Quản lý thời gian</h5>
+                  <p data-i18n="skills.soft1_desc">Kinh nghiệm làm trưởng nhóm trong nhiều đồ án học tập; biết lắng nghe, chia sẻ trách nhiệm và kiểm
                     soát deadline chặt chẽ.</p>
                   <div class="soft-progress-bar">
                     <div class="progress-fill fill-blue" style="width: 95%;"></div>
@@ -513,8 +533,8 @@
                   <div class="soft-icon-wrap bg-orange-subtle">
                     <i class="fa-solid fa-comments"></i>
                   </div>
-                  <h5>Giao tiếp phối hợp linh hoạt</h5>
-                  <p>Truyền đạt ý tưởng rõ ràng, dễ hiểu giữa các thành viên và giảng viên; linh hoạt xử lý tình huống
+                  <h5 data-i18n="skills.soft2_title">Giao tiếp phối hợp linh hoạt</h5>
+                  <p data-i18n="skills.soft2_desc">Truyền đạt ý tưởng rõ ràng, dễ hiểu giữa các thành viên và giảng viên; linh hoạt xử lý tình huống
                     phát sinh trong dự án.</p>
                   <div class="soft-progress-bar">
                     <div class="progress-fill fill-orange" style="width: 90%;"></div>
@@ -526,8 +546,8 @@
                   <div class="soft-icon-wrap bg-purple-subtle">
                     <i class="fa-solid fa-lightbulb"></i>
                   </div>
-                  <h5>Tư duy thẩm mỹ & Sáng tạo nội dung</h5>
-                  <p>Gu thẩm mỹ hiện đại về màu sắc, bố cục và nhịp điệu video; không ngừng tìm tòi các phong cách thịnh
+                  <h5 data-i18n="skills.soft3_title">Tư duy thẩm mỹ & Sáng tạo nội dung</h5>
+                  <p data-i18n="skills.soft3_desc">Gu thẩm mỹ hiện đại về màu sắc, bố cục và nhịp điệu video; không ngừng tìm tòi các phong cách thịnh
                     hành mới trên mạng xã hội.</p>
                   <div class="soft-progress-bar">
                     <div class="progress-fill fill-purple" style="width: 92%;"></div>
@@ -545,9 +565,9 @@
       <div class="container">
         <!-- Section Header -->
         <div class="section-header text-center reveal-up">
-          <span class="section-tag"><i class="fa-solid fa-briefcase"></i> Sản phẩm thực chiến</span>
-          <h2 class="section-title">Dự Án Tiêu Biểu</h2>
-          <p class="section-subtitle">
+          <span class="section-tag"><i class="fa-solid fa-briefcase"></i> <span data-i18n="projects.tag">Sản phẩm thực chiến</span></span>
+          <h2 class="section-title" data-i18n="projects.title">Dự Án Tiêu Biểu</h2>
+          <p class="section-subtitle" data-i18n="projects.subtitle">
             Các dự án thực tế tôi đã trực tiếp lập kế hoạch, điều phối nhóm và sản xuất ấn phẩm với vai trò
             <strong>Trưởng Nhóm (Leader)</strong>.
           </p>
@@ -561,10 +581,10 @@
               <!-- Placeholder Image for Project (User can replace with real images) -->
               <div class="project-thumb-placeholder thumb-gradient-1">
                 <i class="fa-brands fa-tiktok project-watermark"></i>
-                <div class="thumb-badge">Video Marketing</div>
+                <div class="thumb-badge" data-i18n="p1.badge">Video Marketing</div>
                 <div class="thumb-actions">
                   <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(1)">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i> Xem nhanh
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> <span data-i18n="projects.quick_view">Xem nhanh</span>
                   </button>
                 </div>
               </div>
@@ -572,24 +592,22 @@
 
             <div class="project-body">
               <div class="project-meta">
-                <span class="role-badge"><i class="fa-solid fa-crown"></i> Trưởng nhóm</span>
+                <span class="role-badge"><i class="fa-solid fa-crown"></i> <span data-i18n="projects.role_leader">Trưởng nhóm</span></span>
                 <span class="platform-badge"><i class="fa-brands fa-instagram"></i> Reels & TikTok</span>
               </div>
 
-              <h3 class="project-title">1. Dự Án Content Marketing & Video Ngắn (Reels/TikTok)</h3>
+              <h3 class="project-title" data-i18n="p1.title">1. Dự Án Content Marketing & Video Ngắn (Reels/TikTok)</h3>
 
-              <p class="project-excerpt">
+              <p class="project-excerpt" data-i18n="p1.excerpt">
                 Xây dựng chuỗi video ngắn định dạng dọc giới thiệu dòng sản phẩm đồ uống/thời trang cho giới trẻ. Trực
                 tiếp lên kịch bản, quay dựng và tối ưu âm thanh bắt trend.
               </p>
 
               <div class="project-highlights">
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Nghiên cứu thị hiếu Gen Z
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p1.hl1">Nghiên cứu thị hiếu Gen Z</span>
                 </div>
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Kịch bản 3 giây đầu thu hút
-                  (Hook)</div>
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Tối ưu tỷ lệ giữ chân người
-                  xem (Watch Time)</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p1.hl2">Kịch bản 3 giây đầu thu hút (Hook)</span></div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p1.hl3">Tối ưu tỷ lệ giữ chân người xem (Watch Time)</span></div>
               </div>
 
               <div class="project-tech-tags">
@@ -601,7 +619,7 @@
 
               <div class="project-footer">
                 <button class="btn btn-outline btn-sm w-100" onclick="openProjectModal(1)">
-                  <span>Xem chi tiết dự án</span>
+                  <span data-i18n="projects.btn_detail">Xem chi tiết dự án</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </div>
@@ -613,10 +631,10 @@
             <div class="project-thumb-container">
               <div class="project-thumb-placeholder thumb-gradient-2">
                 <i class="fa-solid fa-chart-line project-watermark"></i>
-                <div class="thumb-badge">SEO & Research</div>
+                <div class="thumb-badge" data-i18n="p2.badge">SEO & Research</div>
                 <div class="thumb-actions">
                   <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(2)">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i> Xem nhanh
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> <span data-i18n="projects.quick_view">Xem nhanh</span>
                   </button>
                 </div>
               </div>
@@ -624,24 +642,22 @@
 
             <div class="project-body">
               <div class="project-meta">
-                <span class="role-badge"><i class="fa-solid fa-crown"></i> Trưởng nhóm</span>
+                <span class="role-badge"><i class="fa-solid fa-crown"></i> <span data-i18n="projects.role_leader">Trưởng nhóm</span></span>
                 <span class="platform-badge"><i class="fa-solid fa-globe"></i> SEO & Analytics</span>
               </div>
 
-              <h3 class="project-title">2. Dự Án SEO & Nghiên Cứu Thị Trường Ngành Hàng</h3>
+              <h3 class="project-title" data-i18n="p2.title">2. Dự Án SEO & Nghiên Cứu Thị Trường Ngành Hàng</h3>
 
-              <p class="project-excerpt">
+              <p class="project-excerpt" data-i18n="p2.excerpt">
                 Phân tích đối thủ cạnh tranh, nghiên cứu bộ từ khóa theo hành trình mua sắm của khách hàng (Buyer's
                 Journey) và lập kế hoạch tối ưu cấu trúc nội dung Onpage.
               </p>
 
               <div class="project-highlights">
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Phân tích Insight & Đối thủ
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p2.hl1">Phân tích Insight & Đối thủ</span>
                 </div>
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Lập bộ từ khóa 100+ keywords
-                  tiềm năng</div>
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Tối ưu bài viết chuẩn SEO &
-                  UI/UX</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p2.hl2">Lập bộ từ khóa 100+ keywords tiềm năng</span></div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p2.hl3">Tối ưu bài viết chuẩn SEO & UI/UX</span></div>
               </div>
 
               <div class="project-tech-tags">
@@ -652,7 +668,7 @@
 
               <div class="project-footer">
                 <button class="btn btn-outline btn-sm w-100" onclick="openProjectModal(2)">
-                  <span>Xem chi tiết dự án</span>
+                  <span data-i18n="projects.btn_detail">Xem chi tiết dự án</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </div>
@@ -664,10 +680,10 @@
             <div class="project-thumb-container">
               <div class="project-thumb-placeholder thumb-gradient-3">
                 <i class="fa-solid fa-bullseye project-watermark"></i>
-                <div class="thumb-badge">Brand Campaign</div>
+                <div class="thumb-badge" data-i18n="p3.badge">Brand Campaign</div>
                 <div class="thumb-actions">
                   <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(3)">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i> Xem nhanh
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> <span data-i18n="projects.quick_view">Xem nhanh</span>
                   </button>
                 </div>
               </div>
@@ -675,24 +691,22 @@
 
             <div class="project-body">
               <div class="project-meta">
-                <span class="role-badge"><i class="fa-solid fa-crown"></i> Trưởng nhóm</span>
+                <span class="role-badge"><i class="fa-solid fa-crown"></i> <span data-i18n="projects.role_leader">Trưởng nhóm</span></span>
                 <span class="platform-badge"><i class="fa-solid fa-flag"></i> IMC Campaign</span>
               </div>
 
-              <h3 class="project-title">3. Chiến Dịch Lập Kế Hoạch & Triển Khai Nội Dung Thương Hiệu</h3>
+              <h3 class="project-title" data-i18n="p3.title">3. Chiến Dịch Lập Kế Hoạch & Triển Khai Nội Dung Thương Hiệu</h3>
 
-              <p class="project-excerpt">
+              <p class="project-excerpt" data-i18n="p3.excerpt">
                 Xây dựng chiến dịch truyền thông đa kênh cho thương hiệu trong dịp lễ/mở bán mới. Thiết lập thông điệp
                 cốt lõi, ma trận nội dung và quản trị tiến độ thực thi.
               </p>
 
               <div class="project-highlights">
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Lên lịch Content Calendar đa
-                  kênh</div>
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Thiết kế bộ nhận diện ấn phẩm
-                  mạng xã hội</div>
-                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> Điều phối 5 thành viên hoàn
-                  thành đúng hạn</div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p3.hl1">Lên lịch Content Calendar đa kênh</span>
+                </div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p3.hl2">Thiết kế bộ nhận diện ấn phẩm mạng xã hội</span></div>
+                <div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span data-i18n="p3.hl3">Điều phối 5 thành viên hoàn thành đúng hạn</span></div>
               </div>
 
               <div class="project-tech-tags">
@@ -703,7 +717,7 @@
 
               <div class="project-footer">
                 <button class="btn btn-outline btn-sm w-100" onclick="openProjectModal(3)">
-                  <span>Xem chi tiết dự án</span>
+                  <span data-i18n="projects.btn_detail">Xem chi tiết dự án</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </div>
@@ -713,16 +727,15 @@
 
         <div class="project-hint-banner reveal-up">
           <i class="fa-solid fa-circle-info"></i>
-          <span>Các thẻ dự án đã có cấu trúc chuẩn bị sẵn. Bạn có thể nhấn vào nút "Xem chi tiết" để xem popup mô tả đầy
-            đủ quy trình và cập nhật hình ảnh sản phẩm thực tế!</span>
+          <span data-i18n="projects.hint">Các thẻ dự án đã có cấu trúc chuẩn bị sẵn. Bạn có thể nhấn vào nút "Xem chi tiết" để xem popup mô tả đầy đủ quy trình và cập nhật hình ảnh sản phẩm thực tế!</span>
         </div>
 
         <!-- ==================== THÀNH TÍCH TIÊU BIỂU ==================== -->
         <div class="achievements-block mt-6" id="achievements">
           <div class="section-header text-center reveal-up">
-            <span class="section-tag section-tag-orange"><i class="fa-solid fa-trophy"></i> Dấu mốc tự hào</span>
-            <h2 class="section-title">Thành Tích Nổi Bật</h2>
-            <p class="section-subtitle">
+            <span class="section-tag section-tag-orange"><i class="fa-solid fa-trophy"></i> <span data-i18n="achieve.tag">Dấu mốc tự hào</span></span>
+            <h2 class="section-title" data-i18n="achieve.title">Thành Tích Nổi Bật</h2>
+            <p class="section-subtitle" data-i18n="achieve.subtitle">
               Sự ghi nhận cho tinh thần dấn thân, bản lĩnh khởi nghiệp và năng lực chuyên môn xuất sắc qua các đấu
               trường thực chiến.
             </p>
@@ -735,13 +748,13 @@
                 <i class="fa-solid fa-trophy"></i>
               </div>
               <div class="achievement-content">
-                <div class="achievement-year">Mùa 3 - 2025</div>
-                <h3 class="achievement-title">Top 2 Cuộc Thi "Chân Trần Khởi Nghiệp" Mùa 3</h3>
-                <p class="achievement-desc">
+                <div class="achievement-year" data-i18n="ach1.year">Mùa 3 - 2025</div>
+                <h3 class="achievement-title" data-i18n="ach1.title">Top 2 Cuộc Thi "Chân Trần Khởi Nghiệp" Mùa 3</h3>
+                <p class="achievement-desc" data-i18n="ach1.desc">
                   Dự án <strong>Smart Mini Storage</strong> — Mô hình dịch vụ lưu trữ đồ bằng thùng thông minh tiện lợi
                   dành cho gia đình, sinh viên và khách du lịch có không gian lưu trữ hạn chế.
                 </p>
-                <div class="achievement-badge"><i class="fa-solid fa-medal"></i> Á Quân Khởi Nghiệp</div>
+                <div class="achievement-badge"><i class="fa-solid fa-medal"></i> <span data-i18n="ach1.badge">Á Quân Khởi Nghiệp</span></div>
               </div>
             </div>
 
@@ -751,13 +764,13 @@
                 <i class="fa-solid fa-award"></i>
               </div>
               <div class="achievement-content">
-                <div class="achievement-year">Năm 2025</div>
-                <h3 class="achievement-title">Top 35 Toàn Quốc FPT Biz Talent 2025</h3>
-                <p class="achievement-desc">
+                <div class="achievement-year" data-i18n="ach2.year">Năm 2025</div>
+                <h3 class="achievement-title" data-i18n="ach2.title">Top 35 Toàn Quốc FPT Biz Talent 2025</h3>
+                <p class="achievement-desc" data-i18n="ach2.desc">
                   Vượt qua hàng trăm đội thi tài năng trẻ trên toàn quốc trong cuộc thi kinh doanh và giải quyết bài
                   toán Marketing thực tế cho doanh nghiệp.
                 </p>
-                <div class="achievement-badge"><i class="fa-solid fa-star"></i> Cuộc thi uy tín cấp quốc gia</div>
+                <div class="achievement-badge"><i class="fa-solid fa-star"></i> <span data-i18n="ach2.badge">Cuộc thi uy tín cấp quốc gia</span></div>
               </div>
             </div>
 
@@ -767,13 +780,13 @@
                 <i class="fa-solid fa-earth-americas"></i>
               </div>
               <div class="achievement-content">
-                <div class="achievement-year">Năm 2025</div>
-                <h3 class="achievement-title">Tham gia MOS World Championship 2025</h3>
-                <p class="achievement-desc">
+                <div class="achievement-year" data-i18n="ach3.year">Năm 2025</div>
+                <h3 class="achievement-title" data-i18n="ach3.title">Tham gia MOS World Championship 2025</h3>
+                <p class="achievement-desc" data-i18n="ach3.desc">
                   Đại diện tham gia Vô địch Tin học Văn phòng Thế giới - MOS World Championship, khẳng định kỹ năng xử
                   lý dữ liệu tin học văn phòng quốc tế.
                 </p>
-                <div class="achievement-badge"><i class="fa-solid fa-earth-americas"></i> Đấu trường quốc tế</div>
+                <div class="achievement-badge"><i class="fa-solid fa-earth-americas"></i> <span data-i18n="ach3.badge">Đấu trường quốc tế</span></div>
               </div>
             </div>
 
@@ -783,13 +796,13 @@
                 <i class="fa-solid fa-graduation-cap"></i>
               </div>
               <div class="achievement-content">
-                <div class="achievement-year">2023 - 2025</div>
-                <h3 class="achievement-title">Sinh Viên Có Thành Tích Học Tập Xuất Sắc</h3>
-                <p class="achievement-desc">
+                <div class="achievement-year" data-i18n="ach4.year">2023 - 2025</div>
+                <h3 class="achievement-title" data-i18n="ach4.title">Sinh Viên Có Thành Tích Học Tập Xuất Sắc</h3>
+                <p class="achievement-desc" data-i18n="ach4.desc">
                   Liên tục đạt kết quả học tập và rèn luyện xuất sắc tại FPT Polyschool Bình Định; nhận khen thưởng của
                   nhà trường trong các kỳ học.
                 </p>
-                <div class="achievement-badge"><i class="fa-solid fa-award"></i> Danh hiệu học thuật</div>
+                <div class="achievement-badge"><i class="fa-solid fa-award"></i> <span data-i18n="ach4.badge">Danh hiệu học thuật</span></div>
               </div>
             </div>
           </div>
@@ -802,9 +815,9 @@
       <div class="container">
         <!-- Section Header -->
         <div class="section-header text-center reveal-up">
-          <span class="section-tag section-tag-orange"><i class="fa-solid fa-certificate"></i> Năng lực công nghệ</span>
-          <h2 class="section-title">Chứng Chỉ Chuyên Môn</h2>
-          <p class="section-subtitle">
+          <span class="section-tag section-tag-orange"><i class="fa-solid fa-certificate"></i> <span data-i18n="cert.tag">Năng lực công nghệ</span></span>
+          <h2 class="section-title" data-i18n="cert.title">Chứng Chỉ Chuyên Môn</h2>
+          <p class="section-subtitle" data-i18n="cert.subtitle">
             Minh chứng xác thực cho năng lực tư duy kinh doanh, đổi mới sáng tạo (Business & AI) và kỹ năng chuyên môn
             qua các chứng chỉ quốc tế cùng những cuộc thi khởi nghiệp uy tín.
           </p>
@@ -816,17 +829,17 @@
           <div class="activity-card reveal-up">
             <div class="act-img-wrapper"
               onclick="openLightbox('cert-chan-tran-khoi-nghiep.jpg', 'Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)')"
-              title="Bấm vào để phóng to xem rõ chứng nhận">
+              title="Bấm vào để phóng to xem rõ chứng nhận" data-i18n-title="cert.zoom_tooltip">
               <img src="cert-chan-tran-khoi-nghiep.jpg" alt="Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)"
                 class="act-img" loading="lazy">
               <div class="act-img-overlay">
                 <span class="act-zoom-btn">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
-                  <span>Phóng to chứng nhận</span>
+                  <span data-i18n="cert.zoom_badge">Phóng to chứng nhận</span>
                 </span>
               </div>
               <span class="act-floating-badge badge-trophy">
-                <i class="fa-solid fa-trophy"></i> Top 2 • Á quân
+                <i class="fa-solid fa-trophy"></i> <span data-i18n="cert1.badge">Top 2 • Á quân</span>
               </span>
             </div>
             <div class="act-body">
@@ -834,15 +847,15 @@
                 <span class="act-org-tag"><i class="fa-solid fa-lightbulb"></i> BTEC FPT & DNES</span>
                 <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> 14/08/2026</span>
               </div>
-              <h3 class="act-role-title">Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)</h3>
+              <h3 class="act-role-title" data-i18n="cert1.title">Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)</h3>
               <div class="act-card-action">
                 <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openCertificateModal(1)">
-                  <span>Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="cert.btn_detail">Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
                 <button type="button" class="btn btn-outline btn-sm act-btn-proof"
                   onclick="openLightbox('cert-chan-tran-khoi-nghiep.jpg', 'Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)')"
-                  title="Phóng to ảnh chứng nhận">
-                  <i class="fa-solid fa-expand"></i> <span>Xem ảnh</span>
+                  title="Phóng to ảnh chứng nhận" data-i18n-title="cert.zoom_badge">
+                  <i class="fa-solid fa-expand"></i> <span data-i18n="cert.btn_photo">Xem ảnh</span>
                 </button>
               </div>
             </div>
@@ -852,34 +865,34 @@
           <div class="activity-card reveal-up">
             <div class="act-img-wrapper"
               onclick="openLightbox('cert-fpt-biz-talent.jpg', 'Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025')"
-              title="Bấm vào để phóng to xem rõ bằng chứng nhận">
+              title="Bấm vào để phóng to xem rõ bằng chứng nhận" data-i18n-title="cert.zoom_tooltip">
               <img src="cert-fpt-biz-talent.jpg" alt="Vòng Bán kết Toàn quốc FPT Biz Talent 2025" class="act-img"
                 loading="lazy">
               <div class="act-img-overlay">
                 <span class="act-zoom-btn">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
-                  <span>Phóng to chứng nhận</span>
+                  <span data-i18n="cert.zoom_badge">Phóng to chứng nhận</span>
                 </span>
               </div>
               <span class="act-floating-badge badge-fpt">
-                <i class="fa-solid fa-medal"></i> Bán kết Toàn quốc
+                <i class="fa-solid fa-medal"></i> <span data-i18n="cert2.badge">Bán kết Toàn quốc</span>
               </span>
             </div>
             <div class="act-body">
               <div class="act-badge-row">
                 <span class="act-org-tag" style="background: #f3e8ff; color: #7e22ce;"><i
-                    class="fa-solid fa-building-flag"></i> Tập đoàn FPT</span>
+                    class="fa-solid fa-building-flag"></i> <span data-i18n="cert2.org">Tập đoàn FPT</span></span>
                 <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> 15/08/2025</span>
               </div>
-              <h3 class="act-role-title">Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025</h3>
+              <h3 class="act-role-title" data-i18n="cert2.title">Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025</h3>
               <div class="act-card-action">
                 <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openCertificateModal(2)">
-                  <span>Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="cert.btn_detail">Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
                 <button type="button" class="btn btn-outline btn-sm act-btn-proof"
                   onclick="openLightbox('cert-fpt-biz-talent.jpg', 'Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025')"
-                  title="Phóng to ảnh chứng nhận">
-                  <i class="fa-solid fa-expand"></i> <span>Xem ảnh</span>
+                  title="Phóng to ảnh chứng nhận" data-i18n-title="cert.zoom_badge">
+                  <i class="fa-solid fa-expand"></i> <span data-i18n="cert.btn_photo">Xem ảnh</span>
                 </button>
               </div>
             </div>
@@ -889,17 +902,17 @@
           <div class="activity-card reveal-up">
             <div class="act-img-wrapper"
               onclick="openLightbox('certificate-mos-excel.jpg', 'Chứng chỉ Microsoft Office Specialist: Excel 2019 Associate — Đỗ Minh Trí')"
-              title="Bấm vào để phóng to xem rõ chứng chỉ">
+              title="Bấm vào để phóng to xem rõ chứng chỉ" data-i18n-title="cert.zoom_tooltip">
               <img src="certificate-mos-excel.jpg" alt="Chứng chỉ Microsoft Office Specialist: Excel 2019 Associate"
                 class="act-img" loading="lazy">
               <div class="act-img-overlay">
                 <span class="act-zoom-btn">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
-                  <span>Phóng to chứng chỉ</span>
+                  <span data-i18n="cert.zoom_cert">Phóng to chứng chỉ</span>
                 </span>
               </div>
               <span class="act-floating-badge badge-ms">
-                <i class="fa-solid fa-circle-check"></i> Đã xác thực Certiport
+                <i class="fa-solid fa-circle-check"></i> <span data-i18n="cert3.badge">Đã xác thực Certiport</span>
               </span>
             </div>
             <div class="act-body">
@@ -907,15 +920,15 @@
                 <span class="act-org-tag"><i class="fa-brands fa-microsoft"></i> Microsoft & Certiport</span>
                 <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> 20/04/2025</span>
               </div>
-              <h3 class="act-role-title">Microsoft Office Specialist: Excel 2019 Associate</h3>
+              <h3 class="act-role-title" data-i18n="cert3.title">Microsoft Office Specialist: Excel 2019 Associate</h3>
               <div class="act-card-action">
                 <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openCertificateModal(3)">
-                  <span>Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="cert.btn_detail">Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
                 <button type="button" class="btn btn-outline btn-sm act-btn-proof"
                   onclick="openLightbox('certificate-mos-excel.jpg', 'Chứng chỉ Microsoft Office Specialist: Excel 2019 Associate — Đỗ Minh Trí')"
-                  title="Phóng to ảnh chứng chỉ">
-                  <i class="fa-solid fa-expand"></i> <span>Xem ảnh</span>
+                  title="Phóng to ảnh chứng chỉ" data-i18n-title="cert.zoom_cert">
+                  <i class="fa-solid fa-expand"></i> <span data-i18n="cert.btn_photo">Xem ảnh</span>
                 </button>
               </div>
             </div>
@@ -925,34 +938,34 @@
           <div class="activity-card reveal-up">
             <div class="act-img-wrapper"
               onclick="openLightbox('cert-sv-xuat-sac-2025.jpg', 'Sinh viên có thành tích học tập xuất sắc — Học kỳ Spring 2025')"
-              title="Bấm vào để phóng to xem rõ giấy khen">
+              title="Bấm vào để phóng to xem rõ giấy khen" data-i18n-title="cert.zoom_tooltip">
               <img src="cert-sv-xuat-sac-2025.jpg" alt="Sinh viên có thành tích học tập xuất sắc — Học kỳ Spring 2025"
                 class="act-img" loading="lazy">
               <div class="act-img-overlay">
                 <span class="act-zoom-btn">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
-                  <span>Phóng to giấy khen</span>
+                  <span data-i18n="cert.zoom_sheet">Phóng to giấy khen</span>
                 </span>
               </div>
               <span class="act-floating-badge badge-academic">
-                <i class="fa-solid fa-award"></i> Xuất sắc • Spring 2025
+                <i class="fa-solid fa-award"></i> <span data-i18n="cert4.badge">Xuất sắc • Spring 2025</span>
               </span>
             </div>
             <div class="act-body">
               <div class="act-badge-row">
                 <span class="act-org-tag" style="background: #fef3c7; color: #b45309;"><i
-                    class="fa-solid fa-graduation-cap"></i> FPT Polyschool Bình Định</span>
+                    class="fa-solid fa-graduation-cap"></i> <span data-i18n="cert4.org">FPT Polyschool Bình Định</span></span>
                 <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> Spring 2025</span>
               </div>
-              <h3 class="act-role-title">Sinh viên có thành tích học tập xuất sắc</h3>
+              <h3 class="act-role-title" data-i18n="cert4.title">Sinh viên có thành tích học tập xuất sắc</h3>
               <div class="act-card-action">
                 <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openCertificateModal(4)">
-                  <span>Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="cert.btn_detail">Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
                 <button type="button" class="btn btn-outline btn-sm act-btn-proof"
                   onclick="openLightbox('cert-sv-xuat-sac-2025.jpg', 'Sinh viên có thành tích học tập xuất sắc — Học kỳ Spring 2025')"
-                  title="Phóng to ảnh giấy khen">
-                  <i class="fa-solid fa-expand"></i> <span>Xem ảnh</span>
+                  title="Phóng to ảnh giấy khen" data-i18n-title="cert.zoom_sheet">
+                  <i class="fa-solid fa-expand"></i> <span data-i18n="cert.btn_photo">Xem ảnh</span>
                 </button>
               </div>
             </div>
@@ -966,9 +979,9 @@
       <div class="container">
         <!-- Section Header -->
         <div class="section-header text-center reveal-up">
-          <span class="section-tag"><i class="fa-solid fa-users"></i> Đóng góp xã hội & Kỹ năng</span>
-          <h2 class="section-title">Hoạt Động & Cộng Đồng</h2>
-          <p class="section-subtitle">
+          <span class="section-tag"><i class="fa-solid fa-users"></i> <span data-i18n="act.tag">Đóng góp xã hội & Kỹ năng</span></span>
+          <h2 class="section-title" data-i18n="act.title">Hoạt Động & Cộng Đồng</h2>
+          <p class="section-subtitle" data-i18n="act.subtitle">
             Tích cực tham gia các hoạt động ngoại khóa, phong trào thanh niên và công tác tổ chức sự kiện, thể hiện tinh
             thần lãnh đạo, trách nhiệm xã hội và khả năng kết nối đội ngũ.
           </p>
@@ -980,17 +993,17 @@
           <div class="activity-card reveal-up">
             <div class="act-img-wrapper"
               onclick="openLightbox('act-pegasus.jpg', 'Phó Chủ tịch — BBE Pegasus Chapter Nhiệm kỳ I')"
-              title="Bấm vào để phóng to xem rõ">
+              title="Bấm vào để phóng to xem rõ" data-i18n-title="act.zoom_tooltip">
               <img src="act-pegasus.jpg" alt="Phó Chủ tịch (Vice President) — BBE Pegasus Chapter" class="act-img"
                 loading="lazy">
               <div class="act-img-overlay">
                 <span class="act-zoom-btn">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
-                  <span>Phóng to ảnh</span>
+                  <span data-i18n="act.zoom_photo">Phóng to ảnh</span>
                 </span>
               </div>
               <span class="act-floating-badge badge-leader">
-                <i class="fa-solid fa-crown"></i> Ban Lãnh đạo
+                <i class="fa-solid fa-crown"></i> <span data-i18n="act1.badge">Ban Lãnh đạo</span>
               </span>
             </div>
             <div class="act-body">
@@ -998,15 +1011,15 @@
                 <span class="act-org-tag"><i class="fa-solid fa-shield-halved"></i> BBE Pegasus Chapter</span>
                 <span class="act-term-tag"><i class="fa-regular fa-clock"></i> 01/02/2026 – 30/09/2026</span>
               </div>
-              <h3 class="act-role-title">Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I</h3>
+              <h3 class="act-role-title" data-i18n="act1.title">Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I</h3>
               <div class="act-card-action">
                 <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openActivityModal(1)">
-                  <span>Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="cert.btn_detail">Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
                 <button type="button" class="btn btn-outline btn-sm act-btn-proof"
                   onclick="openLightbox('act-pegasus.jpg', 'Phó Chủ tịch — BBE Pegasus Chapter Nhiệm kỳ I')"
-                  title="Phóng to ảnh minh chứng">
-                  <i class="fa-solid fa-expand"></i> <span>Xem ảnh</span>
+                  title="Phóng to ảnh minh chứng" data-i18n-title="act.zoom_photo">
+                  <i class="fa-solid fa-expand"></i> <span data-i18n="cert.btn_photo">Xem ảnh</span>
                 </button>
               </div>
             </div>
@@ -1016,17 +1029,17 @@
           <div class="activity-card reveal-up">
             <div class="act-img-wrapper"
               onclick="openLightbox('act-graduation.jpg', 'Thành viên Ban Tổ chức — Lễ Tốt nghiệp BTEC FPT 2026')"
-              title="Bấm vào để phóng to xem rõ">
+              title="Bấm vào để phóng to xem rõ" data-i18n-title="act.zoom_tooltip">
               <img src="act-graduation.jpg" alt="Thành viên Ban Tổ chức Lễ Tốt nghiệp BTEC FPT 2026" class="act-img"
                 loading="lazy">
               <div class="act-img-overlay">
                 <span class="act-zoom-btn">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
-                  <span>Phóng to ảnh</span>
+                  <span data-i18n="act.zoom_photo">Phóng to ảnh</span>
                 </span>
               </div>
               <span class="act-floating-badge badge-event">
-                <i class="fa-solid fa-star"></i> Ban Tổ chức Sự kiện
+                <i class="fa-solid fa-star"></i> <span data-i18n="act2.badge">Ban Tổ chức Sự kiện</span>
               </span>
             </div>
             <div class="act-body">
@@ -1034,15 +1047,15 @@
                 <span class="act-org-tag"><i class="fa-solid fa-graduation-cap"></i> BTEC FPT</span>
                 <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> 25/10/2026</span>
               </div>
-              <h3 class="act-role-title">Thành viên Ban Tổ chức (Organizing Committee)</h3>
+              <h3 class="act-role-title" data-i18n="act2.title">Thành viên Ban Tổ chức (Organizing Committee)</h3>
               <div class="act-card-action">
                 <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openActivityModal(2)">
-                  <span>Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="cert.btn_detail">Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
                 <button type="button" class="btn btn-outline btn-sm act-btn-proof"
                   onclick="openLightbox('act-graduation.jpg', 'Thành viên Ban Tổ chức — Lễ Tốt nghiệp BTEC FPT 2026')"
-                  title="Phóng to ảnh minh chứng">
-                  <i class="fa-solid fa-expand"></i> <span>Xem ảnh</span>
+                  title="Phóng to ảnh minh chứng" data-i18n-title="act.zoom_photo">
+                  <i class="fa-solid fa-expand"></i> <span data-i18n="cert.btn_photo">Xem ảnh</span>
                 </button>
               </div>
             </div>
@@ -1052,33 +1065,33 @@
           <div class="activity-card reveal-up">
             <div class="act-img-wrapper"
               onclick="openLightbox('act-thien-nguyen.jpg', 'Tình nguyện viên đóng góp tích cực — Hành Trình Yêu Thương Số 4')"
-              title="Bấm vào để phóng to xem rõ">
+              title="Bấm vào để phóng to xem rõ" data-i18n-title="act.zoom_tooltip">
               <img src="act-thien-nguyen.jpg" alt="Tình nguyện viên Dự án thiện nguyện Hành Trình Yêu Thương - Số thứ 4"
                 class="act-img" loading="lazy">
               <div class="act-img-overlay">
                 <span class="act-zoom-btn">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
-                  <span>Phóng to ảnh</span>
+                  <span data-i18n="act.zoom_photo">Phóng to ảnh</span>
                 </span>
               </div>
               <span class="act-floating-badge badge-volunteer">
-                <i class="fa-solid fa-heart"></i> Thiện nguyện cộng đồng
+                <i class="fa-solid fa-heart"></i> <span data-i18n="act3.badge">Thiện nguyện cộng đồng</span>
               </span>
             </div>
             <div class="act-body">
               <div class="act-badge-row">
                 <span class="act-org-tag"><i class="fa-solid fa-hand-holding-heart"></i> Fusion Club</span>
-                <span class="act-term-tag"><i class="fa-solid fa-location-dot"></i> Ngũ Hành Sơn, Đà Nẵng</span>
+                <span class="act-term-tag"><i class="fa-solid fa-location-dot"></i> <span data-i18n="act3.loc">Ngũ Hành Sơn, Đà Nẵng</span></span>
               </div>
-              <h3 class="act-role-title">Tình nguyện viên đóng góp tích cực</h3>
+              <h3 class="act-role-title" data-i18n="act3.title">Tình nguyện viên đóng góp tích cực</h3>
               <div class="act-card-action">
                 <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openActivityModal(3)">
-                  <span>Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="cert.btn_detail">Xem chi tiết</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </button>
                 <button type="button" class="btn btn-outline btn-sm act-btn-proof"
                   onclick="openLightbox('act-thien-nguyen.jpg', 'Tình nguyện viên đóng góp tích cực — Hành Trình Yêu Thương Số 4')"
-                  title="Phóng to ảnh minh chứng">
-                  <i class="fa-solid fa-expand"></i> <span>Xem ảnh</span>
+                  title="Phóng to ảnh minh chứng" data-i18n-title="act.zoom_photo">
+                  <i class="fa-solid fa-expand"></i> <span data-i18n="cert.btn_photo">Xem ảnh</span>
                 </button>
               </div>
             </div>
@@ -1092,9 +1105,9 @@
       <div class="container">
         <!-- Section Header -->
         <div class="section-header text-center reveal-up">
-          <span class="section-tag"><i class="fa-solid fa-address-book"></i> Kết nối hợp tác</span>
-          <h2 class="section-title">Thông Tin Liên Hệ</h2>
-          <p class="section-subtitle">
+          <span class="section-tag"><i class="fa-solid fa-address-book"></i> <span data-i18n="contact.tag">Kết nối hợp tác</span></span>
+          <h2 class="section-title" data-i18n="contact.title">Thông Tin Liên Hệ</h2>
+          <p class="section-subtitle" data-i18n="contact.subtitle">
             Tôi luôn sẵn sàng đón nhận các cơ hội Thực tập sinh Marketing, dự án sáng tạo nội dung hoặc trao đổi chuyên
             môn. Hãy kết nối với tôi!
           </p>
@@ -1107,7 +1120,7 @@
             <div class="contact-details-card">
               <h3 class="info-block-title">
                 <i class="fa-solid fa-paper-plane text-primary-color"></i>
-                Thông Tin Trực Tiếp
+                <span data-i18n="contact.direct_title">Thông Tin Trực Tiếp</span>
               </h3>
 
               <div class="contact-item">
@@ -1115,12 +1128,12 @@
                   <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div class="contact-text">
-                  <span class="label">Email liên hệ:</span>
+                  <span class="label" data-i18n="contact.lbl_email">Email liên hệ:</span>
                   <a href="mailto:dominhtri2206@gmail.com" class="value link-hover"
                     id="email-text">dominhtri2206@gmail.com</a>
                 </div>
                 <button class="copy-btn" onclick="copyToClipboard('dominhtri2206@gmail.com', 'Đã sao chép Email!')"
-                  title="Sao chép email">
+                  title="Sao chép email" data-i18n-title="contact.copy_email">
                   <i class="fa-regular fa-copy"></i>
                 </button>
               </div>
@@ -1130,11 +1143,11 @@
                   <i class="fa-solid fa-phone"></i>
                 </div>
                 <div class="contact-text">
-                  <span class="label">Số điện thoại:</span>
+                  <span class="label" data-i18n="contact.lbl_phone">Số điện thoại:</span>
                   <a href="tel:0934454099" class="value link-hover" id="phone-text">0934 454 099</a>
                 </div>
                 <button class="copy-btn" onclick="copyToClipboard('0934454099', 'Đã sao chép Số điện thoại!')"
-                  title="Sao chép số điện thoại">
+                  title="Sao chép số điện thoại" data-i18n-title="contact.copy_phone">
                   <i class="fa-regular fa-copy"></i>
                 </button>
               </div>
@@ -1144,18 +1157,18 @@
                   <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div class="contact-text">
-                  <span class="label">Địa chỉ hiện tại:</span>
-                  <span class="value">152 Phan Thanh, Thanh Khê, TP. Đà Nẵng</span>
+                  <span class="label" data-i18n="contact.lbl_address">Địa chỉ hiện tại:</span>
+                  <span class="value" data-i18n="contact.val_address">152 Phan Thanh, Thanh Khê, TP. Đà Nẵng</span>
                 </div>
               </div>
 
               <!-- Quick direct buttons -->
               <div class="contact-quick-actions">
                 <a href="tel:0934454099" class="btn btn-outline btn-sm">
-                  <i class="fa-solid fa-phone-volume"></i> Gọi điện ngay
+                  <i class="fa-solid fa-phone-volume"></i> <span data-i18n="contact.btn_call">Gọi điện ngay</span>
                 </a>
                 <a href="mailto:dominhtri2206@gmail.com" class="btn btn-outline btn-sm">
-                  <i class="fa-solid fa-envelope-open-text"></i> Gửi email
+                  <i class="fa-solid fa-envelope-open-text"></i> <span data-i18n="contact.btn_mail">Gửi email</span>
                 </a>
               </div>
             </div>
@@ -1163,25 +1176,24 @@
             <!-- Thẻ Người Tham Chiếu (Reference) -->
             <div class="reference-card mt-4">
               <div class="reference-badge">
-                <i class="fa-solid fa-user-check"></i> Người Tham Chiếu (Reference)
+                <i class="fa-solid fa-user-check"></i> <span data-i18n="contact.ref_badge">Người Tham Chiếu (Reference)</span>
               </div>
               <div class="reference-body">
                 <div class="ref-avatar-circle">
                   <i class="fa-solid fa-chalkboard-user"></i>
                 </div>
                 <div class="ref-details">
-                  <h4 class="ref-name">Cô Nguyễn Thị Thanh Tâm</h4>
-                  <p class="ref-role">Giảng viên bộ môn Digital Marketing</p>
+                  <h4 class="ref-name" data-i18n="contact.ref_name">Cô Nguyễn Thị Thanh Tâm</h4>
+                  <p class="ref-role" data-i18n="contact.ref_role">Giảng viên bộ môn Digital Marketing</p>
                   <div class="ref-contact">
                     <i class="fa-solid fa-phone text-primary-color"></i>
-                    <span>SĐT liên hệ: <strong>0937.272.236</strong></span>
+                    <span data-i18n="contact.ref_phone">SĐT liên hệ: <strong>0937.272.236</strong></span>
                   </div>
                 </div>
               </div>
               <div class="reference-note">
                 <i class="fa-solid fa-circle-check text-success"></i>
-                <span>Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại
-                  trường.</span>
+                <span data-i18n="contact.ref_note">Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại trường.</span>
               </div>
             </div>
           </div>
@@ -1190,8 +1202,8 @@
           <div class="contact-form-col reveal-right">
             <div class="form-wrapper-card">
               <div class="form-header">
-                <h3 class="form-title">Gửi Lời Nhắn Nhanh</h3>
-                <p class="form-desc">Hãy để lại thông tin hoặc yêu cầu tuyển dụng, tôi sẽ phản hồi trong vòng 24 giờ!
+                <h3 class="form-title" data-i18n="contact.form_title">Gửi Lời Nhắn Nhanh</h3>
+                <p class="form-desc" data-i18n="contact.form_desc">Hãy để lại thông tin hoặc yêu cầu tuyển dụng, tôi sẽ phản hồi trong vòng 24 giờ!
                 </p>
               </div>
 
@@ -1206,17 +1218,17 @@
                 </p>
 
                 <div class="form-group">
-                  <label for="name" class="form-label">Họ và tên của bạn <span class="required">*</span></label>
+                  <label for="name" class="form-label"><span data-i18n="contact.lbl_name">Họ và tên của bạn</span> <span class="required">*</span></label>
                   <div class="input-with-icon">
                     <i class="fa-regular fa-user"></i>
                     <input type="text" id="name" name="name" class="form-control" placeholder="Ví dụ: Nguyễn Văn A"
-                      required>
+                      data-i18n-placeholder="contact.holder_name" required>
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-half">
-                    <label for="email" class="form-label">Địa chỉ Email <span class="required">*</span></label>
+                    <label for="email" class="form-label"><span data-i18n="contact.lbl_email_f">Địa chỉ Email</span> <span class="required">*</span></label>
                     <div class="input-with-icon">
                       <i class="fa-regular fa-envelope"></i>
                       <input type="email" id="email" name="email" class="form-control" placeholder="name@company.com"
@@ -1224,7 +1236,7 @@
                     </div>
                   </div>
                   <div class="form-group col-half">
-                    <label for="phone" class="form-label">Số điện thoại</label>
+                    <label for="phone" class="form-label" data-i18n="contact.lbl_phone_f">Số điện thoại</label>
                     <div class="input-with-icon">
                       <i class="fa-solid fa-phone"></i>
                       <input type="tel" id="phone" name="phone" class="form-control" placeholder="09xx xxx xxx">
@@ -1233,30 +1245,31 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="subject" class="form-label">Mục đích liên hệ <span class="required">*</span></label>
+                  <label for="subject" class="form-label"><span data-i18n="contact.lbl_subj">Mục đích liên hệ</span> <span class="required">*</span></label>
                   <div class="input-with-icon">
                     <i class="fa-solid fa-tag"></i>
                     <select id="subject" name="subject" class="form-control" required>
-                      <option value="" disabled selected>Chọn mục đích liên hệ</option>
-                      <option value="internship">Cơ hội Thực tập sinh Marketing</option>
-                      <option value="video-freelance">Quay dựng Video ngắn / Freelance</option>
-                      <option value="content-creation">Sáng tạo nội dung & Quản trị Fanpage/TikTok</option>
-                      <option value="other">Trao đổi công việc khác</option>
+                      <option value="" disabled selected data-i18n="contact.opt_placeholder">Chọn mục đích liên hệ</option>
+                      <option value="internship" data-i18n="contact.opt_intern">Cơ hội Thực tập sinh Marketing</option>
+                      <option value="video-freelance" data-i18n="contact.opt_video">Quay dựng Video ngắn / Freelance</option>
+                      <option value="content-creation" data-i18n="contact.opt_content">Sáng tạo nội dung & Quản trị Fanpage/TikTok</option>
+                      <option value="other" data-i18n="contact.opt_other">Trao đổi công việc khác</option>
                     </select>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="message" class="form-label">Nội dung tin nhắn <span class="required">*</span></label>
+                  <label for="message" class="form-label"><span data-i18n="contact.lbl_msg">Nội dung tin nhắn</span> <span class="required">*</span></label>
                   <div class="input-with-icon textarea-icon">
                     <i class="fa-regular fa-message"></i>
                     <textarea id="message" name="message" rows="4" class="form-control"
-                      placeholder="Nhập chi tiết yêu cầu, mô tả công việc hoặc lời nhắn của bạn..." required></textarea>
+                      placeholder="Nhập chi tiết yêu cầu, mô tả công việc hoặc lời nhắn của bạn..."
+                      data-i18n-placeholder="contact.holder_msg" required></textarea>
                   </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-lg w-100 btn-submit" id="submit-btn">
-                  <span>Gửi tin nhắn ngay</span>
+                  <span data-i18n="contact.btn_send">Gửi tin nhắn ngay</span>
                   <i class="fa-solid fa-paper-plane"></i>
                 </button>
               </form>
@@ -1264,11 +1277,11 @@
               <!-- Form Success State (hidden by default) -->
               <div id="form-success-message" class="form-success-box" style="display: none;">
                 <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-                <h4>Cảm ơn bạn đã liên hệ!</h4>
-                <p>Tin nhắn của bạn đã được ghi nhận. Đỗ Minh Trí sẽ kiểm tra email và liên lạc lại với bạn trong thời
+                <h4 data-i18n="contact.success_title">Cảm ơn bạn đã liên hệ!</h4>
+                <p data-i18n="contact.success_desc">Tin nhắn của bạn đã được ghi nhận. Đỗ Minh Trí sẽ kiểm tra email và liên lạc lại với bạn trong thời
                   gian sớm nhất.</p>
                 <button class="btn btn-outline btn-sm mt-3" onclick="resetContactForm()">
-                  <i class="fa-solid fa-rotate-left"></i> Gửi tin nhắn khác
+                  <i class="fa-solid fa-rotate-left"></i> <span data-i18n="contact.btn_reset">Gửi tin nhắn khác</span>
                 </button>
               </div>
             </div>
@@ -1285,30 +1298,30 @@
         <a href="#hero" class="brand-logo footer-logo">
           <span class="logo-accent">ĐMT</span><span class="logo-dot">.</span>
         </a>
-        <p class="footer-bio">
+        <p class="footer-bio" data-i18n="footer.bio">
           Đỗ Minh Trí — Thực Tập Sinh Marketing | Quay dựng Video ngắn & Sáng tạo Nội dung. Sẵn sàng mang đến những ý
           tưởng tươi mới và năng lượng tích cực cho đội ngũ của bạn.
         </p>
       </div>
 
       <div class="footer-center">
-        <h4 class="footer-heading">Liên kết nhanh</h4>
+        <h4 class="footer-heading" data-i18n="footer.quick_links">Liên kết nhanh</h4>
         <ul class="footer-links">
-          <li><a href="#hero"><i class="fa-solid fa-angle-right"></i> Giới thiệu</a></li>
-          <li><a href="#about"><i class="fa-solid fa-angle-right"></i> Học vấn & Kỹ năng</a></li>
-          <li><a href="#projects"><i class="fa-solid fa-angle-right"></i> Dự án tiêu biểu</a></li>
-          <li><a href="#achievements"><i class="fa-solid fa-angle-right"></i> Thành tích</a></li>
-          <li><a href="#certificates"><i class="fa-solid fa-angle-right"></i> Chứng chỉ</a></li>
-          <li><a href="#activities"><i class="fa-solid fa-angle-right"></i> Hoạt động & Cộng đồng</a></li>
-          <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Liên hệ</a></li>
+          <li><a href="#hero"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav.home">Giới thiệu</span></a></li>
+          <li><a href="#about"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav.about">Học vấn & Kỹ năng</span></a></li>
+          <li><a href="#projects"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav.projects">Dự án tiêu biểu</span></a></li>
+          <li><a href="#achievements"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav.achievements">Thành tích</span></a></li>
+          <li><a href="#certificates"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav.certificates">Chứng chỉ</span></a></li>
+          <li><a href="#activities"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav.activities">Hoạt động & Cộng đồng</span></a></li>
+          <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav.contact">Liên hệ</span></a></li>
         </ul>
       </div>
 
       <div class="footer-right">
-        <h4 class="footer-heading">Tài liệu & Hồ sơ</h4>
-        <p class="footer-cv-desc">Tải bản CV đầy đủ kèm thông tin xác thực quá trình học tập và giải thưởng.</p>
+        <h4 class="footer-heading" data-i18n="footer.docs_title">Tài liệu & Hồ sơ</h4>
+        <p class="footer-cv-desc" data-i18n="footer.cv_desc">Tải bản CV đầy đủ kèm thông tin xác thực quá trình học tập và giải thưởng.</p>
         <a href="CV.png" target="_blank" class="btn btn-outline btn-sm mb-3" download="CV_DoMinhTri.png">
-          <i class="fa-solid fa-download"></i> Tải bản CV hoàn chỉnh
+          <i class="fa-solid fa-download"></i> <span data-i18n="footer.download_cv">Tải bản CV hoàn chỉnh</span>
         </a>
         <div class="footer-contact-direct">
           <p><i class="fa-solid fa-phone"></i> 0934 454 099</p>
@@ -1319,15 +1332,15 @@
 
     <div class="footer-bottom">
       <div class="container footer-bottom-content">
-        <p>© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả. Thiết kế chuyên nghiệp, tối ưu hóa giao diện
+        <p data-i18n="footer.copyright">© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả. Thiết kế chuyên nghiệp, tối ưu hóa giao diện
           người dùng (UI/UX).</p>
-        <a href="#hero" class="back-to-top-text">Về đầu trang <i class="fa-solid fa-arrow-up"></i></a>
+        <a href="#hero" class="back-to-top-text"><span data-i18n="footer.back_to_top">Về đầu trang</span> <i class="fa-solid fa-arrow-up"></i></a>
       </div>
     </div>
   </footer>
 
   <!-- Floating Back to Top Button -->
-  <button id="back-to-top" class="back-to-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang" data-i18n-title="footer.back_to_top" data-i18n-aria-label="footer.back_to_top">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
@@ -1377,15 +1390,15 @@
       </div>
       <div class="lightbox-footer">
         <div class="lightbox-info">
-          <span class="lightbox-badge"><i class="fa-solid fa-circle-check"></i> Ảnh minh chứng thực tế</span>
+          <span class="lightbox-badge"><i class="fa-solid fa-circle-check"></i> <span data-i18n="lightbox.badge">Ảnh minh chứng thực tế</span></span>
           <h4 id="lightbox-title" class="lightbox-title"></h4>
         </div>
         <div class="lightbox-actions">
           <a id="lightbox-download-link" href="#" target="_blank" class="btn btn-outline btn-sm" download>
-            <i class="fa-solid fa-download"></i> <span>Tải ảnh về máy</span>
+            <i class="fa-solid fa-download"></i> <span data-i18n="lightbox.download">Tải ảnh về máy</span>
           </a>
           <a id="lightbox-external-link" href="#" target="_blank" class="btn btn-primary btn-sm">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở tab mới</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="lightbox.open_tab">Mở tab mới</span>
           </a>
         </div>
       </div>
