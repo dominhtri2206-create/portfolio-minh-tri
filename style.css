@@ -1866,7 +1866,7 @@ button, input, textarea, select {
 .certificates-grid,
 .certificates-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
   align-items: stretch;
   width: 100%;
@@ -2318,6 +2318,35 @@ button, input, textarea, select {
 
 .badge-ms {
   background: rgba(0, 86, 179, 0.95);
+}
+
+.badge-academic {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Certificate image frame optimization (neutral background & contain for vertical/horizontal certs) */
+.certificates-grid .act-img-wrapper {
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certificates-grid .act-img {
+  object-fit: contain;
+  padding: 8px;
+}
+
+.certificate-modal .act-gallery-main {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+}
+
+.certificate-modal .act-modal-main-img {
+  object-fit: contain;
+  padding: 10px;
+  max-height: 440px;
 }
 
 .act-body {

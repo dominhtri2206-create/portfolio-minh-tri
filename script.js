@@ -763,6 +763,36 @@ const certificateDetailsData = {
       "Tự động hóa tác vụ tính toán, xử lý làm sạch dữ liệu lớn và kiểm soát tính toàn vẹn của bảng tính."
     ],
     result: "Sở hữu chứng chỉ quốc tế trọn đời có giá trị toàn cầu từ Microsoft; chứng minh năng lực tư duy dữ liệu sắc bén, sẵn sàng đảm nhiệm các vị trí phân tích số liệu và Marketing chuyên sâu."
+  },
+  4: {
+    id: 4,
+    title: "Sinh viên có thành tích học tập xuất sắc — Học kỳ Spring 2025",
+    award: "Khen thưởng Sinh viên Xuất sắc",
+    organization: "FPT Polyschool — Cơ sở Bình Định",
+    timeLocation: "Học kỳ Spring 2025 • Bình Định",
+    badgeType: "Xuất sắc • Spring 2025",
+    badgeClass: "badge-academic",
+    badgeStyle: "background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);",
+    mainImage: "cert-sv-xuat-sac-2025.jpg",
+    downloadName: "GiayKhen_SinhVienXuatSac_Spring2025_DoMinhTri.jpg",
+    externalUrl: "https://fpt.edu.vn",
+    externalTitle: "FPT Polyschool — Khối Giáo dục FPT",
+    externalIcon: "fa-solid fa-graduation-cap",
+    externalText: "FPT Polyschool",
+    description: "Được Giám đốc cơ sở Bình Định (FPT Polyschool) vinh danh nhờ thành tích học tập xuất sắc trong học kỳ Spring 2025, khẳng định tinh thần kỷ luật và tư duy học tập chủ động.",
+    metaItems: [
+      { label: "Người nhận khen thưởng", val: "Đỗ Minh Trí (Do Minh Tri)" },
+      { label: "Đơn vị cấp quyết định", val: "FPT Polyschool — Cơ sở Bình Định" },
+      { label: "Thời gian vinh danh", val: "Học kỳ Spring 2025" },
+      { label: "Danh hiệu khen thưởng", val: "Sinh viên Xuất sắc (Academic Excellence)", isHighlight: true }
+    ],
+    tags: ["Thành tích học tập", "Sinh viên xuất sắc", "FPT Polyschool", "Spring 2025", "Kỷ luật & Tự học"],
+    tasks: [
+      "Hoàn thành xuất sắc toàn bộ khối lượng kiến thức và môn học chuyên ngành trong học kỳ Spring 2025 với kết quả học tập vượt trội.",
+      "Chủ động nghiên cứu, vận dụng kiến thức lý thuyết vào các dự án môn học thực tế và tích cực dẫn dắt làm việc nhóm.",
+      "Duy trì tinh thần tự giác, chấp hành tốt nội quy học đường và đạt tiêu chuẩn khen thưởng của Ban Giám hiệu nhà trường."
+    ],
+    result: "Được Giám đốc cơ sở Bình Định chính thức trao tặng giấy khen Sinh viên Xuất sắc, là minh chứng cho tinh thần kiên trì, thái độ học tập nghiêm túc và nền tảng chuyên môn vững vàng."
   }
 };
 
