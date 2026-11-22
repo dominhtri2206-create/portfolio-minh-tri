@@ -448,8 +448,10 @@ function closeProjectModal() {
   if (backdrop) backdrop.classList.remove('active');
   
   const activityModal = document.getElementById('activity-modal');
+  const certModal = document.getElementById('certificate-modal');
   const lightbox = document.getElementById('image-lightbox');
   const isOtherOpen = (activityModal && activityModal.classList.contains('active')) ||
+                      (certModal && certModal.classList.contains('active')) ||
                       (lightbox && lightbox.classList.contains('active'));
   if (!isOtherOpen) {
     document.body.style.overflow = '';
@@ -657,8 +659,249 @@ function closeActivityModal() {
   if (backdrop) backdrop.classList.remove('active');
 
   const projectModal = document.getElementById('project-modal');
+  const certModal = document.getElementById('certificate-modal');
   const lightbox = document.getElementById('image-lightbox');
   const isOtherOpen = (projectModal && projectModal.classList.contains('active')) ||
+                      (certModal && certModal.classList.contains('active')) ||
+                      (lightbox && lightbox.classList.contains('active'));
+
+  if (!isOtherOpen) {
+    document.body.style.overflow = '';
+  }
+}
+
+/* -------------------------------------------------------------------
+   7C. CERTIFICATE DETAILS MODAL POPUP & DATA
+------------------------------------------------------------------- */
+const certificateDetailsData = {
+  1: {
+    id: 1,
+    title: "Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)",
+    award: "Á quân (Top 2 Chung kết Toàn quốc)",
+    organization: "BTEC FPT Đà Nẵng & DNES",
+    timeLocation: "14/08/2026 tại Đà Nẵng",
+    badgeType: "Top 2 • Á quân",
+    badgeClass: "badge-trophy",
+    badgeStyle: "background: linear-gradient(135deg, #10b981 0%, #059669 100%);",
+    mainImage: "cert-chan-tran-khoi-nghiep.jpg",
+    downloadName: "ChungNhan_ChanTranKhoiNghiep_DoMinhTri.jpg",
+    externalUrl: "https://dnes.vn",
+    externalTitle: "Vườn ươm Doanh nghiệp Đà Nẵng DNES",
+    externalIcon: "fa-solid fa-arrow-up-right-from-square",
+    externalText: "Đơn vị DNES",
+    description: "Thành viên đội Smart Mini Storage — xuất sắc đạt thành tích Top 2 tại Vòng Chung kết Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3), xây dựng dự án ứng dụng tư duy đổi mới sáng tạo, AI và phát triển bền vững để giải quyết vấn đề thực tế và tạo ra giá trị cho cộng đồng.",
+    metaItems: [
+      { label: "Người nhận chứng nhận", val: "Đỗ Minh Trí (Do Minh Tri)" },
+      { label: "Đơn vị tổ chức & Chuyên môn", val: "BTEC FPT Đà Nẵng & DNES" },
+      { label: "Ngày Chung kết", val: "14 / 08 / 2026" },
+      { label: "Thành tích / Dự án", val: "Smart Mini Storage Team", isHighlight: true }
+    ],
+    tags: ["Đổi mới sáng tạo", "Ứng dụng AI", "Phát triển bền vững", "Top 2 Chung kết"],
+    tasks: [
+      "Nghiên cứu thị trường và khảo sát thực tế nhu cầu lưu trữ mini thông minh (Smart Mini Storage) của giới trẻ và khách du lịch.",
+      "Ứng dụng tư duy công nghệ AI và mô hình phát triển bền vững để xây dựng giải pháp tối ưu hóa chi phí vận hành.",
+      "Hoàn thiện mô hình kinh doanh và trực tiếp thuyết trình, phản biện tự tin trước hội đồng giám khảo và cố vấn doanh nghiệp."
+    ],
+    result: "Xuất sắc giành giải Top 2 Chung kết (Á quân), chứng minh năng lực đổi mới sáng tạo, tinh thần khởi nghiệp thực chiến và khả năng ứng dụng AI vào giải quyết vấn đề kinh doanh thực tế."
+  },
+  2: {
+    id: 2,
+    title: "Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025",
+    award: "Bán kết Toàn quốc (Top đội thi xuất sắc)",
+    organization: "Tập đoàn FPT — Ban Công tác Học đường",
+    timeLocation: "15/08/2025",
+    badgeType: "Bán kết Toàn quốc",
+    badgeClass: "badge-fpt",
+    badgeStyle: "background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);",
+    mainImage: "cert-fpt-biz-talent.jpg",
+    downloadName: "ChungNhan_FPT_Biz_Talent_DoMinhTri.jpg",
+    externalUrl: "https://fpt.edu.vn",
+    externalTitle: "Tập đoàn FPT - Khối Giáo dục",
+    externalIcon: "fa-solid fa-shield-halved",
+    externalText: "FPT Education",
+    description: "Bằng chứng nhận do Ban Công tác Học đường, Tập đoàn FPT trao tặng, ghi nhận nỗ lực vượt bậc và thành tích xuất sắc của đại diện đội The Culinary AI (FPT Polyschool Bình Định) tại vòng Bán kết toàn quốc cuộc thi khởi nghiệp kinh doanh FPT Biz Talent 2025.",
+    metaItems: [
+      { label: "Người nhận chứng nhận", val: "Đỗ Minh Trí (Do Minh Tri)" },
+      { label: "Đơn vị tổ chức", val: "Ban Công tác Học đường, Tập đoàn FPT" },
+      { label: "Thời gian trao giải", val: "15 / 08 / 2025" },
+      { label: "Đại diện đội thi", val: "The Culinary AI", isHighlight: true }
+    ],
+    tags: ["FPT Biz Talent", "Ý tưởng kinh doanh", "Ứng dụng AI ngành ẩm thực", "Bán kết toàn quốc"],
+    tasks: [
+      "Nghiên cứu giải pháp kinh doanh ngành F&B kết hợp AI nhằm nâng cao trải nghiệm khách hàng và tối ưu hiệu suất ẩm thực.",
+      "Xây dựng kế hoạch tài chính, phân tích điểm hòa vốn và dự báo doanh thu cho mô hình The Culinary AI.",
+      "Đại diện đội thi thuyết trình và bảo vệ ý tưởng kinh doanh trước hội đồng chuyên môn cấp Tập đoàn FPT."
+    ],
+    result: "Đạt thành tích Vòng Bán kết Toàn quốc cuộc thi khởi nghiệp FPT Biz Talent 2025; củng cố tư duy quản trị tài chính, mô hình kinh doanh và tầm nhìn công nghệ phục vụ đời sống."
+  },
+  3: {
+    id: 3,
+    title: "Microsoft Office Specialist: Excel 2019 Associate",
+    award: "Chứng chỉ Chuẩn Quốc tế Microsoft Certified",
+    organization: "Microsoft & Certiport",
+    timeLocation: "20/04/2025",
+    badgeType: "Đã xác thực Certiport",
+    badgeClass: "badge-ms",
+    badgeStyle: "background: linear-gradient(135deg, #0056b3 0%, #0369a1 100%);",
+    mainImage: "certificate-mos-excel.jpg",
+    downloadName: "ChungChi_MOS_Excel_2019_DoMinhTri.jpg",
+    externalUrl: "https://verify.certiport.com",
+    externalTitle: "Cổng xác thực quốc tế Certiport (Mã: 2NPb-XM8H)",
+    externalIcon: "fa-solid fa-square-check",
+    externalText: "Xác thực Certiport (2NPb-XM8H)",
+    description: "Chứng chỉ quốc tế do Microsoft và tổ chức khảo thí Certiport cấp, xác nhận trình độ chuyên sâu trong việc xây dựng mô hình dữ liệu, phân tích số liệu tài chính & marketing, tự động hóa tính toán và trực quan hóa báo cáo.",
+    metaItems: [
+      { label: "Người nhận chứng chỉ", val: "Do Minh Tri (Đỗ Minh Trí)" },
+      { label: "Mã định danh học viên", val: "052208008929" },
+      { label: "Ngày cấp chứng nhận", val: "20 / 04 / 2025" },
+      { label: "Mã xác thực (Verification Code)", val: "2NPb-XM8H", isHighlight: true }
+    ],
+    tags: ["MOS Excel 2019", "Xử lý & Phân tích Dữ liệu", "Báo cáo KPI Marketing", "Chuẩn quốc tế"],
+    tasks: [
+      "Thành thạo cấu trúc dữ liệu, các hàm nâng cao (VLOOKUP, XLOOKUP, INDEX/MATCH, hàm logic & thống kê).",
+      "Xây dựng Dashboard động, báo cáo phân tích số liệu kinh doanh chuyên nghiệp bằng PivotTable & Slicer trực quan.",
+      "Tự động hóa tác vụ tính toán, xử lý làm sạch dữ liệu lớn và kiểm soát tính toàn vẹn của bảng tính."
+    ],
+    result: "Sở hữu chứng chỉ quốc tế trọn đời có giá trị toàn cầu từ Microsoft; chứng minh năng lực tư duy dữ liệu sắc bén, sẵn sàng đảm nhiệm các vị trí phân tích số liệu và Marketing chuyên sâu."
+  }
+};
+
+function openCertificateModal(certId) {
+  const data = certificateDetailsData[certId];
+  if (!data) return;
+
+  const modal = document.getElementById('certificate-modal');
+  const backdrop = document.getElementById('certificate-modal-backdrop');
+  const container = document.getElementById('cert-modal-content-container');
+
+  if (!modal || !backdrop || !container) return;
+
+  const metaGridHtml = data.metaItems.map(item => `
+    <div class="act-modal-overview-item">
+      <span class="act-overview-label"><i class="fa-solid fa-check text-primary-color"></i> ${item.label.toUpperCase()}</span>
+      <span class="act-overview-value ${item.isHighlight ? 'code-highlight' : ''}">${item.val}</span>
+    </div>
+  `).join('');
+
+  const tagsHtml = data.tags.map(tag => `
+    <span class="cert-tag"><i class="fa-solid fa-check"></i> ${tag}</span>
+  `).join('');
+
+  const tasksHtml = data.tasks.map(item => `
+    <li class="modal-list-item">
+      <i class="fa-solid fa-circle-check text-primary-color"></i>
+      <span>${item}</span>
+    </li>
+  `).join('');
+
+  container.innerHTML = `
+    <div class="modal-activity-header">
+      <div class="modal-meta-row">
+        <span class="act-floating-badge ${data.badgeClass}" style="position: static; display: inline-flex; ${data.badgeStyle}">
+          <i class="fa-solid fa-award"></i> ${data.badgeType}
+        </span>
+        <span class="act-org-tag"><i class="fa-solid fa-building"></i> ${data.organization}</span>
+      </div>
+      <h2 class="modal-title" id="cert-modal-title">${data.title}</h2>
+      <div class="modal-subtitle-row">
+        <div class="modal-role-highlight">
+          <i class="fa-solid fa-trophy text-primary-color"></i>
+          <span><strong>Thành tích / Danh hiệu:</strong> ${data.award}</span>
+        </div>
+        <div class="modal-time-highlight">
+          <i class="fa-regular fa-calendar-check text-orange-color"></i>
+          <span><strong>Thời gian & Đơn vị:</strong> ${data.timeLocation}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hộp thông tin chi tiết: Meta Grid, Mô tả tổng quan & Kỹ năng -->
+    <div class="act-modal-overview-box">
+      <div class="act-modal-overview-grid">
+        ${metaGridHtml}
+      </div>
+      <div class="act-modal-overview-desc">
+        <span class="act-overview-label"><i class="fa-solid fa-circle-info text-primary-color"></i> MÔ TẢ CHI TIẾT</span>
+        <p class="act-overview-desc-text">${data.description}</p>
+      </div>
+      <div class="cert-skills-tags" style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-color); margin-bottom: 0;">
+        ${tagsHtml}
+      </div>
+    </div>
+
+    <!-- Khung trưng bày hình ảnh chứng nhận chính -->
+    <div class="act-modal-gallery">
+      <div class="act-gallery-main" onclick="openLightbox('${data.mainImage}', '${data.title}')" title="Nhấp vào để phóng to xem rõ ảnh chứng nhận">
+        <img src="${data.mainImage}" alt="${data.title}" class="act-modal-main-img">
+        <div class="act-gallery-overlay">
+          <span class="gallery-zoom-pill">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <span>Phóng to ảnh chứng nhận</span>
+          </span>
+        </div>
+        <span class="gallery-badge-main">
+          <i class="fa-solid fa-certificate"></i> Ảnh chứng nhận chính
+        </span>
+      </div>
+    </div>
+
+    <!-- Nội dung chi tiết: Kỹ năng/Đóng góp & Kết quả/Giá trị -->
+    <div class="act-modal-details-grid">
+      <div class="act-details-section">
+        <div class="modal-section-title">
+          <i class="fa-solid fa-list-check text-primary-color"></i>
+          <span>Năng lực thực chứng & Đóng góp</span>
+        </div>
+        <ul class="modal-list">
+          ${tasksHtml}
+        </ul>
+      </div>
+
+      <div class="act-details-section">
+        <div class="modal-section-title">
+          <i class="fa-solid fa-award text-orange-color"></i>
+          <span>Giá trị & Bài học tích lũy</span>
+        </div>
+        <div class="act-result-card">
+          <p class="result-text">${data.result}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Actions: Đưa 2 nút phụ (Tải ảnh về máy & Link đơn vị/xác thực) vào gọn gàng ở phía dưới cùng -->
+    <div class="modal-actions" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;">
+      <button type="button" class="btn btn-primary btn-sm" onclick="openLightbox('${data.mainImage}', '${data.title}')">
+        <i class="fa-solid fa-expand"></i> Phóng to ảnh
+      </button>
+      <a href="${data.mainImage}" download="${data.downloadName}" class="btn btn-outline btn-sm">
+        <i class="fa-solid fa-download"></i> Tải ảnh về máy
+      </a>
+      <a href="${data.externalUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm" title="${data.externalTitle}">
+        <i class="${data.externalIcon}"></i> ${data.externalText}
+      </a>
+      <button type="button" class="btn btn-ghost btn-sm" onclick="closeCertificateModal()">
+        <i class="fa-solid fa-xmark"></i> Đóng
+      </button>
+    </div>
+  `;
+
+  backdrop.classList.add('active');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCertificateModal() {
+  const modal = document.getElementById('certificate-modal');
+  const backdrop = document.getElementById('certificate-modal-backdrop');
+
+  if (modal) modal.classList.remove('active');
+  if (backdrop) backdrop.classList.remove('active');
+
+  const projectModal = document.getElementById('project-modal');
+  const activityModal = document.getElementById('activity-modal');
+  const lightbox = document.getElementById('image-lightbox');
+  const isOtherOpen = (projectModal && projectModal.classList.contains('active')) ||
+                      (activityModal && activityModal.classList.contains('active')) ||
                       (lightbox && lightbox.classList.contains('active'));
 
   if (!isOtherOpen) {
@@ -701,8 +944,10 @@ function closeLightbox() {
 
   const projectModal = document.getElementById('project-modal');
   const activityModal = document.getElementById('activity-modal');
+  const certModal = document.getElementById('certificate-modal');
   const isOtherOpen = (projectModal && projectModal.classList.contains('active')) ||
-                      (activityModal && activityModal.classList.contains('active'));
+                      (activityModal && activityModal.classList.contains('active')) ||
+                      (certModal && certModal.classList.contains('active'));
 
   if (!isOtherOpen) {
     document.body.style.overflow = '';
@@ -714,6 +959,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeProjectModal();
     closeActivityModal();
+    closeCertificateModal();
     closeLightbox();
   }
 });

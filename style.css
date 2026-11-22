@@ -2308,6 +2308,18 @@ button, input, textarea, select {
   background: rgba(16, 185, 129, 0.92);
 }
 
+.badge-trophy {
+  background: rgba(16, 185, 129, 0.95);
+}
+
+.badge-fpt {
+  background: rgba(139, 92, 246, 0.95);
+}
+
+.badge-ms {
+  background: rgba(0, 86, 179, 0.95);
+}
+
 .act-body {
   padding: 24px;
   display: flex;
@@ -2553,9 +2565,10 @@ button, input, textarea, select {
 }
 
 /* -------------------------------------------------------------------
-   10E. ACTIVITY MODAL POPUP
+   10E. ACTIVITY & CERTIFICATE MODAL POPUP
 ------------------------------------------------------------------- */
-.activity-modal {
+.activity-modal,
+.certificate-modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -2574,7 +2587,8 @@ button, input, textarea, select {
   pointer-events: none;
 }
 
-.activity-modal.active {
+.activity-modal.active,
+.certificate-modal.active {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
@@ -3823,7 +3837,8 @@ textarea.form-control {
     -webkit-overflow-scrolling: touch;
   }
 
-  .activity-modal {
+  .activity-modal,
+  .certificate-modal {
     width: 95%;
     max-height: 90vh;
     padding: 22px 18px;
