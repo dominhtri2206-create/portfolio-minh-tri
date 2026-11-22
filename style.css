@@ -1410,6 +1410,9 @@ button, input, textarea, select {
   font-size: 1.25rem;
 }
 
+.icon-ai { background: #e0f2fe; color: #0284c7; }
+.icon-business { background: #fef3c7; color: #d97706; }
+.icon-speaker { background: #ede9fe; color: #7c3aed; }
 .icon-video { background: #e0f2fe; color: #0284c7; }
 .icon-reels { background: #ffe4e6; color: #e11d48; }
 .icon-design { background: #fef3c7; color: #d97706; }
