@@ -3676,36 +3676,83 @@ textarea.form-control {
   }
 
   .hero-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
-  }
-
-  .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0;
+    text-align: center;
+    width: 100%;
   }
 
+  .hero-content {
+    display: contents;
+  }
+
+  /* 0. Live Status Badge */
+  .hero-ai-badge {
+    order: 0;
+    margin-bottom: 16px;
+    margin-inline: auto;
+  }
+
+  /* 1. Tiêu đề chào mừng & Châm ngôn (Ảnh 1 - Số 1) */
   .hero-title {
+    order: 1;
     font-size: 2.6rem;
+    margin-bottom: 12px;
+    width: 100%;
+    text-align: center;
   }
 
   .hero-motto {
+    order: 2;
+    margin-bottom: 24px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* 2. Ảnh đại diện & các huy hiệu nổi (Ảnh 2 - Số 2) */
+  .hero-visual {
+    order: 3;
+    margin-bottom: 26px;
+    width: 100%;
+    display: flex;
     justify-content: center;
   }
 
+  /* 3. Thẻ nhãn vai trò / thế mạnh (Ảnh 3 - Số 3) */
+  .role-badge-container {
+    order: 4;
+    margin-bottom: 18px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* 4. Tuyên ngôn cá nhân (Ảnh 3 - Số 4) */
   .hero-mission-quote {
+    order: 5;
+    margin-bottom: 22px;
     margin-inline: auto;
     text-align: left;
+    width: 100%;
+    max-width: 580px;
   }
 
-  .role-badge-container {
-    justify-content: center;
+  /* 5. Đoạn giới thiệu bản thân & Nút CTA (Ảnh 3 - Số 5) */
+  .hero-description {
+    order: 6;
+    margin-bottom: 24px;
+    text-align: justify;
+    text-justify: inter-word;
+    max-width: 600px;
+    margin-inline: auto;
   }
 
   .hero-cta-group {
+    order: 7;
+    margin-bottom: 0;
     justify-content: center;
+    width: 100%;
   }
 
   .hero-stats {
@@ -3782,31 +3829,50 @@ textarea.form-control {
   }
 
   .avatar-wrapper {
-    width: 290px;
-    height: 290px;
+    width: 270px;
+    height: 270px;
   }
 
   .floating-badge {
-    padding: 8px 12px;
+    padding: 6px 11px;
+    gap: 8px;
+  }
+
+  .badge-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+
+  .badge-text strong {
+    font-size: 0.74rem;
+  }
+
+  .badge-text span {
+    font-size: 0.65rem;
   }
 
   .badge-top-left {
     top: -10px;
-    left: -15px;
+    left: -12px;
   }
 
   .badge-top-right {
     top: -10px;
-    right: -15px;
+    right: -12px;
+    display: flex !important;
   }
 
   .badge-bottom-right {
-    bottom: 0px;
-    right: -15px;
+    bottom: -6px;
+    right: -12px;
+    display: flex !important;
   }
 
   .badge-bottom-left {
-    display: none; /* Hide on small screen to reduce clutter */
+    bottom: -6px;
+    left: -12px;
+    display: flex !important;
   }
 
   .section {
@@ -3970,12 +4036,52 @@ textarea.form-control {
   }
 
   .avatar-wrapper {
-    width: 250px;
-    height: 250px;
+    width: 240px;
+    height: 240px;
+  }
+
+  .floating-badge {
+    padding: 5px 8px;
+    gap: 6px;
+  }
+
+  .badge-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.82rem;
+  }
+
+  .badge-text strong {
+    font-size: 0.68rem;
+    line-height: 1.2;
+  }
+
+  .badge-text span {
+    font-size: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .badge-top-left {
+    top: -8px;
+    left: -8px;
   }
 
   .badge-top-right {
-    display: none;
+    top: -8px;
+    right: -8px;
+    display: flex !important;
+  }
+
+  .badge-bottom-left {
+    bottom: -6px;
+    left: -8px;
+    display: flex !important;
+  }
+
+  .badge-bottom-right {
+    bottom: -6px;
+    right: -8px;
+    display: flex !important;
   }
 
   .hero-ai-badge {
