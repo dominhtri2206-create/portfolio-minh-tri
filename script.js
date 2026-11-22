@@ -465,10 +465,12 @@ const activityDetailsData = {
     title: "BBE Pegasus Chapter — Ban Lãnh Đạo Nhiệm Kỳ I",
     role: "Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I",
     organization: "BBE Pegasus Chapter",
+    eventOrg: "BBE Pegasus Chapter",
     timeLocation: "01/02/2026 – 30/09/2026",
     badgeType: "Ban Lãnh đạo",
     badgeClass: "badge-leader",
     mainImage: "act-pegasus.jpg",
+    description: "Thể hiện tinh thần trách nhiệm cao, điều phối đội ngũ và hoàn thành xuất sắc nhiệm vụ trong vai trò Phó Chủ tịch nhiệm kỳ I.",
     subPlaceholder1: "Ảnh hậu trường sinh hoạt & họp điều hành",
     subPlaceholder2: "Ảnh tổ chức workshop & chia sẻ kỹ năng",
     tasks: [
@@ -483,10 +485,12 @@ const activityDetailsData = {
     title: "Lễ Tốt Nghiệp BTEC FPT 2026",
     role: "Thành viên Ban Tổ chức (Organizing Committee)",
     organization: "BTEC FPT",
+    eventOrg: "Lễ Tốt nghiệp BTEC FPT 2026",
     timeLocation: "25/10/2026 tại Đà Nẵng",
     badgeType: "Ban Tổ chức Sự kiện",
     badgeClass: "badge-event",
     mainImage: "act-graduation.jpg",
+    description: "Trực tiếp đóng góp và phối hợp vận hành sự kiện trọng đại cấp trường, đảm bảo trải nghiệm chuyên nghiệp cho sinh viên và khách mời.",
     subPlaceholder1: "Ảnh hậu trường setup & vận hành sân khấu",
     subPlaceholder2: "Ảnh điều phối tân cử nhân & đón tiếp khách mời",
     tasks: [
@@ -501,10 +505,12 @@ const activityDetailsData = {
     title: "Dự Án Thiện Nguyện \"Hành Trình Yêu Thương - Số Thứ 4\"",
     role: "Tình nguyện viên đóng góp tích cực",
     organization: "BTEC FPT & Fusion Club",
+    eventOrg: "Dự án thiện nguyện \"Hành Trình Yêu Thương - Số thứ 4\"",
     timeLocation: "Ngũ Hành Sơn, Đà Nẵng",
     badgeType: "Thiện nguyện cộng đồng",
     badgeClass: "badge-volunteer",
     mainImage: "act-thien-nguyen.jpg",
+    description: "Tham gia tổ chức và lan tỏa giá trị tích cực tại Mái Ấm Tình Thương (Ngũ Hành Sơn, Đà Nẵng).",
     subPlaceholder1: "Ảnh chuẩn bị & phân loại quà tặng thiện nguyện",
     subPlaceholder2: "Ảnh sinh hoạt, giao lưu trò chơi cùng các em nhỏ",
     tasks: [
@@ -551,6 +557,24 @@ function openActivityModal(activityId) {
           <i class="fa-regular fa-calendar-check text-orange-color"></i>
           <span><strong>Thời gian & Địa điểm:</strong> ${data.timeLocation}</span>
         </div>
+      </div>
+    </div>
+
+    <!-- Hộp thông tin chi tiết: Đơn vị/Sự kiện, Thời gian & Địa điểm, Mô tả tổng quan -->
+    <div class="act-modal-overview-box">
+      <div class="act-modal-overview-grid">
+        <div class="act-modal-overview-item">
+          <span class="act-overview-label"><i class="fa-solid fa-building text-primary-color"></i> ĐƠN VỊ / SỰ KIỆN</span>
+          <span class="act-overview-value">${data.eventOrg}</span>
+        </div>
+        <div class="act-modal-overview-item">
+          <span class="act-overview-label"><i class="fa-regular fa-calendar-check text-orange-color"></i> THỜI GIAN & ĐỊA ĐIỂM</span>
+          <span class="act-overview-value">${data.timeLocation}</span>
+        </div>
+      </div>
+      <div class="act-modal-overview-desc">
+        <span class="act-overview-label"><i class="fa-solid fa-circle-info text-primary-color"></i> MÔ TẢ ĐÓNG GÓP & TRÁCH NHIỆM</span>
+        <p class="act-overview-desc-text">${data.description}</p>
       </div>
     </div>
 
