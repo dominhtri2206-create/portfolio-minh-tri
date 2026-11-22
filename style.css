@@ -2055,18 +2055,43 @@ button, input, textarea, select {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, margin 0.28s ease;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin 0.3s ease;
   margin-top: 0;
 }
 
 .cert-meta-collapse.active {
-  max-height: 380px;
+  max-height: 850px;
   opacity: 1;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
-.cert-meta-collapse .cert-meta-grid {
-  margin-bottom: 0;
+.cert-collapse-content {
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-collapse-content .cert-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.cert-collapse-content .cert-summary {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.cert-collapse-content .cert-meta-grid {
+  margin-bottom: 14px;
+}
+
+.cert-collapse-content .cert-skills-tags {
+  margin-bottom: 6px;
 }
 
 .cert-meta-grid {
