@@ -52,7 +52,7 @@
       "phone": "0816 777 568",
       "address": {
         "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
-        "en": "152 Phan Thanh, Thanh Khe, Danang City"
+        "en": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng"
       },
       "reference": {
         "name": "Cô Nguyễn Thị Thanh Tâm",
@@ -69,129 +69,6 @@
     }
   },
   "projects": [
-    {
-      "id": 1,
-      "badge": {
-        "vi": "Video Marketing",
-        "en": "Video Marketing"
-      },
-      "role": {
-        "vi": "Trưởng nhóm",
-        "en": "Team Leader"
-      },
-      "roleDetail": {
-        "vi": "Trưởng nhóm (Team Leader) & Biên tập Video",
-        "en": "Team Leader & Video Producer"
-      },
-      "platform": {
-        "icon": "fa-brands fa-instagram",
-        "text": "Reels & TikTok"
-      },
-      "title": {
-        "vi": "1. Dự Án Content Marketing & Video Ngắn (Reels/TikTok)",
-        "en": "1. Content Marketing & Short-form Video Project (Reels/TikTok)"
-      },
-      "excerpt": {
-        "vi": "Xây dựng chuỗi video ngắn định dạng dọc giới thiệu dòng sản phẩm đồ uống/thời trang cho giới trẻ. Trực tiếp lên kịch bản, quay dựng và tối ưu âm thanh bắt trend.",
-        "en": "Producing a vertical short-video campaign for youth lifestyle brands. Spearheaded scriptwriting, video shooting, audio sync, and trend optimization."
-      },
-      "highlights": [
-        {
-          "vi": "Nghiên cứu thị hiếu Gen Z",
-          "en": "Gen Z trend & insight analysis"
-        },
-        {
-          "vi": "Kịch bản 3 giây đầu thu hút (Hook)",
-          "en": "High-converting 3s hook scripting"
-        },
-        {
-          "vi": "Tối ưu tỷ lệ giữ chân người xem (Watch Time)",
-          "en": "Audience retention rate optimization"
-        }
-      ],
-      "tags": [
-        "CapCut Pro",
-        "Premiere",
-        "TikTok Trends",
-        "Canva"
-      ],
-      "thumbClass": "thumb-gradient-1",
-      "watermarkIcon": "fa-brands fa-tiktok",
-      "category": {
-        "vi": "Video Marketing & Social Viral",
-        "en": "Video Marketing & Social Viral"
-      },
-      "duration": {
-        "vi": "2 tháng (Học kỳ đồ án thực hành)",
-        "en": "2 months (Coursework Project)"
-      },
-      "teamSize": {
-        "vi": "4 thành viên",
-        "en": "4 members"
-      },
-      "tools": [
-        "CapCut Pro",
-        "Adobe Premiere Pro",
-        "TikTok Creator Studio",
-        "Canva Pro",
-        "Smartphone 4K & Gimbal"
-      ],
-      "bannerGradient": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
-      "badgeProject": {
-        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
-        "en": "Academic Project | FPT Digital Marketing"
-      },
-      "overview": {
-        "vi": "Dự án tập trung vào việc nghiên cứu hành vi tiêu thụ video ngắn của đối tượng khách hàng Gen Z và người trẻ tuổi, từ đó lên kế hoạch sản xuất chuỗi 15 video ngắn định dạng dọc (9:16) cho thương hiệu đồ uống / thời trang trẻ trung.",
-        "en": "Researched short-video consumption patterns of Gen Z audiences and produced a 15-video vertical campaign (9:16) for modern lifestyle brands."
-      },
-      "objectives": [
-        {
-          "vi": "Xây dựng định vị hình ảnh thương hiệu năng động, gần gũi và hài hước trên nền tảng TikTok và Instagram Reels.",
-          "en": "Build a vibrant, relatable, and engaging brand persona on TikTok and Instagram Reels."
-        },
-        {
-          "vi": "Thử nghiệm các cấu trúc kịch bản Hook 3s (Tò mò, Đặt câu hỏi, Trước/Sau, Phản ứng bất ngờ) để tối ưu tỷ lệ giữ chân người xem.",
-          "en": "A/B test 3-second hook variations (Curiosity, Questions, Before/After, Surprises) to maximize viewer retention."
-        },
-        {
-          "vi": "Đạt mục tiêu tối thiểu 50.000 lượt xem tự nhiên (organic views) và tỷ lệ tương tác (engagement rate) trên 8%.",
-          "en": "Achieve over 50,000+ organic views and an engagement rate exceeding 8%."
-        }
-      ],
-      "contributions": [
-        {
-          "vi": "Trực tiếp lên ý tưởng, viết kịch bản phân cảnh chi tiết (Storyboard) cho toàn bộ 15 video.",
-          "en": "Conceptualized and wrote detailed storyboards and scripts for all 15 videos."
-        },
-        {
-          "vi": "Phân công vai trò diễn xuất, chuẩn bị đạo cụ, góc quay và setup ánh sáng với gimbal.",
-          "en": "Managed talent staging, props, cinematography angles, and lighting with gimbal setups."
-        },
-        {
-          "vi": "Hậu kỳ cắt dựng, chỉnh màu sắc tươi sáng, chèn sound effects (SFX) và chọn nhạc nền thịnh hành (Trending BGM).",
-          "en": "Edited post-production, color grading, sound design (SFX), and selected trending soundtracks."
-        },
-        {
-          "vi": "Theo dõi dữ liệu phân tích từ TikTok Analytics để tinh chỉnh thời gian đăng bài và hashtag.",
-          "en": "Monitored TikTok Analytics to optimize posting schedule and hashtag strategies."
-        }
-      ],
-      "results": [
-        {
-          "vi": "Chiến dịch đạt hơn 120.000+ lượt xem tích lũy trên cả hai nền tảng.",
-          "en": "Campaign generated over 120,000+ cumulative views across both platforms."
-        },
-        {
-          "vi": "Video viral nhất đạt 45.000 lượt xem với hơn 3.200 lượt thả tim và 180 lượt chia sẻ.",
-          "en": "Top viral video achieved 45,000+ views, 3,200+ likes, and 180+ shares."
-        },
-        {
-          "vi": "Được giảng viên bộ môn đánh giá Xuất sắc (Điểm 9.5/10) về chất lượng hình ảnh và thông điệp truyền tải.",
-          "en": "Awarded an Excellent grade (9.5/10) by faculty for visual execution and narrative storytelling."
-        }
-      ]
-    },
     {
       "id": 2,
       "badge": {
