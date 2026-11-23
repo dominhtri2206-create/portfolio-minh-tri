@@ -83,11 +83,11 @@
       position: sticky;
       top: 16px;
       z-index: 100;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .header-pill {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: var(--card-border);
@@ -159,13 +159,19 @@
       transform: scale(0.98);
     }
 
+    .btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .btn-primary {
       background: var(--accent-apple);
       color: #FFFFFF;
       box-shadow: 0 4px 14px rgba(0, 113, 227, 0.25);
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover:not(:disabled) {
       background: var(--accent-apple-hover);
       box-shadow: 0 6px 20px rgba(0, 113, 227, 0.35);
     }
@@ -176,7 +182,7 @@
       border: 1px solid rgba(0, 0, 0, 0.12);
     }
 
-    .btn-outline:hover {
+    .btn-outline:hover:not(:disabled) {
       background: rgba(0, 0, 0, 0.04);
       border-color: rgba(0, 0, 0, 0.2);
     }
@@ -186,7 +192,7 @@
       color: var(--text-secondary);
     }
 
-    .btn-ghost:hover {
+    .btn-ghost:hover:not(:disabled) {
       background: rgba(0, 0, 0, 0.05);
       color: var(--text-main);
     }
@@ -197,7 +203,7 @@
       border: 1px solid rgba(239, 68, 68, 0.2);
     }
 
-    .btn-danger:hover {
+    .btn-danger:hover:not(:disabled) {
       background: var(--danger);
       color: #FFFFFF;
     }
@@ -205,6 +211,25 @@
     .btn-sm {
       padding: 6px 14px;
       font-size: 0.8rem;
+    }
+
+    /* Live Status Banner */
+    .status-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      animation: bannerSlide 0.3s ease;
+    }
+
+    @keyframes bannerSlide {
+      from { transform: translateY(-8px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     /* Tab Navigation */
@@ -282,6 +307,8 @@
       margin-bottom: 20px;
       padding-bottom: 14px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .card-title {
@@ -580,18 +607,36 @@
     .toast {
       background: #1D1D1F;
       color: #FFFFFF;
-      padding: 12px 20px;
+      padding: 12px 22px;
       border-radius: var(--radius-pill);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
+      font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 10px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
       animation: toastIn 0.3s ease forwards;
+      max-width: 450px;
+      line-height: 1.4;
     }
 
-    .toast.success i { color: #10B981; }
-    .toast.error i { color: #EF4444; }
+    .toast.success {
+      background: #064E3B;
+      border: 1px solid #10B981;
+    }
+    .toast.success i { color: #34D399; }
+
+    .toast.error {
+      background: #7F1D1D;
+      border: 1px solid #EF4444;
+    }
+    .toast.error i { color: #F87171; }
+
+    .toast.info {
+      background: #1E3A8A;
+      border: 1px solid #3B82F6;
+    }
+    .toast.info i { color: #60A5FA; }
 
     @keyframes toastIn {
       from { transform: translateY(20px); opacity: 0; }
@@ -628,8 +673,8 @@
           <a href="index.html" target="_blank" class="btn btn-outline btn-sm" title="Mở trang Portfolio thực tế">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> Xem Portfolio
           </a>
-          <button type="button" class="btn btn-primary btn-sm" id="btn-publish" onclick="publishDataToGitHub()">
-            <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản</span>
+          <button type="button" class="btn btn-primary btn-sm btn-save-github" id="btn-publish" onclick="publishDataToGitHub()">
+            <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
           </button>
           <button type="button" class="btn btn-ghost btn-sm" onclick="logoutAdmin()" title="Đăng xuất">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -691,6 +736,12 @@
     <!-- ==================== VIEW 2: DASHBOARD TABS ==================== -->
     <div id="view-dashboard" style="display: none;">
 
+      <!-- Live Status Banner -->
+      <div id="admin-status-banner" class="status-banner" style="display: none;">
+        <i id="status-banner-icon" class="fa-solid fa-circle-info"></i>
+        <span id="status-banner-text">Trạng thái sẵn sàng.</span>
+      </div>
+
       <!-- Navigation Tabs Bar -->
       <nav class="tabs-bar">
         <button class="tab-btn active" data-tab="tab-profile" onclick="switchTab('tab-profile')">
@@ -743,6 +794,9 @@
               <h3 class="card-title"><i class="fa-solid fa-id-card"></i> Thông Tin Cá Nhân & Định Vị</h3>
               <p class="card-subtitle">Quản lý tên, chức danh, châm ngôn và tuyên ngôn cá nhân (Song ngữ VI / EN)</p>
             </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu hồ sơ lên GitHub</span>
+            </button>
           </div>
 
           <div class="form-grid">
@@ -804,6 +858,9 @@
               <h3 class="card-title"><i class="fa-solid fa-address-book"></i> Thông Tin Liên Hệ Trực Tiếp</h3>
               <p class="card-subtitle">Hiển thị tại mục Liên hệ và Footer</p>
             </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu liên hệ lên GitHub</span>
+            </button>
           </div>
 
           <div class="form-grid">
@@ -831,9 +888,14 @@
               <h3 class="card-title"><i class="fa-solid fa-briefcase"></i> Danh Sách Dự Án Tiêu Biểu</h3>
               <p class="card-subtitle">Quản lý các thẻ dự án Bento và popup mô tả chi tiết quy trình</p>
             </div>
-            <button type="button" class="btn btn-primary btn-sm" onclick="openProjectEditModal(null)">
-              <i class="fa-solid fa-plus"></i> <span>Thêm dự án mới</span>
-            </button>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openProjectEditModal(null)">
+                <i class="fa-solid fa-plus"></i> <span>Thêm dự án mới</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
+              </button>
+            </div>
           </div>
 
           <div class="items-grid" id="projects-list-container">
@@ -850,9 +912,14 @@
               <h3 class="card-title"><i class="fa-solid fa-certificate"></i> Danh Sách Chứng Chỉ & Giải Thưởng</h3>
               <p class="card-subtitle">Quản lý minh chứng năng lực thực tế và ảnh chứng chỉ</p>
             </div>
-            <button type="button" class="btn btn-primary btn-sm" onclick="openCertEditModal(null)">
-              <i class="fa-solid fa-plus"></i> <span>Thêm chứng chỉ mới</span>
-            </button>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openCertEditModal(null)">
+                <i class="fa-solid fa-plus"></i> <span>Thêm chứng chỉ mới</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
+              </button>
+            </div>
           </div>
 
           <div class="items-grid" id="certs-list-container">
@@ -869,9 +936,14 @@
               <h3 class="card-title"><i class="fa-solid fa-users"></i> Danh Sách Hoạt Động & Cộng Đồng</h3>
               <p class="card-subtitle">Quản lý hoạt động ngoại khóa, vai trò điều phối sự kiện và ảnh minh chứng</p>
             </div>
-            <button type="button" class="btn btn-primary btn-sm" onclick="openActEditModal(null)">
-              <i class="fa-solid fa-plus"></i> <span>Thêm hoạt động mới</span>
-            </button>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openActEditModal(null)">
+                <i class="fa-solid fa-plus"></i> <span>Thêm hoạt động mới</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
+              </button>
+            </div>
           </div>
 
           <div class="items-grid" id="acts-list-container">
@@ -904,6 +976,9 @@
           <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
             <button type="button" class="btn btn-outline btn-sm" onclick="applyJsonFromEditor()">
               <i class="fa-solid fa-check"></i> Cập nhật dữ liệu từ Editor
+            </button>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Lưu & Xuất bản lên GitHub
             </button>
           </div>
         </div>
@@ -1003,7 +1078,9 @@
 
         <div class="modal-foot">
           <button type="button" class="btn btn-ghost" onclick="closeProjectEditModal()">Hủy</button>
-          <button type="submit" class="btn btn-primary">Lưu dự án</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-project-modal">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Lưu & Đẩy lên GitHub
+          </button>
         </div>
       </form>
     </div>
@@ -1073,7 +1150,9 @@
 
         <div class="modal-foot">
           <button type="button" class="btn btn-ghost" onclick="closeCertEditModal()">Hủy</button>
-          <button type="submit" class="btn btn-primary">Lưu chứng chỉ</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-cert-modal">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Lưu & Đẩy lên GitHub
+          </button>
         </div>
       </form>
     </div>
@@ -1143,7 +1222,9 @@
 
         <div class="modal-foot">
           <button type="button" class="btn btn-ghost" onclick="closeActEditModal()">Hủy</button>
-          <button type="submit" class="btn btn-primary">Lưu hoạt động</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-act-modal">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Lưu & Đẩy lên GitHub
+          </button>
         </div>
       </form>
     </div>
@@ -1165,6 +1246,15 @@
     let currentDataSha = null;
 
     document.addEventListener('DOMContentLoaded', () => {
+      // Ensure #btn-publish is always hooked
+      const publishBtn = document.getElementById('btn-publish');
+      if (publishBtn) {
+        publishBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          publishDataToGitHub();
+        });
+      }
+
       loadSavedAuth();
     });
 
@@ -1219,7 +1309,7 @@
       btn.disabled = true;
 
       try {
-        // Test connection to GitHub Repo
+        console.log(`Đang kiểm tra kết nối tới https://api.github.com/repos/${owner}/${repo}...`);
         const testRes = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -1228,16 +1318,17 @@
         });
 
         if (!testRes.ok) {
-          throw new Error(`Xác thực thất bại (HTTP ${testRes.status}). Vui lòng kiểm tra lại Username, Tên Repo hoặc Token!`);
+          const errData = await testRes.json().catch(() => ({}));
+          throw new Error(`Xác thực thất bại (HTTP ${testRes.status}): ${errData.message || 'Kiểm tra lại Username, Tên Repo hoặc Token!'}`);
         }
 
-        // Save auth config
         authConfig = { owner, repo, branch, token };
         localStorage.setItem('portfolio_admin_auth', JSON.stringify(authConfig));
 
         showToast('Kết nối GitHub thành công!', 'success');
         connectAndLoadDashboard();
       } catch (err) {
+        console.error('Lỗi đăng nhập:', err);
         alert(err.message || 'Lỗi kết nối GitHub.');
       } finally {
         btn.innerHTML = '<i class="fa-solid fa-bolt"></i> <span>Kết Nối & Vào Quản Trị</span>';
@@ -1266,21 +1357,69 @@
     }
 
     /* -------------------------------------------------------------------
-       2. GITHUB REST API HELPER FUNCTIONS
+       2. GITHUB REST API HELPER FUNCTIONS & UTF-8 ENCODING
     ------------------------------------------------------------------- */
+    // Standard modern W3C UTF-8 to Base64 encoding (100% Vietnamese & emoji safe)
     function utf8ToBase64(str) {
-      return window.btoa(unescape(encodeURIComponent(str)));
+      const bytes = new TextEncoder().encode(str);
+      let binary = '';
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return window.btoa(binary);
     }
 
-    function base64ToUtf8(str) {
-      return decodeURIComponent(escape(window.atob(str)));
+    function base64ToUtf8(b64) {
+      const binary = window.atob(b64);
+      const len = binary.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    function showStatusBanner(type, message) {
+      const banner = document.getElementById('admin-status-banner');
+      const icon = document.getElementById('status-banner-icon');
+      const text = document.getElementById('status-banner-text');
+      if (!banner || !icon || !text) return;
+
+      banner.style.display = 'flex';
+      text.textContent = message;
+
+      if (type === 'success') {
+        banner.style.background = '#ECFDF5';
+        banner.style.color = '#065F46';
+        banner.style.border = '1px solid #A7F3D0';
+        icon.className = 'fa-solid fa-circle-check';
+        icon.style.color = '#10B981';
+      } else if (type === 'error') {
+        banner.style.background = '#FEF2F2';
+        banner.style.color = '#991B1B';
+        banner.style.border = '1px solid #FECACA';
+        icon.className = 'fa-solid fa-triangle-exclamation';
+        icon.style.color = '#EF4444';
+      } else {
+        banner.style.background = '#EFF6FF';
+        banner.style.color = '#1E40AF';
+        banner.style.border = '1px solid #BFDBFE';
+        icon.className = 'fa-solid fa-spinner fa-spin';
+        icon.style.color = '#0071E3';
+      }
     }
 
     async function fetchPortfolioData() {
+      showStatusBanner('info', 'Đang tải dữ liệu Portfolio từ GitHub...');
       showToast('Đang tải dữ liệu từ GitHub...', 'info');
+
       try {
         const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${authConfig.branch}&_t=${Date.now()}`;
+        console.log('Fetching data from GitHub:', url);
+
         const res = await fetch(url, {
+          cache: 'no-cache',
           headers: {
             'Authorization': `Bearer ${authConfig.token}`,
             'Accept': 'application/vnd.github.v3+json'
@@ -1288,30 +1427,34 @@
         });
 
         if (!res.ok) {
-          // If not found on GitHub, fallback to local data.json
-          const localRes = await fetch('data.json');
+          console.warn(`GitHub contents API returned ${res.status}, attempting fallback to local data.json...`);
+          const localRes = await fetch('data.json?_t=' + Date.now(), { cache: 'no-cache' });
+          if (!localRes.ok) throw new Error(`Không thể nạp data.json (HTTP ${res.status})`);
           currentData = await localRes.json();
           currentDataSha = null;
         } else {
           const fileInfo = await res.json();
           currentDataSha = fileInfo.sha;
+          console.log('Got data.json sha from GitHub:', currentDataSha);
           const jsonText = base64ToUtf8(fileInfo.content.replace(/\s/g, ''));
           currentData = JSON.parse(jsonText);
         }
 
         renderDashboardAll();
+        showStatusBanner('success', `Đã kết nối GitHub: ${authConfig.owner}/${authConfig.repo} (${authConfig.branch}). Sẵn sàng quản trị.`);
         showToast('Đã tải dữ liệu Portfolio thành công!', 'success');
       } catch (err) {
-        console.error('Fetch error:', err);
+        console.error('Fetch error in fetchPortfolioData:', err);
+        showStatusBanner('error', `Không thể tải dữ liệu: ${err.message}`);
         showToast('Không thể tải dữ liệu: ' + err.message, 'error');
       }
     }
 
     async function uploadFileToGitHub(path, base64Content, commitMessage) {
-      // 1. Check if file already exists to get its sha
       let sha = null;
       try {
         const checkRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}?ref=${authConfig.branch}&_t=${Date.now()}`, {
+          cache: 'no-cache',
           headers: {
             'Authorization': `Bearer ${authConfig.token}`,
             'Accept': 'application/vnd.github.v3+json'
@@ -1323,7 +1466,6 @@
         }
       } catch (e) {}
 
-      // 2. PUT request to create/update
       const body = {
         message: commitMessage || `upload ${path} via CMS`,
         content: base64Content,
@@ -1349,69 +1491,153 @@
       return await putRes.json();
     }
 
+    /* -------------------------------------------------------------------
+       3. BULLETPROOF PUBLISH TO GITHUB REST API
+    ------------------------------------------------------------------- */
     async function publishDataToGitHub() {
-      if (!currentData) return;
+      console.log('--- BẮT ĐẦU LƯU DỮ LIỆU LÊN GITHUB REST API ---');
+
+      if (!authConfig || !authConfig.token || !authConfig.owner || !authConfig.repo) {
+        const errorMsg = 'Chưa đăng nhập GitHub hoặc thiếu Token! Vui lòng đăng nhập lại.';
+        console.error(errorMsg, authConfig);
+        showToast(errorMsg, 'error');
+        alert(errorMsg);
+        showLoginView();
+        return;
+      }
+
+      if (!currentData) {
+        const errorMsg = 'Chưa có dữ liệu Portfolio (currentData rỗng)! Vui lòng tải lại trang.';
+        console.error(errorMsg);
+        showToast(errorMsg, 'error');
+        alert(errorMsg);
+        return;
+      }
+
+      // Collect profile data safely
       collectProfileFormData();
 
-      const btn = document.getElementById('btn-publish');
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Đang xuất bản...</span>';
-      btn.disabled = true;
+      // UI visual status feedback
+      showStatusBanner('info', '⏳ Đang kiểm tra phiên bản và gửi commit lên GitHub REST API...');
+      showToast('Đang kết nối GitHub và lưu data.json...', 'info');
+
+      // Disable all save buttons during execution
+      const saveButtons = document.querySelectorAll('#btn-publish, .btn-save-github');
+      saveButtons.forEach(btn => {
+        btn.disabled = true;
+        btn.dataset.oldHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Đang lưu...</span>';
+      });
 
       try {
+        // STEP 1: ALWAYS fetch latest sha of data.json right before PUT to prevent 409 Conflict
+        const checkUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${authConfig.branch}&_t=${Date.now()}`;
+        console.log(`[1/3] GET sha mới nhất: ${checkUrl}`);
+
+        let latestSha = null;
+        const checkRes = await fetch(checkUrl, {
+          cache: 'no-cache',
+          headers: {
+            'Authorization': `Bearer ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (checkRes.ok) {
+          const fileData = await checkRes.json();
+          latestSha = fileData.sha;
+          currentDataSha = latestSha;
+          console.log('✅ Đã lấy sha mới nhất:', latestSha);
+        } else if (checkRes.status === 404) {
+          console.log('ℹ️ data.json chưa tồn tại trên nhánh này, sẽ tạo file mới (sha: null).');
+          latestSha = null;
+        } else {
+          const errInfo = await checkRes.json().catch(() => ({}));
+          console.error('❌ GET data.json thất bại:', checkRes.status, errInfo);
+          if (checkRes.status === 401) {
+            throw new Error(`Token không hợp lệ hoặc đã hết hạn (HTTP 401). Vui lòng đăng xuất và nhập Token mới!`);
+          } else if (checkRes.status === 403) {
+            throw new Error(`Token không có quyền ghi vào repository này (HTTP 403). Hãy đảm bảo Token có quyền 'repo' hoặc 'Contents: Read and write'!`);
+          } else {
+            throw new Error(`Lỗi kiểm tra sha trên GitHub (HTTP ${checkRes.status}): ${errInfo.message || checkRes.statusText}`);
+          }
+        }
+
+        // STEP 2: Encode to UTF-8 Base64
         const jsonString = JSON.stringify(currentData, null, 2);
         const base64Content = utf8ToBase64(jsonString);
+        console.log(`[2/3] Mã hóa UTF-8 Base64 thành công (kích thước: ${base64Content.length} bytes base64).`);
 
-        // Fetch latest sha of data.json
-        let sha = currentDataSha;
-        try {
-          const checkRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${authConfig.branch}&_t=${Date.now()}`, {
-            headers: {
-              'Authorization': `Bearer ${authConfig.token}`,
-              'Accept': 'application/vnd.github.v3+json'
-            }
-          });
-          if (checkRes.ok) {
-            const data = await checkRes.json();
-            sha = data.sha;
-          }
-        } catch (e) {}
+        // STEP 3: Send PUT request
+        const putUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json`;
+        console.log(`[3/3] Gửi PUT request tới: ${putUrl}`);
 
-        const body = {
-          message: 'feat(cms): cập nhật nội dung Portfolio từ Admin Dashboard [skip ci]',
+        const now = new Date();
+        const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+        const putBody = {
+          message: `feat(cms): cập nhật nội dung Portfolio [skip ci] (${timeStr})`,
           content: base64Content,
           branch: authConfig.branch
         };
-        if (sha) body.sha = sha;
+        if (latestSha) {
+          putBody.sha = latestSha;
+        }
 
-        const res = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json`, {
+        const putRes = await fetch(putUrl, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${authConfig.token}`,
             'Content-Type': 'application/json',
             'Accept': 'application/vnd.github.v3+json'
           },
-          body: JSON.stringify(body)
+          body: JSON.stringify(putBody)
         });
 
-        if (!res.ok) {
-          const errData = await res.json().catch(() => ({}));
-          throw new Error(errData.message || `Lỗi xuất bản HTTP ${res.status}`);
+        if (!putRes.ok) {
+          const errJson = await putRes.json().catch(() => ({}));
+          let detailMsg = errJson.message || putRes.statusText || 'Lỗi không xác định';
+          if (putRes.status === 409) {
+            detailMsg = 'Xung đột phiên bản (409 Conflict): Có commit khác vừa được tạo trên GitHub. Vui lòng bấm Lưu lại một lần nữa để áp dụng sha mới nhất.';
+          } else if (putRes.status === 401) {
+            detailMsg = 'Token hết hạn hoặc không hợp lệ (401 Unauthorized).';
+          } else if (putRes.status === 403) {
+            detailMsg = 'Không có quyền commit vào nhánh này (403 Forbidden).';
+          } else if (putRes.status === 404) {
+            detailMsg = 'Không tìm thấy repository hoặc nhánh (404 Not Found).';
+          }
+          const fullError = `GitHub REST API lỗi [${putRes.status}]: ${detailMsg}`;
+          console.error(fullError, errJson);
+          throw new Error(fullError);
         }
 
-        const resData = await res.json();
-        currentDataSha = resData.content.sha;
-        showToast('🚀 Đã xuất bản thành công lên GitHub!', 'success');
+        const putResult = await putRes.json();
+        currentDataSha = putResult.content ? putResult.content.sha : null;
+        const commitHash = putResult.commit ? putResult.commit.sha.slice(0, 7) : 'mới nhất';
+        console.log('🎉 CẬP NHẬT THÀNH CÔNG LÊN GITHUB! Commit:', commitHash, putResult);
+
+        const successMsg = `Lưu thành công lên GitHub! (Commit: ${commitHash})`;
+        showToast(`🚀 ${successMsg}`, 'success');
+        showStatusBanner('success', `✅ ${successMsg} - Dữ liệu data.json đã được lưu vào nhánh '${authConfig.branch}' lúc ${timeStr}.`);
+
       } catch (err) {
-        console.error('Publish error:', err);
-        showToast('Lỗi xuất bản: ' + err.message, 'error');
+        console.error('Lỗi trong publishDataToGitHub:', err);
+        showToast(`❌ ${err.message}`, 'error');
+        showStatusBanner('error', `❌ ${err.message}`);
+        alert(`Lỗi khi lưu lên GitHub:\n\n${err.message}\n\nVui lòng kiểm tra Console (F12) để xem chi tiết.`);
       } finally {
-        btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản</span>';
-        btn.disabled = false;
+        saveButtons.forEach(btn => {
+          btn.disabled = false;
+          if (btn.dataset.oldHtml) {
+            btn.innerHTML = btn.dataset.oldHtml;
+          } else {
+            btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>';
+          }
+        });
       }
     }
 
     /* -------------------------------------------------------------------
-       3. RENDER DASHBOARD TABS
+       4. RENDER DASHBOARD TABS & HELPER FUNCTIONS
     ------------------------------------------------------------------- */
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -1432,32 +1658,44 @@
       }
     }
 
+    function getInputValue(id, fallback = '') {
+      const el = document.getElementById(id);
+      return el ? el.value.trim() : fallback;
+    }
+
+    function setInputValue(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.value = (val !== undefined && val !== null) ? val : '';
+    }
+
     function renderDashboardAll() {
       if (!currentData) return;
 
       // 1. Render Profile
       const p = currentData.profile || {};
-      document.getElementById('prof-name-vi').value = p.name ? (p.name.vi || '') : '';
-      document.getElementById('prof-name-en').value = p.name ? (p.name.en || '') : '';
-      document.getElementById('prof-alias').value = p.alias || '';
-      document.getElementById('prof-motto-vi').value = p.motto ? (p.motto.vi || '') : '';
-      document.getElementById('prof-motto-en').value = p.motto ? (p.motto.en || '') : '';
+      setInputValue('prof-name-vi', p.name ? p.name.vi : '');
+      setInputValue('prof-name-en', p.name ? p.name.en : '');
+      setInputValue('prof-alias', p.alias || '');
+      setInputValue('prof-motto-vi', p.motto ? p.motto.vi : '');
+      setInputValue('prof-motto-en', p.motto ? p.motto.en : '');
 
-      document.getElementById('prof-mission-tag-vi').value = p.mission && p.mission.tag ? (p.mission.tag.vi || '') : '';
-      document.getElementById('prof-mission-tag-en').value = p.mission && p.mission.tag ? (p.mission.tag.en || '') : '';
-      document.getElementById('prof-mission-text-vi').value = p.mission && p.mission.text ? (p.mission.text.vi || '') : '';
-      document.getElementById('prof-mission-text-en').value = p.mission && p.mission.text ? (p.mission.text.en || '') : '';
+      setInputValue('prof-mission-tag-vi', p.mission && p.mission.tag ? p.mission.tag.vi : '');
+      setInputValue('prof-mission-tag-en', p.mission && p.mission.tag ? p.mission.tag.en : '');
+      setInputValue('prof-mission-text-vi', p.mission && p.mission.text ? p.mission.text.vi : '');
+      setInputValue('prof-mission-text-en', p.mission && p.mission.text ? p.mission.text.en : '');
 
-      document.getElementById('prof-bio-vi').value = p.bio ? (p.bio.vi || '') : '';
-      document.getElementById('prof-bio-en').value = p.bio ? (p.bio.en || '') : '';
+      setInputValue('prof-bio-vi', p.bio ? p.bio.vi : '');
+      setInputValue('prof-bio-en', p.bio ? p.bio.en : '');
 
       const c = p.contact || {};
-      document.getElementById('prof-email').value = c.email || '';
-      document.getElementById('prof-phone').value = c.phone || '';
-      document.getElementById('prof-address-vi').value = c.address ? (c.address.vi || '') : '';
+      setInputValue('prof-email', c.email || '');
+      setInputValue('prof-phone', c.phone || '');
+      setInputValue('prof-address-vi', c.address ? (c.address.vi || '') : '');
 
-      document.getElementById('profile-avatar-preview').src = p.avatar || 'avatar.jpg';
-      document.getElementById('profile-avatar-path').textContent = p.avatar || 'avatar.jpg';
+      const avatarEl = document.getElementById('profile-avatar-preview');
+      if (avatarEl) avatarEl.src = p.avatar || 'avatar.jpg';
+      const pathEl = document.getElementById('profile-avatar-path');
+      if (pathEl) pathEl.textContent = p.avatar || 'avatar.jpg';
 
       // 2. Render Projects
       renderProjectsList();
@@ -1475,40 +1713,41 @@
 
       const p = currentData.profile;
       p.name = {
-        vi: document.getElementById('prof-name-vi').value.trim(),
-        en: document.getElementById('prof-name-en').value.trim()
+        vi: getInputValue('prof-name-vi', p.name ? p.name.vi : ''),
+        en: getInputValue('prof-name-en', p.name ? p.name.en : '')
       };
-      p.alias = document.getElementById('prof-alias').value.trim();
+      p.alias = getInputValue('prof-alias', p.alias || '');
       p.motto = {
-        vi: document.getElementById('prof-motto-vi').value.trim(),
-        en: document.getElementById('prof-motto-en').value.trim()
+        vi: getInputValue('prof-motto-vi', p.motto ? p.motto.vi : ''),
+        en: getInputValue('prof-motto-en', p.motto ? p.motto.en : '')
       };
       p.mission = {
         tag: {
-          vi: document.getElementById('prof-mission-tag-vi').value.trim(),
-          en: document.getElementById('prof-mission-tag-en').value.trim()
+          vi: getInputValue('prof-mission-tag-vi', p.mission && p.mission.tag ? p.mission.tag.vi : ''),
+          en: getInputValue('prof-mission-tag-en', p.mission && p.mission.tag ? p.mission.tag.en : '')
         },
         text: {
-          vi: document.getElementById('prof-mission-text-vi').value.trim(),
-          en: document.getElementById('prof-mission-text-en').value.trim()
+          vi: getInputValue('prof-mission-text-vi', p.mission && p.mission.text ? p.mission.text.vi : ''),
+          en: getInputValue('prof-mission-text-en', p.mission && p.mission.text ? p.mission.text.en : '')
         }
       };
       p.bio = {
-        vi: document.getElementById('prof-bio-vi').value.trim(),
-        en: document.getElementById('prof-bio-en').value.trim()
+        vi: getInputValue('prof-bio-vi', p.bio ? p.bio.vi : ''),
+        en: getInputValue('prof-bio-en', p.bio ? p.bio.en : '')
       };
 
       if (!p.contact) p.contact = {};
-      p.contact.email = document.getElementById('prof-email').value.trim();
-      p.contact.phone = document.getElementById('prof-phone').value.trim();
+      p.contact.email = getInputValue('prof-email', p.contact.email || '');
+      p.contact.phone = getInputValue('prof-phone', p.contact.phone || '');
+      const addr = getInputValue('prof-address-vi', p.contact.address ? (p.contact.address.vi || '') : '');
       p.contact.address = {
-        vi: document.getElementById('prof-address-vi').value.trim(),
-        en: document.getElementById('prof-address-vi').value.trim()
+        vi: addr,
+        en: addr
       };
     }
 
     /* -------------------------------------------------------------------
-       4. AVATAR UPLOAD HANDLING
+       5. AVATAR UPLOAD HANDLING
     ------------------------------------------------------------------- */
     let selectedAvatarBase64 = null;
     let selectedAvatarFileName = null;
@@ -1542,19 +1781,25 @@
 
         currentData.profile.avatar = targetPath;
         document.getElementById('profile-avatar-path').textContent = targetPath;
-        showToast('Đã tải ảnh đại diện lên GitHub thành công!', 'success');
+        showToast('Đã tải ảnh đại diện lên GitHub thành công! Đang lưu data.json...', 'success');
+
+        await publishDataToGitHub();
       } catch (err) {
+        console.error('Lỗi tải avatar:', err);
         showToast('Lỗi tải ảnh: ' + err.message, 'error');
+        alert('Lỗi tải ảnh: ' + err.message);
       }
     }
 
     /* -------------------------------------------------------------------
-       5. PROJECTS MANAGEMENT
+       6. PROJECTS MANAGEMENT (ADD / EDIT / DELETE WITH AUTO-SYNC)
     ------------------------------------------------------------------- */
     function renderProjectsList() {
       const list = currentData.projects || [];
-      document.getElementById('badge-count-projects').textContent = list.length;
+      const badgeCount = document.getElementById('badge-count-projects');
+      if (badgeCount) badgeCount.textContent = list.length;
       const container = document.getElementById('projects-list-container');
+      if (!container) return;
 
       if (list.length === 0) {
         container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có dự án nào.</p>';
@@ -1597,51 +1842,51 @@
 
       if (id === null) {
         titleEl.textContent = 'Thêm Dự Án Mới';
-        document.getElementById('proj-edit-id').value = '';
-        document.getElementById('proj-title-vi').value = '';
-        document.getElementById('proj-title-en').value = '';
-        document.getElementById('proj-badge-vi').value = 'Video Marketing';
-        document.getElementById('proj-role-vi').value = 'Trưởng nhóm';
-        document.getElementById('proj-platform-text').value = 'Reels & TikTok';
-        document.getElementById('proj-excerpt-vi').value = '';
-        document.getElementById('proj-excerpt-en').value = '';
-        document.getElementById('proj-overview-vi').value = '';
-        document.getElementById('proj-overview-en').value = '';
-        document.getElementById('proj-objectives-vi').value = '';
-        document.getElementById('proj-objectives-en').value = '';
-        document.getElementById('proj-contributions-vi').value = '';
-        document.getElementById('proj-contributions-en').value = '';
-        document.getElementById('proj-results-vi').value = '';
-        document.getElementById('proj-results-en').value = '';
-        document.getElementById('proj-tools').value = 'CapCut, Premiere, Canva';
-        document.getElementById('proj-duration').value = '2 tháng | 4 thành viên';
+        setInputValue('proj-edit-id', '');
+        setInputValue('proj-title-vi', '');
+        setInputValue('proj-title-en', '');
+        setInputValue('proj-badge-vi', 'Video Marketing');
+        setInputValue('proj-role-vi', 'Trưởng nhóm');
+        setInputValue('proj-platform-text', 'Reels & TikTok');
+        setInputValue('proj-excerpt-vi', '');
+        setInputValue('proj-excerpt-en', '');
+        setInputValue('proj-overview-vi', '');
+        setInputValue('proj-overview-en', '');
+        setInputValue('proj-objectives-vi', '');
+        setInputValue('proj-objectives-en', '');
+        setInputValue('proj-contributions-vi', '');
+        setInputValue('proj-contributions-en', '');
+        setInputValue('proj-results-vi', '');
+        setInputValue('proj-results-en', '');
+        setInputValue('proj-tools', 'CapCut, Premiere, Canva');
+        setInputValue('proj-duration', '2 tháng | 4 thành viên');
       } else {
         titleEl.textContent = 'Chỉnh Sửa Dự Án #' + id;
         const p = currentData.projects.find(item => item.id == id);
         if (!p) return;
 
-        document.getElementById('proj-edit-id').value = p.id;
-        document.getElementById('proj-title-vi').value = p.title ? (p.title.vi || '') : '';
-        document.getElementById('proj-title-en').value = p.title ? (p.title.en || '') : '';
-        document.getElementById('proj-badge-vi').value = p.badge ? (p.badge.vi || '') : '';
-        document.getElementById('proj-role-vi').value = p.role ? (p.role.vi || '') : '';
-        document.getElementById('proj-platform-text').value = p.platform ? (typeof p.platform === 'object' ? p.platform.text : p.platform) : '';
-        document.getElementById('proj-excerpt-vi').value = p.excerpt ? (p.excerpt.vi || '') : '';
-        document.getElementById('proj-excerpt-en').value = p.excerpt ? (p.excerpt.en || '') : '';
-        document.getElementById('proj-overview-vi').value = p.overview ? (p.overview.vi || '') : '';
-        document.getElementById('proj-overview-en').value = p.overview ? (p.overview.en || '') : '';
+        setInputValue('proj-edit-id', p.id);
+        setInputValue('proj-title-vi', p.title ? (p.title.vi || '') : '');
+        setInputValue('proj-title-en', p.title ? (p.title.en || '') : '');
+        setInputValue('proj-badge-vi', p.badge ? (p.badge.vi || '') : '');
+        setInputValue('proj-role-vi', p.role ? (p.role.vi || '') : '');
+        setInputValue('proj-platform-text', p.platform ? (typeof p.platform === 'object' ? p.platform.text : p.platform) : '');
+        setInputValue('proj-excerpt-vi', p.excerpt ? (p.excerpt.vi || '') : '');
+        setInputValue('proj-excerpt-en', p.excerpt ? (p.excerpt.en || '') : '');
+        setInputValue('proj-overview-vi', p.overview ? (p.overview.vi || '') : '');
+        setInputValue('proj-overview-en', p.overview ? (p.overview.en || '') : '');
 
-        document.getElementById('proj-objectives-vi').value = (p.objectives || []).map(o => typeof o === 'object' ? (o.vi || '') : o).join('\n');
-        document.getElementById('proj-objectives-en').value = (p.objectives || []).map(o => typeof o === 'object' ? (o.en || '') : o).join('\n');
+        setInputValue('proj-objectives-vi', (p.objectives || []).map(o => typeof o === 'object' ? (o.vi || '') : o).join('\n'));
+        setInputValue('proj-objectives-en', (p.objectives || []).map(o => typeof o === 'object' ? (o.en || '') : o).join('\n'));
 
-        document.getElementById('proj-contributions-vi').value = (p.contributions || []).map(c => typeof c === 'object' ? (c.vi || '') : c).join('\n');
-        document.getElementById('proj-contributions-en').value = (p.contributions || []).map(c => typeof c === 'object' ? (c.en || '') : c).join('\n');
+        setInputValue('proj-contributions-vi', (p.contributions || []).map(c => typeof c === 'object' ? (c.vi || '') : c).join('\n'));
+        setInputValue('proj-contributions-en', (p.contributions || []).map(c => typeof c === 'object' ? (c.en || '') : c).join('\n'));
 
-        document.getElementById('proj-results-vi').value = (p.results || []).map(r => typeof r === 'object' ? (r.vi || '') : r).join('\n');
-        document.getElementById('proj-results-en').value = (p.results || []).map(r => typeof r === 'object' ? (r.en || '') : r).join('\n');
+        setInputValue('proj-results-vi', (p.results || []).map(r => typeof r === 'object' ? (r.vi || '') : r).join('\n'));
+        setInputValue('proj-results-en', (p.results || []).map(r => typeof r === 'object' ? (r.en || '') : r).join('\n'));
 
-        document.getElementById('proj-tools').value = (p.tools || []).join(', ');
-        document.getElementById('proj-duration').value = p.duration ? (p.duration.vi || '') : '';
+        setInputValue('proj-tools', (p.tools || []).join(', '));
+        setInputValue('proj-duration', p.duration ? (p.duration.vi || '') : '');
       }
 
       modal.classList.add('active');
@@ -1651,58 +1896,58 @@
       document.getElementById('modal-project-editor').classList.remove('active');
     }
 
-    function saveProjectModal(e) {
+    async function saveProjectModal(e) {
       e.preventDefault();
       const editId = document.getElementById('proj-edit-id').value;
       const isNew = !editId;
 
-      const objLinesVi = document.getElementById('proj-objectives-vi').value.split('\n').map(s => s.trim()).filter(Boolean);
-      const objLinesEn = document.getElementById('proj-objectives-en').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const objLinesVi = getInputValue('proj-objectives-vi').split('\n').map(s => s.trim()).filter(Boolean);
+      const objLinesEn = getInputValue('proj-objectives-en').split('\n').map(s => s.trim()).filter(Boolean);
       const objectives = objLinesVi.map((v, i) => ({ vi: v, en: objLinesEn[i] || v }));
 
-      const conLinesVi = document.getElementById('proj-contributions-vi').value.split('\n').map(s => s.trim()).filter(Boolean);
-      const conLinesEn = document.getElementById('proj-contributions-en').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const conLinesVi = getInputValue('proj-contributions-vi').split('\n').map(s => s.trim()).filter(Boolean);
+      const conLinesEn = getInputValue('proj-contributions-en').split('\n').map(s => s.trim()).filter(Boolean);
       const contributions = conLinesVi.map((v, i) => ({ vi: v, en: conLinesEn[i] || v }));
 
-      const resLinesVi = document.getElementById('proj-results-vi').value.split('\n').map(s => s.trim()).filter(Boolean);
-      const resLinesEn = document.getElementById('proj-results-en').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const resLinesVi = getInputValue('proj-results-vi').split('\n').map(s => s.trim()).filter(Boolean);
+      const resLinesEn = getInputValue('proj-results-en').split('\n').map(s => s.trim()).filter(Boolean);
       const results = resLinesVi.map((v, i) => ({ vi: v, en: resLinesEn[i] || v }));
 
-      const tools = document.getElementById('proj-tools').value.split(',').map(s => s.trim()).filter(Boolean);
+      const tools = getInputValue('proj-tools').split(',').map(s => s.trim()).filter(Boolean);
 
       const projectData = {
         id: isNew ? (Date.now() % 10000) : Number(editId),
         badge: {
-          vi: document.getElementById('proj-badge-vi').value.trim(),
-          en: document.getElementById('proj-badge-vi').value.trim()
+          vi: getInputValue('proj-badge-vi'),
+          en: getInputValue('proj-badge-vi')
         },
         role: {
-          vi: document.getElementById('proj-role-vi').value.trim(),
-          en: document.getElementById('proj-role-vi').value.trim()
+          vi: getInputValue('proj-role-vi'),
+          en: getInputValue('proj-role-vi')
         },
         platform: {
           icon: 'fa-solid fa-layer-group',
-          text: document.getElementById('proj-platform-text').value.trim()
+          text: getInputValue('proj-platform-text')
         },
         title: {
-          vi: document.getElementById('proj-title-vi').value.trim(),
-          en: document.getElementById('proj-title-en').value.trim()
+          vi: getInputValue('proj-title-vi'),
+          en: getInputValue('proj-title-en')
         },
         excerpt: {
-          vi: document.getElementById('proj-excerpt-vi').value.trim(),
-          en: document.getElementById('proj-excerpt-en').value.trim()
+          vi: getInputValue('proj-excerpt-vi'),
+          en: getInputValue('proj-excerpt-en')
         },
         overview: {
-          vi: document.getElementById('proj-overview-vi').value.trim(),
-          en: document.getElementById('proj-overview-en').value.trim()
+          vi: getInputValue('proj-overview-vi'),
+          en: getInputValue('proj-overview-en')
         },
         objectives,
         contributions,
         results,
         tools,
         duration: {
-          vi: document.getElementById('proj-duration').value.trim(),
-          en: document.getElementById('proj-duration').value.trim()
+          vi: getInputValue('proj-duration'),
+          en: getInputValue('proj-duration')
         },
         teamSize: { vi: '4 thành viên', en: '4 members' },
         bannerGradient: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)',
@@ -1714,34 +1959,40 @@
 
       if (isNew) {
         currentData.projects.push(projectData);
-        showToast('Đã thêm dự án mới!', 'success');
       } else {
         const idx = currentData.projects.findIndex(p => p.id == editId);
         if (idx !== -1) {
           currentData.projects[idx] = { ...currentData.projects[idx], ...projectData };
-          showToast('Đã cập nhật dự án!', 'success');
         }
       }
 
       closeProjectEditModal();
       renderProjectsList();
+
+      // Trigger GitHub Save directly!
+      showToast(isNew ? 'Đang thêm dự án và lưu lên GitHub...' : 'Đang cập nhật dự án và lưu lên GitHub...', 'info');
+      await publishDataToGitHub();
     }
 
-    function deleteProject(id) {
-      if (confirm('Bạn có chắc chắn muốn xóa dự án này?')) {
-        currentData.projects = currentData.projects.filter(p => p.id != id);
-        renderProjectsList();
-        showToast('Đã xóa dự án.', 'info');
+    async function deleteProject(id) {
+      if (!confirm('Bạn có chắc chắn muốn xóa dự án này? Thao tác này sẽ lưu và cập nhật trực tiếp lên GitHub.')) {
+        return;
       }
+      currentData.projects = currentData.projects.filter(p => p.id != id);
+      renderProjectsList();
+      showToast('Đang xóa dự án và cập nhật lên GitHub...', 'info');
+      await publishDataToGitHub();
     }
 
     /* -------------------------------------------------------------------
-       6. CERTIFICATES MANAGEMENT
+       7. CERTIFICATES MANAGEMENT (WITH AUTO-SYNC)
     ------------------------------------------------------------------- */
     function renderCertsList() {
       const list = currentData.certificates || [];
-      document.getElementById('badge-count-certs').textContent = list.length;
+      const badgeCount = document.getElementById('badge-count-certs');
+      if (badgeCount) badgeCount.textContent = list.length;
       const container = document.getElementById('certs-list-container');
+      if (!container) return;
 
       if (list.length === 0) {
         container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có chứng chỉ nào.</p>';
@@ -1782,31 +2033,31 @@
 
       if (id === null) {
         titleEl.textContent = 'Thêm Chứng Chỉ Mới';
-        document.getElementById('cert-edit-id').value = '';
-        document.getElementById('cert-main-image').value = 'cert-chan-tran-khoi-nghiep.jpg';
-        document.getElementById('cert-title-vi').value = '';
-        document.getElementById('cert-title-en').value = '';
-        document.getElementById('cert-award-vi').value = 'Á quân (Top 2 Chung kết)';
-        document.getElementById('cert-org-vi').value = 'BTEC FPT & DNES';
-        document.getElementById('cert-timeloc-vi').value = '14/08/2026 tại Đà Nẵng';
-        document.getElementById('cert-badge-vi').value = 'Top 2 • Á quân';
-        document.getElementById('cert-desc-vi').value = '';
-        document.getElementById('cert-result-vi').value = '';
+        setInputValue('cert-edit-id', '');
+        setInputValue('cert-main-image', 'cert-chan-tran-khoi-nghiep.jpg');
+        setInputValue('cert-title-vi', '');
+        setInputValue('cert-title-en', '');
+        setInputValue('cert-award-vi', 'Á quân (Top 2 Chung kết)');
+        setInputValue('cert-org-vi', 'BTEC FPT & DNES');
+        setInputValue('cert-timeloc-vi', '14/08/2026 tại Đà Nẵng');
+        setInputValue('cert-badge-vi', 'Top 2 • Á quân');
+        setInputValue('cert-desc-vi', '');
+        setInputValue('cert-result-vi', '');
       } else {
         titleEl.textContent = 'Chỉnh Sửa Chứng Chỉ #' + id;
         const c = currentData.certificates.find(item => item.id == id);
         if (!c) return;
 
-        document.getElementById('cert-edit-id').value = c.id;
-        document.getElementById('cert-main-image').value = c.mainImage || '';
-        document.getElementById('cert-title-vi').value = c.title ? (c.title.vi || '') : '';
-        document.getElementById('cert-title-en').value = c.title ? (c.title.en || '') : '';
-        document.getElementById('cert-award-vi').value = c.award ? (c.award.vi || '') : '';
-        document.getElementById('cert-org-vi').value = c.organization ? (c.organization.vi || '') : '';
-        document.getElementById('cert-timeloc-vi').value = c.timeLocation ? (c.timeLocation.vi || '') : '';
-        document.getElementById('cert-badge-vi').value = c.badgeType ? (c.badgeType.vi || '') : '';
-        document.getElementById('cert-desc-vi').value = c.description ? (c.description.vi || '') : '';
-        document.getElementById('cert-result-vi').value = c.result ? (c.result.vi || '') : '';
+        setInputValue('cert-edit-id', c.id);
+        setInputValue('cert-main-image', c.mainImage || '');
+        setInputValue('cert-title-vi', c.title ? (c.title.vi || '') : '');
+        setInputValue('cert-title-en', c.title ? (c.title.en || '') : '');
+        setInputValue('cert-award-vi', c.award ? (c.award.vi || '') : '');
+        setInputValue('cert-org-vi', c.organization ? (c.organization.vi || '') : '');
+        setInputValue('cert-timeloc-vi', c.timeLocation ? (c.timeLocation.vi || '') : '');
+        setInputValue('cert-badge-vi', c.badgeType ? (c.badgeType.vi || '') : '');
+        setInputValue('cert-desc-vi', c.description ? (c.description.vi || '') : '');
+        setInputValue('cert-result-vi', c.result ? (c.result.vi || '') : '');
       }
 
       modal.classList.add('active');
@@ -1834,45 +2085,47 @@
         };
         reader.readAsDataURL(file);
       } catch (err) {
+        console.error('Lỗi upload ảnh chứng chỉ:', err);
         showToast('Lỗi tải ảnh: ' + err.message, 'error');
+        alert('Lỗi tải ảnh: ' + err.message);
       }
     }
 
-    function saveCertModal(e) {
+    async function saveCertModal(e) {
       e.preventDefault();
       const editId = document.getElementById('cert-edit-id').value;
       const isNew = !editId;
 
       const certData = {
         id: isNew ? (Date.now() % 10000) : Number(editId),
-        mainImage: document.getElementById('cert-main-image').value.trim(),
+        mainImage: getInputValue('cert-main-image'),
         title: {
-          vi: document.getElementById('cert-title-vi').value.trim(),
-          en: document.getElementById('cert-title-en').value.trim()
+          vi: getInputValue('cert-title-vi'),
+          en: getInputValue('cert-title-en')
         },
         award: {
-          vi: document.getElementById('cert-award-vi').value.trim(),
-          en: document.getElementById('cert-award-vi').value.trim()
+          vi: getInputValue('cert-award-vi'),
+          en: getInputValue('cert-award-vi')
         },
         organization: {
-          vi: document.getElementById('cert-org-vi').value.trim(),
-          en: document.getElementById('cert-org-vi').value.trim()
+          vi: getInputValue('cert-org-vi'),
+          en: getInputValue('cert-org-vi')
         },
         timeLocation: {
-          vi: document.getElementById('cert-timeloc-vi').value.trim(),
-          en: document.getElementById('cert-timeloc-vi').value.trim()
+          vi: getInputValue('cert-timeloc-vi'),
+          en: getInputValue('cert-timeloc-vi')
         },
         badgeType: {
-          vi: document.getElementById('cert-badge-vi').value.trim(),
-          en: document.getElementById('cert-badge-vi').value.trim()
+          vi: getInputValue('cert-badge-vi'),
+          en: getInputValue('cert-badge-vi')
         },
         description: {
-          vi: document.getElementById('cert-desc-vi').value.trim(),
-          en: document.getElementById('cert-desc-vi').value.trim()
+          vi: getInputValue('cert-desc-vi'),
+          en: getInputValue('cert-desc-vi')
         },
         result: {
-          vi: document.getElementById('cert-result-vi').value.trim(),
-          en: document.getElementById('cert-result-vi').value.trim()
+          vi: getInputValue('cert-result-vi'),
+          en: getInputValue('cert-result-vi')
         },
         badgeClass: 'badge-trophy',
         orgIcon: 'fa-solid fa-building'
@@ -1882,34 +2135,39 @@
 
       if (isNew) {
         currentData.certificates.push(certData);
-        showToast('Đã thêm chứng chỉ mới!', 'success');
       } else {
         const idx = currentData.certificates.findIndex(c => c.id == editId);
         if (idx !== -1) {
           currentData.certificates[idx] = { ...currentData.certificates[idx], ...certData };
-          showToast('Đã cập nhật chứng chỉ!', 'success');
         }
       }
 
       closeCertEditModal();
       renderCertsList();
+
+      showToast(isNew ? 'Đang thêm chứng chỉ và lưu lên GitHub...' : 'Đang cập nhật chứng chỉ và lưu lên GitHub...', 'info');
+      await publishDataToGitHub();
     }
 
-    function deleteCert(id) {
-      if (confirm('Bạn có chắc chắn muốn xóa chứng chỉ này?')) {
-        currentData.certificates = currentData.certificates.filter(c => c.id != id);
-        renderCertsList();
-        showToast('Đã xóa chứng chỉ.', 'info');
+    async function deleteCert(id) {
+      if (!confirm('Bạn có chắc chắn muốn xóa chứng chỉ này? Thao tác này sẽ cập nhật trực tiếp lên GitHub.')) {
+        return;
       }
+      currentData.certificates = currentData.certificates.filter(c => c.id != id);
+      renderCertsList();
+      showToast('Đang xóa chứng chỉ và lưu lên GitHub...', 'info');
+      await publishDataToGitHub();
     }
 
     /* -------------------------------------------------------------------
-       7. ACTIVITIES MANAGEMENT
+       8. ACTIVITIES MANAGEMENT (WITH AUTO-SYNC)
     ------------------------------------------------------------------- */
     function renderActsList() {
       const list = currentData.activities || [];
-      document.getElementById('badge-count-acts').textContent = list.length;
+      const badgeCount = document.getElementById('badge-count-acts');
+      if (badgeCount) badgeCount.textContent = list.length;
       const container = document.getElementById('acts-list-container');
+      if (!container) return;
 
       if (list.length === 0) {
         container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có hoạt động nào.</p>';
@@ -1950,31 +2208,31 @@
 
       if (id === null) {
         titleEl.textContent = 'Thêm Hoạt Động Mới';
-        document.getElementById('act-edit-id').value = '';
-        document.getElementById('act-main-image').value = 'act-pegasus.jpg';
-        document.getElementById('act-title-vi').value = '';
-        document.getElementById('act-title-en').value = '';
-        document.getElementById('act-role-vi').value = 'Phó Chủ tịch';
-        document.getElementById('act-org').value = 'BBE Pegasus Chapter';
-        document.getElementById('act-timeloc-vi').value = '01/02/2026 – 30/09/2026';
-        document.getElementById('act-badge-vi').value = 'Ban Lãnh đạo';
-        document.getElementById('act-desc-vi').value = '';
-        document.getElementById('act-result-vi').value = '';
+        setInputValue('act-edit-id', '');
+        setInputValue('act-main-image', 'act-pegasus.jpg');
+        setInputValue('act-title-vi', '');
+        setInputValue('act-title-en', '');
+        setInputValue('act-role-vi', 'Phó Chủ tịch');
+        setInputValue('act-org', 'BBE Pegasus Chapter');
+        setInputValue('act-timeloc-vi', '01/02/2026 – 30/09/2026');
+        setInputValue('act-badge-vi', 'Ban Lãnh đạo');
+        setInputValue('act-desc-vi', '');
+        setInputValue('act-result-vi', '');
       } else {
         titleEl.textContent = 'Chỉnh Sửa Hoạt Động #' + id;
         const a = currentData.activities.find(item => item.id == id);
         if (!a) return;
 
-        document.getElementById('act-edit-id').value = a.id;
-        document.getElementById('act-main-image').value = a.mainImage || '';
-        document.getElementById('act-title-vi').value = a.title ? (a.title.vi || '') : '';
-        document.getElementById('act-title-en').value = a.title ? (a.title.en || '') : '';
-        document.getElementById('act-role-vi').value = a.role ? (a.role.vi || '') : '';
-        document.getElementById('act-org').value = typeof a.organization === 'object' ? (a.organization.vi || '') : a.organization;
-        document.getElementById('act-timeloc-vi').value = a.timeLocation ? (a.timeLocation.vi || '') : '';
-        document.getElementById('act-badge-vi').value = a.badgeType ? (a.badgeType.vi || '') : '';
-        document.getElementById('act-desc-vi').value = a.description ? (a.description.vi || '') : '';
-        document.getElementById('act-result-vi').value = a.result ? (a.result.vi || '') : '';
+        setInputValue('act-edit-id', a.id);
+        setInputValue('act-main-image', a.mainImage || '');
+        setInputValue('act-title-vi', a.title ? (a.title.vi || '') : '');
+        setInputValue('act-title-en', a.title ? (a.title.en || '') : '');
+        setInputValue('act-role-vi', a.role ? (a.role.vi || '') : '');
+        setInputValue('act-org', typeof a.organization === 'object' ? (a.organization.vi || '') : a.organization);
+        setInputValue('act-timeloc-vi', a.timeLocation ? (a.timeLocation.vi || '') : '');
+        setInputValue('act-badge-vi', a.badgeType ? (a.badgeType.vi || '') : '');
+        setInputValue('act-desc-vi', a.description ? (a.description.vi || '') : '');
+        setInputValue('act-result-vi', a.result ? (a.result.vi || '') : '');
       }
 
       modal.classList.add('active');
@@ -2002,42 +2260,44 @@
         };
         reader.readAsDataURL(file);
       } catch (err) {
+        console.error('Lỗi upload ảnh hoạt động:', err);
         showToast('Lỗi tải ảnh: ' + err.message, 'error');
+        alert('Lỗi tải ảnh: ' + err.message);
       }
     }
 
-    function saveActModal(e) {
+    async function saveActModal(e) {
       e.preventDefault();
       const editId = document.getElementById('act-edit-id').value;
       const isNew = !editId;
 
       const actData = {
         id: isNew ? (Date.now() % 10000) : Number(editId),
-        mainImage: document.getElementById('act-main-image').value.trim(),
+        mainImage: getInputValue('act-main-image'),
         title: {
-          vi: document.getElementById('act-title-vi').value.trim(),
-          en: document.getElementById('act-title-en').value.trim()
+          vi: getInputValue('act-title-vi'),
+          en: getInputValue('act-title-en')
         },
         role: {
-          vi: document.getElementById('act-role-vi').value.trim(),
-          en: document.getElementById('act-role-vi').value.trim()
+          vi: getInputValue('act-role-vi'),
+          en: getInputValue('act-role-vi')
         },
-        organization: document.getElementById('act-org').value.trim(),
+        organization: getInputValue('act-org'),
         timeLocation: {
-          vi: document.getElementById('act-timeloc-vi').value.trim(),
-          en: document.getElementById('act-timeloc-vi').value.trim()
+          vi: getInputValue('act-timeloc-vi'),
+          en: getInputValue('act-timeloc-vi')
         },
         badgeType: {
-          vi: document.getElementById('act-badge-vi').value.trim(),
-          en: document.getElementById('act-badge-vi').value.trim()
+          vi: getInputValue('act-badge-vi'),
+          en: getInputValue('act-badge-vi')
         },
         description: {
-          vi: document.getElementById('act-desc-vi').value.trim(),
-          en: document.getElementById('act-desc-vi').value.trim()
+          vi: getInputValue('act-desc-vi'),
+          en: getInputValue('act-desc-vi')
         },
         result: {
-          vi: document.getElementById('act-result-vi').value.trim(),
-          en: document.getElementById('act-result-vi').value.trim()
+          vi: getInputValue('act-result-vi'),
+          en: getInputValue('act-result-vi')
         },
         badgeClass: 'badge-leader',
         badgeIcon: 'fa-solid fa-crown',
@@ -2048,29 +2308,32 @@
 
       if (isNew) {
         currentData.activities.push(actData);
-        showToast('Đã thêm hoạt động mới!', 'success');
       } else {
         const idx = currentData.activities.findIndex(a => a.id == editId);
         if (idx !== -1) {
           currentData.activities[idx] = { ...currentData.activities[idx], ...actData };
-          showToast('Đã cập nhật hoạt động!', 'success');
         }
       }
 
       closeActEditModal();
       renderActsList();
+
+      showToast(isNew ? 'Đang thêm hoạt động và lưu lên GitHub...' : 'Đang cập nhật hoạt động và lưu lên GitHub...', 'info');
+      await publishDataToGitHub();
     }
 
-    function deleteAct(id) {
-      if (confirm('Bạn có chắc chắn muốn xóa hoạt động này?')) {
-        currentData.activities = currentData.activities.filter(a => a.id != id);
-        renderActsList();
-        showToast('Đã xóa hoạt động.', 'info');
+    async function deleteAct(id) {
+      if (!confirm('Bạn có chắc chắn muốn xóa hoạt động này? Thao tác này sẽ lưu và cập nhật trực tiếp lên GitHub.')) {
+        return;
       }
+      currentData.activities = currentData.activities.filter(a => a.id != id);
+      renderActsList();
+      showToast('Đang xóa hoạt động và lưu lên GitHub...', 'info');
+      await publishDataToGitHub();
     }
 
     /* -------------------------------------------------------------------
-       8. JSON BACKUP & RESTORE
+       9. JSON BACKUP & RESTORE
     ------------------------------------------------------------------- */
     function downloadDataJsonFile() {
       if (!currentData) return;
@@ -2091,7 +2354,7 @@
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         try {
           const parsed = JSON.parse(event.target.result);
           if (!parsed.profile || !parsed.projects) {
@@ -2099,7 +2362,8 @@
           }
           currentData = parsed;
           renderDashboardAll();
-          showToast('Đã nhập dữ liệu JSON thành công! Hãy bấm "Lưu & Xuất bản" để đẩy lên GitHub.', 'success');
+          showToast('Đã nạp file JSON thành công! Đang lưu lên GitHub...', 'success');
+          await publishDataToGitHub();
         } catch (err) {
           alert('Lỗi nhập JSON: ' + err.message);
         }
@@ -2107,19 +2371,20 @@
       reader.readAsText(file);
     }
 
-    function applyJsonFromEditor() {
+    async function applyJsonFromEditor() {
       try {
         const val = document.getElementById('raw-json-editor').value;
         currentData = JSON.parse(val);
         renderDashboardAll();
-        showToast('Đã cập nhật dữ liệu từ Editor thành công!', 'success');
+        showToast('Đã cập nhật dữ liệu từ Editor! Đang lưu lên GitHub...', 'success');
+        await publishDataToGitHub();
       } catch (err) {
         alert('Lỗi cú pháp JSON: ' + err.message);
       }
     }
 
     /* -------------------------------------------------------------------
-       9. TOAST MESSAGES
+       10. TOAST MESSAGES
     ------------------------------------------------------------------- */
     function showToast(msg, type = 'info') {
       const container = document.getElementById('toast-container');
@@ -2134,8 +2399,8 @@
       setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translateY(10px)';
-        setTimeout(() => toast.remove(), 300);
-      }, 3500);
+        setTimeout(() => toast.remove(), 350);
+      }, 4000);
     }
   </script>
 </body>

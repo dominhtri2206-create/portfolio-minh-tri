@@ -1591,7 +1591,7 @@ function applyLanguage(lang) {
 ------------------------------------------------------------------- */
 async function initPortfolioData() {
   try {
-    const res = await fetch('data.json?v=' + Date.now());
+    const res = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('Status: ' + res.status);
     portfolioData = await res.json();
     console.log('✅ Loaded data.json successfully.');
