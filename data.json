@@ -824,20 +824,6 @@
       "isDark": false
     },
     {
-      "id": 2,
-      "icon": "fa-solid fa-trophy",
-      "iconColor": "icon-gold",
-      "title": {
-        "vi": "Á Quân Khởi Nghiệp",
-        "en": "Startup Runner-Up"
-      },
-      "subtitle": {
-        "vi": "Chân Trần Khởi Nghiệp Mùa 3",
-        "en": "Barefoot Startup Season 3"
-      },
-      "isDark": true
-    },
-    {
       "id": 3,
       "icon": "fa-solid fa-language",
       "iconColor": "icon-blue",
@@ -850,6 +836,20 @@
         "en": "English & Chinese"
       },
       "isDark": false
+    },
+    {
+      "id": 2,
+      "icon": "fa-solid fa-trophy",
+      "iconColor": "icon-gold",
+      "title": {
+        "vi": "Á Quân Khởi Nghiệp",
+        "en": "Startup Runner-Up"
+      },
+      "subtitle": {
+        "vi": "Chân Trần Khởi Nghiệp Mùa 3",
+        "en": "Barefoot Startup Season 3"
+      },
+      "isDark": true
     },
     {
       "id": 4,
