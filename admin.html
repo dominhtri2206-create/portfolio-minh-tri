@@ -1244,16 +1244,13 @@
     };
     let currentData = null;
     let currentDataSha = null;
+    let isPublishing = false;
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Ensure #btn-publish is always hooked
-      const publishBtn = document.getElementById('btn-publish');
-      if (publishBtn) {
-        publishBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          publishDataToGitHub();
-        });
-      }
+      // Lưu lại nhãn ban đầu của tất cả các nút lưu để khôi phục chuẩn xác
+      document.querySelectorAll('#btn-publish, .btn-save-github').forEach(btn => {
+        btn.dataset.originalHtml = btn.innerHTML;
+      });
 
       loadSavedAuth();
     });
@@ -1415,11 +1412,11 @@
       showToast('Đang tải dữ liệu từ GitHub...', 'info');
 
       try {
-        const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${authConfig.branch}&_t=${Date.now()}`;
+        const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${encodeURIComponent(authConfig.branch)}&t=${Date.now()}`;
         console.log('Fetching data from GitHub:', url);
 
         const res = await fetch(url, {
-          cache: 'no-cache',
+          cache: 'no-store',
           headers: {
             'Authorization': `Bearer ${authConfig.token}`,
             'Accept': 'application/vnd.github.v3+json'
@@ -1428,7 +1425,7 @@
 
         if (!res.ok) {
           console.warn(`GitHub contents API returned ${res.status}, attempting fallback to local data.json...`);
-          const localRes = await fetch('data.json?_t=' + Date.now(), { cache: 'no-cache' });
+          const localRes = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
           if (!localRes.ok) throw new Error(`Không thể nạp data.json (HTTP ${res.status})`);
           currentData = await localRes.json();
           currentDataSha = null;
@@ -1453,8 +1450,9 @@
     async function uploadFileToGitHub(path, base64Content, commitMessage) {
       let sha = null;
       try {
-        const checkRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}?ref=${authConfig.branch}&_t=${Date.now()}`, {
-          cache: 'no-cache',
+        const checkUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}?ref=${encodeURIComponent(authConfig.branch)}&t=${Date.now()}`;
+        const checkRes = await fetch(checkUrl, {
+          cache: 'no-store',
           headers: {
             'Authorization': `Bearer ${authConfig.token}`,
             'Accept': 'application/vnd.github.v3+json'
@@ -1473,7 +1471,7 @@
       };
       if (sha) body.sha = sha;
 
-      const putRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}`, {
+      let putRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${authConfig.token}`,
@@ -1482,6 +1480,33 @@
         },
         body: JSON.stringify(body)
       });
+
+      // Auto-retry 1 lần nếu gặp lỗi 409 Conflict đối với file ảnh
+      if (putRes.status === 409) {
+        await new Promise(r => setTimeout(r, 400));
+        try {
+          const retryCheck = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}?ref=${encodeURIComponent(authConfig.branch)}&t=${Date.now()}`, {
+            cache: 'no-store',
+            headers: {
+              'Authorization': `Bearer ${authConfig.token}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (retryCheck.ok) {
+            const data2 = await retryCheck.json();
+            body.sha = data2.sha;
+            putRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}`, {
+              method: 'PUT',
+              headers: {
+                'Authorization': `Bearer ${authConfig.token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
+              },
+              body: JSON.stringify(body)
+            });
+          }
+        } catch (e) {}
+      }
 
       if (!putRes.ok) {
         const errJson = await putRes.json().catch(() => ({}));
@@ -1494,114 +1519,141 @@
     /* -------------------------------------------------------------------
        3. BULLETPROOF PUBLISH TO GITHUB REST API
     ------------------------------------------------------------------- */
+    // Helper: Lấy sha data.json mới nhất chống cache tuyệt đối (t=timestamp & cache: 'no-store')
+    async function getLatestDataJsonSha() {
+      const checkUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${encodeURIComponent(authConfig.branch)}&t=${Date.now()}`;
+      console.log(`[API GET sha mới nhất]: ${checkUrl}`);
+
+      const checkRes = await fetch(checkUrl, {
+        cache: 'no-store',
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+
+      if (checkRes.ok) {
+        const fileData = await checkRes.json();
+        console.log('✅ Đã lấy sha data.json mới nhất:', fileData.sha);
+        return fileData.sha;
+      } else if (checkRes.status === 404) {
+        console.log('ℹ️ data.json chưa tồn tại trên nhánh này, sha = null (tạo file mới).');
+        return null;
+      } else {
+        const errInfo = await checkRes.json().catch(() => ({}));
+        console.error('❌ GET data.json thất bại:', checkRes.status, errInfo);
+        if (checkRes.status === 401) {
+          throw new Error('Token không hợp lệ hoặc đã hết hạn (HTTP 401). Vui lòng đăng xuất và nhập Token mới!');
+        } else if (checkRes.status === 403) {
+          throw new Error('Token không có quyền ghi vào repository này (HTTP 403). Hãy đảm bảo Token có quyền repo hoặc Contents: Read and write!');
+        } else {
+          throw new Error(`Lỗi kiểm tra sha trên GitHub (HTTP ${checkRes.status}): ${errInfo.message || checkRes.statusText}`);
+        }
+      }
+    }
+
     async function publishDataToGitHub() {
       console.log('--- BẮT ĐẦU LƯU DỮ LIỆU LÊN GITHUB REST API ---');
 
-      if (!authConfig || !authConfig.token || !authConfig.owner || !authConfig.repo) {
-        const errorMsg = 'Chưa đăng nhập GitHub hoặc thiếu Token! Vui lòng đăng nhập lại.';
-        console.error(errorMsg, authConfig);
-        showToast(errorMsg, 'error');
-        alert(errorMsg);
-        showLoginView();
+      // 1. Chống bấm đúp (double-click / race condition)
+      if (isPublishing) {
+        console.warn('⚠️ Đang có tiến trình xuất bản GitHub đang chạy, bỏ qua lần gọi trùng lặp.');
+        showToast('Đang xử lý lưu lên GitHub, vui lòng chờ trong giây lát...', 'info');
         return;
       }
 
-      if (!currentData) {
-        const errorMsg = 'Chưa có dữ liệu Portfolio (currentData rỗng)! Vui lòng tải lại trang.';
-        console.error(errorMsg);
-        showToast(errorMsg, 'error');
-        alert(errorMsg);
-        return;
-      }
-
-      // Collect profile data safely
-      collectProfileFormData();
-
-      // UI visual status feedback
-      showStatusBanner('info', '⏳ Đang kiểm tra phiên bản và gửi commit lên GitHub REST API...');
-      showToast('Đang kết nối GitHub và lưu data.json...', 'info');
-
-      // Disable all save buttons during execution
-      const saveButtons = document.querySelectorAll('#btn-publish, .btn-save-github');
-      saveButtons.forEach(btn => {
-        btn.disabled = true;
-        btn.dataset.oldHtml = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Đang lưu...</span>';
-      });
+      // Danh sách tất cả các nút lưu cần kiểm soát trạng thái
+      const saveButtons = document.querySelectorAll('#btn-publish, .btn-save-github, #btn-save-project-modal, #btn-save-cert-modal, #btn-save-act-modal');
 
       try {
-        // STEP 1: ALWAYS fetch latest sha of data.json right before PUT to prevent 409 Conflict
-        const checkUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${authConfig.branch}&_t=${Date.now()}`;
-        console.log(`[1/3] GET sha mới nhất: ${checkUrl}`);
+        isPublishing = true;
 
-        let latestSha = null;
-        const checkRes = await fetch(checkUrl, {
-          cache: 'no-cache',
-          headers: {
-            'Authorization': `Bearer ${authConfig.token}`,
-            'Accept': 'application/vnd.github.v3+json'
+        // Khóa tất cả các nút lưu và hiển thị trạng thái đang lưu
+        saveButtons.forEach(btn => {
+          btn.disabled = true;
+          if (!btn.dataset.originalHtml || btn.dataset.originalHtml.includes('fa-spinner')) {
+            btn.dataset.originalHtml = btn.innerHTML;
           }
+          btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Đang lưu...</span>';
         });
 
-        if (checkRes.ok) {
-          const fileData = await checkRes.json();
-          latestSha = fileData.sha;
-          currentDataSha = latestSha;
-          console.log('✅ Đã lấy sha mới nhất:', latestSha);
-        } else if (checkRes.status === 404) {
-          console.log('ℹ️ data.json chưa tồn tại trên nhánh này, sẽ tạo file mới (sha: null).');
-          latestSha = null;
-        } else {
-          const errInfo = await checkRes.json().catch(() => ({}));
-          console.error('❌ GET data.json thất bại:', checkRes.status, errInfo);
-          if (checkRes.status === 401) {
-            throw new Error(`Token không hợp lệ hoặc đã hết hạn (HTTP 401). Vui lòng đăng xuất và nhập Token mới!`);
-          } else if (checkRes.status === 403) {
-            throw new Error(`Token không có quyền ghi vào repository này (HTTP 403). Hãy đảm bảo Token có quyền 'repo' hoặc 'Contents: Read and write'!`);
-          } else {
-            throw new Error(`Lỗi kiểm tra sha trên GitHub (HTTP ${checkRes.status}): ${errInfo.message || checkRes.statusText}`);
-          }
+        if (!authConfig || !authConfig.token || !authConfig.owner || !authConfig.repo) {
+          showLoginView();
+          throw new Error('Chưa đăng nhập GitHub hoặc thiếu Token! Vui lòng đăng nhập lại.');
         }
 
-        // STEP 2: Encode to UTF-8 Base64
+        if (!currentData) {
+          throw new Error('Chưa có dữ liệu Portfolio (currentData rỗng)! Vui lòng tải lại trang.');
+        }
+
+        // Thu thập dữ liệu profile từ form
+        collectProfileFormData();
+
+        // Cập nhật trạng thái hiển thị
+        showStatusBanner('info', '⏳ Đang kiểm tra phiên bản và gửi commit lên GitHub REST API...');
+        showToast('Đang kết nối GitHub và lưu data.json...', 'info');
+
+        // Chuẩn bị nội dung UTF-8 Base64 an toàn 100% tiếng Việt
         const jsonString = JSON.stringify(currentData, null, 2);
         const base64Content = utf8ToBase64(jsonString);
-        console.log(`[2/3] Mã hóa UTF-8 Base64 thành công (kích thước: ${base64Content.length} bytes base64).`);
 
-        // STEP 3: Send PUT request
         const putUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json`;
-        console.log(`[3/3] Gửi PUT request tới: ${putUrl}`);
 
-        const now = new Date();
-        const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
-        const putBody = {
-          message: `feat(cms): cập nhật nội dung Portfolio [skip ci] (${timeStr})`,
-          content: base64Content,
-          branch: authConfig.branch
-        };
-        if (latestSha) {
-          putBody.sha = latestSha;
+        // Hàm helper thực thi gửi PUT
+        async function sendPutCommit(shaValue) {
+          const now = new Date();
+          const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+          const putBody = {
+            message: `feat(cms): cập nhật nội dung Portfolio [skip ci] (${timeStr})`,
+            content: base64Content,
+            branch: authConfig.branch
+          };
+          if (shaValue) {
+            putBody.sha = shaValue;
+          }
+
+          console.log(`[Gửi PUT data.json] sha: ${shaValue || 'null'}`);
+          const res = await fetch(putUrl, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `Bearer ${authConfig.token}`,
+              'Content-Type': 'application/json',
+              'Accept': 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify(putBody)
+          });
+          return { res, timeStr };
         }
 
-        const putRes = await fetch(putUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${authConfig.token}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify(putBody)
-        });
+        // BƯỚC 1: Lấy sha mới nhất chống cache qua GET API
+        let latestSha = await getLatestDataJsonSha();
+        let { res: putRes, timeStr } = await sendPutCommit(latestSha);
 
+        // BƯỚC 2: Tự động thử lại 1 lần (auto-retry) nếu gặp mã 409 Conflict
+        if (putRes.status === 409) {
+          console.warn('⚠️ Phát hiện mã 409 Conflict! Đang tự động thử lại (auto-retry) sau 400ms...');
+          showToast('Phát hiện thay đổi trên GitHub (409), đang tự động lấy sha mới nhất và lưu lại...', 'info');
+
+          // Đợi 400ms để GitHub đồng bộ git tree
+          await new Promise(resolve => setTimeout(resolve, 400));
+
+          // Lấy lại sha mới nhất chống cache lần 2
+          latestSha = await getLatestDataJsonSha();
+          const retryOutcome = await sendPutCommit(latestSha);
+          putRes = retryOutcome.res;
+          timeStr = retryOutcome.timeStr;
+        }
+
+        // BƯỚC 3: Kiểm tra kết quả phản hồi cuối cùng
         if (!putRes.ok) {
           const errJson = await putRes.json().catch(() => ({}));
           let detailMsg = errJson.message || putRes.statusText || 'Lỗi không xác định';
           if (putRes.status === 409) {
-            detailMsg = 'Xung đột phiên bản (409 Conflict): Có commit khác vừa được tạo trên GitHub. Vui lòng bấm Lưu lại một lần nữa để áp dụng sha mới nhất.';
+            detailMsg = 'Xung đột phiên bản (409 Conflict): Có commit khác vừa được tạo trên GitHub. Vui lòng bấm Lưu lại một lần nữa.';
           } else if (putRes.status === 401) {
             detailMsg = 'Token hết hạn hoặc không hợp lệ (401 Unauthorized).';
           } else if (putRes.status === 403) {
-            detailMsg = 'Không có quyền commit vào nhánh này (403 Forbidden).';
+            detailMsg = 'Không có quyền commit vào nhánh này (403 Forbidden). Cần quyền repo hoặc Contents: Read and write.';
           } else if (putRes.status === 404) {
             detailMsg = 'Không tìm thấy repository hoặc nhánh (404 Not Found).';
           }
@@ -1625,10 +1677,14 @@
         showStatusBanner('error', `❌ ${err.message}`);
         alert(`Lỗi khi lưu lên GitHub:\n\n${err.message}\n\nVui lòng kiểm tra Console (F12) để xem chi tiết.`);
       } finally {
+        // LUÔN MỞ KHÓA VÀ KHÔI PHỤC NÚT DÙ THÀNH CÔNG HAY GẶP LỖI
+        isPublishing = false;
         saveButtons.forEach(btn => {
           btn.disabled = false;
-          if (btn.dataset.oldHtml) {
-            btn.innerHTML = btn.dataset.oldHtml;
+          if (btn.dataset.originalHtml && !btn.dataset.originalHtml.includes('fa-spinner')) {
+            btn.innerHTML = btn.dataset.originalHtml;
+          } else if (btn.id === 'btn-save-project-modal' || btn.id === 'btn-save-cert-modal' || btn.id === 'btn-save-act-modal') {
+            btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Đẩy lên GitHub</span>';
           } else {
             btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>';
           }
