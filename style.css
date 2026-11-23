@@ -66,8 +66,8 @@
   /* Typography */
   --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
 
-  /* Layout */
-  --container-max: 1280px;
+  /* Layout - Wide Screen Apple Experience */
+  --container-max: 1560px;
 
   /* Transitions */
   --transition-apple: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -148,8 +148,8 @@ h1, h2, h3, h4, h5, h6 {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 32px;
+  padding-right: 32px;
   width: 100%;
 }
 
@@ -229,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-container {
   pointer-events: auto;
   max-width: var(--container-max);
-  width: calc(100% - 32px);
+  width: calc(100% - 48px);
   height: 60px;
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(20px);
@@ -757,11 +757,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Ô 2: Khung ảnh đại diện tràn viền (chiếm 4 cột) */
 .hero-avatar-card {
   grid-column: span 4;
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
 }
 
 .avatar-img-container {
@@ -771,17 +771,18 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   background-color: #EAEAEF;
   flex: 1;
-  min-height: 280px;
+  min-height: 380px;
+  display: flex;
 }
 
 .avatar-img {
   width: 100%;
   height: 100%;
-  min-height: 280px;
-  max-height: 320px;
+  min-height: 380px;
   object-fit: cover;
-  object-position: center 60%;
+  object-position: center 10%;
   border-radius: 20px;
+  display: block;
   transition: transform 0.4s ease;
 }
 
