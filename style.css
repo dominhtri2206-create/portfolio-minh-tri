@@ -879,6 +879,64 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
+/* Modal Gallery Grid Styles */
+.modal-gallery-wrapper {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.modal-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.modal-gallery-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #F5F5F7;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.modal-gallery-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.modal-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.modal-gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.modal-gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.modal-gallery-item:hover .modal-gallery-item-overlay {
+  opacity: 1;
+}
+
 .icon-dark-gold {
   background: rgba(255, 184, 0, 0.2) !important;
   color: var(--accent-gold) !important;

@@ -15,6 +15,10 @@
   <!-- FontAwesome Icons 6.5.1 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
+  <!-- Cropper.js 1.6.1 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+
   <style>
     /* ===================================================================
        APPLE LIGHT BENTO CMS DESIGN SYSTEM
@@ -560,6 +564,25 @@
       border-top: 1px solid rgba(0, 0, 0, 0.06);
     }
 
+    /* Toggle Switch */
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .toggle-slider {
+      background-color: var(--accent-apple) !important;
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
     /* Login Screen */
     .login-wrapper {
       min-height: 80vh;
@@ -747,6 +770,9 @@
         <button class="tab-btn active" data-tab="tab-profile" onclick="switchTab('tab-profile')">
           <i class="fa-solid fa-user"></i> <span>Hồ sơ & Avatar</span>
         </button>
+        <button class="tab-btn" data-tab="tab-highlights" onclick="switchTab('tab-highlights')">
+          <i class="fa-solid fa-star"></i> <span>Thành tích nổi bật</span> <span class="tab-badge" id="badge-count-highlights">0</span>
+        </button>
         <button class="tab-btn" data-tab="tab-projects" onclick="switchTab('tab-projects')">
           <i class="fa-solid fa-briefcase"></i> <span>Dự án</span> <span class="tab-badge" id="badge-count-projects">0</span>
         </button>
@@ -876,6 +902,30 @@
               <label class="form-label">Địa chỉ</label>
               <input type="text" id="prof-address-vi" class="form-control">
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: HIGHLIGHTS (THÀNH TÍCH NỔI BẬT HERO) -->
+      <section class="tab-content" id="tab-highlights" style="display: none;">
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-star"></i> Thành Tích Nổi Bật (Hero Highlights)</h3>
+              <p class="card-subtitle">Quản lý các thẻ thông số / thành tích nổi bật hiển thị ở hàng dưới phần Hero (Hỗ trợ ô nền đen tương phản)</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openHighlightEditModal(null)">
+                <i class="fa-solid fa-plus"></i> <span>Thêm thẻ mới</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="items-grid" id="highlights-list-container">
+            <!-- Dynamically populated -->
           </div>
         </div>
       </section>
@@ -1074,6 +1124,18 @@
             <label class="form-label">Thời gian & Quy mô nhóm</label>
             <input type="text" id="proj-duration" class="form-control" placeholder="2 tháng | 4 thành viên">
           </div>
+
+          <!-- Project Banner Image Upload -->
+          <div class="form-group col-12">
+            <label class="form-label">Ảnh bìa / Banner dự án (Tùy chọn)</label>
+            <div style="display: flex; gap: 14px; align-items: center;">
+              <input type="text" id="proj-thumb-image" class="form-control" placeholder="images/project-banner.jpg" style="flex: 1;">
+              <input type="file" id="proj-file-picker" accept="image/*" style="display: none;" onchange="handleProjImageUpload(event)">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('proj-file-picker').click()">
+                <i class="fa-solid fa-crop-simple"></i> Cắt & Tải ảnh
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="modal-foot">
@@ -1146,6 +1208,33 @@
             <label class="form-label"><span>Giá trị đạt được / Bài học</span> <span class="lang-indicator lang-vi">VI</span></label>
             <textarea id="cert-result-vi" class="form-control"></textarea>
           </div>
+
+          <!-- Link tham khảo & xác thực cho Chứng chỉ -->
+          <div class="form-group col-6">
+            <label class="form-label">Link tham khảo / xác thực (URL)</label>
+            <input type="url" id="cert-ext-url" class="form-control" placeholder="https://dnes.vn">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Tên đơn vị liên kết</label>
+            <input type="text" id="cert-ext-title" class="form-control" placeholder="Vườn ươm Doanh nghiệp DNES">
+          </div>
+
+          <!-- Quản lý Bộ sưu tập ảnh (Gallery) cho Chứng chỉ -->
+          <div class="form-group col-12" style="background: #F9F9FB; padding: 16px; border-radius: var(--radius-md); border: 1px dashed rgba(0,0,0,0.14);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+              <div>
+                <label class="form-label" style="margin-bottom: 2px;"><i class="fa-solid fa-images text-primary-color"></i> Bộ Sưu Tập Ảnh Minh Chứng (Gallery)</label>
+                <span style="font-size: 0.76rem; color: var(--text-tertiary);">Thêm nhiều ảnh phụ / bằng khen liên quan (Người xem bấm vào có thể phóng to Lightbox)</span>
+              </div>
+              <input type="file" id="cert-gallery-picker" accept="image/*" style="display: none;" onchange="handleCertGalleryUpload(event)">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('cert-gallery-picker').click()">
+                <i class="fa-solid fa-plus"></i> Thêm ảnh phụ
+              </button>
+            </div>
+            <div id="cert-gallery-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px;">
+              <!-- Dynamically populated thumbnails -->
+            </div>
+          </div>
         </div>
 
         <div class="modal-foot">
@@ -1172,7 +1261,7 @@
         <div class="form-grid">
           <!-- Image upload for Activity -->
           <div class="form-group col-12">
-            <label class="form-label">Ảnh minh chứng hoạt động</label>
+            <label class="form-label">Ảnh minh chứng hoạt động chính</label>
             <div style="display: flex; gap: 14px; align-items: center;">
               <input type="text" id="act-main-image" class="form-control" placeholder="act-pegasus.jpg" style="flex: 1;" required>
               <input type="file" id="act-file-picker" accept="image/*" style="display: none;" onchange="handleActImageUpload(event)">
@@ -1218,6 +1307,33 @@
             <label class="form-label"><span>Kết quả / Bài học</span> <span class="lang-indicator lang-vi">VI</span></label>
             <textarea id="act-result-vi" class="form-control"></textarea>
           </div>
+
+          <!-- Link tham khảo & xác thực cho Hoạt động -->
+          <div class="form-group col-6">
+            <label class="form-label">Link liên kết / Xác thực (URL)</label>
+            <input type="url" id="act-ext-url" class="form-control" placeholder="https://btec.fpt.edu.vn">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Tiêu đề liên kết</label>
+            <input type="text" id="act-ext-title" class="form-control" placeholder="Trường Cao đẳng Quốc tế BTEC FPT">
+          </div>
+
+          <!-- Quản lý Bộ sưu tập ảnh (Gallery) cho Hoạt động -->
+          <div class="form-group col-12" style="background: #F9F9FB; padding: 16px; border-radius: var(--radius-md); border: 1px dashed rgba(0,0,0,0.14);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+              <div>
+                <label class="form-label" style="margin-bottom: 2px;"><i class="fa-solid fa-images text-primary-color"></i> Bộ Sưu Tập Ảnh Hoạt Động (Gallery)</label>
+                <span style="font-size: 0.76rem; color: var(--text-tertiary);">Ảnh hậu trường, sinh hoạt đội nhóm, kỷ niệm thực tế...</span>
+              </div>
+              <input type="file" id="act-gallery-picker" accept="image/*" style="display: none;" onchange="handleActGalleryUpload(event)">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('act-gallery-picker').click()">
+                <i class="fa-solid fa-plus"></i> Thêm ảnh hoạt động
+              </button>
+            </div>
+            <div id="act-gallery-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px;">
+              <!-- Dynamically populated thumbnails -->
+            </div>
+          </div>
         </div>
 
         <div class="modal-foot">
@@ -1227,6 +1343,120 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: ADD / EDIT HIGHLIGHT ==================== -->
+  <div class="modal-backdrop" id="modal-highlight-editor">
+    <div class="modal-box" style="max-width: 620px;">
+      <div class="modal-head">
+        <h3 id="modal-hl-title">Chỉnh Sửa Thẻ Thành Tích Nổi Bật</h3>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="closeHighlightEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="form-edit-highlight" onsubmit="saveHighlightModal(event)">
+        <input type="hidden" id="hl-edit-id">
+
+        <div class="form-grid">
+          <div class="form-group col-6">
+            <label class="form-label"><span>Tiêu đề thẻ</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="hl-title-vi" class="form-control" placeholder="Ví dụ: Á Quân Khởi Nghiệp" required>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Highlight Title</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="hl-title-en" class="form-control" placeholder="E.g. Startup Runner-Up" required>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Mô tả ngắn / Phụ đề</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="hl-sub-vi" class="form-control" placeholder="Chân Trần Khởi Nghiệp Mùa 3" required>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Short Subtitle</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="hl-sub-en" class="form-control" placeholder="Barefoot Startup Season 3" required>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label">Icon FontAwesome</label>
+            <input type="text" id="hl-icon" class="form-control" placeholder="fa-solid fa-trophy" required>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px;">
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 2px 8px; font-size: 0.74rem;" onclick="document.getElementById('hl-icon').value='fa-solid fa-robot'"><i class="fa-solid fa-robot"></i> Robot</button>
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 2px 8px; font-size: 0.74rem;" onclick="document.getElementById('hl-icon').value='fa-solid fa-trophy'"><i class="fa-solid fa-trophy"></i> Trophy</button>
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 2px 8px; font-size: 0.74rem;" onclick="document.getElementById('hl-icon').value='fa-solid fa-language'"><i class="fa-solid fa-language"></i> Language</button>
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 2px 8px; font-size: 0.74rem;" onclick="document.getElementById('hl-icon').value='fa-solid fa-graduation-cap'"><i class="fa-solid fa-graduation-cap"></i> Cap</button>
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 2px 8px; font-size: 0.74rem;" onclick="document.getElementById('hl-icon').value='fa-solid fa-star'"><i class="fa-solid fa-star"></i> Star</button>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label">Màu sắc Icon</label>
+            <select id="hl-color" class="form-control">
+              <option value="icon-orange">Cam (Orange)</option>
+              <option value="icon-gold">Vàng Kim (Gold / Trophy)</option>
+              <option value="icon-blue">Xanh Dương (Apple Blue)</option>
+              <option value="icon-cyan">Xanh Lơ (Cyan / Education)</option>
+              <option value="icon-purple">Tím (Purple)</option>
+              <option value="icon-emerald">Xanh Lá (Emerald)</option>
+            </select>
+          </div>
+
+          <div class="form-group col-12" style="background: #F9F9FB; padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <strong style="font-size: 0.92rem; color: var(--text-main); display: block;">Ô Nền Đen Tương Phản (Apple Keynote Dark Bento)</strong>
+              <span style="font-size: 0.78rem; color: var(--text-tertiary);">Tô thẻ thành nền đen than (#1D1D1F, chữ trắng) để tạo điểm nhấn nổi bật trên Hero</span>
+            </div>
+            <label style="position: relative; display: inline-block; width: 44px; height: 24px; cursor: pointer; flex-shrink: 0;">
+              <input type="checkbox" id="hl-dark-mode" style="opacity: 0; width: 0; height: 0;">
+              <span class="toggle-slider" style="position: absolute; cursor: pointer; inset: 0; background-color: #D1D5DB; transition: .3s; border-radius: 24px;"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeHighlightEditModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-hl-modal">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Lưu & Đẩy lên GitHub
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: CROPPER.JS IMAGE CROP & COMPRESS ==================== -->
+  <div class="modal-backdrop" id="modal-cropper" style="z-index: 9999;">
+    <div class="modal-box" style="max-width: 760px;">
+      <div class="modal-head">
+        <h3 id="cropper-modal-title"><i class="fa-solid fa-crop-simple"></i> Cắt & Tối Ưu Hóa Ảnh</h3>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="closeCropperModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div style="width: 100%; height: 380px; background: #0F172A; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--radius-md); margin-bottom: 16px;">
+        <img id="cropper-image-target" src="" style="max-width: 100%; max-height: 100%; display: block;" alt="Ảnh cần cắt">
+      </div>
+
+      <!-- Controls: Aspect Ratio + Rotate + Zoom -->
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;" id="cropper-ratio-buttons">
+          <button type="button" class="btn btn-outline btn-sm active" id="btn-ratio-free" onclick="setCropperRatio(NaN, this)">Tự do</button>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-ratio-1-1" data-ratio="1" onclick="setCropperRatio(1, this)">1:1 (Vuông)</button>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-ratio-16-9" data-ratio="1.7777" onclick="setCropperRatio(16/9, this)">16:9</button>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-ratio-4-3" data-ratio="1.3333" onclick="setCropperRatio(4/3, this)">4:3</button>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <button type="button" class="btn btn-outline btn-sm" onclick="cropperAction('rotate', -90)" title="Xoay trái 90°"><i class="fa-solid fa-rotate-left"></i></button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="cropperAction('rotate', 90)" title="Xoay phải 90°"><i class="fa-solid fa-rotate-right"></i></button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="cropperAction('zoom', 0.1)" title="Phóng to"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="cropperAction('zoom', -0.1)" title="Thu nhỏ"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="cropperAction('reset')" title="Đặt lại"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+        </div>
+      </div>
+
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeCropperModal()">Hủy</button>
+        <button type="button" class="btn btn-primary" id="btn-confirm-crop" onclick="confirmCropAndUpload()">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Xác Nhận Cắt & Tải Lên GitHub
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1753,13 +1983,16 @@
       const pathEl = document.getElementById('profile-avatar-path');
       if (pathEl) pathEl.textContent = p.avatar || 'avatar.jpg';
 
-      // 2. Render Projects
+      // 2. Render Highlights
+      renderHighlightsList();
+
+      // 3. Render Projects
       renderProjectsList();
 
-      // 3. Render Certificates
+      // 4. Render Certificates
       renderCertsList();
 
-      // 4. Render Activities
+      // 5. Render Activities
       renderActsList();
     }
 
@@ -1803,52 +2036,321 @@
     }
 
     /* -------------------------------------------------------------------
-       5. AVATAR UPLOAD HANDLING
+       5. CROPPER.JS IMAGE CROP & COMPRESS ENGINE
     ------------------------------------------------------------------- */
-    let selectedAvatarBase64 = null;
-    let selectedAvatarFileName = null;
+    let activeCropper = null;
+    let cropperCallback = null;
+    let currentCropOptions = {};
 
-    function handleAvatarFileSelect(e) {
-      const file = e.target.files[0];
+    function openCropperModal(file, options, callback) {
       if (!file) return;
+      cropperCallback = callback;
+      currentCropOptions = options || {};
 
-      selectedAvatarFileName = file.name;
+      const modal = document.getElementById('modal-cropper');
+      const targetImg = document.getElementById('cropper-image-target');
+      const titleEl = document.getElementById('cropper-modal-title');
+
+      if (titleEl && options.title) {
+        titleEl.innerHTML = `<i class="fa-solid fa-crop-simple"></i> ${options.title}`;
+      } else if (titleEl) {
+        titleEl.innerHTML = '<i class="fa-solid fa-crop-simple"></i> Cắt & Tối Ưu Hóa Ảnh';
+      }
+
+      // Quản lý các nút tỉ lệ cắt
+      if (options.lockRatio) {
+        // Với Avatar: Khóa cố định 1:1
+        document.querySelectorAll('#cropper-ratio-buttons .btn').forEach(btn => {
+          if (btn.id === 'btn-ratio-1-1') {
+            btn.classList.add('active');
+            btn.style.display = 'inline-block';
+          } else {
+            btn.classList.remove('active');
+            btn.style.display = 'none';
+          }
+        });
+      } else {
+        document.querySelectorAll('#cropper-ratio-buttons .btn').forEach(btn => {
+          btn.style.display = 'inline-block';
+          if (options.aspectRatio && btn.getAttribute('data-ratio') == options.aspectRatio) {
+            btn.classList.add('active');
+          } else if (!options.aspectRatio && btn.id === 'btn-ratio-free') {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
       const reader = new FileReader();
-      reader.onload = (event) => {
-        const dataUrl = event.target.result;
-        document.getElementById('profile-avatar-preview').src = dataUrl;
-        selectedAvatarBase64 = dataUrl.split(',')[1];
+      reader.onload = (e) => {
+        targetImg.src = e.target.result;
+        modal.classList.add('active');
+
+        if (activeCropper) {
+          activeCropper.destroy();
+        }
+
+        activeCropper = new Cropper(targetImg, {
+          aspectRatio: options.aspectRatio !== undefined ? options.aspectRatio : NaN,
+          viewMode: 1,
+          autoCropArea: 0.9,
+          responsive: true,
+          checkOrientation: false,
+          background: false
+        });
       };
       reader.readAsDataURL(file);
     }
 
-    async function uploadAvatarToGitHub() {
-      if (!selectedAvatarBase64) {
-        alert('Vui lòng chọn một file ảnh từ máy tính trước!');
-        return;
+    function setCropperRatio(ratio, btnEl) {
+      if (!activeCropper) return;
+      activeCropper.setAspectRatio(ratio);
+      document.querySelectorAll('#cropper-ratio-buttons .btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+    }
+
+    function cropperAction(action, val) {
+      if (!activeCropper) return;
+      if (action === 'rotate') activeCropper.rotate(val);
+      else if (action === 'zoom') activeCropper.zoom(val);
+      else if (action === 'reset') activeCropper.reset();
+    }
+
+    function closeCropperModal() {
+      const modal = document.getElementById('modal-cropper');
+      if (modal) modal.classList.remove('active');
+      if (activeCropper) {
+        activeCropper.destroy();
+        activeCropper = null;
       }
+      cropperCallback = null;
+    }
 
-      showToast('Đang tải ảnh đại diện lên GitHub...', 'info');
+    async function confirmCropAndUpload() {
+      if (!activeCropper) return;
+      const btn = document.getElementById('btn-confirm-crop');
+      const oldHtml = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang nén & tải lên GitHub...';
+
       try {
-        const ext = selectedAvatarFileName.split('.').pop() || 'jpg';
-        const targetPath = `images/avatar-${Date.now()}.${ext}`;
+        // Nén ảnh JPEG (quality: 0.85, max width/height 1200px)
+        const canvas = activeCropper.getCroppedCanvas({
+          maxWidth: 1200,
+          maxHeight: 1200,
+          imageSmoothingEnabled: true,
+          imageSmoothingQuality: 'high'
+        });
 
-        await uploadFileToGitHub(targetPath, selectedAvatarBase64, `upload avatar ${targetPath} via CMS`);
+        const base64Url = canvas.toDataURL('image/jpeg', 0.85);
+        const base64Data = base64Url.split(',')[1];
+        const prefix = currentCropOptions.prefix || 'img';
+        const targetPath = `images/${prefix}-${Date.now()}.jpg`;
 
-        currentData.profile.avatar = targetPath;
-        document.getElementById('profile-avatar-path').textContent = targetPath;
-        showToast('Đã tải ảnh đại diện lên GitHub thành công! Đang lưu data.json...', 'success');
+        showToast('Đang tải ảnh nén lên GitHub...', 'info');
+        await uploadFileToGitHub(targetPath, base64Data, `upload cropped ${prefix} ${targetPath} via CMS`);
 
-        await publishDataToGitHub();
+        showToast('Đã tải ảnh lên GitHub thành công!', 'success');
+
+        if (cropperCallback) {
+          cropperCallback(targetPath, base64Url);
+        }
+
+        closeCropperModal();
       } catch (err) {
-        console.error('Lỗi tải avatar:', err);
-        showToast('Lỗi tải ảnh: ' + err.message, 'error');
-        alert('Lỗi tải ảnh: ' + err.message);
+        console.error('Lỗi cắt và tải ảnh:', err);
+        alert('Lỗi tải ảnh lên GitHub: ' + err.message);
+        showToast('Lỗi: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = oldHtml;
       }
     }
 
     /* -------------------------------------------------------------------
-       6. PROJECTS MANAGEMENT (ADD / EDIT / DELETE WITH AUTO-SYNC)
+       6. AVATAR UPLOAD (CROP 1:1)
+    ------------------------------------------------------------------- */
+    function handleAvatarFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      openCropperModal(file, {
+        title: 'Cắt Ảnh Đại Diện (Avatar Khóa 1:1)',
+        aspectRatio: 1,
+        lockRatio: true,
+        prefix: 'avatar'
+      }, async (targetPath, base64Url) => {
+        document.getElementById('profile-avatar-preview').src = base64Url;
+        document.getElementById('profile-avatar-path').textContent = targetPath;
+        if (!currentData.profile) currentData.profile = {};
+        currentData.profile.avatar = targetPath;
+        showToast('Đã cập nhật Avatar! Đang xuất bản lên GitHub...', 'info');
+        await publishDataToGitHub();
+      });
+
+      e.target.value = '';
+    }
+
+    function uploadAvatarToGitHub() {
+      document.getElementById('avatar-file-input').click();
+    }
+
+    /* -------------------------------------------------------------------
+       6. HIGHLIGHTS MANAGEMENT (ADD / EDIT / DELETE / MOVE WITH AUTO-SYNC)
+    ------------------------------------------------------------------- */
+    function renderHighlightsList() {
+      const list = currentData.highlights || [];
+      const badgeCount = document.getElementById('badge-count-highlights');
+      if (badgeCount) badgeCount.textContent = list.length;
+      const container = document.getElementById('highlights-list-container');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có thẻ thành tích nào.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map((hl, index) => {
+        const titleVi = hl.title ? (hl.title.vi || hl.title.en || '') : '';
+        const titleEn = hl.title ? (hl.title.en || '') : '';
+        const subVi = hl.subtitle ? (hl.subtitle.vi || hl.subtitle.en || '') : '';
+        const isDark = !!hl.isDark;
+
+        return `
+          <div class="item-card ${isDark ? 'item-card-dark' : ''}" style="${isDark ? 'border-left: 4px solid #1D1D1F; background: #FAF9F8;' : ''}">
+            <div class="item-top">
+              <div class="item-thumb-placeholder ${hl.iconColor || 'icon-blue'}" style="width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                <i class="${hl.icon || 'fa-solid fa-star'}"></i>
+              </div>
+              <div class="item-info">
+                <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+                  <span class="item-badge" style="${isDark ? 'background: #1D1D1F; color: #fff;' : ''}">${isDark ? 'Nền Đen Apple' : 'Nền Trắng'}</span>
+                  ${titleEn ? `<span style="font-size: 0.74rem; color: var(--text-tertiary);">${titleEn}</span>` : ''}
+                </div>
+                <h4 class="item-title">${titleVi}</h4>
+                <div class="item-subtitle">${subVi}</div>
+              </div>
+            </div>
+            <div class="item-actions">
+              <button type="button" class="btn btn-outline btn-sm" onclick="moveHighlight(${index}, -1)" ${index === 0 ? 'disabled' : ''} title="Di chuyển lên">
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="moveHighlight(${index}, 1)" ${index === list.length - 1 ? 'disabled' : ''} title="Di chuyển xuống">
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="openHighlightEditModal('${hl.id}')">
+                <i class="fa-solid fa-pen"></i> Sửa
+              </button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="deleteHighlight('${hl.id}')">
+                <i class="fa-solid fa-trash"></i> Xóa
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openHighlightEditModal(id) {
+      const modal = document.getElementById('modal-highlight-editor');
+      const titleEl = document.getElementById('modal-hl-title');
+
+      if (!id) {
+        titleEl.textContent = 'Thêm Thẻ Thành Tích Mới';
+        setInputValue('hl-edit-id', '');
+        setInputValue('hl-title-vi', '');
+        setInputValue('hl-title-en', '');
+        setInputValue('hl-sub-vi', '');
+        setInputValue('hl-sub-en', '');
+        setInputValue('hl-icon', 'fa-solid fa-trophy');
+        setInputValue('hl-color', 'icon-gold');
+        document.getElementById('hl-dark-mode').checked = false;
+      } else {
+        titleEl.textContent = 'Chỉnh Sửa Thẻ Thành Tích';
+        const hl = (currentData.highlights || []).find(item => item.id == id);
+        if (!hl) return;
+
+        setInputValue('hl-edit-id', hl.id);
+        setInputValue('hl-title-vi', hl.title ? (hl.title.vi || '') : '');
+        setInputValue('hl-title-en', hl.title ? (hl.title.en || '') : '');
+        setInputValue('hl-sub-vi', hl.subtitle ? (hl.subtitle.vi || '') : '');
+        setInputValue('hl-sub-en', hl.subtitle ? (hl.subtitle.en || '') : '');
+        setInputValue('hl-icon', hl.icon || 'fa-solid fa-star');
+        setInputValue('hl-color', hl.iconColor || 'icon-blue');
+        document.getElementById('hl-dark-mode').checked = !!hl.isDark;
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeHighlightEditModal() {
+      document.getElementById('modal-highlight-editor').classList.remove('active');
+    }
+
+    async function saveHighlightModal(e) {
+      e.preventDefault();
+      const editId = document.getElementById('hl-edit-id').value;
+      const isNew = !editId;
+
+      const hlData = {
+        id: isNew ? ('hl_' + Date.now()) : editId,
+        icon: getInputValue('hl-icon') || 'fa-solid fa-star',
+        iconColor: getInputValue('hl-color') || 'icon-blue',
+        title: {
+          vi: getInputValue('hl-title-vi'),
+          en: getInputValue('hl-title-en')
+        },
+        subtitle: {
+          vi: getInputValue('hl-sub-vi'),
+          en: getInputValue('hl-sub-en')
+        },
+        isDark: document.getElementById('hl-dark-mode').checked
+      };
+
+      if (!currentData.highlights) currentData.highlights = [];
+
+      if (isNew) {
+        currentData.highlights.push(hlData);
+      } else {
+        const idx = currentData.highlights.findIndex(h => h.id == editId);
+        if (idx !== -1) {
+          currentData.highlights[idx] = { ...currentData.highlights[idx], ...hlData };
+        }
+      }
+
+      closeHighlightEditModal();
+      renderHighlightsList();
+
+      showToast(isNew ? 'Đang thêm thẻ thành tích và lưu lên GitHub...' : 'Đang cập nhật thẻ thành tích và lưu lên GitHub...', 'info');
+      await publishDataToGitHub();
+    }
+
+    async function deleteHighlight(id) {
+      if (!confirm('Bạn có chắc chắn muốn xóa thẻ thành tích này? Thao tác này sẽ lưu và cập nhật trực tiếp lên GitHub.')) {
+        return;
+      }
+      currentData.highlights = (currentData.highlights || []).filter(h => h.id != id);
+      renderHighlightsList();
+      showToast('Đang xóa thẻ và cập nhật lên GitHub...', 'info');
+      await publishDataToGitHub();
+    }
+
+    async function moveHighlight(index, direction) {
+      const list = currentData.highlights || [];
+      const targetIndex = index + direction;
+      if (targetIndex < 0 || targetIndex >= list.length) return;
+
+      const temp = list[index];
+      list[index] = list[targetIndex];
+      list[targetIndex] = temp;
+
+      renderHighlightsList();
+      showToast('Đang lưu thứ tự thẻ mới lên GitHub...', 'info');
+      await publishDataToGitHub();
+    }
+
+    /* -------------------------------------------------------------------
+       7. PROJECTS MANAGEMENT (ADD / EDIT / DELETE WITH AUTO-SYNC)
     ------------------------------------------------------------------- */
     function renderProjectsList() {
       const list = currentData.projects || [];
@@ -1916,6 +2418,7 @@
         setInputValue('proj-results-en', '');
         setInputValue('proj-tools', 'CapCut, Premiere, Canva');
         setInputValue('proj-duration', '2 tháng | 4 thành viên');
+        setInputValue('proj-thumb-image', '');
       } else {
         titleEl.textContent = 'Chỉnh Sửa Dự Án #' + id;
         const p = currentData.projects.find(item => item.id == id);
@@ -1943,6 +2446,7 @@
 
         setInputValue('proj-tools', (p.tools || []).join(', '));
         setInputValue('proj-duration', p.duration ? (p.duration.vi || '') : '');
+        setInputValue('proj-thumb-image', p.bannerImage || '');
       }
 
       modal.classList.add('active');
@@ -1950,6 +2454,21 @@
 
     function closeProjectEditModal() {
       document.getElementById('modal-project-editor').classList.remove('active');
+    }
+
+    function handleProjImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      openCropperModal(file, {
+        title: 'Cắt Ảnh Bìa Dự Án (16:9 hoặc Tự do)',
+        aspectRatio: 16 / 9,
+        lockRatio: false,
+        prefix: 'project'
+      }, (targetPath) => {
+        document.getElementById('proj-thumb-image').value = targetPath;
+      });
+      e.target.value = '';
     }
 
     async function saveProjectModal(e) {
@@ -1970,6 +2489,7 @@
       const results = resLinesVi.map((v, i) => ({ vi: v, en: resLinesEn[i] || v }));
 
       const tools = getInputValue('proj-tools').split(',').map(s => s.trim()).filter(Boolean);
+      const bannerImg = getInputValue('proj-thumb-image');
 
       const projectData = {
         id: isNew ? (Date.now() % 10000) : Number(editId),
@@ -2006,6 +2526,7 @@
           en: getInputValue('proj-duration')
         },
         teamSize: { vi: '4 thành viên', en: '4 members' },
+        bannerImage: bannerImg || '',
         bannerGradient: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)',
         watermarkIcon: 'fa-solid fa-briefcase',
         badgeProject: { vi: 'Đồ Án Thực Tế | FPT Digital Marketing', en: 'Academic Project | FPT Digital Marketing' }
@@ -2025,7 +2546,6 @@
       closeProjectEditModal();
       renderProjectsList();
 
-      // Trigger GitHub Save directly!
       showToast(isNew ? 'Đang thêm dự án và lưu lên GitHub...' : 'Đang cập nhật dự án và lưu lên GitHub...', 'info');
       await publishDataToGitHub();
     }
@@ -2041,8 +2561,10 @@
     }
 
     /* -------------------------------------------------------------------
-       7. CERTIFICATES MANAGEMENT (WITH AUTO-SYNC)
+       8. CERTIFICATES MANAGEMENT (WITH CROPPER & GALLERY)
     ------------------------------------------------------------------- */
+    let currentCertGallery = [];
+
     function renderCertsList() {
       const list = currentData.certificates || [];
       const badgeCount = document.getElementById('badge-count-certs');
@@ -2059,13 +2581,17 @@
         const title = c.title ? (c.title.vi || c.title.en || '') : '';
         const badge = c.badgeType ? (c.badgeType.vi || '') : '';
         const org = c.organization ? (c.organization.vi || '') : '';
+        const galleryCount = (c.gallery && Array.isArray(c.gallery)) ? c.gallery.length : 0;
 
         return `
           <div class="item-card">
             <div class="item-top">
               <img src="${c.mainImage || 'certificate-mos-excel.jpg'}" alt="${title}" class="item-thumb" onerror="this.src='CV.png'">
               <div class="item-info">
-                <span class="item-badge">${badge}</span>
+                <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 2px;">
+                  <span class="item-badge">${badge}</span>
+                  ${galleryCount > 0 ? `<span style="font-size: 0.72rem; color: var(--apple-blue); font-weight: 600;"><i class="fa-solid fa-images"></i> ${galleryCount} ảnh</span>` : ''}
+                </div>
                 <h4 class="item-title">${title}</h4>
                 <div class="item-subtitle">${org}</div>
               </div>
@@ -2081,6 +2607,63 @@
           </div>
         `;
       }).join('');
+    }
+
+    function renderCertGalleryPreviews() {
+      const container = document.getElementById('cert-gallery-preview-grid');
+      if (!container) return;
+
+      if (!currentCertGallery || currentCertGallery.length === 0) {
+        container.innerHTML = '<span style="font-size: 0.8rem; color: var(--text-tertiary); grid-column: 1/-1;">Chưa có ảnh phụ nào trong bộ sưu tập.</span>';
+        return;
+      }
+
+      container.innerHTML = currentCertGallery.map((imgUrl, idx) => `
+        <div style="position: relative; width: 100%; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0,0,0,0.1); background: #eee;">
+          <img src="${imgUrl}" style="width: 100%; height: 100%; object-fit: cover;" alt="Gallery ${idx}">
+          <button type="button" onclick="removeCertGalleryItem(${idx})" title="Xóa ảnh này" style="position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.7); color: #fff; border: none; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function removeCertGalleryItem(idx) {
+      if (idx >= 0 && idx < currentCertGallery.length) {
+        currentCertGallery.splice(idx, 1);
+        renderCertGalleryPreviews();
+      }
+    }
+
+    function handleCertImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      openCropperModal(file, {
+        title: 'Cắt Ảnh Chứng Chỉ / Bằng Khen Chính',
+        aspectRatio: 4 / 3,
+        lockRatio: false,
+        prefix: 'cert'
+      }, (targetPath) => {
+        document.getElementById('cert-main-image').value = targetPath;
+      });
+      e.target.value = '';
+    }
+
+    function handleCertGalleryUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      openCropperModal(file, {
+        title: 'Cắt Ảnh Phụ Cho Gallery Chứng Chỉ',
+        aspectRatio: NaN,
+        lockRatio: false,
+        prefix: 'cert-sub'
+      }, (targetPath) => {
+        currentCertGallery.push(targetPath);
+        renderCertGalleryPreviews();
+      });
+      e.target.value = '';
     }
 
     function openCertEditModal(id) {
@@ -2099,6 +2682,9 @@
         setInputValue('cert-badge-vi', 'Top 2 • Á quân');
         setInputValue('cert-desc-vi', '');
         setInputValue('cert-result-vi', '');
+        setInputValue('cert-ext-url', '');
+        setInputValue('cert-ext-title', '');
+        currentCertGallery = [];
       } else {
         titleEl.textContent = 'Chỉnh Sửa Chứng Chỉ #' + id;
         const c = currentData.certificates.find(item => item.id == id);
@@ -2114,37 +2700,17 @@
         setInputValue('cert-badge-vi', c.badgeType ? (c.badgeType.vi || '') : '');
         setInputValue('cert-desc-vi', c.description ? (c.description.vi || '') : '');
         setInputValue('cert-result-vi', c.result ? (c.result.vi || '') : '');
+        setInputValue('cert-ext-url', c.externalUrl || '');
+        setInputValue('cert-ext-title', c.externalTitle || '');
+        currentCertGallery = Array.isArray(c.gallery) ? [...c.gallery] : [];
       }
 
+      renderCertGalleryPreviews();
       modal.classList.add('active');
     }
 
     function closeCertEditModal() {
       document.getElementById('modal-cert-editor').classList.remove('active');
-    }
-
-    async function handleCertImageUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      showToast('Đang tải ảnh chứng chỉ lên GitHub...', 'info');
-      try {
-        const reader = new FileReader();
-        reader.onload = async (event) => {
-          const base64 = event.target.result.split(',')[1];
-          const ext = file.name.split('.').pop() || 'jpg';
-          const targetPath = `images/cert-${Date.now()}.${ext}`;
-
-          await uploadFileToGitHub(targetPath, base64, `upload cert image ${targetPath} via CMS`);
-          document.getElementById('cert-main-image').value = targetPath;
-          showToast('Đã tải ảnh chứng chỉ lên GitHub thành công!', 'success');
-        };
-        reader.readAsDataURL(file);
-      } catch (err) {
-        console.error('Lỗi upload ảnh chứng chỉ:', err);
-        showToast('Lỗi tải ảnh: ' + err.message, 'error');
-        alert('Lỗi tải ảnh: ' + err.message);
-      }
     }
 
     async function saveCertModal(e) {
@@ -2183,6 +2749,9 @@
           vi: getInputValue('cert-result-vi'),
           en: getInputValue('cert-result-vi')
         },
+        externalUrl: getInputValue('cert-ext-url'),
+        externalTitle: getInputValue('cert-ext-title'),
+        gallery: [...currentCertGallery],
         badgeClass: 'badge-trophy',
         orgIcon: 'fa-solid fa-building'
       };
@@ -2216,8 +2785,10 @@
     }
 
     /* -------------------------------------------------------------------
-       8. ACTIVITIES MANAGEMENT (WITH AUTO-SYNC)
+       9. ACTIVITIES MANAGEMENT (WITH CROPPER & GALLERY)
     ------------------------------------------------------------------- */
+    let currentActGallery = [];
+
     function renderActsList() {
       const list = currentData.activities || [];
       const badgeCount = document.getElementById('badge-count-acts');
@@ -2234,13 +2805,17 @@
         const title = a.title ? (a.title.vi || a.title.en || '') : '';
         const badge = a.badgeType ? (a.badgeType.vi || '') : '';
         const role = a.role ? (a.role.vi || '') : '';
+        const galleryCount = (a.gallery && Array.isArray(a.gallery)) ? a.gallery.length : 0;
 
         return `
           <div class="item-card">
             <div class="item-top">
               <img src="${a.mainImage || 'act-pegasus.jpg'}" alt="${title}" class="item-thumb" onerror="this.src='CV.png'">
               <div class="item-info">
-                <span class="item-badge">${badge}</span>
+                <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 2px;">
+                  <span class="item-badge">${badge}</span>
+                  ${galleryCount > 0 ? `<span style="font-size: 0.72rem; color: var(--apple-blue); font-weight: 600;"><i class="fa-solid fa-images"></i> ${galleryCount} ảnh</span>` : ''}
+                </div>
                 <h4 class="item-title">${title}</h4>
                 <div class="item-subtitle">${role}</div>
               </div>
@@ -2256,6 +2831,63 @@
           </div>
         `;
       }).join('');
+    }
+
+    function renderActGalleryPreviews() {
+      const container = document.getElementById('act-gallery-preview-grid');
+      if (!container) return;
+
+      if (!currentActGallery || currentActGallery.length === 0) {
+        container.innerHTML = '<span style="font-size: 0.8rem; color: var(--text-tertiary); grid-column: 1/-1;">Chưa có ảnh phụ nào trong bộ sưu tập.</span>';
+        return;
+      }
+
+      container.innerHTML = currentActGallery.map((imgUrl, idx) => `
+        <div style="position: relative; width: 100%; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0,0,0,0.1); background: #eee;">
+          <img src="${imgUrl}" style="width: 100%; height: 100%; object-fit: cover;" alt="Gallery ${idx}">
+          <button type="button" onclick="removeActGalleryItem(${idx})" title="Xóa ảnh này" style="position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.7); color: #fff; border: none; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function removeActGalleryItem(idx) {
+      if (idx >= 0 && idx < currentActGallery.length) {
+        currentActGallery.splice(idx, 1);
+        renderActGalleryPreviews();
+      }
+    }
+
+    function handleActImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      openCropperModal(file, {
+        title: 'Cắt Ảnh Minh Chứng Hoạt Động Chính',
+        aspectRatio: 4 / 3,
+        lockRatio: false,
+        prefix: 'act'
+      }, (targetPath) => {
+        document.getElementById('act-main-image').value = targetPath;
+      });
+      e.target.value = '';
+    }
+
+    function handleActGalleryUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      openCropperModal(file, {
+        title: 'Cắt Ảnh Phụ Hoạt Động (Gallery)',
+        aspectRatio: NaN,
+        lockRatio: false,
+        prefix: 'act-sub'
+      }, (targetPath) => {
+        currentActGallery.push(targetPath);
+        renderActGalleryPreviews();
+      });
+      e.target.value = '';
     }
 
     function openActEditModal(id) {
@@ -2274,6 +2906,9 @@
         setInputValue('act-badge-vi', 'Ban Lãnh đạo');
         setInputValue('act-desc-vi', '');
         setInputValue('act-result-vi', '');
+        setInputValue('act-ext-url', '');
+        setInputValue('act-ext-title', '');
+        currentActGallery = [];
       } else {
         titleEl.textContent = 'Chỉnh Sửa Hoạt Động #' + id;
         const a = currentData.activities.find(item => item.id == id);
@@ -2289,37 +2924,17 @@
         setInputValue('act-badge-vi', a.badgeType ? (a.badgeType.vi || '') : '');
         setInputValue('act-desc-vi', a.description ? (a.description.vi || '') : '');
         setInputValue('act-result-vi', a.result ? (a.result.vi || '') : '');
+        setInputValue('act-ext-url', a.externalUrl || '');
+        setInputValue('act-ext-title', a.externalTitle || '');
+        currentActGallery = Array.isArray(a.gallery) ? [...a.gallery] : [];
       }
 
+      renderActGalleryPreviews();
       modal.classList.add('active');
     }
 
     function closeActEditModal() {
       document.getElementById('modal-act-editor').classList.remove('active');
-    }
-
-    async function handleActImageUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      showToast('Đang tải ảnh hoạt động lên GitHub...', 'info');
-      try {
-        const reader = new FileReader();
-        reader.onload = async (event) => {
-          const base64 = event.target.result.split(',')[1];
-          const ext = file.name.split('.').pop() || 'jpg';
-          const targetPath = `images/act-${Date.now()}.${ext}`;
-
-          await uploadFileToGitHub(targetPath, base64, `upload act image ${targetPath} via CMS`);
-          document.getElementById('act-main-image').value = targetPath;
-          showToast('Đã tải ảnh hoạt động lên GitHub thành công!', 'success');
-        };
-        reader.readAsDataURL(file);
-      } catch (err) {
-        console.error('Lỗi upload ảnh hoạt động:', err);
-        showToast('Lỗi tải ảnh: ' + err.message, 'error');
-        alert('Lỗi tải ảnh: ' + err.message);
-      }
     }
 
     async function saveActModal(e) {
@@ -2355,6 +2970,9 @@
           vi: getInputValue('act-result-vi'),
           en: getInputValue('act-result-vi')
         },
+        externalUrl: getInputValue('act-ext-url'),
+        externalTitle: getInputValue('act-ext-title'),
+        gallery: [...currentActGallery],
         badgeClass: 'badge-leader',
         badgeIcon: 'fa-solid fa-crown',
         orgIcon: 'fa-solid fa-users'

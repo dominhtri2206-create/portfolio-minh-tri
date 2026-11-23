@@ -84,6 +84,40 @@ const DEFAULT_PORTFOLIO_DATA = {
       }
     }
   },
+  "highlights": [
+    {
+      "id": 1,
+      "icon": "fa-solid fa-robot",
+      "iconColor": "icon-orange",
+      "title": { "vi": "Business & AI", "en": "Business & AI" },
+      "subtitle": { "vi": "Ứng dụng AI Agent", "en": "AI Agent Solutions" },
+      "isDark": false
+    },
+    {
+      "id": 2,
+      "icon": "fa-solid fa-trophy",
+      "iconColor": "icon-gold",
+      "title": { "vi": "Á Quân Khởi Nghiệp", "en": "Startup Runner-Up" },
+      "subtitle": { "vi": "Chân Trần Khởi Nghiệp Mùa 3", "en": "Barefoot Startup Season 3" },
+      "isDark": true
+    },
+    {
+      "id": 3,
+      "icon": "fa-solid fa-language",
+      "iconColor": "icon-blue",
+      "title": { "vi": "Ngoại ngữ", "en": "Languages" },
+      "subtitle": { "vi": "Tiếng Anh & Tiếng Trung", "en": "English & Chinese" },
+      "isDark": false
+    },
+    {
+      "id": 4,
+      "icon": "fa-solid fa-graduation-cap",
+      "iconColor": "icon-cyan",
+      "title": { "vi": "BTEC FPT Đà Nẵng", "en": "BTEC FPT Danang" },
+      "subtitle": { "vi": "Digital Marketing", "en": "Digital Marketing" },
+      "isDark": false
+    }
+  ],
   "projects": [
     {
       "id": 1,
@@ -1605,9 +1639,36 @@ async function initPortfolioData() {
 function renderAllDynamicSections() {
   if (!portfolioData) return;
   renderHeroDynamic();
+  renderHighlightsGrid();
   renderProjectsGrid();
   renderCertificatesGrid();
   renderActivitiesGrid();
+}
+
+function renderHighlightsGrid() {
+  const container = document.getElementById('hero-highlights-container');
+  if (!container || !portfolioData || !portfolioData.highlights) return;
+
+  const list = portfolioData.highlights;
+  if (!Array.isArray(list) || list.length === 0) return;
+
+  container.innerHTML = list.map(item => {
+    const title = (item.title && (item.title[currentLang] || item.title.vi)) || '';
+    const subtitle = (item.subtitle && (item.subtitle[currentLang] || item.subtitle.vi)) || '';
+    const darkClass = item.isDark ? 'bento-dark-accent' : '';
+    const iconColor = item.iconColor || 'icon-blue';
+    const icon = item.icon || 'fa-solid fa-star';
+
+    return `
+      <div class="hero-stat-card bento-card bento-span-3 ${darkClass}">
+        <div class="badge-icon ${iconColor}"><i class="${icon}"></i></div>
+        <div class="badge-text">
+          <strong>${title}</strong>
+          <span>${subtitle}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function renderHeroDynamic() {
@@ -2283,22 +2344,41 @@ function openActivityModal(activityId) {
         </span>
       </div>
 
-      <div class="act-gallery-sub-grid">
-        <div class="act-sub-placeholder">
-          <div class="placeholder-icon"><i class="fa-solid fa-camera"></i></div>
-          <div class="placeholder-text">
-            <strong>${subPlaceholder1}</strong>
-            <span>${isEn ? 'Pending backstage updates' : 'Khu vực chờ cập nhật ảnh hậu trường'}</span>
+      ${data.gallery && data.gallery.length > 0 ? `
+        <div class="modal-gallery-wrapper">
+          <div class="modal-section-title">
+            <i class="fa-solid fa-images text-primary-color"></i>
+            <span>${isEn ? 'Supplementary Evidence Gallery' : 'Bộ sưu tập ảnh minh chứng'} (${data.gallery.length})</span>
+          </div>
+          <div class="modal-gallery-grid">
+            ${data.gallery.map((imgUrl, idx) => `
+              <div class="modal-gallery-item" onclick="openLightbox('${imgUrl}', '${title.replace(/'/g, "\\'")} - ${isEn ? 'Photo' : 'Ảnh'} ${idx + 1}')" title="${isEn ? 'Click to enlarge' : 'Nhấp để phóng to ảnh'}">
+                <img src="${imgUrl}" alt="${title} ${idx + 1}" onerror="this.src='CV.png'">
+                <div class="modal-gallery-item-overlay">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </div>
+              </div>
+            `).join('')}
           </div>
         </div>
-        <div class="act-sub-placeholder">
-          <div class="placeholder-icon"><i class="fa-solid fa-images"></i></div>
-          <div class="placeholder-text">
-            <strong>${subPlaceholder2}</strong>
-            <span>${isEn ? 'Pending backstage updates' : 'Khu vực chờ cập nhật ảnh hậu trường'}</span>
+      ` : `
+        <div class="act-gallery-sub-grid">
+          <div class="act-sub-placeholder">
+            <div class="placeholder-icon"><i class="fa-solid fa-camera"></i></div>
+            <div class="placeholder-text">
+              <strong>${subPlaceholder1}</strong>
+              <span>${isEn ? 'Pending backstage updates' : 'Khu vực chờ cập nhật ảnh hậu trường'}</span>
+            </div>
+          </div>
+          <div class="act-sub-placeholder">
+            <div class="placeholder-icon"><i class="fa-solid fa-images"></i></div>
+            <div class="placeholder-text">
+              <strong>${subPlaceholder2}</strong>
+              <span>${isEn ? 'Pending backstage updates' : 'Khu vực chờ cập nhật ảnh hậu trường'}</span>
+            </div>
           </div>
         </div>
-      </div>
+      `}
     </div>
 
     <!-- Tasks & Results -->
@@ -2455,6 +2535,25 @@ function openCertificateModal(certId) {
         <i class="fa-solid fa-certificate"></i> ${isEn ? 'Primary Certificate Evidence' : 'Ảnh chứng nhận gốc'}
       </span>
     </div>
+
+    ${data.gallery && data.gallery.length > 0 ? `
+      <div class="modal-gallery-wrapper">
+        <div class="modal-section-title">
+          <i class="fa-solid fa-images text-primary-color"></i>
+          <span>${isEn ? 'Supplementary Certificate Gallery' : 'Bộ sưu tập ảnh minh chứng'} (${data.gallery.length})</span>
+        </div>
+        <div class="modal-gallery-grid">
+          ${data.gallery.map((imgUrl, idx) => `
+            <div class="modal-gallery-item" onclick="openLightbox('${imgUrl}', '${title.replace(/'/g, "\\'")} - ${isEn ? 'Image' : 'Ảnh'} ${idx + 1}')" title="${isEn ? 'Click to enlarge' : 'Nhấp để phóng to ảnh'}">
+              <img src="${imgUrl}" alt="${title} ${idx + 1}" onerror="this.src='CV.png'">
+              <div class="modal-gallery-item-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
 
     <!-- Content breakdown: Tasks & Result -->
     <div class="act-modal-details-grid" style="margin-top: 20px;">
