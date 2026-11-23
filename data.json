@@ -191,6 +191,55 @@
           "en": "Directly contributed to earning a High Distinction graduation grade at FPT Polyschool."
         }
       ]
+    },
+    {
+      "id": 9046,
+      "badge": {
+        "vi": "Video Marketing",
+        "en": "Video Marketing"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Trưởng nhóm"
+      },
+      "platform": {
+        "icon": "fa-solid fa-layer-group",
+        "text": "Reels & TikTok"
+      },
+      "title": {
+        "vi": "dá",
+        "en": "dá"
+      },
+      "excerpt": {
+        "vi": "dá",
+        "en": "dá"
+      },
+      "overview": {
+        "vi": "",
+        "en": ""
+      },
+      "objectives": [],
+      "contributions": [],
+      "results": [],
+      "tools": [
+        "CapCut",
+        "Premiere",
+        "Canva"
+      ],
+      "duration": {
+        "vi": "2 tháng | 4 thành viên",
+        "en": "2 tháng | 4 thành viên"
+      },
+      "teamSize": {
+        "vi": "4 thành viên",
+        "en": "4 members"
+      },
+      "bannerGradient": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
+      "watermarkIcon": "fa-solid fa-briefcase",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      }
     }
   ],
   "certificates": [
