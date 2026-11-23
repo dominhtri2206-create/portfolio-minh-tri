@@ -204,71 +204,62 @@
           </div>
         </div>
 
-        <!-- Hero Avatar Visual -->
-        <div class="hero-visual reveal-right">
-          <div class="avatar-wrapper">
-            <!-- Pulsing Rings -->
-            <div class="avatar-ring ring-1"></div>
-            <div class="avatar-ring ring-2"></div>
-
-            <!-- Avatar Container (Frame) / Bento Profile Card -->
-            <div class="avatar-frame">
-              <div class="avatar-img-container">
-                <!-- Default stylish placeholder illustration / image. User can replace 'avatar.jpg' or use CV.png -->
-                <img src="avatar.jpg" alt="Chân dung Đỗ Minh Trí" class="avatar-img" id="user-avatar"
-                  onerror="this.onerror=null; this.src='CV.png';">
-                <div class="avatar-overlay-hint" title="Đỗ Minh Trí - Business & AI Agent Builder" data-i18n-title="hero.avatar_hint_title">
-                  <i class="fa-solid fa-user-check"></i>
-                  <span>Đỗ Minh Trí</span>
-                </div>
-              </div>
-
-              <!-- Tuyên ngôn cá nhân (Mission Statement) nằm dưới hình, chung 1 ô Bento -->
-              <blockquote class="hero-mission-quote">
-                <div class="mission-tag"><i class="fa-solid fa-compass"></i> <span data-i18n="hero.mission_tag">Tuyên ngôn cá nhân</span></div>
-                <p class="mission-text" data-i18n="hero.mission_text">
-                  “You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the
-                  strength in others.”
-                </p>
-              </blockquote>
+        <!-- Ô 2 (chiếm 4 cột): Khung ảnh đại diện tràn viền + Tuyên ngôn cá nhân -->
+        <div class="hero-avatar-card bento-card bento-span-4">
+          <div class="avatar-img-container">
+            <!-- Default stylish placeholder illustration / image. User can replace 'avatar.jpg' or use CV.png -->
+            <img src="avatar.jpg" alt="Chân dung Đỗ Minh Trí" class="avatar-img" id="user-avatar"
+              onerror="this.onerror=null; this.src='CV.png';">
+            <div class="avatar-overlay-hint" title="Đỗ Minh Trí - Business & AI Agent Builder" data-i18n-title="hero.avatar_hint_title">
+              <i class="fa-solid fa-user-check"></i>
+              <span>Đỗ Minh Trí</span>
             </div>
+          </div>
 
-            <!-- Bento Subgrid: Highlight Cards -->
-            <div class="hero-bento-subgrid">
-              <!-- Floating Badges on Hero Image -->
-              <div class="floating-badge badge-top-left float-anim-1">
-                <div class="badge-icon icon-orange"><i class="fa-solid fa-robot"></i></div>
-                <div class="badge-text">
-                  <strong>Business & AI</strong>
-                  <span data-i18n="hero.badge_ai_sub">Ứng dụng AI Agent</span>
-                </div>
-              </div>
+          <!-- Tuyên ngôn cá nhân (Mission Statement) nằm dưới hình, chung 1 ô Bento -->
+          <blockquote class="hero-mission-quote">
+            <div class="mission-tag"><i class="fa-solid fa-compass"></i> <span data-i18n="hero.mission_tag">Tuyên ngôn cá nhân</span></div>
+            <p class="mission-text" data-i18n="hero.mission_text">
+              “You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the
+              strength in others.”
+            </p>
+          </blockquote>
+        </div>
 
-              <!-- Floating Badge: Ngoại ngữ (Vị trí 4) -->
-              <div class="floating-badge badge-top-right float-anim-4">
-                <div class="badge-icon icon-blue"><i class="fa-solid fa-language"></i></div>
-                <div class="badge-text">
-                  <strong data-i18n="hero.badge_lang_title">Ngoại ngữ</strong>
-                  <span data-i18n="hero.badge_lang_sub">Tiếng Anh & Tiếng Trung</span>
-                </div>
-              </div>
+        <!-- Hàng dưới ngay trong Hero: 4 ô nhỏ (mỗi ô 3 cột) -->
+        <!-- Ô 1 (3 cột): Business & AI -->
+        <div class="hero-stat-card bento-card bento-span-3">
+          <div class="badge-icon icon-orange"><i class="fa-solid fa-robot"></i></div>
+          <div class="badge-text">
+            <strong>Business & AI</strong>
+            <span data-i18n="hero.badge_ai_sub">Ứng dụng AI Agent</span>
+          </div>
+        </div>
 
-              <div class="floating-badge badge-bottom-right float-anim-2">
-                <div class="badge-icon icon-orange"><i class="fa-solid fa-trophy"></i></div>
-                <div class="badge-text">
-                  <strong data-i18n="hero.badge_award_title">Á Quân Khởi Nghiệp</strong>
-                  <span data-i18n="hero.badge_award_sub">Chân Trần Khởi Nghiệp Mùa 3</span>
-                </div>
-              </div>
+        <!-- Ô 2 (3 cột): Á Quân Khởi Nghiệp - NỀN ĐEN SANG TRỌNG (#1D1D1F) ĐIỂM NHẤN APPLE KEYNOTE -->
+        <div class="hero-stat-card bento-card bento-span-3 bento-dark-accent">
+          <div class="badge-icon icon-gold"><i class="fa-solid fa-trophy"></i></div>
+          <div class="badge-text">
+            <strong data-i18n="hero.badge_award_title">Á Quân Khởi Nghiệp</strong>
+            <span data-i18n="hero.badge_award_sub">Chân Trần Khởi Nghiệp Mùa 3</span>
+          </div>
+        </div>
 
-              <div class="floating-badge badge-bottom-left float-anim-3">
-                <div class="badge-icon icon-cyan"><i class="fa-solid fa-graduation-cap"></i></div>
-                <div class="badge-text">
-                  <strong>BTEC FPT Đà Nẵng</strong>
-                  <span data-i18n="hero.badge_edu_sub">Digital Marketing</span>
-                </div>
-              </div>
-            </div>
+        <!-- Ô 3 (3 cột): Ngoại ngữ -->
+        <div class="hero-stat-card bento-card bento-span-3">
+          <div class="badge-icon icon-blue"><i class="fa-solid fa-language"></i></div>
+          <div class="badge-text">
+            <strong data-i18n="hero.badge_lang_title">Ngoại ngữ</strong>
+            <span data-i18n="hero.badge_lang_sub">Tiếng Anh & Tiếng Trung</span>
+          </div>
+        </div>
+
+        <!-- Ô 4 (3 cột): BTEC FPT Đà Nẵng -->
+        <div class="hero-stat-card bento-card bento-span-3">
+          <div class="badge-icon icon-cyan"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="badge-text">
+            <strong>BTEC FPT Đà Nẵng</strong>
+            <span data-i18n="hero.badge_edu_sub">Digital Marketing</span>
           </div>
         </div>
       </div>
