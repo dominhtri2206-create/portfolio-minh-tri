@@ -180,15 +180,6 @@
             <span class="role-tag" data-i18n="hero.role_lang"><i class="fa-solid fa-language"></i> Tiếng Anh & Tiếng Trung</span>
           </div>
 
-          <!-- Tuyên ngôn cá nhân (Mission Statement) (Vị trí 4) -->
-          <blockquote class="hero-mission-quote">
-            <div class="mission-tag"><i class="fa-solid fa-compass"></i> <span data-i18n="hero.mission_tag">Tuyên ngôn cá nhân</span></div>
-            <p class="mission-text" data-i18n="hero.mission_text">
-              “You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the
-              strength in others.”
-            </p>
-          </blockquote>
-
           <!-- Đoạn văn giới thiệu bản thân -->
           <p class="hero-description" data-i18n="hero.description">
             Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và
@@ -220,15 +211,26 @@
             <div class="avatar-ring ring-1"></div>
             <div class="avatar-ring ring-2"></div>
 
-            <!-- Avatar Container (Frame) -->
+            <!-- Avatar Container (Frame) / Bento Profile Card -->
             <div class="avatar-frame">
-              <!-- Default stylish placeholder illustration / image. User can replace 'avatar.jpg' or use CV.png -->
-              <img src="avatar.jpg" alt="Chân dung Đỗ Minh Trí" class="avatar-img" id="user-avatar"
-                onerror="this.onerror=null; this.src='CV.png';">
-              <div class="avatar-overlay-hint" title="Đỗ Minh Trí - Business & AI Agent Builder" data-i18n-title="hero.avatar_hint_title">
-                <i class="fa-solid fa-user-check"></i>
-                <span>Đỗ Minh Trí</span>
+              <div class="avatar-img-container">
+                <!-- Default stylish placeholder illustration / image. User can replace 'avatar.jpg' or use CV.png -->
+                <img src="avatar.jpg" alt="Chân dung Đỗ Minh Trí" class="avatar-img" id="user-avatar"
+                  onerror="this.onerror=null; this.src='CV.png';">
+                <div class="avatar-overlay-hint" title="Đỗ Minh Trí - Business & AI Agent Builder" data-i18n-title="hero.avatar_hint_title">
+                  <i class="fa-solid fa-user-check"></i>
+                  <span>Đỗ Minh Trí</span>
+                </div>
               </div>
+
+              <!-- Tuyên ngôn cá nhân (Mission Statement) nằm dưới hình, chung 1 ô Bento -->
+              <blockquote class="hero-mission-quote">
+                <div class="mission-tag"><i class="fa-solid fa-compass"></i> <span data-i18n="hero.mission_tag">Tuyên ngôn cá nhân</span></div>
+                <p class="mission-text" data-i18n="hero.mission_text">
+                  “You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the
+                  strength in others.”
+                </p>
+              </blockquote>
             </div>
 
             <!-- Bento Subgrid: Highlight Cards -->
