@@ -11,6 +11,998 @@ let currentLang = 'vi';
 let currentOpenProjectId = null;
 let currentOpenActivityId = null;
 let currentOpenCertId = null;
+let portfolioData = null;
+
+// Embedded fallback data (in case data.json is blocked by local file:// CORS)
+const DEFAULT_PORTFOLIO_DATA = {
+  "profile": {
+    "name": {
+      "vi": "Đỗ Minh Trí",
+      "en": "Do Minh Tri"
+    },
+    "alias": "(Eric Do)",
+    "avatar": "avatar.jpg",
+    "motto": {
+      "vi": "I never lose. I either win or learn!",
+      "en": "I never lose. I either win or learn!"
+    },
+    "roles": [
+      {
+        "icon": "fa-solid fa-robot",
+        "text": {
+          "vi": "Business & Ứng dụng AI Agent",
+          "en": "Business & AI Agent Solutions"
+        }
+      },
+      {
+        "icon": "fa-solid fa-microphone-lines",
+        "text": {
+          "vi": "MC & Nghiên cứu",
+          "en": "Public Speaker & Research"
+        }
+      },
+      {
+        "icon": "fa-solid fa-language",
+        "text": {
+          "vi": "Tiếng Anh & Tiếng Trung",
+          "en": "English & Chinese"
+        }
+      }
+    ],
+    "mission": {
+      "tag": {
+        "vi": "Tuyên ngôn cá nhân",
+        "en": "Personal Mission"
+      },
+      "text": {
+        "vi": "“You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the strength in others.”",
+        "en": "“You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the strength in others.”"
+      }
+    },
+    "bio": {
+      "vi": "Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông, nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công nghệ mới chính là chìa khóa để rèn giũa bản thân và tạo ra giá trị tích cực cho cộng đồng.",
+      "en": "Hello! I'm Minh Tri (Eric) — an energetic learner passionate about modern Business administration and real-world AI Agent implementations. Beyond tech, I thrive as a public speaker/MC, curious researcher, and language enthusiast. I believe relentless growth and adopting frontier technology are the keys to self-mastery and delivering meaningful social value."
+    },
+    "contact": {
+      "email": "dominhtri2206@gmail.com",
+      "phone": "0816 777 568",
+      "address": {
+        "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
+        "en": "152 Phan Thanh, Thanh Khe, Danang City"
+      },
+      "reference": {
+        "name": "Cô Nguyễn Thị Thanh Tâm",
+        "role": {
+          "vi": "Giảng viên bộ môn Digital Marketing",
+          "en": "Digital Marketing Lecturer"
+        },
+        "phone": "0937.272.236",
+        "note": {
+          "vi": "Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại trường.",
+          "en": "Direct instructor assessing my academic competence and professional working attitude."
+        }
+      }
+    }
+  },
+  "projects": [
+    {
+      "id": 1,
+      "badge": {
+        "vi": "Video Marketing",
+        "en": "Video Marketing"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Biên tập Video",
+        "en": "Team Leader & Video Producer"
+      },
+      "platform": {
+        "icon": "fa-brands fa-instagram",
+        "text": "Reels & TikTok"
+      },
+      "title": {
+        "vi": "1. Dự Án Content Marketing & Video Ngắn (Reels/TikTok)",
+        "en": "1. Content Marketing & Short-form Video Project (Reels/TikTok)"
+      },
+      "excerpt": {
+        "vi": "Xây dựng chuỗi video ngắn định dạng dọc giới thiệu dòng sản phẩm đồ uống/thời trang cho giới trẻ. Trực tiếp lên kịch bản, quay dựng và tối ưu âm thanh bắt trend.",
+        "en": "Producing a vertical short-video campaign for youth lifestyle brands. Spearheaded scriptwriting, video shooting, audio sync, and trend optimization."
+      },
+      "highlights": [
+        {
+          "vi": "Nghiên cứu thị hiếu Gen Z",
+          "en": "Gen Z trend & insight analysis"
+        },
+        {
+          "vi": "Kịch bản 3 giây đầu thu hút (Hook)",
+          "en": "High-converting 3s hook scripting"
+        },
+        {
+          "vi": "Tối ưu tỷ lệ giữ chân người xem (Watch Time)",
+          "en": "Audience retention rate optimization"
+        }
+      ],
+      "tags": [
+        "CapCut Pro",
+        "Premiere",
+        "TikTok Trends",
+        "Canva"
+      ],
+      "thumbClass": "thumb-gradient-1",
+      "watermarkIcon": "fa-brands fa-tiktok",
+      "category": {
+        "vi": "Video Marketing & Social Viral",
+        "en": "Video Marketing & Social Viral"
+      },
+      "duration": {
+        "vi": "2 tháng (Học kỳ đồ án thực hành)",
+        "en": "2 months (Coursework Project)"
+      },
+      "teamSize": {
+        "vi": "4 thành viên",
+        "en": "4 members"
+      },
+      "tools": [
+        "CapCut Pro",
+        "Adobe Premiere Pro",
+        "TikTok Creator Studio",
+        "Canva Pro",
+        "Smartphone 4K & Gimbal"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Dự án tập trung vào việc nghiên cứu hành vi tiêu thụ video ngắn của đối tượng khách hàng Gen Z và người trẻ tuổi, từ đó lên kế hoạch sản xuất chuỗi 15 video ngắn định dạng dọc (9:16) cho thương hiệu đồ uống / thời trang trẻ trung.",
+        "en": "Researched short-video consumption patterns of Gen Z audiences and produced a 15-video vertical campaign (9:16) for modern lifestyle brands."
+      },
+      "objectives": [
+        {
+          "vi": "Xây dựng định vị hình ảnh thương hiệu năng động, gần gũi và hài hước trên nền tảng TikTok và Instagram Reels.",
+          "en": "Build a vibrant, relatable, and engaging brand persona on TikTok and Instagram Reels."
+        },
+        {
+          "vi": "Thử nghiệm các cấu trúc kịch bản Hook 3s (Tò mò, Đặt câu hỏi, Trước/Sau, Phản ứng bất ngờ) để tối ưu tỷ lệ giữ chân người xem.",
+          "en": "A/B test 3-second hook variations (Curiosity, Questions, Before/After, Surprises) to maximize viewer retention."
+        },
+        {
+          "vi": "Đạt mục tiêu tối thiểu 50.000 lượt xem tự nhiên (organic views) và tỷ lệ tương tác (engagement rate) trên 8%.",
+          "en": "Achieve over 50,000+ organic views and an engagement rate exceeding 8%."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Trực tiếp lên ý tưởng, viết kịch bản phân cảnh chi tiết (Storyboard) cho toàn bộ 15 video.",
+          "en": "Conceptualized and wrote detailed storyboards and scripts for all 15 videos."
+        },
+        {
+          "vi": "Phân công vai trò diễn xuất, chuẩn bị đạo cụ, góc quay và setup ánh sáng với gimbal.",
+          "en": "Managed talent staging, props, cinematography angles, and lighting with gimbal setups."
+        },
+        {
+          "vi": "Hậu kỳ cắt dựng, chỉnh màu sắc tươi sáng, chèn sound effects (SFX) và chọn nhạc nền thịnh hành (Trending BGM).",
+          "en": "Edited post-production, color grading, sound design (SFX), and selected trending soundtracks."
+        },
+        {
+          "vi": "Theo dõi dữ liệu phân tích từ TikTok Analytics để tinh chỉnh thời gian đăng bài và hashtag.",
+          "en": "Monitored TikTok Analytics to optimize posting schedule and hashtag strategies."
+        }
+      ],
+      "results": [
+        {
+          "vi": "Chiến dịch đạt hơn 120.000+ lượt xem tích lũy trên cả hai nền tảng.",
+          "en": "Campaign generated over 120,000+ cumulative views across both platforms."
+        },
+        {
+          "vi": "Video viral nhất đạt 45.000 lượt xem với hơn 3.200 lượt thả tim và 180 lượt chia sẻ.",
+          "en": "Top viral video achieved 45,000+ views, 3,200+ likes, and 180+ shares."
+        },
+        {
+          "vi": "Được giảng viên bộ môn đánh giá Xuất sắc (Điểm 9.5/10) về chất lượng hình ảnh và thông điệp truyền tải.",
+          "en": "Awarded an Excellent grade (9.5/10) by faculty for visual execution and narrative storytelling."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "badge": {
+        "vi": "SEO & Research",
+        "en": "SEO & Research"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Phân tích Dữ liệu",
+        "en": "Team Leader & Data Analyst"
+      },
+      "platform": {
+        "icon": "fa-solid fa-globe",
+        "text": "SEO & Analytics"
+      },
+      "title": {
+        "vi": "2. Dự Án SEO & Nghiên Cứu Thị Trường Ngành Hàng",
+        "en": "2. SEO & Industry Market Research Project"
+      },
+      "excerpt": {
+        "vi": "Phân tích đối thủ cạnh tranh, nghiên cứu bộ từ khóa theo hành trình mua sắm của khách hàng (Buyer's Journey) và lập kế hoạch tối ưu cấu trúc nội dung Onpage.",
+        "en": "Competitor analysis, keyword mapping across the Buyer's Journey, and Onpage content architecture planning."
+      },
+      "highlights": [
+        {
+          "vi": "Phân tích Insight & Đối thủ",
+          "en": "Competitor & customer insight analysis"
+        },
+        {
+          "vi": "Lập bộ từ khóa 100+ keywords tiềm năng",
+          "en": "Building 100+ high-potential keywords"
+        },
+        {
+          "vi": "Tối ưu bài viết chuẩn SEO & UI/UX",
+          "en": "SEO content & UI/UX optimization"
+        }
+      ],
+      "tags": [
+        "Google Search Console",
+        "GA4",
+        "Keyword Planner",
+        "Excel MOS"
+      ],
+      "thumbClass": "thumb-gradient-2",
+      "watermarkIcon": "fa-solid fa-chart-line",
+      "category": {
+        "vi": "Search Engine Optimization & Market Research",
+        "en": "Search Engine Optimization & Market Research"
+      },
+      "duration": {
+        "vi": "2.5 tháng",
+        "en": "2.5 months"
+      },
+      "teamSize": {
+        "vi": "5 thành viên",
+        "en": "5 members"
+      },
+      "tools": [
+        "Google Search Console",
+        "Google Analytics (GA4)",
+        "Google Keyword Planner",
+        "Ahrefs",
+        "Microsoft Excel MOS"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #065f46 0%, #059669 50%, #0284c7 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Đồ án nghiên cứu thị trường toàn diện và triển khai chiến lược SEO Onpage & Content Hub cho một website thương mại điện tử chuyên cung cấp sản phẩm phong cách sống.",
+        "en": "Conducted comprehensive market research and executed Onpage SEO & Content Hub strategy for an e-commerce lifestyle brand."
+      },
+      "objectives": [
+        {
+          "vi": "Thấu hiểu chân dung khách hàng mục tiêu (Buyer Persona) và hành trình tìm kiếm thông tin của người tiêu dùng.",
+          "en": "Identify Buyer Personas and search intent journeys across key stages."
+        },
+        {
+          "vi": "Phân tích điểm mạnh, điểm yếu của 3 đối thủ cạnh tranh trực tiếp trên bảng xếp hạng Google tìm kiếm.",
+          "en": "Analyze strengths and weaknesses of top 3 direct organic search competitors on Google."
+        },
+        {
+          "vi": "Xây dựng cấu trúc cây thư mục website (Site Architecture) và bộ từ khóa phủ rộng theo mô hình Topic Cluster.",
+          "en": "Develop website information architecture and extensive keyword mapping via Topic Clusters."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Điều phối nhóm lọc bộ từ khóa hơn 150 keywords có lượng tìm kiếm cao và độ cạnh tranh (Keyword Difficulty) phù hợp.",
+          "en": "Led team in filtering 150+ high-volume keywords with balanced Keyword Difficulty."
+        },
+        {
+          "vi": "Áp dụng chứng chỉ MOS Excel 2019 để phân loại dữ liệu từ khóa, tính toán Search Volume và tiềm năng chuyển đổi.",
+          "en": "Leveraged MOS Excel 2019 data processing to segment search volume and conversion potential."
+        },
+        {
+          "vi": "Viết bài mẫu chuẩn SEO (1.500+ từ) tối ưu Heading, Meta Description, Alt ảnh và Internal Link.",
+          "en": "Authored SEO-standard pillar articles (1,500+ words) optimizing Headings, Meta, Alt, and Internal Links."
+        },
+        {
+          "vi": "Đo lường các chỉ số CTR, thời gian trên trang và thứ hạng từ khóa qua Google Search Console.",
+          "en": "Tracked CTR, dwell time, and keyword rankings via Google Search Console."
+        }
+      ],
+      "results": [
+        {
+          "vi": "15 từ khóa mục tiêu lọt Top 10 Google Search sau 6 tuần thử nghiệm index bài viết.",
+          "en": "15 target keywords reached Google Top 10 within 6 weeks post-indexing."
+        },
+        {
+          "vi": "Tăng lượng Organic Clicks lên 250% so với giai đoạn thử nghiệm ban đầu.",
+          "en": "Increased organic clicks by 250% compared to baseline benchmark."
+        },
+        {
+          "vi": "Được hội đồng chấm đồ án chọn làm bài báo cáo mẫu cho sinh viên khóa sau.",
+          "en": "Selected by the academic evaluation board as a showcase report for future cohorts."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "badge": {
+        "vi": "Brand Campaign",
+        "en": "Brand Campaign"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Quản lý Chiến dịch",
+        "en": "Team Leader & Campaign Manager"
+      },
+      "platform": {
+        "icon": "fa-solid fa-bullseye",
+        "text": "Chiến dịch IMC"
+      },
+      "title": {
+        "vi": "3. Chiến Dịch Lập Kế Hoạch & Triển Khai Nội Dung Thương Hiệu",
+        "en": "3. Integrated Brand Content Planning & Execution Campaign"
+      },
+      "excerpt": {
+        "vi": "Xây dựng chiến dịch truyền thông đa kênh cho thương hiệu trong dịp lễ/mở bán mới. Thiết lập thông điệp cốt lõi, ma trận nội dung và quản trị tiến độ thực thi.",
+        "en": "Planning and executing an omnichannel campaign for seasonal launch. Establishing key messaging, content matrix, and timeline control."
+      },
+      "highlights": [
+        {
+          "vi": "Lên lịch Content Calendar đa kênh",
+          "en": "Multichannel Content Calendar design"
+        },
+        {
+          "vi": "Thiết kế bộ nhận diện ấn phẩm mạng xã hội",
+          "en": "Social media visual brand kit design"
+        },
+        {
+          "vi": "Điều phối 5 thành viên hoàn thành đúng hạn",
+          "en": "Coordinating 5 team members to meet KPIs"
+        }
+      ],
+      "tags": [
+        "Notion Planning",
+        "Canva Brand Kit",
+        "Meta Suite",
+        "Content Matrix"
+      ],
+      "thumbClass": "thumb-gradient-3",
+      "watermarkIcon": "fa-solid fa-bullseye",
+      "category": {
+        "vi": "Integrated Marketing Campaign (IMC) & Branding",
+        "en": "Integrated Marketing Campaign (IMC) & Branding"
+      },
+      "duration": {
+        "vi": "3 tháng",
+        "en": "3 months"
+      },
+      "teamSize": {
+        "vi": "5 thành viên",
+        "en": "5 members"
+      },
+      "tools": [
+        "Notion Project Board",
+        "Canva Pro Brand Kit",
+        "Meta Business Suite",
+        "Google Docs / Sheets",
+        "Trello"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #f43f5e 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Lập kế hoạch truyền thông tích hợp (IMC Plan) cho chiến dịch ra mắt bộ sưu tập theo mùa. Dự án bao gồm việc định hình thông điệp thương hiệu cốt lõi (Key Message), thiết kế bộ nhận diện visual và triển khai lịch nội dung đa kênh xuyên suốt 30 ngày.",
+        "en": "Formulated an Integrated Marketing Communications (IMC) plan for a seasonal collection launch, defining Key Message, visual brand identity, and a 30-day multichannel content calendar."
+      },
+      "objectives": [
+        {
+          "vi": "Định hình phong cách thương hiệu nhất quán (Brand Identity Guidelines): Bảng màu, typography và văn phong (Tone & Voice).",
+          "en": "Define brand style guidelines: color palette, typography, and Brand Tone & Voice."
+        },
+        {
+          "vi": "Thiết lập ma trận nội dung theo quy tắc 70-20-10: 70% nội dung giá trị/chia sẻ, 20% nội dung tương tác cảm xúc, 10% bán hàng trực tiếp.",
+          "en": "Deploy 70-20-10 content matrix: 70% value-driven, 20% emotional engagement, 10% direct conversion."
+        },
+        {
+          "vi": "Đảm bảo tiến độ đăng bài mỗi ngày không bị trễ hạn thông qua quy trình kiểm duyệt nghiêm ngặt.",
+          "en": "Ensure daily publication schedule without bottlenecks through structured review workflows."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Xây dựng bảng kế hoạch tổng thể trên Notion với lịch biểu chi tiết từng ngày, từng người phụ trách (RACI Model).",
+          "en": "Structured master planning board on Notion with daily schedules and RACI model assignments."
+        },
+        {
+          "vi": "Thiết kế hơn 20 mẫu poster, carousel nhiều ảnh trên Canva đảm bảo chuẩn nhận diện thương hiệu.",
+          "en": "Designed 20+ social media banners and carousel templates on Canva aligned with brand guidelines."
+        },
+        {
+          "vi": "Tổ chức các buổi họp nhóm hàng tuần để giải quyết khó khăn, truyền động lực và duy trì tinh thần đoàn kết.",
+          "en": "Facilitated weekly team meetings to unblock issues, motivate members, and maintain team cohesion."
+        },
+        {
+          "vi": "Đánh giá và tổng kết hiệu quả chiến dịch bằng báo cáo chi tiết kèm bài học kinh nghiệm rút ra.",
+          "en": "Conducted end-of-campaign post-mortem analysis and performance reporting."
+        }
+      ],
+      "results": [
+        {
+          "vi": "Chiến dịch hoàn thành 100% KPI về số lượng bài viết và ấn phẩm truyền thông đúng thời hạn.",
+          "en": "Achieved 100% KPI completion across all creative assets and editorial posts on schedule."
+        },
+        {
+          "vi": "Tương tác trên Fanpage tăng 180%, tỷ lệ phản hồi tin nhắn khách hàng đạt mức xuất sắc.",
+          "en": "Page engagement surged by 180% with outstanding customer message response rates."
+        },
+        {
+          "vi": "Góp phần quan trọng giúp tôi hoàn thành đồ án tốt nghiệp loại Xuất Sắc tại FPT Polyschool.",
+          "en": "Directly contributed to earning a High Distinction graduation grade at FPT Polyschool."
+        }
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "title": {
+        "vi": "Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)",
+        "en": "Top 2 Barefoot Startup Competition (Season 3)"
+      },
+      "award": {
+        "vi": "Á quân (Top 2 Chung kết Toàn quốc)",
+        "en": "Runner-up (National Finals Top 2)"
+      },
+      "organization": {
+        "vi": "BTEC FPT & DNES",
+        "en": "BTEC FPT Danang & DNES"
+      },
+      "orgIcon": "fa-solid fa-lightbulb",
+      "timeLocation": {
+        "vi": "14/08/2026 tại Đà Nẵng",
+        "en": "14/08/2026 in Danang City"
+      },
+      "badgeType": {
+        "vi": "Top 2 • Á quân",
+        "en": "Top 2 • Runner-up"
+      },
+      "badgeClass": "badge-trophy",
+      "badgeStyle": "background: linear-gradient(135deg, #10b981 0%, #059669 100%);",
+      "badgeIcon": "fa-solid fa-trophy",
+      "mainImage": "cert-chan-tran-khoi-nghiep.jpg",
+      "downloadName": "ChungNhan_ChanTranKhoiNghiep_DoMinhTri.jpg",
+      "externalUrl": "https://dnes.vn",
+      "externalTitle": "Vườn ươm Doanh nghiệp Đà Nẵng DNES",
+      "externalIcon": "fa-solid fa-arrow-up-right-from-square",
+      "externalText": "Đơn vị DNES",
+      "description": {
+        "vi": "Thành viên đội Smart Mini Storage — xuất sắc đạt thành tích Top 2 tại Vòng Chung kết Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3), xây dựng dự án ứng dụng tư duy đổi mới sáng tạo, AI và phát triển bền vững để giải quyết vấn đề thực tế và tạo ra giá trị cho cộng đồng.",
+        "en": "Core member of Smart Mini Storage — achieving Top 2 honors at the Barefoot Startup Competition (Season 3), building sustainable solutions integrating innovation, AI, and social value."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận chứng nhận",
+            "en": "Awardee"
+          },
+          "val": "Đỗ Minh Trí (Do Minh Tri)"
+        },
+        {
+          "label": {
+            "vi": "Đơn vị tổ chức & Chuyên môn",
+            "en": "Organizers & Mentors"
+          },
+          "val": "BTEC FPT Đà Nẵng & DNES"
+        },
+        {
+          "label": {
+            "vi": "Ngày Chung kết",
+            "en": "Finals Date"
+          },
+          "val": "14 / 08 / 2026"
+        },
+        {
+          "label": {
+            "vi": "Thành tích / Dự án",
+            "en": "Team / Project"
+          },
+          "val": "Smart Mini Storage Team",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "Đổi mới sáng tạo",
+        "Ứng dụng AI",
+        "Phát triển bền vững",
+        "Top 2 Chung kết"
+      ],
+      "tasks": [
+        {
+          "vi": "Nghiên cứu thị trường và khảo sát thực tế nhu cầu lưu trữ mini thông minh (Smart Mini Storage) của giới trẻ và khách du lịch.",
+          "en": "Executed field surveys and market validation for smart micro-storage needs among urban youth and travelers."
+        },
+        {
+          "vi": "Ứng dụng tư duy công nghệ AI và mô hình phát triển bền vững để xây dựng giải pháp tối ưu hóa chi phí vận hành.",
+          "en": "Incorporated AI technology and circular economy principles to streamline operational expenses."
+        },
+        {
+          "vi": "Hoàn thiện mô hình kinh doanh và trực tiếp thuyết trình, phản biện tự tin trước hội đồng giám khảo và cố vấn doanh nghiệp.",
+          "en": "Finalized business model canvas and pitched before the judging panel and venture mentors."
+        }
+      ],
+      "result": {
+        "vi": "Xuất sắc giành giải Top 2 Chung kết (Á quân), chứng minh năng lực đổi mới sáng tạo, tinh thần khởi nghiệp thực chiến và khả năng ứng dụng AI vào giải quyết vấn đề kinh doanh thực tế.",
+        "en": "Awarded National Runner-up (Top 2), validating entrepreneurial grit, innovation capability, and AI-driven commercial problem-solving."
+      }
+    },
+    {
+      "id": 2,
+      "title": {
+        "vi": "Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025",
+        "en": "National Semi-final — FPT Biz Talent 2025"
+      },
+      "award": {
+        "vi": "Bán kết Toàn quốc (Top đội thi xuất sắc)",
+        "en": "National Semi-finalist (Top Venture Teams)"
+      },
+      "organization": {
+        "vi": "Tập đoàn FPT — Ban Công tác Học đường",
+        "en": "FPT Corporation — Student Affairs"
+      },
+      "orgIcon": "fa-solid fa-building-flag",
+      "timeLocation": {
+        "vi": "15/08/2025",
+        "en": "15/08/2025"
+      },
+      "badgeType": {
+        "vi": "Bán kết Toàn quốc",
+        "en": "National Semi-final"
+      },
+      "badgeClass": "badge-fpt",
+      "badgeStyle": "background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);",
+      "badgeIcon": "fa-solid fa-medal",
+      "mainImage": "cert-fpt-biz-talent.jpg",
+      "downloadName": "ChungNhan_FPT_Biz_Talent_DoMinhTri.jpg",
+      "externalUrl": "https://fpt.edu.vn",
+      "externalTitle": "Tập đoàn FPT - Khối Giáo dục",
+      "externalIcon": "fa-solid fa-shield-halved",
+      "externalText": "FPT Education",
+      "description": {
+        "vi": "Bằng chứng nhận do Ban Công tác Học đường, Tập đoàn FPT trao tặng, ghi nhận nỗ lực vượt bậc và thành tích xuất sắc của đại diện đội The Culinary AI (FPT Polyschool Bình Định) tại vòng Bán kết toàn quốc cuộc thi khởi nghiệp kinh doanh FPT Biz Talent 2025.",
+        "en": "Awarded by FPT Corporation Student Affairs Division, honoring exceptional business acumen and innovative performance of The Culinary AI team at the national semi-finals."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận chứng nhận",
+            "en": "Awardee"
+          },
+          "val": "Đỗ Minh Trí (Do Minh Tri)"
+        },
+        {
+          "label": {
+            "vi": "Đơn vị tổ chức",
+            "en": "Organizing Body"
+          },
+          "val": "Ban Công tác Học đường, Tập đoàn FPT"
+        },
+        {
+          "label": {
+            "vi": "Thời gian trao giải",
+            "en": "Award Date"
+          },
+          "val": "15 / 08 / 2025"
+        },
+        {
+          "label": {
+            "vi": "Đại diện đội thi",
+            "en": "Representing Team"
+          },
+          "val": "The Culinary AI",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "FPT Biz Talent",
+        "Ý tưởng kinh doanh",
+        "Ứng dụng AI ngành ẩm thực",
+        "Bán kết toàn quốc"
+      ],
+      "tasks": [
+        {
+          "vi": "Nghiên cứu giải pháp kinh doanh ngành F&B kết hợp AI nhằm nâng cao trải nghiệm khách hàng và tối ưu hiệu suất ẩm thực.",
+          "en": "Formulated AI-integrated F&B business model enhancing customer personalization and culinary productivity."
+        },
+        {
+          "vi": "Xây dựng kế hoạch tài chính, phân tích điểm hòa vốn và dự báo doanh thu cho mô hình The Culinary AI.",
+          "en": "Constructed financial statements, break-even projections, and unit economics."
+        },
+        {
+          "vi": "Đại diện đội thi thuyết trình và bảo vệ ý tưởng kinh doanh trước hội đồng chuyên môn cấp Tập đoàn FPT.",
+          "en": "Represented team in pitching and defensing business viability before corporate leadership."
+        }
+      ],
+      "result": {
+        "vi": "Đạt thành tích Vòng Bán kết Toàn quốc cuộc thi khởi nghiệp FPT Biz Talent 2025; củng cố tư duy quản trị tài chính, mô hình kinh doanh và tầm nhìn công nghệ phục vụ đời sống.",
+        "en": "Ranked among National Semi-finalists of FPT Biz Talent 2025, sharpening financial management, business structuring, and technology vision."
+      }
+    },
+    {
+      "id": 3,
+      "title": {
+        "vi": "Microsoft Office Specialist: Excel 2019 Associate",
+        "en": "Microsoft Office Specialist: Excel 2019 Associate"
+      },
+      "award": {
+        "vi": "Chứng chỉ Chuẩn Quốc tế Microsoft Certified",
+        "en": "Microsoft Certified International Credential"
+      },
+      "organization": {
+        "vi": "Microsoft & Certiport",
+        "en": "Microsoft & Certiport"
+      },
+      "orgIcon": "fa-brands fa-microsoft",
+      "timeLocation": {
+        "vi": "20/04/2025",
+        "en": "20/04/2025"
+      },
+      "badgeType": {
+        "vi": "Đã xác thực Certiport",
+        "en": "Certiport Verified"
+      },
+      "badgeClass": "badge-ms",
+      "badgeStyle": "background: linear-gradient(135deg, #0056b3 0%, #0369a1 100%);",
+      "badgeIcon": "fa-solid fa-circle-check",
+      "mainImage": "certificate-mos-excel.jpg",
+      "downloadName": "ChungChi_MOS_Excel_2019_DoMinhTri.jpg",
+      "externalUrl": "https://verify.certiport.com",
+      "externalTitle": "Cổng xác thực quốc tế Certiport (Mã: 2NPb-XM8H)",
+      "externalIcon": "fa-solid fa-square-check",
+      "externalText": "Xác thực Certiport",
+      "description": {
+        "vi": "Chứng chỉ quốc tế do Microsoft và tổ chức khảo thí Certiport cấp, xác nhận trình độ chuyên sâu trong việc xây dựng mô hình dữ liệu, phân tích số liệu tài chính & marketing, tự động hóa tính toán và trực quan hóa báo cáo.",
+        "en": "International certification issued by Microsoft and Certiport, validating expertise in data modeling, marketing/financial analysis, formula automation, and dynamic reporting."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận chứng chỉ",
+            "en": "Candidate Name"
+          },
+          "val": "Do Minh Tri (Đỗ Minh Trí)"
+        },
+        {
+          "label": {
+            "vi": "Mã định danh học viên",
+            "en": "Candidate ID"
+          },
+          "val": "052208008929"
+        },
+        {
+          "label": {
+            "vi": "Ngày cấp chứng nhận",
+            "en": "Issue Date"
+          },
+          "val": "20 / 04 / 2025"
+        },
+        {
+          "label": {
+            "vi": "Mã xác thực Certiport",
+            "en": "Certiport Verification Code"
+          },
+          "val": "2NPb-XM8H",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "MOS Excel 2019",
+        "Xử lý & Phân tích Dữ liệu",
+        "Báo cáo KPI Marketing",
+        "Chuẩn quốc tế"
+      ],
+      "tasks": [
+        {
+          "vi": "Thành thạo cấu trúc dữ liệu, các hàm nâng cao (VLOOKUP, XLOOKUP, INDEX/MATCH, hàm logic & thống kê).",
+          "en": "Mastered advanced data structures and formulas (VLOOKUP, XLOOKUP, INDEX/MATCH, logic & stats)."
+        },
+        {
+          "vi": "Xây dựng Dashboard động, báo cáo phân tích số liệu kinh doanh chuyên nghiệp bằng PivotTable & Slicer trực quan.",
+          "en": "Constructed dynamic dashboards and KPI reports utilizing PivotTables and interactive Slicers."
+        },
+        {
+          "vi": "Tự động hóa tác vụ tính toán, xử lý làm sạch dữ liệu lớn và kiểm soát tính toàn vẹn của bảng tính.",
+          "en": "Automated data hygiene workflows and maintained spreadsheet data integrity."
+        }
+      ],
+      "result": {
+        "vi": "Sở hữu chứng chỉ quốc tế trọn đời có giá trị toàn cầu từ Microsoft; chứng minh năng lực tư duy dữ liệu sắc bén, sẵn sàng đảm nhiệm các vị trí phân tích số liệu và Marketing chuyên sâu.",
+        "en": "Earned lifetime globally recognized Microsoft credential; proven data processing and analytical competencies ready for business analysis roles."
+      }
+    },
+    {
+      "id": 4,
+      "title": {
+        "vi": "Sinh viên có thành tích học tập xuất sắc — Học kỳ Spring 2025",
+        "en": "Student of Academic Excellence — Spring 2025 Semester"
+      },
+      "award": {
+        "vi": "Khen thưởng Sinh viên Xuất sắc",
+        "en": "Academic Commendation of Excellence"
+      },
+      "organization": {
+        "vi": "FPT Polyschool — Cơ sở Bình Định",
+        "en": "FPT Polyschool — Binh Dinh Campus"
+      },
+      "orgIcon": "fa-solid fa-graduation-cap",
+      "timeLocation": {
+        "vi": "Học kỳ Spring 2025 • Bình Định",
+        "en": "Spring Semester 2025 • Binh Dinh"
+      },
+      "badgeType": {
+        "vi": "Xuất sắc • Spring 2025",
+        "en": "Excellence • Spring 2025"
+      },
+      "badgeClass": "badge-academic",
+      "badgeStyle": "background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);",
+      "badgeIcon": "fa-solid fa-graduation-cap",
+      "mainImage": "cert-sv-xuat-sac-2025.jpg",
+      "downloadName": "GiayKhen_SinhVienXuatSac_Spring2025_DoMinhTri.jpg",
+      "externalUrl": "https://fpt.edu.vn",
+      "externalTitle": "FPT Polyschool — Khối Giáo dục FPT",
+      "externalIcon": "fa-solid fa-graduation-cap",
+      "externalText": "FPT Polyschool",
+      "description": {
+        "vi": "Được Giám đốc cơ sở Bình Định (FPT Polyschool) vinh danh nhờ thành tích học tập xuất sắc trong học kỳ Spring 2025, khẳng định tinh thần kỷ luật và tư duy học tập chủ động.",
+        "en": "Commended by the Campus Director of FPT Polyschool for outstanding academic performance during Spring 2025, demonstrating discipline and proactive self-learning."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận khen thưởng",
+            "en": "Awardee"
+          },
+          "val": "Đỗ Minh Trí (Do Minh Tri)"
+        },
+        {
+          "label": {
+            "vi": "Đơn vị cấp quyết định",
+            "en": "Issuing Authority"
+          },
+          "val": "FPT Polyschool — Cơ sở Bình Định"
+        },
+        {
+          "label": {
+            "vi": "Thời gian vinh danh",
+            "en": "Commendation Period"
+          },
+          "val": "Học kỳ Spring 2025"
+        },
+        {
+          "label": {
+            "vi": "Danh hiệu khen thưởng",
+            "en": "Academic Honor"
+          },
+          "val": "Sinh viên Xuất sắc (Academic Excellence)",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "Thành tích học tập",
+        "Sinh viên xuất sắc",
+        "FPT Polyschool",
+        "Spring 2025",
+        "Kỷ luật & Tự học"
+      ],
+      "tasks": [
+        {
+          "vi": "Hoàn thành xuất sắc toàn bộ khối lượng kiến thức và môn học chuyên ngành trong học kỳ Spring 2025 với kết quả học tập vượt trội.",
+          "en": "Achieved outstanding marks across all core professional curriculum modules in Spring 2025."
+        },
+        {
+          "vi": "Chủ động nghiên cứu, vận dụng kiến thức lý thuyết vào các dự án môn học thực tế và tích cực dẫn dắt làm việc nhóm.",
+          "en": "Actively researched and bridged classroom theory into hands-on coursework projects."
+        },
+        {
+          "vi": "Duy trì tinh thần tự giác, chấp hành tốt nội quy học đường và đạt tiêu chuẩn khen thưởng của Ban Giám hiệu nhà trường.",
+          "en": "Maintained exemplary self-discipline and met all honor roll standards of the board."
+        }
+      ],
+      "result": {
+        "vi": "Được Giám đốc cơ sở Bình Định chính thức trao tặng giấy khen Sinh viên Xuất sắc, là minh chứng cho tinh thần kiên trì, thái độ học tập nghiêm túc và nền tảng chuyên môn vững vàng.",
+        "en": "Officially awarded Campus Commendation of Academic Excellence, demonstrating relentless dedication, rigorous work ethic, and solid academic foundation."
+      }
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "title": {
+        "vi": "BBE Pegasus Chapter — Ban Lãnh Đạo Nhiệm Kỳ I",
+        "en": "BBE Pegasus Chapter — Executive Board Term I"
+      },
+      "role": {
+        "vi": "Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I",
+        "en": "Vice President — Executive Board (Term I)"
+      },
+      "organization": "BBE Pegasus Chapter",
+      "orgIcon": "fa-solid fa-shield-halved",
+      "eventOrg": {
+        "vi": "BBE Pegasus Chapter",
+        "en": "BBE Pegasus Chapter"
+      },
+      "timeLocation": {
+        "vi": "01/02/2026 – 30/09/2026",
+        "en": "01/02/2026 – 30/09/2026"
+      },
+      "badgeType": {
+        "vi": "Ban Lãnh đạo",
+        "en": "Executive Board"
+      },
+      "badgeClass": "badge-leader",
+      "badgeIcon": "fa-solid fa-crown",
+      "mainImage": "act-pegasus.jpg",
+      "description": {
+        "vi": "Thể hiện tinh thần trách nhiệm cao, điều phối đội ngũ và hoàn thành xuất sắc nhiệm vụ trong vai trò Phó Chủ tịch nhiệm kỳ I.",
+        "en": "Demonstrated strong leadership, operational coordination, and successfully fulfilled executive responsibilities as Vice President during Term I."
+      },
+      "subPlaceholder1": {
+        "vi": "Ảnh hậu trường sinh hoạt & họp điều hành",
+        "en": "Operational meetings & internal activities"
+      },
+      "subPlaceholder2": {
+        "vi": "Ảnh tổ chức workshop & chia sẻ kỹ năng",
+        "en": "Workshops & skill-sharing sessions"
+      },
+      "tasks": [
+        {
+          "vi": "Điều phối thành viên, phân công công việc cụ thể và giám sát tiến độ hoạt động trong ban lãnh đạo.",
+          "en": "Coordinated team members, delegated operational duties, and supervised milestone delivery."
+        },
+        {
+          "vi": "Xây dựng quy trình sinh hoạt định kỳ, chuẩn hóa tài liệu và duy trì kỷ luật sinh hoạt chuyên nghiệp.",
+          "en": "Standardized chapter operations, meeting protocols, and maintained disciplined execution."
+        },
+        {
+          "vi": "Chủ trì tổ chức các buổi chia sẻ kỹ năng thực chiến và các hoạt động kết nối tinh thần đồng đội.",
+          "en": "Chaired practical skill-sharing workshops and facilitated team bonding experiences."
+        }
+      ],
+      "result": {
+        "vi": "Duy trì độ gắn kết đội ngũ cao trong suốt nhiệm kỳ I, củng cố năng lực điều hành và xây dựng văn hóa đội nhóm vững mạnh.",
+        "en": "Maintained high team cohesion throughout Term I, honing executive leadership and strengthening organizational culture."
+      }
+    },
+    {
+      "id": 2,
+      "title": {
+        "vi": "Lễ Tốt Nghiệp BTEC FPT 2026",
+        "en": "BTEC FPT Graduation Ceremony 2026"
+      },
+      "role": {
+        "vi": "Thành viên Ban Tổ chức (Organizing Committee)",
+        "en": "Organizing Committee Member"
+      },
+      "organization": "BTEC FPT",
+      "orgIcon": "fa-solid fa-graduation-cap",
+      "eventOrg": {
+        "vi": "Lễ Tốt nghiệp BTEC FPT 2026",
+        "en": "BTEC FPT Graduation Ceremony 2026"
+      },
+      "timeLocation": {
+        "vi": "25/10/2026 tại Đà Nẵng",
+        "en": "25/10/2026 in Danang City"
+      },
+      "badgeType": {
+        "vi": "Ban Tổ chức Sự kiện",
+        "en": "Event Organizing Committee"
+      },
+      "badgeClass": "badge-event",
+      "badgeIcon": "fa-solid fa-star",
+      "mainImage": "act-graduation.jpg",
+      "description": {
+        "vi": "Trực tiếp đóng góp và phối hợp vận hành sự kiện trọng đại cấp trường, đảm bảo trải nghiệm chuyên nghiệp cho sinh viên và khách mời.",
+        "en": "Directly contributed to orchestrating a high-profile commencement ceremony, ensuring a seamless experience for graduates, VIPs, and families."
+      },
+      "subPlaceholder1": {
+        "vi": "Ảnh hậu trường setup & vận hành sân khấu",
+        "en": "Stage setup & technical rehearsals"
+      },
+      "subPlaceholder2": {
+        "vi": "Ảnh điều phối tân cử nhân & đón tiếp khách mời",
+        "en": "VIP reception & graduate coordination"
+      },
+      "tasks": [
+        {
+          "vi": "Phối hợp chuẩn bị công tác hậu cần, kỹ thuật âm thanh, ánh sáng và kiểm soát bố cục sân khấu lễ tốt nghiệp.",
+          "en": "Collaborated on logistics, AV technical setups, and stage blocking control."
+        },
+        {
+          "vi": "Trực tiếp hướng dẫn, điều phối hàng ngũ khách mời danh dự, phụ huynh và tân cử nhân trong suốt buổi lễ.",
+          "en": "Guided and escorted VIPs, faculty, parents, and new graduates throughout the ceremony flow."
+        },
+        {
+          "vi": "Xử lý nhanh nhạy và kịp thời các tình huống phát sinh tại khu vực sân khấu chính và luồng di chuyển.",
+          "en": "Promptly resolved live contingencies on the main stage and guest circulation corridors."
+        }
+      ],
+      "result": {
+        "vi": "Sự kiện diễn ra suôn sẻ, chỉn chu và để lại ấn tượng tốt đẹp trong lòng sinh viên cùng khách mời; rèn luyện khả năng ứng biến dưới áp lực cao.",
+        "en": "The ceremony concluded smoothly and received praise from leadership; cultivated agility and composure under high-pressure event execution."
+      }
+    },
+    {
+      "id": 3,
+      "title": {
+        "vi": "Dự Án Thiện Nguyện \"Hành Trình Yêu Thương - Số Thứ 4\"",
+        "en": "Community Charity Project \"Love Journey - Vol. 4\""
+      },
+      "role": {
+        "vi": "Tình nguyện viên đóng góp tích cực",
+        "en": "Active Volunteer Contributor"
+      },
+      "organization": "BTEC FPT & Fusion Club",
+      "orgIcon": "fa-solid fa-heart",
+      "eventOrg": {
+        "vi": "Dự án thiện nguyện \"Hành Trình Yêu Thương - Số thứ 4\"",
+        "en": "Love Journey Vol. 4 Project"
+      },
+      "timeLocation": {
+        "vi": "Ngũ Hành Sơn, Đà Nẵng",
+        "en": "Ngu Hanh Son, Danang City"
+      },
+      "badgeType": {
+        "vi": "Thiện nguyện cộng đồng",
+        "en": "Community Volunteering"
+      },
+      "badgeClass": "badge-volunteer",
+      "badgeIcon": "fa-solid fa-hand-holding-heart",
+      "mainImage": "act-thien-nguyen.jpg",
+      "description": {
+        "vi": "Tham gia tổ chức và lan tỏa giá trị tích cực tại Mái Ấm Tình Thương (Ngũ Hành Sơn, Đà Nẵng).",
+        "en": "Co-organized and delivered compassionate support and meaningful donations to children at Mai Am Tinh Thuong Shelter in Danang."
+      },
+      "subPlaceholder1": {
+        "vi": "Ảnh chuẩn bị & phân loại quà tặng thiện nguyện",
+        "en": "Donation sorting & packaging"
+      },
+      "subPlaceholder2": {
+        "vi": "Ảnh sinh hoạt, giao lưu trò chơi cùng các em nhỏ",
+        "en": "Interactive games & activities with children"
+      },
+      "tasks": [
+        {
+          "vi": "Lên kế hoạch vận động, tiếp nhận và phân loại chu đáo các phần quà tặng gửi tới Mái Ấm Tình Thương.",
+          "en": "Mobilized, received, and systematically packaged essential donation packages."
+        },
+        {
+          "vi": "Tổ chức hoạt động giao lưu văn nghệ, trò chơi tập thể sôi nổi, an toàn và kết nối cùng các em nhỏ.",
+          "en": "Facilitated engaging, safe group games and artistic performances with children."
+        },
+        {
+          "vi": "Trực tiếp kết nối, lắng nghe, chăm sóc các em nhỏ tại Mái Ấm Tình Thương và hỗ trợ công tác hậu cần.",
+          "en": "Connected with children personally, provided companionship, and supported site logistics."
+        }
+      ],
+      "result": {
+        "vi": "Lan tỏa tinh thần sẻ chia và gắn kết cộng đồng sinh viên; nuôi dưỡng lòng trắc ẩn và tinh thần trách nhiệm xã hội.",
+        "en": "Fostered empathy, community connection, and active civic responsibility among student volunteers."
+      }
+    }
+  ]
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   // Mark JavaScript as enabled
@@ -18,6 +1010,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Language Switcher (i18n) first
   initLanguageSwitcher();
+
+  // Load dynamic portfolio data from data.json
+  initPortfolioData();
 
   // Initialize all interactive modules
   initScrollProgress();
@@ -569,7 +1564,12 @@ function applyLanguage(lang) {
     }
   });
 
-  // 6. Live re-render currently active modal if open
+  // 6. Re-render dynamic sections with new language
+  if (portfolioData) {
+    renderAllDynamicSections();
+  }
+
+  // 7. Live re-render currently active modal if open
   const projectModal = document.getElementById('project-modal');
   if (projectModal && projectModal.classList.contains('active') && currentOpenProjectId) {
     openProjectModal(currentOpenProjectId);
@@ -584,6 +1584,262 @@ function applyLanguage(lang) {
   if (certModal && certModal.classList.contains('active') && currentOpenCertId) {
     openCertificateModal(currentOpenCertId);
   }
+}
+
+/* -------------------------------------------------------------------
+   2.1. LOAD DYNAMIC DATA FROM data.json
+------------------------------------------------------------------- */
+async function initPortfolioData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('Status: ' + res.status);
+    portfolioData = await res.json();
+    console.log('✅ Loaded data.json successfully.');
+  } catch (err) {
+    console.warn('⚠️ Could not load data.json dynamically (possibly local file:// protocol), using fallback data.', err);
+    portfolioData = DEFAULT_PORTFOLIO_DATA;
+  }
+  renderAllDynamicSections();
+}
+
+function renderAllDynamicSections() {
+  if (!portfolioData) return;
+  renderHeroDynamic();
+  renderProjectsGrid();
+  renderCertificatesGrid();
+  renderActivitiesGrid();
+}
+
+function renderHeroDynamic() {
+  if (!portfolioData || !portfolioData.profile) return;
+  const p = portfolioData.profile;
+
+  // Name
+  const nameEl = document.querySelector('.hero-title .text-highlight');
+  if (nameEl && p.name) {
+    nameEl.textContent = p.name[currentLang] || p.name.vi;
+  }
+
+  // Alias
+  const aliasEl = document.querySelector('.hero-title .hero-alias');
+  if (aliasEl && p.alias) {
+    aliasEl.textContent = p.alias;
+  }
+
+  // Avatar
+  const avatarEl = document.getElementById('user-avatar');
+  if (avatarEl && p.avatar) {
+    avatarEl.src = p.avatar;
+  }
+
+  // Motto
+  const mottoEl = document.querySelector('.hero-motto [data-i18n="hero.motto"]');
+  if (mottoEl && p.motto) {
+    mottoEl.textContent = p.motto[currentLang] || p.motto.vi;
+  }
+
+  // Roles
+  const rolesContainer = document.querySelector('.role-badge-container');
+  if (rolesContainer && p.roles && p.roles.length > 0) {
+    rolesContainer.innerHTML = p.roles.map((r, idx) => `
+      <span class="role-tag"><i class="${r.icon || 'fa-solid fa-check'}"></i> ${r.text[currentLang] || r.text.vi}</span>
+      ${idx < p.roles.length - 1 ? '<span class="role-separator">•</span>' : ''}
+    `).join('');
+  }
+
+  // Bio
+  const descEl = document.querySelector('.hero-description');
+  if (descEl && p.bio) {
+    descEl.textContent = p.bio[currentLang] || p.bio.vi;
+  }
+
+  // Mission Tag & Text
+  const missionTagEl = document.querySelector('.hero-mission-quote .mission-tag [data-i18n="hero.mission_tag"]');
+  if (missionTagEl && p.mission && p.mission.tag) {
+    missionTagEl.textContent = p.mission.tag[currentLang] || p.mission.tag.vi;
+  }
+  const missionTextEl = document.querySelector('.hero-mission-quote .mission-text');
+  if (missionTextEl && p.mission && p.mission.text) {
+    missionTextEl.textContent = p.mission.text[currentLang] || p.mission.text.vi;
+  }
+}
+
+function renderProjectsGrid() {
+  const container = document.getElementById('projects-grid');
+  if (!container || !portfolioData || !portfolioData.projects) return;
+
+  const isEn = (currentLang === 'en');
+  const quickViewText = isEn ? 'Quick View' : 'Xem nhanh';
+  const detailBtnText = isEn ? 'View Project Details' : 'Xem chi tiết dự án';
+
+  container.innerHTML = portfolioData.projects.map((p, idx) => {
+    const title = p.title[currentLang] || p.title.vi;
+    const badge = p.badge[currentLang] || p.badge.vi;
+    const role = p.role[currentLang] || p.role.vi;
+    const excerpt = p.excerpt[currentLang] || p.excerpt.vi;
+    const platformText = p.platform ? (typeof p.platform === 'object' ? p.platform.text : p.platform) : '';
+    const platformIcon = (p.platform && p.platform.icon) || 'fa-solid fa-layer-group';
+    const delayClass = idx > 0 ? `delay-${idx}` : '';
+
+    const highlightsHtml = (p.highlights || []).map(h => {
+      const hText = typeof h === 'object' ? (h[currentLang] || h.vi) : h;
+      return `<div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span>${hText}</span></div>`;
+    }).join('');
+
+    const tagsHtml = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+
+    return `
+      <article class="project-card reveal-up ${delayClass}" data-project-id="${p.id}">
+        <div class="project-thumb-container">
+          <div class="project-thumb-placeholder ${p.thumbClass || 'thumb-gradient-' + ((idx % 3) + 1)}">
+            <i class="${p.watermarkIcon || p.icon || 'fa-solid fa-briefcase'} project-watermark"></i>
+            <div class="thumb-badge">${badge}</div>
+            <div class="thumb-actions">
+              <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(${p.id})">
+                <i class="fa-solid fa-magnifying-glass-plus"></i> <span>${quickViewText}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="role-badge"><i class="fa-solid fa-crown"></i> <span>${role}</span></span>
+            <span class="platform-badge"><i class="${platformIcon}"></i> ${platformText}</span>
+          </div>
+
+          <h3 class="project-title">${title}</h3>
+
+          <p class="project-excerpt">${excerpt}</p>
+
+          <div class="project-highlights">
+            ${highlightsHtml}
+          </div>
+
+          <div class="project-tech-tags">
+            ${tagsHtml}
+          </div>
+
+          <div class="project-footer">
+            <button class="btn btn-outline btn-sm w-100" onclick="openProjectModal(${p.id})">
+              <span>${detailBtnText}</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderCertificatesGrid() {
+  const container = document.getElementById('certificates-grid');
+  if (!container || !portfolioData || !portfolioData.certificates) return;
+
+  const isEn = (currentLang === 'en');
+  const viewDetailText = isEn ? 'View Details' : 'Xem chi tiết';
+  const viewPhotoText = isEn ? 'View Image' : 'Xem ảnh';
+  const zoomTooltip = isEn ? 'Click to enlarge and view verified certificate' : 'Bấm vào để phóng to xem rõ chứng nhận';
+  const zoomBadge = isEn ? 'Enlarge Certificate' : 'Phóng to chứng nhận';
+
+  container.innerHTML = portfolioData.certificates.map(c => {
+    const title = c.title[currentLang] || c.title.vi;
+    const badgeType = c.badgeType[currentLang] || c.badgeType.vi;
+    const org = c.organization[currentLang] || c.organization.vi;
+    const timeLoc = c.timeLocation[currentLang] || c.timeLocation.vi;
+    const safeTitle = title.replace(/'/g, "\\'");
+
+    return `
+      <div class="activity-card reveal-up">
+        <div class="act-img-wrapper"
+          onclick="openLightbox('${c.mainImage}', '${safeTitle}')"
+          title="${zoomTooltip}">
+          <img src="${c.mainImage}" alt="${title}" class="act-img" loading="lazy">
+          <div class="act-img-overlay">
+            <span class="act-zoom-btn">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+              <span>${zoomBadge}</span>
+            </span>
+          </div>
+          <span class="act-floating-badge ${c.badgeClass || 'badge-trophy'}" style="${c.badgeStyle || ''}">
+            <i class="${c.badgeIcon || 'fa-solid fa-award'}"></i> <span>${badgeType}</span>
+          </span>
+        </div>
+        <div class="act-body">
+          <div class="act-badge-row">
+            <span class="act-org-tag"><i class="${c.orgIcon || 'fa-solid fa-building'}"></i> ${org}</span>
+            <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> ${timeLoc}</span>
+          </div>
+          <h3 class="act-role-title">${title}</h3>
+          <div class="act-card-action">
+            <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openCertificateModal(${c.id})">
+              <span>${viewDetailText}</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </button>
+            <button type="button" class="btn btn-outline btn-sm act-btn-proof"
+              onclick="openLightbox('${c.mainImage}', '${safeTitle}')"
+              title="${zoomBadge}">
+              <i class="fa-solid fa-expand"></i> <span>${viewPhotoText}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderActivitiesGrid() {
+  const container = document.getElementById('activities-grid');
+  if (!container || !portfolioData || !portfolioData.activities) return;
+
+  const isEn = (currentLang === 'en');
+  const viewDetailText = isEn ? 'View Details' : 'Xem chi tiết';
+  const viewPhotoText = isEn ? 'View Image' : 'Xem ảnh';
+  const zoomTooltip = isEn ? 'Click to enlarge and view proof' : 'Bấm vào để phóng to xem rõ';
+  const zoomPhoto = isEn ? 'Enlarge Photo' : 'Phóng to ảnh';
+
+  container.innerHTML = portfolioData.activities.map(a => {
+    const title = a.title[currentLang] || a.title.vi;
+    const badgeType = a.badgeType[currentLang] || a.badgeType.vi;
+    const org = typeof a.organization === 'object' ? (a.organization[currentLang] || a.organization.vi) : a.organization;
+    const timeLoc = a.timeLocation[currentLang] || a.timeLocation.vi;
+    const safeTitle = title.replace(/'/g, "\\'");
+
+    return `
+      <div class="activity-card reveal-up">
+        <div class="act-img-wrapper"
+          onclick="openLightbox('${a.mainImage}', '${safeTitle}')"
+          title="${zoomTooltip}">
+          <img src="${a.mainImage}" alt="${title}" class="act-img" loading="lazy">
+          <div class="act-img-overlay">
+            <span class="act-zoom-btn">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+              <span>${zoomPhoto}</span>
+            </span>
+          </div>
+          <span class="act-floating-badge ${a.badgeClass || 'badge-leader'}">
+            <i class="${a.badgeIcon || 'fa-solid fa-crown'}"></i> <span>${badgeType}</span>
+          </span>
+        </div>
+        <div class="act-body">
+          <div class="act-badge-row">
+            <span class="act-org-tag"><i class="${a.orgIcon || 'fa-solid fa-users'}"></i> ${org}</span>
+            <span class="act-term-tag"><i class="fa-regular fa-calendar-check"></i> ${timeLoc}</span>
+          </div>
+          <h3 class="act-role-title">${title}</h3>
+          <div class="act-card-action">
+            <button type="button" class="btn btn-primary btn-sm act-btn-detail" onclick="openActivityModal(${a.id})">
+              <span>${viewDetailText}</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </button>
+            <button type="button" class="btn btn-outline btn-sm act-btn-proof"
+              onclick="openLightbox('${a.mainImage}', '${safeTitle}')"
+              title="${zoomPhoto}">
+              <i class="fa-solid fa-expand"></i> <span>${viewPhotoText}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 /* -------------------------------------------------------------------
@@ -617,7 +1873,7 @@ function initStickyHeader() {
   };
 
   window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-  handleHeaderScroll(); // Run on initial load
+  handleHeaderScroll();
 }
 
 /* -------------------------------------------------------------------
@@ -635,7 +1891,7 @@ function initMobileMenu() {
   const openDrawer = () => {
     drawer.classList.add('active');
     backdrop.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
   };
 
   const closeDrawer = () => {
@@ -648,14 +1904,12 @@ function initMobileMenu() {
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   backdrop.addEventListener('click', closeDrawer);
 
-  // Close when clicking any menu link
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
       closeDrawer();
     });
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('active')) {
       closeDrawer();
@@ -674,7 +1928,7 @@ function initScrollSpy() {
   if (sections.length === 0) return;
 
   const onScroll = () => {
-    const scrollPos = window.scrollY + 120; // Offset for sticky navbar
+    const scrollPos = window.scrollY + 120;
 
     sections.forEach(section => {
       const top = section.offsetTop;
@@ -682,7 +1936,6 @@ function initScrollSpy() {
       const id = section.getAttribute('id');
 
       if (scrollPos >= top && scrollPos < top + height) {
-        // Desktop nav update
         navLinks.forEach(link => {
           link.classList.remove('active');
           if (link.getAttribute('href') === `#${id}`) {
@@ -690,7 +1943,6 @@ function initScrollSpy() {
           }
         });
 
-        // Mobile drawer nav update
         mobileLinks.forEach(link => {
           link.classList.remove('active');
           if (link.getAttribute('href') === `#${id}`) {
@@ -727,7 +1979,6 @@ function initScrollAnimations() {
 
     animElements.forEach(el => observer.observe(el));
   } else {
-    // Fallback if IntersectionObserver not supported
     animElements.forEach(el => el.classList.add('active'));
   }
 }
@@ -756,197 +2007,12 @@ function initBackToTop() {
 }
 
 /* -------------------------------------------------------------------
-   9. PROJECT MODAL POPUP & BILINGUAL DATA
+   9. PROJECT MODAL POPUP & DYNAMIC DATA
 ------------------------------------------------------------------- */
-const projectDetailsData = {
-  vi: {
-    1: {
-      id: 1,
-      title: "Dự Án Content Marketing & Video Ngắn (Reels/TikTok)",
-      category: "Video Marketing & Social Viral",
-      role: "Trưởng nhóm (Team Leader) & Biên tập Video",
-      duration: "2 tháng (Học kỳ đồ án thực hành)",
-      teamSize: "4 thành viên",
-      tools: ["CapCut Pro", "Adobe Premiere Pro", "TikTok Creator Studio", "Canva Pro", "Smartphone 4K & Gimbal"],
-      bannerGradient: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
-      icon: "fa-brands fa-tiktok",
-      badgeProject: "Đồ Án Thực Tế | FPT Digital Marketing",
-      overview: "Dự án tập trung vào việc nghiên cứu hành vi tiêu thụ video ngắn của đối tượng khách hàng Gen Z và người trẻ tuổi, từ đó lên kế hoạch sản xuất chuỗi 15 video ngắn định dạng dọc (9:16) cho thương hiệu đồ uống / thời trang trẻ trung.",
-      objectives: [
-        "Xây dựng định vị hình ảnh thương hiệu năng động, gần gũi và hài hước trên nền tảng TikTok và Instagram Reels.",
-        "Thử nghiệm các cấu trúc kịch bản Hook 3s (Tò mò, Đặt câu hỏi, Trước/Sau, Phản ứng bất ngờ) để tối ưu tỷ lệ giữ chân người xem.",
-        "Đạt mục tiêu tối thiểu 50.000 lượt xem tự nhiên (organic views) và tỷ lệ tương tác (engagement rate) trên 8%."
-      ],
-      contributions: [
-        "Trực tiếp lên ý tưởng, viết kịch bản phân cảnh chi tiết (Storyboard) cho toàn bộ 15 video.",
-        "Phân công vai trò diễn xuất, chuẩn bị đạo cụ, góc quay và setup ánh sáng với gimbal.",
-        "Hậu kỳ cắt dựng, chỉnh màu sắc tươi sáng, chèn sound effects (SFX) và chọn nhạc nền thịnh hành (Trending BGM).",
-        "Theo dõi dữ liệu phân tích từ TikTok Analytics để tinh chỉnh thời gian đăng bài và hashtag."
-      ],
-      results: [
-        "Chiến dịch đạt hơn 120.000+ lượt xem tích lũy trên cả hai nền tảng.",
-        "Video viral nhất đạt 45.000 lượt xem với hơn 3.200 lượt thả tim và 180 lượt chia sẻ.",
-        "Được giảng viên bộ môn đánh giá Xuất sắc (Điểm 9.5/10) về chất lượng hình ảnh và thông điệp truyền tải."
-      ]
-    },
-    2: {
-      id: 2,
-      title: "Dự Án SEO & Nghiên Cứu Thị Trường Ngành Hàng",
-      category: "Search Engine Optimization & Market Research",
-      role: "Trưởng nhóm (Team Leader) & Phân tích Dữ liệu",
-      duration: "2.5 tháng",
-      teamSize: "5 thành viên",
-      tools: ["Google Search Console", "Google Analytics (GA4)", "Google Keyword Planner", "Ahrefs", "Microsoft Excel MOS"],
-      bannerGradient: "linear-gradient(135deg, #065f46 0%, #059669 50%, #0284c7 100%)",
-      icon: "fa-solid fa-chart-line",
-      badgeProject: "Đồ Án Thực Tế | FPT Digital Marketing",
-      overview: "Đồ án nghiên cứu thị trường toàn diện và triển khai chiến lược SEO Onpage & Content Hub cho một website thương mại điện tử chuyên cung cấp sản phẩm phong cách sống.",
-      objectives: [
-        "Thấu hiểu chân dung khách hàng mục tiêu (Buyer Persona) và hành trình tìm kiếm thông tin của người tiêu dùng.",
-        "Phân tích điểm mạnh, điểm yếu của 3 đối thủ cạnh tranh trực tiếp trên bảng xếp hạng Google tìm kiếm.",
-        "Xây dựng cấu trúc cây thư mục website (Site Architecture) và bộ từ khóa phủ rộng theo mô hình Topic Cluster."
-      ],
-      contributions: [
-        "Điều phối nhóm lọc bộ từ khóa hơn 150 keywords có lượng tìm kiếm cao và độ cạnh tranh (Keyword Difficulty) phù hợp.",
-        "Áp dụng chứng chỉ MOS Excel 2019 để phân loại dữ liệu từ khóa, tính toán Search Volume và tiềm năng chuyển đổi.",
-        "Viết bài mẫu chuẩn SEO (1.500+ từ) tối ưu Heading, Meta Description, Alt ảnh và Internal Link.",
-        "Đo lường các chỉ số CTR, thời gian trên trang và thứ hạng từ khóa qua Google Search Console."
-      ],
-      results: [
-        "15 từ khóa mục tiêu lọt Top 10 Google Search sau 6 tuần thử nghiệm index bài viết.",
-        "Tăng lượng Organic Clicks lên 250% so với giai đoạn thử nghiệm ban đầu.",
-        "Được hội đồng chấm đồ án chọn làm bài báo cáo mẫu cho sinh viên khóa sau."
-      ]
-    },
-    3: {
-      id: 3,
-      title: "Chiến Dịch Lập Kế Hoạch & Triển Khai Nội Dung Thương Hiệu",
-      category: "Integrated Marketing Campaign (IMC) & Branding",
-      role: "Trưởng nhóm (Team Leader) & Quản lý Chiến dịch",
-      duration: "3 tháng",
-      teamSize: "5 thành viên",
-      tools: ["Notion Project Board", "Canva Pro Brand Kit", "Meta Business Suite", "Google Docs / Sheets", "Trello"],
-      bannerGradient: "linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #f43f5e 100%)",
-      icon: "fa-solid fa-bullseye",
-      badgeProject: "Đồ Án Thực Tế | FPT Digital Marketing",
-      overview: "Lập kế hoạch truyền thông tích hợp (IMC Plan) cho chiến dịch ra mắt bộ sưu tập theo mùa. Dự án bao gồm việc định hình thông điệp thương hiệu cốt lõi (Key Message), thiết kế bộ nhận diện visual và triển khai lịch nội dung đa kênh xuyên suốt 30 ngày.",
-      objectives: [
-        "Định hình phong cách thương hiệu nhất quán (Brand Identity Guidelines): Bảng màu, typography và văn phong (Tone & Voice).",
-        "Thiết lập ma trận nội dung theo quy tắc 70-20-10: 70% nội dung giá trị/chia sẻ, 20% nội dung tương tác cảm xúc, 10% bán hàng trực tiếp.",
-        "Đảm bảo tiến độ đăng bài mỗi ngày không bị trễ hạn thông qua quy trình kiểm duyệt nghiêm ngặt."
-      ],
-      contributions: [
-        "Xây dựng bảng kế hoạch tổng thể trên Notion với lịch biểu chi tiết từng ngày, từng người phụ trách (RACI Model).",
-        "Thiết kế hơn 20 mẫu poster, carousel nhiều ảnh trên Canva đảm bảo chuẩn nhận diện thương hiệu.",
-        "Tổ chức các buổi họp nhóm hàng tuần để giải quyết khó khăn, truyền động lực và duy trì tinh thần đoàn kết.",
-        "Đánh giá và tổng kết hiệu quả chiến dịch bằng báo cáo chi tiết kèm bài học kinh nghiệm rút ra."
-      ],
-      results: [
-        "Chiến dịch hoàn thành 100% KPI về số lượng bài viết và ấn phẩm truyền thông đúng thời hạn.",
-        "Tương tác trên Fanpage tăng 180%, tỷ lệ phản hồi tin nhắn khách hàng đạt mức xuất sắc.",
-        "Góp phần quan trọng giúp tôi hoàn thành đồ án tốt nghiệp loại Xuất Sắc tại FPT Polyschool."
-      ]
-    }
-  },
-
-  en: {
-    1: {
-      id: 1,
-      title: "Content Marketing & Short-form Video Project (Reels/TikTok)",
-      category: "Video Marketing & Social Viral",
-      role: "Team Leader & Video Producer",
-      duration: "2 months (Coursework Project)",
-      teamSize: "4 members",
-      tools: ["CapCut Pro", "Adobe Premiere Pro", "TikTok Creator Studio", "Canva Pro", "Smartphone 4K & Gimbal"],
-      bannerGradient: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
-      icon: "fa-brands fa-tiktok",
-      badgeProject: "Academic Project | FPT Digital Marketing",
-      overview: "Researched short-video consumption patterns of Gen Z audiences and produced a 15-video vertical campaign (9:16) for modern lifestyle brands.",
-      objectives: [
-        "Build a vibrant, relatable, and engaging brand persona on TikTok and Instagram Reels.",
-        "A/B test 3-second hook variations (Curiosity, Questions, Before/After, Surprises) to maximize viewer retention.",
-        "Achieve over 50,000+ organic views and an engagement rate exceeding 8%."
-      ],
-      contributions: [
-        "Conceptualized and wrote detailed storyboards and scripts for all 15 videos.",
-        "Managed talent staging, props, cinematography angles, and lighting with gimbal setups.",
-        "Edited post-production, color grading, sound design (SFX), and selected trending soundtracks.",
-        "Monitored TikTok Analytics to optimize posting schedule and hashtag strategies."
-      ],
-      results: [
-        "Campaign generated over 120,000+ cumulative views across both platforms.",
-        "Top viral video achieved 45,000+ views, 3,200+ likes, and 180+ shares.",
-        "Awarded an Excellent grade (9.5/10) by faculty for visual execution and narrative storytelling."
-      ]
-    },
-    2: {
-      id: 2,
-      title: "SEO & Industry Market Research Project",
-      category: "Search Engine Optimization & Market Research",
-      role: "Team Leader & Data Analyst",
-      duration: "2.5 months",
-      teamSize: "5 members",
-      tools: ["Google Search Console", "Google Analytics (GA4)", "Google Keyword Planner", "Ahrefs", "Microsoft Excel MOS"],
-      bannerGradient: "linear-gradient(135deg, #065f46 0%, #059669 50%, #0284c7 100%)",
-      icon: "fa-solid fa-chart-line",
-      badgeProject: "Academic Project | FPT Digital Marketing",
-      overview: "Conducted comprehensive market research and executed Onpage SEO & Content Hub strategy for an e-commerce lifestyle brand.",
-      objectives: [
-        "Identify Buyer Personas and search intent journeys across key stages.",
-        "Analyze strengths and weaknesses of top 3 direct organic search competitors on Google.",
-        "Develop website information architecture and extensive keyword mapping via Topic Clusters."
-      ],
-      contributions: [
-        "Led team in filtering 150+ high-volume keywords with balanced Keyword Difficulty.",
-        "Leveraged MOS Excel 2019 data processing to segment search volume and conversion potential.",
-        "Authored SEO-standard pillar articles (1,500+ words) optimizing Headings, Meta, Alt, and Internal Links.",
-        "Tracked CTR, dwell time, and keyword rankings via Google Search Console."
-      ],
-      results: [
-        "15 target keywords reached Google Top 10 within 6 weeks post-indexing.",
-        "Increased organic clicks by 250% compared to baseline benchmark.",
-        "Selected by the academic evaluation board as a showcase report for future cohorts."
-      ]
-    },
-    3: {
-      id: 3,
-      title: "Integrated Brand Content Planning & Execution Campaign",
-      category: "Integrated Marketing Campaign (IMC) & Branding",
-      role: "Team Leader & Campaign Manager",
-      duration: "3 months",
-      teamSize: "5 members",
-      tools: ["Notion Project Board", "Canva Pro Brand Kit", "Meta Business Suite", "Google Docs / Sheets", "Trello"],
-      bannerGradient: "linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #f43f5e 100%)",
-      icon: "fa-solid fa-bullseye",
-      badgeProject: "Academic Project | FPT Digital Marketing",
-      overview: "Formulated an Integrated Marketing Communications (IMC) plan for a seasonal collection launch, defining Key Message, visual brand identity, and a 30-day multichannel content calendar.",
-      objectives: [
-        "Define brand style guidelines: color palette, typography, and Brand Tone & Voice.",
-        "Deploy 70-20-10 content matrix: 70% value-driven, 20% emotional engagement, 10% direct conversion.",
-        "Ensure daily publication schedule without bottlenecks through structured review workflows."
-      ],
-      contributions: [
-        "Structured master planning board on Notion with daily schedules and RACI model assignments.",
-        "Designed 20+ social media banners and carousel templates on Canva aligned with brand guidelines.",
-        "Facilitated weekly team meetings to unblock issues, motivate members, and maintain team cohesion.",
-        "Conducted end-of-campaign post-mortem analysis and performance reporting."
-      ],
-      results: [
-        "Achieved 100% KPI completion across all creative assets and editorial posts on schedule.",
-        "Page engagement surged by 180% with outstanding customer message response rates.",
-        "Directly contributed to earning a High Distinction graduation grade at FPT Polyschool."
-      ]
-    }
-  }
-};
-
-/**
- * Open Project Details Modal
- */
 function openProjectModal(projectId) {
   currentOpenProjectId = projectId;
-  const langData = projectDetailsData[currentLang] || projectDetailsData['vi'];
-  const data = langData[projectId];
+  if (!portfolioData || !portfolioData.projects) return;
+  const data = portfolioData.projects.find(p => p.id == projectId);
   if (!data) return;
 
   const modal = document.getElementById('project-modal');
@@ -956,51 +2022,62 @@ function openProjectModal(projectId) {
   if (!modal || !backdrop || !container) return;
 
   const isEn = (currentLang === 'en');
+  const title = (data.title && (data.title[currentLang] || data.title.vi)) || '';
+  const role = (data.roleDetail && (data.roleDetail[currentLang] || data.roleDetail.vi)) || (data.role && (data.role[currentLang] || data.role.vi)) || '';
+  const category = (data.category && (data.category[currentLang] || data.category.vi)) || '';
+  const badgeProject = (data.badgeProject && (data.badgeProject[currentLang] || data.badgeProject.vi)) || '';
+  const overview = (data.overview && (data.overview[currentLang] || data.overview.vi)) || '';
+  const duration = (data.duration && (data.duration[currentLang] || data.duration.vi)) || '';
+  const teamSize = (data.teamSize && (data.teamSize[currentLang] || data.teamSize.vi)) || '';
 
-  // Build tools HTML
-  const toolsHtml = data.tools.map(tool => `<span class="tool-pill">${tool}</span>`).join(' ');
+  const toolsHtml = (data.tools || []).map(tool => `<span class="tool-pill">${tool}</span>`).join(' ');
 
-  // Build objectives HTML
-  const objectivesHtml = data.objectives.map(item => `
-    <li class="modal-list-item">
-      <i class="fa-solid fa-circle-check"></i>
-      <span>${item}</span>
-    </li>
-  `).join('');
+  const objectivesHtml = (data.objectives || []).map(item => {
+    const text = typeof item === 'object' ? (item[currentLang] || item.vi) : item;
+    return `
+      <li class="modal-list-item">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>${text}</span>
+      </li>
+    `;
+  }).join('');
 
-  // Build contributions HTML
-  const contributionsHtml = data.contributions.map(item => `
-    <li class="modal-list-item">
-      <i class="fa-solid fa-check text-primary-color"></i>
-      <span>${item}</span>
-    </li>
-  `).join('');
+  const contributionsHtml = (data.contributions || []).map(item => {
+    const text = typeof item === 'object' ? (item[currentLang] || item.vi) : item;
+    return `
+      <li class="modal-list-item">
+        <i class="fa-solid fa-check text-primary-color"></i>
+        <span>${text}</span>
+      </li>
+    `;
+  }).join('');
 
-  // Build results HTML
-  const resultsHtml = data.results.map(item => `
-    <li class="modal-list-item">
-      <i class="fa-solid fa-star text-orange-color"></i>
-      <span><strong>${item}</strong></span>
-    </li>
-  `).join('');
+  const resultsHtml = (data.results || []).map(item => {
+    const text = typeof item === 'object' ? (item[currentLang] || item.vi) : item;
+    return `
+      <li class="modal-list-item">
+        <i class="fa-solid fa-star text-orange-color"></i>
+        <span><strong>${text}</strong></span>
+      </li>
+    `;
+  }).join('');
 
-  // Render modal content
   container.innerHTML = `
     <div class="modal-project-header">
       <div class="modal-meta-row">
-        <span class="role-badge"><i class="fa-solid fa-crown"></i> ${data.role}</span>
-        <span class="platform-badge">${data.category}</span>
+        <span class="role-badge"><i class="fa-solid fa-crown"></i> ${role}</span>
+        <span class="platform-badge">${category}</span>
       </div>
-      <h2 class="modal-title" id="modal-title">${data.title}</h2>
+      <h2 class="modal-title" id="modal-title">${title}</h2>
     </div>
 
-    <div class="modal-banner-box" style="background: ${data.bannerGradient};">
-      <i class="${data.icon} project-watermark" style="font-size: 6rem; color: rgba(255,255,255,0.2);"></i>
+    <div class="modal-banner-box" style="background: ${data.bannerGradient || 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)'};">
+      <i class="${data.watermarkIcon || data.icon || 'fa-solid fa-briefcase'} project-watermark" style="font-size: 6rem; color: rgba(255,255,255,0.2);"></i>
       <div style="position: relative; z-index: 2; text-align: center; color: #ffffff; padding: 20px;">
         <span style="display: inline-block; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px;">
-          ${data.badgeProject}
+          ${badgeProject}
         </span>
-        <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff;">${data.title}</h3>
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff;">${title}</h3>
       </div>
     </div>
 
@@ -1011,7 +2088,7 @@ function openProjectModal(projectId) {
           <i class="fa-solid fa-circle-info text-primary-color"></i>
           <span>${isEn ? 'Project Overview' : 'Tổng quan dự án'}</span>
         </div>
-        <p class="modal-text">${data.overview}</p>
+        <p class="modal-text">${overview}</p>
 
         <div class="modal-section-title">
           <i class="fa-solid fa-bullseye text-orange-color"></i>
@@ -1045,17 +2122,17 @@ function openProjectModal(projectId) {
 
           <div class="modal-info-item">
             <span class="info-label"><i class="fa-regular fa-clock"></i> ${isEn ? 'Duration:' : 'Thời gian thực hiện:'}</span>
-            <span class="info-val">${data.duration}</span>
+            <span class="info-val">${duration}</span>
           </div>
 
           <div class="modal-info-item">
             <span class="info-label"><i class="fa-solid fa-users"></i> ${isEn ? 'Team Size:' : 'Quy mô đội nhóm:'}</span>
-            <span class="info-val">${data.teamSize}</span>
+            <span class="info-val">${teamSize}</span>
           </div>
 
           <div class="modal-info-item">
             <span class="info-label"><i class="fa-solid fa-user-check"></i> ${isEn ? 'Assigned Role:' : 'Vai trò đảm nhận:'}</span>
-            <span class="info-val"><strong>${data.role}</strong></span>
+            <span class="info-val"><strong>${role}</strong></span>
           </div>
 
           <div class="modal-info-item">
@@ -1096,9 +2173,6 @@ function openProjectModal(projectId) {
   document.body.style.overflow = 'hidden';
 }
 
-/**
- * Close Project Details Modal
- */
 function closeProjectModal() {
   currentOpenProjectId = null;
   const modal = document.getElementById('project-modal');
@@ -1119,140 +2193,12 @@ function closeProjectModal() {
 }
 
 /* -------------------------------------------------------------------
-   10. ACTIVITY DETAILS MODAL POPUP & BILINGUAL DATA
+   10. ACTIVITY DETAILS MODAL POPUP & DYNAMIC DATA
 ------------------------------------------------------------------- */
-const activityDetailsData = {
-  vi: {
-    1: {
-      id: 1,
-      title: "BBE Pegasus Chapter — Ban Lãnh Đạo Nhiệm Kỳ I",
-      role: "Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I",
-      organization: "BBE Pegasus Chapter",
-      eventOrg: "BBE Pegasus Chapter",
-      timeLocation: "01/02/2026 – 30/09/2026",
-      badgeType: "Ban Lãnh đạo",
-      badgeClass: "badge-leader",
-      mainImage: "act-pegasus.jpg",
-      description: "Thể hiện tinh thần trách nhiệm cao, điều phối đội ngũ và hoàn thành xuất sắc nhiệm vụ trong vai trò Phó Chủ tịch nhiệm kỳ I.",
-      subPlaceholder1: "Ảnh hậu trường sinh hoạt & họp điều hành",
-      subPlaceholder2: "Ảnh tổ chức workshop & chia sẻ kỹ năng",
-      tasks: [
-        "Điều phối thành viên, phân công công việc cụ thể và giám sát tiến độ hoạt động trong ban lãnh đạo.",
-        "Xây dựng quy trình sinh hoạt định kỳ, chuẩn hóa tài liệu và duy trì kỷ luật sinh hoạt chuyên nghiệp.",
-        "Chủ trì tổ chức các buổi chia sẻ kỹ năng thực chiến và các hoạt động kết nối tinh thần đồng đội."
-      ],
-      result: "Duy trì độ gắn kết đội ngũ cao trong suốt nhiệm kỳ I, củng cố năng lực điều hành và xây dựng văn hóa đội nhóm vững mạnh."
-    },
-    2: {
-      id: 2,
-      title: "Lễ Tốt Nghiệp BTEC FPT 2026",
-      role: "Thành viên Ban Tổ chức (Organizing Committee)",
-      organization: "BTEC FPT",
-      eventOrg: "Lễ Tốt nghiệp BTEC FPT 2026",
-      timeLocation: "25/10/2026 tại Đà Nẵng",
-      badgeType: "Ban Tổ chức Sự kiện",
-      badgeClass: "badge-event",
-      mainImage: "act-graduation.jpg",
-      description: "Trực tiếp đóng góp và phối hợp vận hành sự kiện trọng đại cấp trường, đảm bảo trải nghiệm chuyên nghiệp cho sinh viên và khách mời.",
-      subPlaceholder1: "Ảnh hậu trường setup & vận hành sân khấu",
-      subPlaceholder2: "Ảnh điều phối tân cử nhân & đón tiếp khách mời",
-      tasks: [
-        "Phối hợp chuẩn bị công tác hậu cần, kỹ thuật âm thanh, ánh sáng và kiểm soát bố cục sân khấu lễ tốt nghiệp.",
-        "Trực tiếp hướng dẫn, điều phối hàng ngũ khách mời danh dự, phụ huynh và tân cử nhân trong suốt buổi lễ.",
-        "Xử lý nhanh nhạy và kịp thời các tình huống phát sinh tại khu vực sân khấu chính và luồng di chuyển."
-      ],
-      result: "Sự kiện diễn ra suôn sẻ, chỉn chu và để lại ấn tượng tốt đẹp trong lòng sinh viên cùng khách mời; rèn luyện khả năng ứng biến dưới áp lực cao."
-    },
-    3: {
-      id: 3,
-      title: "Dự Án Thiện Nguyện \"Hành Trình Yêu Thương - Số Thứ 4\"",
-      role: "Tình nguyện viên đóng góp tích cực",
-      organization: "BTEC FPT & Fusion Club",
-      eventOrg: "Dự án thiện nguyện \"Hành Trình Yêu Thương - Số thứ 4\"",
-      timeLocation: "Ngũ Hành Sơn, Đà Nẵng",
-      badgeType: "Thiện nguyện cộng đồng",
-      badgeClass: "badge-volunteer",
-      mainImage: "act-thien-nguyen.jpg",
-      description: "Tham gia tổ chức và lan tỏa giá trị tích cực tại Mái Ấm Tình Thương (Ngũ Hành Sơn, Đà Nẵng).",
-      subPlaceholder1: "Ảnh chuẩn bị & phân loại quà tặng thiện nguyện",
-      subPlaceholder2: "Ảnh sinh hoạt, giao lưu trò chơi cùng các em nhỏ",
-      tasks: [
-        "Lên kế hoạch vận động, tiếp nhận và phân loại chu đáo các phần quà tặng gửi tới Mái Ấm Tình Thương.",
-        "Tổ chức hoạt động giao lưu văn nghệ, trò chơi tập thể sôi nổi, an toàn và kết nối cùng các em nhỏ.",
-        "Trực tiếp kết nối, lắng nghe, chăm sóc các em nhỏ tại Mái Ấm Tình Thương và hỗ trợ công tác hậu cần."
-      ],
-      result: "Lan tỏa tinh thần sẻ chia và gắn kết cộng đồng sinh viên; nuôi dưỡng lòng trắc ẩn và tinh thần trách nhiệm xã hội."
-    }
-  },
-
-  en: {
-    1: {
-      id: 1,
-      title: "BBE Pegasus Chapter — Executive Board Term I",
-      role: "Vice President — Executive Board (Term I)",
-      organization: "BBE Pegasus Chapter",
-      eventOrg: "BBE Pegasus Chapter",
-      timeLocation: "01/02/2026 – 30/09/2026",
-      badgeType: "Executive Board",
-      badgeClass: "badge-leader",
-      mainImage: "act-pegasus.jpg",
-      description: "Demonstrated strong leadership, operational coordination, and successfully fulfilled executive responsibilities as Vice President during Term I.",
-      subPlaceholder1: "Operational meetings & internal activities",
-      subPlaceholder2: "Workshops & skill-sharing sessions",
-      tasks: [
-        "Coordinated team members, delegated operational duties, and supervised milestone delivery.",
-        "Standardized chapter operations, meeting protocols, and maintained disciplined execution.",
-        "Chaired practical skill-sharing workshops and facilitated team bonding experiences."
-      ],
-      result: "Maintained high team cohesion throughout Term I, honing executive leadership and strengthening organizational culture."
-    },
-    2: {
-      id: 2,
-      title: "BTEC FPT Graduation Ceremony 2026",
-      role: "Organizing Committee Member",
-      organization: "BTEC FPT",
-      eventOrg: "BTEC FPT Graduation Ceremony 2026",
-      timeLocation: "25/10/2026 in Danang City",
-      badgeType: "Event Organizing Committee",
-      badgeClass: "badge-event",
-      mainImage: "act-graduation.jpg",
-      description: "Directly contributed to orchestrating a high-profile commencement ceremony, ensuring a seamless experience for graduates, VIPs, and families.",
-      subPlaceholder1: "Stage setup & technical rehearsals",
-      subPlaceholder2: "VIP reception & graduate coordination",
-      tasks: [
-        "Collaborated on logistics, AV technical setups, and stage blocking control.",
-        "Guided and escorted VIPs, faculty, parents, and new graduates throughout the ceremony flow.",
-        "Promptly resolved live contingencies on the main stage and guest circulation corridors."
-      ],
-      result: "The ceremony concluded smoothly and received praise from leadership; cultivated agility and composure under high-pressure event execution."
-    },
-    3: {
-      id: 3,
-      title: "Community Charity Project \"Love Journey - Vol. 4\"",
-      role: "Active Volunteer Contributor",
-      organization: "BTEC FPT & Fusion Club",
-      eventOrg: "Love Journey Vol. 4 Project",
-      timeLocation: "Ngu Hanh Son, Danang City",
-      badgeType: "Community Volunteering",
-      badgeClass: "badge-volunteer",
-      mainImage: "act-thien-nguyen.jpg",
-      description: "Co-organized and delivered compassionate support and meaningful donations to children at Mai Am Tinh Thuong Shelter in Danang.",
-      subPlaceholder1: "Donation sorting & packaging",
-      subPlaceholder2: "Interactive games & activities with children",
-      tasks: [
-        "Mobilized, received, and systematically packaged essential donation packages.",
-        "Facilitated engaging, safe group games and artistic performances with children.",
-        "Connected with children personally, provided companionship, and supported site logistics."
-      ],
-      result: "Fostered empathy, community connection, and active civic responsibility among student volunteers."
-    }
-  }
-};
-
 function openActivityModal(activityId) {
   currentOpenActivityId = activityId;
-  const langData = activityDetailsData[currentLang] || activityDetailsData['vi'];
-  const data = langData[activityId];
+  if (!portfolioData || !portfolioData.activities) return;
+  const data = portfolioData.activities.find(a => a.id == activityId);
   if (!data) return;
 
   const modal = document.getElementById('activity-modal');
@@ -1262,31 +2208,44 @@ function openActivityModal(activityId) {
   if (!modal || !backdrop || !container) return;
 
   const isEn = (currentLang === 'en');
+  const title = (data.title && (data.title[currentLang] || data.title.vi)) || '';
+  const role = (data.role && (data.role[currentLang] || data.role.vi)) || '';
+  const badgeType = (data.badgeType && (data.badgeType[currentLang] || data.badgeType.vi)) || '';
+  const org = typeof data.organization === 'object' ? (data.organization[currentLang] || data.organization.vi) : data.organization;
+  const eventOrg = (data.eventOrg && (data.eventOrg[currentLang] || data.eventOrg.vi)) || org;
+  const timeLocation = (data.timeLocation && (data.timeLocation[currentLang] || data.timeLocation.vi)) || '';
+  const description = (data.description && (data.description[currentLang] || data.description.vi)) || '';
+  const subPlaceholder1 = (data.subPlaceholder1 && (data.subPlaceholder1[currentLang] || data.subPlaceholder1.vi)) || '';
+  const subPlaceholder2 = (data.subPlaceholder2 && (data.subPlaceholder2[currentLang] || data.subPlaceholder2.vi)) || '';
+  const result = (data.result && (data.result[currentLang] || data.result.vi)) || '';
 
-  const tasksHtml = data.tasks.map(item => `
-    <li class="modal-list-item">
-      <i class="fa-solid fa-circle-check text-primary-color"></i>
-      <span>${item}</span>
-    </li>
-  `).join('');
+  const tasksHtml = (data.tasks || []).map(item => {
+    const text = typeof item === 'object' ? (item[currentLang] || item.vi) : item;
+    return `
+      <li class="modal-list-item">
+        <i class="fa-solid fa-circle-check text-primary-color"></i>
+        <span>${text}</span>
+      </li>
+    `;
+  }).join('');
 
   container.innerHTML = `
     <div class="modal-activity-header">
       <div class="modal-meta-row">
-        <span class="act-floating-badge ${data.badgeClass}" style="position: static; display: inline-flex;">
-          <i class="fa-solid fa-crown"></i> ${data.badgeType}
+        <span class="act-floating-badge ${data.badgeClass || 'badge-leader'}" style="position: static; display: inline-flex;">
+          <i class="${data.badgeIcon || 'fa-solid fa-crown'}"></i> ${badgeType}
         </span>
-        <span class="act-org-tag">${data.organization}</span>
+        <span class="act-org-tag">${org}</span>
       </div>
-      <h2 class="modal-title" id="act-modal-title">${data.title}</h2>
+      <h2 class="modal-title" id="act-modal-title">${title}</h2>
       <div class="modal-subtitle-row">
         <div class="modal-role-highlight">
           <i class="fa-solid fa-user-tie text-primary-color"></i>
-          <span><strong>${isEn ? 'Role:' : 'Vai trò:'}</strong> ${data.role}</span>
+          <span><strong>${isEn ? 'Role:' : 'Vai trò:'}</strong> ${role}</span>
         </div>
         <div class="modal-time-highlight">
           <i class="fa-regular fa-calendar-check text-orange-color"></i>
-          <span><strong>${isEn ? 'Time & Location:' : 'Thời gian & Địa điểm:'}</strong> ${data.timeLocation}</span>
+          <span><strong>${isEn ? 'Time & Location:' : 'Thời gian & Địa điểm:'}</strong> ${timeLocation}</span>
         </div>
       </div>
     </div>
@@ -1296,23 +2255,23 @@ function openActivityModal(activityId) {
       <div class="act-modal-overview-grid">
         <div class="act-modal-overview-item">
           <span class="act-overview-label"><i class="fa-solid fa-building text-primary-color"></i> ${isEn ? 'ORGANIZATION / EVENT' : 'ĐƠN VỊ / SỰ KIỆN'}</span>
-          <span class="act-overview-value">${data.eventOrg}</span>
+          <span class="act-overview-value">${eventOrg}</span>
         </div>
         <div class="act-modal-overview-item">
           <span class="act-overview-label"><i class="fa-regular fa-calendar-check text-orange-color"></i> ${isEn ? 'TIME & LOCATION' : 'THỜI GIAN & ĐỊA ĐIỂM'}</span>
-          <span class="act-overview-value">${data.timeLocation}</span>
+          <span class="act-overview-value">${timeLocation}</span>
         </div>
       </div>
       <div class="act-modal-overview-desc">
         <span class="act-overview-label"><i class="fa-solid fa-circle-info text-primary-color"></i> ${isEn ? 'DESCRIPTION & RESPONSIBILITIES' : 'MÔ TẢ ĐÓNG GÓP & TRÁCH NHIỆM'}</span>
-        <p class="act-overview-desc-text">${data.description}</p>
+        <p class="act-overview-desc-text">${description}</p>
       </div>
     </div>
 
     <!-- Gallery Box -->
     <div class="act-modal-gallery">
-      <div class="act-gallery-main" onclick="openLightbox('${data.mainImage}', '${data.title}')" title="${isEn ? 'Click to enlarge evidence photo' : 'Nhấp vào để phóng to xem rõ ảnh chứng nhận'}">
-        <img src="${data.mainImage}" alt="${data.title}" class="act-modal-main-img">
+      <div class="act-gallery-main" onclick="openLightbox('${data.mainImage}', '${title.replace(/'/g, "\\'")}')" title="${isEn ? 'Click to enlarge evidence photo' : 'Nhấp vào để phóng to xem rõ ảnh chứng nhận'}">
+        <img src="${data.mainImage}" alt="${title}" class="act-modal-main-img">
         <div class="act-gallery-overlay">
           <span class="gallery-zoom-pill">
             <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -1328,14 +2287,14 @@ function openActivityModal(activityId) {
         <div class="act-sub-placeholder">
           <div class="placeholder-icon"><i class="fa-solid fa-camera"></i></div>
           <div class="placeholder-text">
-            <strong>${data.subPlaceholder1}</strong>
+            <strong>${subPlaceholder1}</strong>
             <span>${isEn ? 'Pending backstage updates' : 'Khu vực chờ cập nhật ảnh hậu trường'}</span>
           </div>
         </div>
         <div class="act-sub-placeholder">
           <div class="placeholder-icon"><i class="fa-solid fa-images"></i></div>
           <div class="placeholder-text">
-            <strong>${data.subPlaceholder2}</strong>
+            <strong>${subPlaceholder2}</strong>
             <span>${isEn ? 'Pending backstage updates' : 'Khu vực chờ cập nhật ảnh hậu trường'}</span>
           </div>
         </div>
@@ -1360,13 +2319,13 @@ function openActivityModal(activityId) {
           <span>${isEn ? 'Outcomes & Takeaways' : 'Kết quả / Bài học rút ra'}</span>
         </div>
         <div class="act-result-card">
-          <p class="result-text">${data.result}</p>
+          <p class="result-text">${result}</p>
         </div>
       </div>
     </div>
 
     <div class="modal-actions">
-      <button type="button" class="btn btn-outline btn-sm" onclick="openLightbox('${data.mainImage}', '${data.title}')">
+      <button type="button" class="btn btn-outline btn-sm" onclick="openLightbox('${data.mainImage}', '${title.replace(/'/g, "\\'")}')">
         <i class="fa-solid fa-expand"></i> ${isEn ? 'Enlarge Photo' : 'Phóng to ảnh chứng nhận'}
       </button>
       <button type="button" class="btn btn-ghost btn-sm" onclick="closeActivityModal()">
@@ -1401,260 +2360,12 @@ function closeActivityModal() {
 }
 
 /* -------------------------------------------------------------------
-   11. CERTIFICATE DETAILS MODAL POPUP & BILINGUAL DATA
+   11. CERTIFICATE DETAILS MODAL POPUP & DYNAMIC DATA
 ------------------------------------------------------------------- */
-const certificateDetailsData = {
-  vi: {
-    1: {
-      id: 1,
-      title: "Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)",
-      award: "Á quân (Top 2 Chung kết Toàn quốc)",
-      organization: "BTEC FPT Đà Nẵng & DNES",
-      timeLocation: "14/08/2026 tại Đà Nẵng",
-      badgeType: "Top 2 • Á quân",
-      badgeClass: "badge-trophy",
-      badgeStyle: "background: linear-gradient(135deg, #10b981 0%, #059669 100%);",
-      mainImage: "cert-chan-tran-khoi-nghiep.jpg",
-      downloadName: "ChungNhan_ChanTranKhoiNghiep_DoMinhTri.jpg",
-      externalUrl: "https://dnes.vn",
-      externalTitle: "Vườn ươm Doanh nghiệp Đà Nẵng DNES",
-      externalIcon: "fa-solid fa-arrow-up-right-from-square",
-      externalText: "Đơn vị DNES",
-      description: "Thành viên đội Smart Mini Storage — xuất sắc đạt thành tích Top 2 tại Vòng Chung kết Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3), xây dựng dự án ứng dụng tư duy đổi mới sáng tạo, AI và phát triển bền vững để giải quyết vấn đề thực tế và tạo ra giá trị cho cộng đồng.",
-      metaItems: [
-        { label: "Người nhận chứng nhận", val: "Đỗ Minh Trí (Do Minh Tri)" },
-        { label: "Đơn vị tổ chức & Chuyên môn", val: "BTEC FPT Đà Nẵng & DNES" },
-        { label: "Ngày Chung kết", val: "14 / 08 / 2026" },
-        { label: "Thành tích / Dự án", val: "Smart Mini Storage Team", isHighlight: true }
-      ],
-      tags: ["Đổi mới sáng tạo", "Ứng dụng AI", "Phát triển bền vững", "Top 2 Chung kết"],
-      tasks: [
-        "Nghiên cứu thị trường và khảo sát thực tế nhu cầu lưu trữ mini thông minh (Smart Mini Storage) của giới trẻ và khách du lịch.",
-        "Ứng dụng tư duy công nghệ AI và mô hình phát triển bền vững để xây dựng giải pháp tối ưu hóa chi phí vận hành.",
-        "Hoàn thiện mô hình kinh doanh và trực tiếp thuyết trình, phản biện tự tin trước hội đồng giám khảo và cố vấn doanh nghiệp."
-      ],
-      result: "Xuất sắc giành giải Top 2 Chung kết (Á quân), chứng minh năng lực đổi mới sáng tạo, tinh thần khởi nghiệp thực chiến và khả năng ứng dụng AI vào giải quyết vấn đề kinh doanh thực tế."
-    },
-    2: {
-      id: 2,
-      title: "Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025",
-      award: "Bán kết Toàn quốc (Top đội thi xuất sắc)",
-      organization: "Tập đoàn FPT — Ban Công tác Học đường",
-      timeLocation: "15/08/2025",
-      badgeType: "Bán kết Toàn quốc",
-      badgeClass: "badge-fpt",
-      badgeStyle: "background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);",
-      mainImage: "cert-fpt-biz-talent.jpg",
-      downloadName: "ChungNhan_FPT_Biz_Talent_DoMinhTri.jpg",
-      externalUrl: "https://fpt.edu.vn",
-      externalTitle: "Tập đoàn FPT - Khối Giáo dục",
-      externalIcon: "fa-solid fa-shield-halved",
-      externalText: "FPT Education",
-      description: "Bằng chứng nhận do Ban Công tác Học đường, Tập đoàn FPT trao tặng, ghi nhận nỗ lực vượt bậc và thành tích xuất sắc của đại diện đội The Culinary AI (FPT Polyschool Bình Định) tại vòng Bán kết toàn quốc cuộc thi khởi nghiệp kinh doanh FPT Biz Talent 2025.",
-      metaItems: [
-        { label: "Người nhận chứng nhận", val: "Đỗ Minh Trí (Do Minh Tri)" },
-        { label: "Đơn vị tổ chức", val: "Ban Công tác Học đường, Tập đoàn FPT" },
-        { label: "Thời gian trao giải", val: "15 / 08 / 2025" },
-        { label: "Đại diện đội thi", val: "The Culinary AI", isHighlight: true }
-      ],
-      tags: ["FPT Biz Talent", "Ý tưởng kinh doanh", "Ứng dụng AI ngành ẩm thực", "Bán kết toàn quốc"],
-      tasks: [
-        "Nghiên cứu giải pháp kinh doanh ngành F&B kết hợp AI nhằm nâng cao trải nghiệm khách hàng và tối ưu hiệu suất ẩm thực.",
-        "Xây dựng kế hoạch tài chính, phân tích điểm hòa vốn và dự báo doanh thu cho mô hình The Culinary AI.",
-        "Đại diện đội thi thuyết trình và bảo vệ ý tưởng kinh doanh trước hội đồng chuyên môn cấp Tập đoàn FPT."
-      ],
-      result: "Đạt thành tích Vòng Bán kết Toàn quốc cuộc thi khởi nghiệp FPT Biz Talent 2025; củng cố tư duy quản trị tài chính, mô hình kinh doanh và tầm nhìn công nghệ phục vụ đời sống."
-    },
-    3: {
-      id: 3,
-      title: "Microsoft Office Specialist: Excel 2019 Associate",
-      award: "Chứng chỉ Chuẩn Quốc tế Microsoft Certified",
-      organization: "Microsoft & Certiport",
-      timeLocation: "20/04/2025",
-      badgeType: "Đã xác thực Certiport",
-      badgeClass: "badge-ms",
-      badgeStyle: "background: linear-gradient(135deg, #0056b3 0%, #0369a1 100%);",
-      mainImage: "certificate-mos-excel.jpg",
-      downloadName: "ChungChi_MOS_Excel_2019_DoMinhTri.jpg",
-      externalUrl: "https://verify.certiport.com",
-      externalTitle: "Cổng xác thực quốc tế Certiport (Mã: 2NPb-XM8H)",
-      externalIcon: "fa-solid fa-square-check",
-      externalText: "Xác thực Certiport",
-      description: "Chứng chỉ quốc tế do Microsoft và tổ chức khảo thí Certiport cấp, xác nhận trình độ chuyên sâu trong việc xây dựng mô hình dữ liệu, phân tích số liệu tài chính & marketing, tự động hóa tính toán và trực quan hóa báo cáo.",
-      metaItems: [
-        { label: "Người nhận chứng chỉ", val: "Do Minh Tri (Đỗ Minh Trí)" },
-        { label: "Mã định danh học viên", val: "052208008929" },
-        { label: "Ngày cấp chứng nhận", val: "20 / 04 / 2025" },
-        { label: "Mã xác thực Certiport", val: "2NPb-XM8H", isHighlight: true }
-      ],
-      tags: ["MOS Excel 2019", "Xử lý & Phân tích Dữ liệu", "Báo cáo KPI Marketing", "Chuẩn quốc tế"],
-      tasks: [
-        "Thành thạo cấu trúc dữ liệu, các hàm nâng cao (VLOOKUP, XLOOKUP, INDEX/MATCH, hàm logic & thống kê).",
-        "Xây dựng Dashboard động, báo cáo phân tích số liệu kinh doanh chuyên nghiệp bằng PivotTable & Slicer trực quan.",
-        "Tự động hóa tác vụ tính toán, xử lý làm sạch dữ liệu lớn và kiểm soát tính toàn vẹn của bảng tính."
-      ],
-      result: "Sở hữu chứng chỉ quốc tế trọn đời có giá trị toàn cầu từ Microsoft; chứng minh năng lực tư duy dữ liệu sắc bén, sẵn sàng đảm nhiệm các vị trí phân tích số liệu và Marketing chuyên sâu."
-    },
-    4: {
-      id: 4,
-      title: "Sinh viên có thành tích học tập xuất sắc — Học kỳ Spring 2025",
-      award: "Khen thưởng Sinh viên Xuất sắc",
-      organization: "FPT Polyschool — Cơ sở Bình Định",
-      timeLocation: "Học kỳ Spring 2025 • Bình Định",
-      badgeType: "Xuất sắc • Spring 2025",
-      badgeClass: "badge-academic",
-      badgeStyle: "background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);",
-      mainImage: "cert-sv-xuat-sac-2025.jpg",
-      downloadName: "GiayKhen_SinhVienXuatSac_Spring2025_DoMinhTri.jpg",
-      externalUrl: "https://fpt.edu.vn",
-      externalTitle: "FPT Polyschool — Khối Giáo dục FPT",
-      externalIcon: "fa-solid fa-graduation-cap",
-      externalText: "FPT Polyschool",
-      description: "Được Giám đốc cơ sở Bình Định (FPT Polyschool) vinh danh nhờ thành tích học tập xuất sắc trong học kỳ Spring 2025, khẳng định tinh thần kỷ luật và tư duy học tập chủ động.",
-      metaItems: [
-        { label: "Người nhận khen thưởng", val: "Đỗ Minh Trí (Do Minh Tri)" },
-        { label: "Đơn vị cấp quyết định", val: "FPT Polyschool — Cơ sở Bình Định" },
-        { label: "Thời gian vinh danh", val: "Học kỳ Spring 2025" },
-        { label: "Danh hiệu khen thưởng", val: "Sinh viên Xuất sắc (Academic Excellence)", isHighlight: true }
-      ],
-      tags: ["Thành tích học tập", "Sinh viên xuất sắc", "FPT Polyschool", "Spring 2025", "Kỷ luật & Tự học"],
-      tasks: [
-        "Hoàn thành xuất sắc toàn bộ khối lượng kiến thức và môn học chuyên ngành trong học kỳ Spring 2025 với kết quả học tập vượt trội.",
-        "Chủ động nghiên cứu, vận dụng kiến thức lý thuyết vào các dự án môn học thực tế và tích cực dẫn dắt làm việc nhóm.",
-        "Duy trì tinh thần tự giác, chấp hành tốt nội quy học đường và đạt tiêu chuẩn khen thưởng của Ban Giám hiệu nhà trường."
-      ],
-      result: "Được Giám đốc cơ sở Bình Định chính thức trao tặng giấy khen Sinh viên Xuất sắc, là minh chứng cho tinh thần kiên trì, thái độ học tập nghiêm túc và nền tảng chuyên môn vững vàng."
-    }
-  },
-
-  en: {
-    1: {
-      id: 1,
-      title: "Top 2 Barefoot Startup Competition (Season 3)",
-      award: "Runner-up (National Finals Top 2)",
-      organization: "BTEC FPT Danang & DNES",
-      timeLocation: "14/08/2026 in Danang City",
-      badgeType: "Top 2 • Runner-up",
-      badgeClass: "badge-trophy",
-      badgeStyle: "background: linear-gradient(135deg, #10b981 0%, #059669 100%);",
-      mainImage: "cert-chan-tran-khoi-nghiep.jpg",
-      downloadName: "Certificate_Barefoot_Startup_DoMinhTri.jpg",
-      externalUrl: "https://dnes.vn",
-      externalTitle: "Danang Entrepreneurship Support Incubator DNES",
-      externalIcon: "fa-solid fa-arrow-up-right-from-square",
-      externalText: "DNES Incubator",
-      description: "Core member of Smart Mini Storage — achieving Top 2 honors at the Barefoot Startup Competition (Season 3), building sustainable solutions integrating innovation, AI, and social value.",
-      metaItems: [
-        { label: "Awardee", val: "Do Minh Tri (Đỗ Minh Trí)" },
-        { label: "Organizers & Mentors", val: "BTEC FPT Danang & DNES" },
-        { label: "Finals Date", val: "14 / 08 / 2026" },
-        { label: "Team / Project", val: "Smart Mini Storage Team", isHighlight: true }
-      ],
-      tags: ["Innovation", "AI Solutions", "Sustainability", "Top 2 Finals"],
-      tasks: [
-        "Executed field surveys and market validation for smart micro-storage needs among urban youth and travelers.",
-        "Incorporated AI technology and circular economy principles to streamline operational expenses.",
-        "Finalized business model canvas and pitched before the judging panel and venture mentors."
-      ],
-      result: "Awarded National Runner-up (Top 2), validating entrepreneurial grit, innovation capability, and AI-driven commercial problem-solving."
-    },
-    2: {
-      id: 2,
-      title: "National Semi-final — FPT Biz Talent 2025",
-      award: "National Semi-finalist (Top Venture Teams)",
-      organization: "FPT Corporation — Student Affairs",
-      timeLocation: "15/08/2025",
-      badgeType: "National Semi-final",
-      badgeClass: "badge-fpt",
-      badgeStyle: "background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);",
-      mainImage: "cert-fpt-biz-talent.jpg",
-      downloadName: "Certificate_FPT_Biz_Talent_DoMinhTri.jpg",
-      externalUrl: "https://fpt.edu.vn",
-      externalTitle: "FPT Corporation - Education Division",
-      externalIcon: "fa-solid fa-shield-halved",
-      externalText: "FPT Education",
-      description: "Awarded by FPT Corporation Student Affairs Division, honoring exceptional business acumen and innovative performance of The Culinary AI team at the national semi-finals.",
-      metaItems: [
-        { label: "Awardee", val: "Do Minh Tri (Đỗ Minh Trí)" },
-        { label: "Organizing Body", val: "FPT Corporation Student Affairs" },
-        { label: "Award Date", val: "15 / 08 / 2025" },
-        { label: "Representing Team", val: "The Culinary AI", isHighlight: true }
-      ],
-      tags: ["FPT Biz Talent", "Venture Model", "AI in Gastronomy", "National Semi-finals"],
-      tasks: [
-        "Formulated AI-integrated F&B business model enhancing customer personalization and culinary productivity.",
-        "Constructed financial statements, break-even projections, and unit economics.",
-        "Represented team in pitching and defensing business viability before corporate leadership."
-      ],
-      result: "Ranked among National Semi-finalists of FPT Biz Talent 2025, sharpening financial management, business structuring, and technology vision."
-    },
-    3: {
-      id: 3,
-      title: "Microsoft Office Specialist: Excel 2019 Associate",
-      award: "Microsoft Certified International Credential",
-      organization: "Microsoft & Certiport",
-      timeLocation: "20/04/2025",
-      badgeType: "Certiport Verified",
-      badgeClass: "badge-ms",
-      badgeStyle: "background: linear-gradient(135deg, #0056b3 0%, #0369a1 100%);",
-      mainImage: "certificate-mos-excel.jpg",
-      downloadName: "Certificate_MOS_Excel_2019_DoMinhTri.jpg",
-      externalUrl: "https://verify.certiport.com",
-      externalTitle: "Certiport Global Verification Portal (Code: 2NPb-XM8H)",
-      externalIcon: "fa-solid fa-square-check",
-      externalText: "Verify on Certiport",
-      description: "International certification issued by Microsoft and Certiport, validating expertise in data modeling, marketing/financial analysis, formula automation, and dynamic reporting.",
-      metaItems: [
-        { label: "Candidate Name", val: "Do Minh Tri (Đỗ Minh Trí)" },
-        { label: "Candidate ID", val: "052208008929" },
-        { label: "Issue Date", val: "20 / 04 / 2025" },
-        { label: "Certiport Verification Code", val: "2NPb-XM8H", isHighlight: true }
-      ],
-      tags: ["MOS Excel 2019", "Data Analytics", "Marketing Reporting", "Global Standard"],
-      tasks: [
-        "Mastered advanced data structures and formulas (VLOOKUP, XLOOKUP, INDEX/MATCH, logic & stats).",
-        "Constructed dynamic dashboards and KPI reports utilizing PivotTables and interactive Slicers.",
-        "Automated data hygiene workflows and maintained spreadsheet data integrity."
-      ],
-      result: "Earned lifetime globally recognized Microsoft credential; proven data processing and analytical competencies ready for business analysis roles."
-    },
-    4: {
-      id: 4,
-      title: "Student of Academic Excellence — Spring 2025 Semester",
-      award: "Academic Commendation of Excellence",
-      organization: "FPT Polyschool — Binh Dinh Campus",
-      timeLocation: "Spring Semester 2025 • Binh Dinh",
-      badgeType: "Excellence • Spring 2025",
-      badgeClass: "badge-academic",
-      badgeStyle: "background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);",
-      mainImage: "cert-sv-xuat-sac-2025.jpg",
-      downloadName: "Commendation_Excellence_Spring2025_DoMinhTri.jpg",
-      externalUrl: "https://fpt.edu.vn",
-      externalTitle: "FPT Polyschool — FPT Education",
-      externalIcon: "fa-solid fa-graduation-cap",
-      externalText: "FPT Polyschool",
-      description: "Commended by the Campus Director of FPT Polyschool for outstanding academic performance during Spring 2025, demonstrating discipline and proactive self-learning.",
-      metaItems: [
-        { label: "Awardee", val: "Do Minh Tri (Đỗ Minh Trí)" },
-        { label: "Issuing Authority", val: "FPT Polyschool — Binh Dinh Campus" },
-        { label: "Commendation Period", val: "Spring 2025 Semester" },
-        { label: "Academic Honor", val: "Student of Academic Excellence", isHighlight: true }
-      ],
-      tags: ["Academic Honors", "Excellence", "FPT Polyschool", "Spring 2025", "Discipline"],
-      tasks: [
-        "Achieved outstanding marks across all core professional curriculum modules in Spring 2025.",
-        "Actively researched and bridged classroom theory into hands-on coursework projects.",
-        "Maintained exemplary self-discipline and met all honor roll standards of the board."
-      ],
-      result: "Officially awarded Campus Commendation of Academic Excellence, demonstrating relentless dedication, rigorous work ethic, and solid academic foundation."
-    }
-  }
-};
-
 function openCertificateModal(certId) {
   currentOpenCertId = certId;
-  const langData = certificateDetailsData[currentLang] || certificateDetailsData['vi'];
-  const data = langData[certId];
+  if (!portfolioData || !portfolioData.certificates) return;
+  const data = portfolioData.certificates.find(c => c.id == certId);
   if (!data) return;
 
   const modal = document.getElementById('certificate-modal');
@@ -1664,42 +2375,55 @@ function openCertificateModal(certId) {
   if (!modal || !backdrop || !container) return;
 
   const isEn = (currentLang === 'en');
+  const title = (data.title && (data.title[currentLang] || data.title.vi)) || '';
+  const award = (data.award && (data.award[currentLang] || data.award.vi)) || '';
+  const org = (data.organization && (data.organization[currentLang] || data.organization.vi)) || '';
+  const timeLocation = (data.timeLocation && (data.timeLocation[currentLang] || data.timeLocation.vi)) || '';
+  const badgeType = (data.badgeType && (data.badgeType[currentLang] || data.badgeType.vi)) || '';
+  const description = (data.description && (data.description[currentLang] || data.description.vi)) || '';
+  const result = (data.result && (data.result[currentLang] || data.result.vi)) || '';
 
-  const metaGridHtml = data.metaItems.map(item => `
-    <div class="act-modal-overview-item">
-      <span class="act-overview-label"><i class="fa-solid fa-check text-primary-color"></i> ${item.label.toUpperCase()}</span>
-      <span class="act-overview-value ${item.isHighlight ? 'code-highlight' : ''}">${item.val}</span>
-    </div>
-  `).join('');
+  const metaGridHtml = (data.metaItems || []).map(item => {
+    const labelText = typeof item.label === 'object' ? (item.label[currentLang] || item.label.vi) : item.label;
+    return `
+      <div class="act-modal-overview-item">
+        <span class="act-overview-label"><i class="fa-solid fa-check text-primary-color"></i> ${labelText.toUpperCase()}</span>
+        <span class="act-overview-value ${item.isHighlight ? 'code-highlight' : ''}">${item.val}</span>
+      </div>
+    `;
+  }).join('');
 
-  const tagsHtml = data.tags.map(tag => `
+  const tagsHtml = (data.tags || []).map(tag => `
     <span class="cert-tag"><i class="fa-solid fa-check"></i> ${tag}</span>
   `).join('');
 
-  const tasksHtml = data.tasks.map(item => `
-    <li class="modal-list-item">
-      <i class="fa-solid fa-circle-check text-primary-color"></i>
-      <span>${item}</span>
-    </li>
-  `).join('');
+  const tasksHtml = (data.tasks || []).map(item => {
+    const text = typeof item === 'object' ? (item[currentLang] || item.vi) : item;
+    return `
+      <li class="modal-list-item">
+        <i class="fa-solid fa-circle-check text-primary-color"></i>
+        <span>${text}</span>
+      </li>
+    `;
+  }).join('');
 
   container.innerHTML = `
     <div class="modal-activity-header">
       <div class="modal-meta-row">
-        <span class="act-floating-badge ${data.badgeClass}" style="position: static; display: inline-flex; ${data.badgeStyle}">
-          <i class="fa-solid fa-award"></i> ${data.badgeType}
+        <span class="act-floating-badge ${data.badgeClass || 'badge-trophy'}" style="position: static; display: inline-flex; ${data.badgeStyle || ''}">
+          <i class="${data.badgeIcon || 'fa-solid fa-award'}"></i> ${badgeType}
         </span>
-        <span class="act-org-tag"><i class="fa-solid fa-building"></i> ${data.organization}</span>
+        <span class="act-org-tag"><i class="${data.orgIcon || 'fa-solid fa-building'}"></i> ${org}</span>
       </div>
-      <h2 class="modal-title" id="cert-modal-title">${data.title}</h2>
+      <h2 class="modal-title" id="cert-modal-title">${title}</h2>
       <div class="modal-subtitle-row">
         <div class="modal-role-highlight">
           <i class="fa-solid fa-trophy text-primary-color"></i>
-          <span><strong>${isEn ? 'Achievement / Honor:' : 'Thành tích / Danh hiệu:'}</strong> ${data.award}</span>
+          <span><strong>${isEn ? 'Achievement / Honor:' : 'Thành tích / Danh hiệu:'}</strong> ${award}</span>
         </div>
         <div class="modal-time-highlight">
           <i class="fa-regular fa-calendar-check text-orange-color"></i>
-          <span><strong>${isEn ? 'Time & Organization:' : 'Thời gian & Đơn vị:'}</strong> ${data.timeLocation}</span>
+          <span><strong>${isEn ? 'Time & Organization:' : 'Thời gian & Đơn vị:'}</strong> ${timeLocation}</span>
         </div>
       </div>
     </div>
@@ -1711,7 +2435,7 @@ function openCertificateModal(certId) {
       </div>
       <div class="act-modal-overview-desc">
         <span class="act-overview-label"><i class="fa-solid fa-circle-info text-primary-color"></i> ${isEn ? 'DETAILED DESCRIPTION' : 'MÔ TẢ CHI TIẾT'}</span>
-        <p class="act-overview-desc-text">${data.description}</p>
+        <p class="act-overview-desc-text">${description}</p>
       </div>
       <div class="cert-skills-tags" style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-color); margin-bottom: 0;">
         ${tagsHtml}
@@ -1719,8 +2443,8 @@ function openCertificateModal(certId) {
     </div>
 
     <!-- Main Certificate Preview Frame -->
-    <div class="cert-modal-view-frame" onclick="openLightbox('${data.mainImage}', '${data.title}')" title="${isEn ? 'Click to enlarge certificate' : 'Nhấp vào để phóng to xem rõ chứng nhận'}">
-      <img src="${data.mainImage}" alt="${data.title}" class="cert-modal-img">
+    <div class="cert-modal-view-frame" onclick="openLightbox('${data.mainImage}', '${title.replace(/'/g, "\\'")}')" title="${isEn ? 'Click to enlarge certificate' : 'Nhấp vào để phóng to xem rõ chứng nhận'}">
+      <img src="${data.mainImage}" alt="${title}" class="cert-modal-img">
       <div class="cert-modal-img-overlay">
         <span class="gallery-zoom-pill">
           <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -1750,22 +2474,24 @@ function openCertificateModal(certId) {
           <span>${isEn ? 'Value & Recognition Achieved' : 'Giá trị & Ý nghĩa đạt được'}</span>
         </div>
         <div class="act-result-card">
-          <p class="result-text">${data.result}</p>
+          <p class="result-text">${result}</p>
         </div>
       </div>
     </div>
 
     <!-- Modal Actions -->
     <div class="modal-actions" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;">
-      <button type="button" class="btn btn-primary btn-sm" onclick="openLightbox('${data.mainImage}', '${data.title}')">
+      <button type="button" class="btn btn-primary btn-sm" onclick="openLightbox('${data.mainImage}', '${title.replace(/'/g, "\\'")}')">
         <i class="fa-solid fa-expand"></i> ${isEn ? 'Enlarge Image' : 'Phóng to ảnh'}
       </button>
-      <a href="${data.mainImage}" download="${data.downloadName}" class="btn btn-outline btn-sm">
+      <a href="${data.mainImage}" download="${data.downloadName || 'certificate.jpg'}" class="btn btn-outline btn-sm">
         <i class="fa-solid fa-download"></i> ${isEn ? 'Download Image' : 'Tải ảnh về máy'}
       </a>
-      <a href="${data.externalUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm" title="${data.externalTitle}">
-        <i class="${data.externalIcon}"></i> ${data.externalText}
-      </a>
+      ${data.externalUrl ? `
+        <a href="${data.externalUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm" title="${data.externalTitle || ''}">
+          <i class="${data.externalIcon || 'fa-solid fa-arrow-up-right-from-square'}"></i> ${data.externalText || (isEn ? 'Learn More' : 'Xem thêm')}
+        </a>
+      ` : ''}
       <button type="button" class="btn btn-ghost btn-sm" onclick="closeCertificateModal()">
         <i class="fa-solid fa-xmark"></i> ${isEn ? 'Close' : 'Đóng'}
       </button>
@@ -1924,7 +2650,6 @@ function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  // Real-time simple input feedback for required fields
   const inputs = form.querySelectorAll('.form-control');
   inputs.forEach(input => {
     input.addEventListener('blur', () => {

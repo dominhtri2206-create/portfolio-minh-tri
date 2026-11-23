@@ -1,0 +1,989 @@
+{
+  "profile": {
+    "name": {
+      "vi": "Đỗ Minh Trí",
+      "en": "Do Minh Tri"
+    },
+    "alias": "(Eric Do)",
+    "avatar": "avatar.jpg",
+    "motto": {
+      "vi": "I never lose. I either win or learn!",
+      "en": "I never lose. I either win or learn!"
+    },
+    "roles": [
+      {
+        "icon": "fa-solid fa-robot",
+        "text": {
+          "vi": "Business & Ứng dụng AI Agent",
+          "en": "Business & AI Agent Solutions"
+        }
+      },
+      {
+        "icon": "fa-solid fa-microphone-lines",
+        "text": {
+          "vi": "MC & Nghiên cứu",
+          "en": "Public Speaker & Research"
+        }
+      },
+      {
+        "icon": "fa-solid fa-language",
+        "text": {
+          "vi": "Tiếng Anh & Tiếng Trung",
+          "en": "English & Chinese"
+        }
+      }
+    ],
+    "mission": {
+      "tag": {
+        "vi": "Tuyên ngôn cá nhân",
+        "en": "Personal Mission"
+      },
+      "text": {
+        "vi": "“You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the strength in others.”",
+        "en": "“You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the strength in others.”"
+      }
+    },
+    "bio": {
+      "vi": "Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông, nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công nghệ mới chính là chìa khóa để rèn giũa bản thân và tạo ra giá trị tích cực cho cộng đồng.",
+      "en": "Hello! I'm Minh Tri (Eric) — an energetic learner passionate about modern Business administration and real-world AI Agent implementations. Beyond tech, I thrive as a public speaker/MC, curious researcher, and language enthusiast. I believe relentless growth and adopting frontier technology are the keys to self-mastery and delivering meaningful social value."
+    },
+    "contact": {
+      "email": "dominhtri2206@gmail.com",
+      "phone": "0816 777 568",
+      "address": {
+        "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
+        "en": "152 Phan Thanh, Thanh Khe, Danang City"
+      },
+      "reference": {
+        "name": "Cô Nguyễn Thị Thanh Tâm",
+        "role": {
+          "vi": "Giảng viên bộ môn Digital Marketing",
+          "en": "Digital Marketing Lecturer"
+        },
+        "phone": "0937.272.236",
+        "note": {
+          "vi": "Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại trường.",
+          "en": "Direct instructor assessing my academic competence and professional working attitude."
+        }
+      }
+    }
+  },
+  "projects": [
+    {
+      "id": 1,
+      "badge": {
+        "vi": "Video Marketing",
+        "en": "Video Marketing"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Biên tập Video",
+        "en": "Team Leader & Video Producer"
+      },
+      "platform": {
+        "icon": "fa-brands fa-instagram",
+        "text": "Reels & TikTok"
+      },
+      "title": {
+        "vi": "1. Dự Án Content Marketing & Video Ngắn (Reels/TikTok)",
+        "en": "1. Content Marketing & Short-form Video Project (Reels/TikTok)"
+      },
+      "excerpt": {
+        "vi": "Xây dựng chuỗi video ngắn định dạng dọc giới thiệu dòng sản phẩm đồ uống/thời trang cho giới trẻ. Trực tiếp lên kịch bản, quay dựng và tối ưu âm thanh bắt trend.",
+        "en": "Producing a vertical short-video campaign for youth lifestyle brands. Spearheaded scriptwriting, video shooting, audio sync, and trend optimization."
+      },
+      "highlights": [
+        {
+          "vi": "Nghiên cứu thị hiếu Gen Z",
+          "en": "Gen Z trend & insight analysis"
+        },
+        {
+          "vi": "Kịch bản 3 giây đầu thu hút (Hook)",
+          "en": "High-converting 3s hook scripting"
+        },
+        {
+          "vi": "Tối ưu tỷ lệ giữ chân người xem (Watch Time)",
+          "en": "Audience retention rate optimization"
+        }
+      ],
+      "tags": [
+        "CapCut Pro",
+        "Premiere",
+        "TikTok Trends",
+        "Canva"
+      ],
+      "thumbClass": "thumb-gradient-1",
+      "watermarkIcon": "fa-brands fa-tiktok",
+      "category": {
+        "vi": "Video Marketing & Social Viral",
+        "en": "Video Marketing & Social Viral"
+      },
+      "duration": {
+        "vi": "2 tháng (Học kỳ đồ án thực hành)",
+        "en": "2 months (Coursework Project)"
+      },
+      "teamSize": {
+        "vi": "4 thành viên",
+        "en": "4 members"
+      },
+      "tools": [
+        "CapCut Pro",
+        "Adobe Premiere Pro",
+        "TikTok Creator Studio",
+        "Canva Pro",
+        "Smartphone 4K & Gimbal"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Dự án tập trung vào việc nghiên cứu hành vi tiêu thụ video ngắn của đối tượng khách hàng Gen Z và người trẻ tuổi, từ đó lên kế hoạch sản xuất chuỗi 15 video ngắn định dạng dọc (9:16) cho thương hiệu đồ uống / thời trang trẻ trung.",
+        "en": "Researched short-video consumption patterns of Gen Z audiences and produced a 15-video vertical campaign (9:16) for modern lifestyle brands."
+      },
+      "objectives": [
+        {
+          "vi": "Xây dựng định vị hình ảnh thương hiệu năng động, gần gũi và hài hước trên nền tảng TikTok và Instagram Reels.",
+          "en": "Build a vibrant, relatable, and engaging brand persona on TikTok and Instagram Reels."
+        },
+        {
+          "vi": "Thử nghiệm các cấu trúc kịch bản Hook 3s (Tò mò, Đặt câu hỏi, Trước/Sau, Phản ứng bất ngờ) để tối ưu tỷ lệ giữ chân người xem.",
+          "en": "A/B test 3-second hook variations (Curiosity, Questions, Before/After, Surprises) to maximize viewer retention."
+        },
+        {
+          "vi": "Đạt mục tiêu tối thiểu 50.000 lượt xem tự nhiên (organic views) và tỷ lệ tương tác (engagement rate) trên 8%.",
+          "en": "Achieve over 50,000+ organic views and an engagement rate exceeding 8%."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Trực tiếp lên ý tưởng, viết kịch bản phân cảnh chi tiết (Storyboard) cho toàn bộ 15 video.",
+          "en": "Conceptualized and wrote detailed storyboards and scripts for all 15 videos."
+        },
+        {
+          "vi": "Phân công vai trò diễn xuất, chuẩn bị đạo cụ, góc quay và setup ánh sáng với gimbal.",
+          "en": "Managed talent staging, props, cinematography angles, and lighting with gimbal setups."
+        },
+        {
+          "vi": "Hậu kỳ cắt dựng, chỉnh màu sắc tươi sáng, chèn sound effects (SFX) và chọn nhạc nền thịnh hành (Trending BGM).",
+          "en": "Edited post-production, color grading, sound design (SFX), and selected trending soundtracks."
+        },
+        {
+          "vi": "Theo dõi dữ liệu phân tích từ TikTok Analytics để tinh chỉnh thời gian đăng bài và hashtag.",
+          "en": "Monitored TikTok Analytics to optimize posting schedule and hashtag strategies."
+        }
+      ],
+      "results": [
+        {
+          "vi": "Chiến dịch đạt hơn 120.000+ lượt xem tích lũy trên cả hai nền tảng.",
+          "en": "Campaign generated over 120,000+ cumulative views across both platforms."
+        },
+        {
+          "vi": "Video viral nhất đạt 45.000 lượt xem với hơn 3.200 lượt thả tim và 180 lượt chia sẻ.",
+          "en": "Top viral video achieved 45,000+ views, 3,200+ likes, and 180+ shares."
+        },
+        {
+          "vi": "Được giảng viên bộ môn đánh giá Xuất sắc (Điểm 9.5/10) về chất lượng hình ảnh và thông điệp truyền tải.",
+          "en": "Awarded an Excellent grade (9.5/10) by faculty for visual execution and narrative storytelling."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "badge": {
+        "vi": "SEO & Research",
+        "en": "SEO & Research"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Phân tích Dữ liệu",
+        "en": "Team Leader & Data Analyst"
+      },
+      "platform": {
+        "icon": "fa-solid fa-globe",
+        "text": "SEO & Analytics"
+      },
+      "title": {
+        "vi": "2. Dự Án SEO & Nghiên Cứu Thị Trường Ngành Hàng",
+        "en": "2. SEO & Industry Market Research Project"
+      },
+      "excerpt": {
+        "vi": "Phân tích đối thủ cạnh tranh, nghiên cứu bộ từ khóa theo hành trình mua sắm của khách hàng (Buyer's Journey) và lập kế hoạch tối ưu cấu trúc nội dung Onpage.",
+        "en": "Competitor analysis, keyword mapping across the Buyer's Journey, and Onpage content architecture planning."
+      },
+      "highlights": [
+        {
+          "vi": "Phân tích Insight & Đối thủ",
+          "en": "Competitor & customer insight analysis"
+        },
+        {
+          "vi": "Lập bộ từ khóa 100+ keywords tiềm năng",
+          "en": "Building 100+ high-potential keywords"
+        },
+        {
+          "vi": "Tối ưu bài viết chuẩn SEO & UI/UX",
+          "en": "SEO content & UI/UX optimization"
+        }
+      ],
+      "tags": [
+        "Google Search Console",
+        "GA4",
+        "Keyword Planner",
+        "Excel MOS"
+      ],
+      "thumbClass": "thumb-gradient-2",
+      "watermarkIcon": "fa-solid fa-chart-line",
+      "category": {
+        "vi": "Search Engine Optimization & Market Research",
+        "en": "Search Engine Optimization & Market Research"
+      },
+      "duration": {
+        "vi": "2.5 tháng",
+        "en": "2.5 months"
+      },
+      "teamSize": {
+        "vi": "5 thành viên",
+        "en": "5 members"
+      },
+      "tools": [
+        "Google Search Console",
+        "Google Analytics (GA4)",
+        "Google Keyword Planner",
+        "Ahrefs",
+        "Microsoft Excel MOS"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #065f46 0%, #059669 50%, #0284c7 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Đồ án nghiên cứu thị trường toàn diện và triển khai chiến lược SEO Onpage & Content Hub cho một website thương mại điện tử chuyên cung cấp sản phẩm phong cách sống.",
+        "en": "Conducted comprehensive market research and executed Onpage SEO & Content Hub strategy for an e-commerce lifestyle brand."
+      },
+      "objectives": [
+        {
+          "vi": "Thấu hiểu chân dung khách hàng mục tiêu (Buyer Persona) và hành trình tìm kiếm thông tin của người tiêu dùng.",
+          "en": "Identify Buyer Personas and search intent journeys across key stages."
+        },
+        {
+          "vi": "Phân tích điểm mạnh, điểm yếu của 3 đối thủ cạnh tranh trực tiếp trên bảng xếp hạng Google tìm kiếm.",
+          "en": "Analyze strengths and weaknesses of top 3 direct organic search competitors on Google."
+        },
+        {
+          "vi": "Xây dựng cấu trúc cây thư mục website (Site Architecture) và bộ từ khóa phủ rộng theo mô hình Topic Cluster.",
+          "en": "Develop website information architecture and extensive keyword mapping via Topic Clusters."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Điều phối nhóm lọc bộ từ khóa hơn 150 keywords có lượng tìm kiếm cao và độ cạnh tranh (Keyword Difficulty) phù hợp.",
+          "en": "Led team in filtering 150+ high-volume keywords with balanced Keyword Difficulty."
+        },
+        {
+          "vi": "Áp dụng chứng chỉ MOS Excel 2019 để phân loại dữ liệu từ khóa, tính toán Search Volume và tiềm năng chuyển đổi.",
+          "en": "Leveraged MOS Excel 2019 data processing to segment search volume and conversion potential."
+        },
+        {
+          "vi": "Viết bài mẫu chuẩn SEO (1.500+ từ) tối ưu Heading, Meta Description, Alt ảnh và Internal Link.",
+          "en": "Authored SEO-standard pillar articles (1,500+ words) optimizing Headings, Meta, Alt, and Internal Links."
+        },
+        {
+          "vi": "Đo lường các chỉ số CTR, thời gian trên trang và thứ hạng từ khóa qua Google Search Console.",
+          "en": "Tracked CTR, dwell time, and keyword rankings via Google Search Console."
+        }
+      ],
+      "results": [
+        {
+          "vi": "15 từ khóa mục tiêu lọt Top 10 Google Search sau 6 tuần thử nghiệm index bài viết.",
+          "en": "15 target keywords reached Google Top 10 within 6 weeks post-indexing."
+        },
+        {
+          "vi": "Tăng lượng Organic Clicks lên 250% so với giai đoạn thử nghiệm ban đầu.",
+          "en": "Increased organic clicks by 250% compared to baseline benchmark."
+        },
+        {
+          "vi": "Được hội đồng chấm đồ án chọn làm bài báo cáo mẫu cho sinh viên khóa sau.",
+          "en": "Selected by the academic evaluation board as a showcase report for future cohorts."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "badge": {
+        "vi": "Brand Campaign",
+        "en": "Brand Campaign"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Quản lý Chiến dịch",
+        "en": "Team Leader & Campaign Manager"
+      },
+      "platform": {
+        "icon": "fa-solid fa-bullseye",
+        "text": "Chiến dịch IMC"
+      },
+      "title": {
+        "vi": "3. Chiến Dịch Lập Kế Hoạch & Triển Khai Nội Dung Thương Hiệu",
+        "en": "3. Integrated Brand Content Planning & Execution Campaign"
+      },
+      "excerpt": {
+        "vi": "Xây dựng chiến dịch truyền thông đa kênh cho thương hiệu trong dịp lễ/mở bán mới. Thiết lập thông điệp cốt lõi, ma trận nội dung và quản trị tiến độ thực thi.",
+        "en": "Planning and executing an omnichannel campaign for seasonal launch. Establishing key messaging, content matrix, and timeline control."
+      },
+      "highlights": [
+        {
+          "vi": "Lên lịch Content Calendar đa kênh",
+          "en": "Multichannel Content Calendar design"
+        },
+        {
+          "vi": "Thiết kế bộ nhận diện ấn phẩm mạng xã hội",
+          "en": "Social media visual brand kit design"
+        },
+        {
+          "vi": "Điều phối 5 thành viên hoàn thành đúng hạn",
+          "en": "Coordinating 5 team members to meet KPIs"
+        }
+      ],
+      "tags": [
+        "Notion Planning",
+        "Canva Brand Kit",
+        "Meta Suite",
+        "Content Matrix"
+      ],
+      "thumbClass": "thumb-gradient-3",
+      "watermarkIcon": "fa-solid fa-bullseye",
+      "category": {
+        "vi": "Integrated Marketing Campaign (IMC) & Branding",
+        "en": "Integrated Marketing Campaign (IMC) & Branding"
+      },
+      "duration": {
+        "vi": "3 tháng",
+        "en": "3 months"
+      },
+      "teamSize": {
+        "vi": "5 thành viên",
+        "en": "5 members"
+      },
+      "tools": [
+        "Notion Project Board",
+        "Canva Pro Brand Kit",
+        "Meta Business Suite",
+        "Google Docs / Sheets",
+        "Trello"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #f43f5e 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Lập kế hoạch truyền thông tích hợp (IMC Plan) cho chiến dịch ra mắt bộ sưu tập theo mùa. Dự án bao gồm việc định hình thông điệp thương hiệu cốt lõi (Key Message), thiết kế bộ nhận diện visual và triển khai lịch nội dung đa kênh xuyên suốt 30 ngày.",
+        "en": "Formulated an Integrated Marketing Communications (IMC) plan for a seasonal collection launch, defining Key Message, visual brand identity, and a 30-day multichannel content calendar."
+      },
+      "objectives": [
+        {
+          "vi": "Định hình phong cách thương hiệu nhất quán (Brand Identity Guidelines): Bảng màu, typography và văn phong (Tone & Voice).",
+          "en": "Define brand style guidelines: color palette, typography, and Brand Tone & Voice."
+        },
+        {
+          "vi": "Thiết lập ma trận nội dung theo quy tắc 70-20-10: 70% nội dung giá trị/chia sẻ, 20% nội dung tương tác cảm xúc, 10% bán hàng trực tiếp.",
+          "en": "Deploy 70-20-10 content matrix: 70% value-driven, 20% emotional engagement, 10% direct conversion."
+        },
+        {
+          "vi": "Đảm bảo tiến độ đăng bài mỗi ngày không bị trễ hạn thông qua quy trình kiểm duyệt nghiêm ngặt.",
+          "en": "Ensure daily publication schedule without bottlenecks through structured review workflows."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Xây dựng bảng kế hoạch tổng thể trên Notion với lịch biểu chi tiết từng ngày, từng người phụ trách (RACI Model).",
+          "en": "Structured master planning board on Notion with daily schedules and RACI model assignments."
+        },
+        {
+          "vi": "Thiết kế hơn 20 mẫu poster, carousel nhiều ảnh trên Canva đảm bảo chuẩn nhận diện thương hiệu.",
+          "en": "Designed 20+ social media banners and carousel templates on Canva aligned with brand guidelines."
+        },
+        {
+          "vi": "Tổ chức các buổi họp nhóm hàng tuần để giải quyết khó khăn, truyền động lực và duy trì tinh thần đoàn kết.",
+          "en": "Facilitated weekly team meetings to unblock issues, motivate members, and maintain team cohesion."
+        },
+        {
+          "vi": "Đánh giá và tổng kết hiệu quả chiến dịch bằng báo cáo chi tiết kèm bài học kinh nghiệm rút ra.",
+          "en": "Conducted end-of-campaign post-mortem analysis and performance reporting."
+        }
+      ],
+      "results": [
+        {
+          "vi": "Chiến dịch hoàn thành 100% KPI về số lượng bài viết và ấn phẩm truyền thông đúng thời hạn.",
+          "en": "Achieved 100% KPI completion across all creative assets and editorial posts on schedule."
+        },
+        {
+          "vi": "Tương tác trên Fanpage tăng 180%, tỷ lệ phản hồi tin nhắn khách hàng đạt mức xuất sắc.",
+          "en": "Page engagement surged by 180% with outstanding customer message response rates."
+        },
+        {
+          "vi": "Góp phần quan trọng giúp tôi hoàn thành đồ án tốt nghiệp loại Xuất Sắc tại FPT Polyschool.",
+          "en": "Directly contributed to earning a High Distinction graduation grade at FPT Polyschool."
+        }
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "title": {
+        "vi": "Top 2 Chung kết — Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3)",
+        "en": "Top 2 Barefoot Startup Competition (Season 3)"
+      },
+      "award": {
+        "vi": "Á quân (Top 2 Chung kết Toàn quốc)",
+        "en": "Runner-up (National Finals Top 2)"
+      },
+      "organization": {
+        "vi": "BTEC FPT & DNES",
+        "en": "BTEC FPT Danang & DNES"
+      },
+      "orgIcon": "fa-solid fa-lightbulb",
+      "timeLocation": {
+        "vi": "14/08/2026 tại Đà Nẵng",
+        "en": "14/08/2026 in Danang City"
+      },
+      "badgeType": {
+        "vi": "Top 2 • Á quân",
+        "en": "Top 2 • Runner-up"
+      },
+      "badgeClass": "badge-trophy",
+      "badgeStyle": "background: linear-gradient(135deg, #10b981 0%, #059669 100%);",
+      "badgeIcon": "fa-solid fa-trophy",
+      "mainImage": "cert-chan-tran-khoi-nghiep.jpg",
+      "downloadName": "ChungNhan_ChanTranKhoiNghiep_DoMinhTri.jpg",
+      "externalUrl": "https://dnes.vn",
+      "externalTitle": "Vườn ươm Doanh nghiệp Đà Nẵng DNES",
+      "externalIcon": "fa-solid fa-arrow-up-right-from-square",
+      "externalText": "Đơn vị DNES",
+      "description": {
+        "vi": "Thành viên đội Smart Mini Storage — xuất sắc đạt thành tích Top 2 tại Vòng Chung kết Cuộc thi Chân Trần Khởi Nghiệp (Mùa 3), xây dựng dự án ứng dụng tư duy đổi mới sáng tạo, AI và phát triển bền vững để giải quyết vấn đề thực tế và tạo ra giá trị cho cộng đồng.",
+        "en": "Core member of Smart Mini Storage — achieving Top 2 honors at the Barefoot Startup Competition (Season 3), building sustainable solutions integrating innovation, AI, and social value."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận chứng nhận",
+            "en": "Awardee"
+          },
+          "val": "Đỗ Minh Trí (Do Minh Tri)"
+        },
+        {
+          "label": {
+            "vi": "Đơn vị tổ chức & Chuyên môn",
+            "en": "Organizers & Mentors"
+          },
+          "val": "BTEC FPT Đà Nẵng & DNES"
+        },
+        {
+          "label": {
+            "vi": "Ngày Chung kết",
+            "en": "Finals Date"
+          },
+          "val": "14 / 08 / 2026"
+        },
+        {
+          "label": {
+            "vi": "Thành tích / Dự án",
+            "en": "Team / Project"
+          },
+          "val": "Smart Mini Storage Team",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "Đổi mới sáng tạo",
+        "Ứng dụng AI",
+        "Phát triển bền vững",
+        "Top 2 Chung kết"
+      ],
+      "tasks": [
+        {
+          "vi": "Nghiên cứu thị trường và khảo sát thực tế nhu cầu lưu trữ mini thông minh (Smart Mini Storage) của giới trẻ và khách du lịch.",
+          "en": "Executed field surveys and market validation for smart micro-storage needs among urban youth and travelers."
+        },
+        {
+          "vi": "Ứng dụng tư duy công nghệ AI và mô hình phát triển bền vững để xây dựng giải pháp tối ưu hóa chi phí vận hành.",
+          "en": "Incorporated AI technology and circular economy principles to streamline operational expenses."
+        },
+        {
+          "vi": "Hoàn thiện mô hình kinh doanh và trực tiếp thuyết trình, phản biện tự tin trước hội đồng giám khảo và cố vấn doanh nghiệp.",
+          "en": "Finalized business model canvas and pitched before the judging panel and venture mentors."
+        }
+      ],
+      "result": {
+        "vi": "Xuất sắc giành giải Top 2 Chung kết (Á quân), chứng minh năng lực đổi mới sáng tạo, tinh thần khởi nghiệp thực chiến và khả năng ứng dụng AI vào giải quyết vấn đề kinh doanh thực tế.",
+        "en": "Awarded National Runner-up (Top 2), validating entrepreneurial grit, innovation capability, and AI-driven commercial problem-solving."
+      }
+    },
+    {
+      "id": 2,
+      "title": {
+        "vi": "Vòng Bán kết Toàn quốc — Cuộc thi FPT Biz Talent 2025",
+        "en": "National Semi-final — FPT Biz Talent 2025"
+      },
+      "award": {
+        "vi": "Bán kết Toàn quốc (Top đội thi xuất sắc)",
+        "en": "National Semi-finalist (Top Venture Teams)"
+      },
+      "organization": {
+        "vi": "Tập đoàn FPT — Ban Công tác Học đường",
+        "en": "FPT Corporation — Student Affairs"
+      },
+      "orgIcon": "fa-solid fa-building-flag",
+      "timeLocation": {
+        "vi": "15/08/2025",
+        "en": "15/08/2025"
+      },
+      "badgeType": {
+        "vi": "Bán kết Toàn quốc",
+        "en": "National Semi-final"
+      },
+      "badgeClass": "badge-fpt",
+      "badgeStyle": "background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);",
+      "badgeIcon": "fa-solid fa-medal",
+      "mainImage": "cert-fpt-biz-talent.jpg",
+      "downloadName": "ChungNhan_FPT_Biz_Talent_DoMinhTri.jpg",
+      "externalUrl": "https://fpt.edu.vn",
+      "externalTitle": "Tập đoàn FPT - Khối Giáo dục",
+      "externalIcon": "fa-solid fa-shield-halved",
+      "externalText": "FPT Education",
+      "description": {
+        "vi": "Bằng chứng nhận do Ban Công tác Học đường, Tập đoàn FPT trao tặng, ghi nhận nỗ lực vượt bậc và thành tích xuất sắc của đại diện đội The Culinary AI (FPT Polyschool Bình Định) tại vòng Bán kết toàn quốc cuộc thi khởi nghiệp kinh doanh FPT Biz Talent 2025.",
+        "en": "Awarded by FPT Corporation Student Affairs Division, honoring exceptional business acumen and innovative performance of The Culinary AI team at the national semi-finals."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận chứng nhận",
+            "en": "Awardee"
+          },
+          "val": "Đỗ Minh Trí (Do Minh Tri)"
+        },
+        {
+          "label": {
+            "vi": "Đơn vị tổ chức",
+            "en": "Organizing Body"
+          },
+          "val": "Ban Công tác Học đường, Tập đoàn FPT"
+        },
+        {
+          "label": {
+            "vi": "Thời gian trao giải",
+            "en": "Award Date"
+          },
+          "val": "15 / 08 / 2025"
+        },
+        {
+          "label": {
+            "vi": "Đại diện đội thi",
+            "en": "Representing Team"
+          },
+          "val": "The Culinary AI",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "FPT Biz Talent",
+        "Ý tưởng kinh doanh",
+        "Ứng dụng AI ngành ẩm thực",
+        "Bán kết toàn quốc"
+      ],
+      "tasks": [
+        {
+          "vi": "Nghiên cứu giải pháp kinh doanh ngành F&B kết hợp AI nhằm nâng cao trải nghiệm khách hàng và tối ưu hiệu suất ẩm thực.",
+          "en": "Formulated AI-integrated F&B business model enhancing customer personalization and culinary productivity."
+        },
+        {
+          "vi": "Xây dựng kế hoạch tài chính, phân tích điểm hòa vốn và dự báo doanh thu cho mô hình The Culinary AI.",
+          "en": "Constructed financial statements, break-even projections, and unit economics."
+        },
+        {
+          "vi": "Đại diện đội thi thuyết trình và bảo vệ ý tưởng kinh doanh trước hội đồng chuyên môn cấp Tập đoàn FPT.",
+          "en": "Represented team in pitching and defensing business viability before corporate leadership."
+        }
+      ],
+      "result": {
+        "vi": "Đạt thành tích Vòng Bán kết Toàn quốc cuộc thi khởi nghiệp FPT Biz Talent 2025; củng cố tư duy quản trị tài chính, mô hình kinh doanh và tầm nhìn công nghệ phục vụ đời sống.",
+        "en": "Ranked among National Semi-finalists of FPT Biz Talent 2025, sharpening financial management, business structuring, and technology vision."
+      }
+    },
+    {
+      "id": 3,
+      "title": {
+        "vi": "Microsoft Office Specialist: Excel 2019 Associate",
+        "en": "Microsoft Office Specialist: Excel 2019 Associate"
+      },
+      "award": {
+        "vi": "Chứng chỉ Chuẩn Quốc tế Microsoft Certified",
+        "en": "Microsoft Certified International Credential"
+      },
+      "organization": {
+        "vi": "Microsoft & Certiport",
+        "en": "Microsoft & Certiport"
+      },
+      "orgIcon": "fa-brands fa-microsoft",
+      "timeLocation": {
+        "vi": "20/04/2025",
+        "en": "20/04/2025"
+      },
+      "badgeType": {
+        "vi": "Đã xác thực Certiport",
+        "en": "Certiport Verified"
+      },
+      "badgeClass": "badge-ms",
+      "badgeStyle": "background: linear-gradient(135deg, #0056b3 0%, #0369a1 100%);",
+      "badgeIcon": "fa-solid fa-circle-check",
+      "mainImage": "certificate-mos-excel.jpg",
+      "downloadName": "ChungChi_MOS_Excel_2019_DoMinhTri.jpg",
+      "externalUrl": "https://verify.certiport.com",
+      "externalTitle": "Cổng xác thực quốc tế Certiport (Mã: 2NPb-XM8H)",
+      "externalIcon": "fa-solid fa-square-check",
+      "externalText": "Xác thực Certiport",
+      "description": {
+        "vi": "Chứng chỉ quốc tế do Microsoft và tổ chức khảo thí Certiport cấp, xác nhận trình độ chuyên sâu trong việc xây dựng mô hình dữ liệu, phân tích số liệu tài chính & marketing, tự động hóa tính toán và trực quan hóa báo cáo.",
+        "en": "International certification issued by Microsoft and Certiport, validating expertise in data modeling, marketing/financial analysis, formula automation, and dynamic reporting."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận chứng chỉ",
+            "en": "Candidate Name"
+          },
+          "val": "Do Minh Tri (Đỗ Minh Trí)"
+        },
+        {
+          "label": {
+            "vi": "Mã định danh học viên",
+            "en": "Candidate ID"
+          },
+          "val": "052208008929"
+        },
+        {
+          "label": {
+            "vi": "Ngày cấp chứng nhận",
+            "en": "Issue Date"
+          },
+          "val": "20 / 04 / 2025"
+        },
+        {
+          "label": {
+            "vi": "Mã xác thực Certiport",
+            "en": "Certiport Verification Code"
+          },
+          "val": "2NPb-XM8H",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "MOS Excel 2019",
+        "Xử lý & Phân tích Dữ liệu",
+        "Báo cáo KPI Marketing",
+        "Chuẩn quốc tế"
+      ],
+      "tasks": [
+        {
+          "vi": "Thành thạo cấu trúc dữ liệu, các hàm nâng cao (VLOOKUP, XLOOKUP, INDEX/MATCH, hàm logic & thống kê).",
+          "en": "Mastered advanced data structures and formulas (VLOOKUP, XLOOKUP, INDEX/MATCH, logic & stats)."
+        },
+        {
+          "vi": "Xây dựng Dashboard động, báo cáo phân tích số liệu kinh doanh chuyên nghiệp bằng PivotTable & Slicer trực quan.",
+          "en": "Constructed dynamic dashboards and KPI reports utilizing PivotTables and interactive Slicers."
+        },
+        {
+          "vi": "Tự động hóa tác vụ tính toán, xử lý làm sạch dữ liệu lớn và kiểm soát tính toàn vẹn của bảng tính.",
+          "en": "Automated data hygiene workflows and maintained spreadsheet data integrity."
+        }
+      ],
+      "result": {
+        "vi": "Sở hữu chứng chỉ quốc tế trọn đời có giá trị toàn cầu từ Microsoft; chứng minh năng lực tư duy dữ liệu sắc bén, sẵn sàng đảm nhiệm các vị trí phân tích số liệu và Marketing chuyên sâu.",
+        "en": "Earned lifetime globally recognized Microsoft credential; proven data processing and analytical competencies ready for business analysis roles."
+      }
+    },
+    {
+      "id": 4,
+      "title": {
+        "vi": "Sinh viên có thành tích học tập xuất sắc — Học kỳ Spring 2025",
+        "en": "Student of Academic Excellence — Spring 2025 Semester"
+      },
+      "award": {
+        "vi": "Khen thưởng Sinh viên Xuất sắc",
+        "en": "Academic Commendation of Excellence"
+      },
+      "organization": {
+        "vi": "FPT Polyschool — Cơ sở Bình Định",
+        "en": "FPT Polyschool — Binh Dinh Campus"
+      },
+      "orgIcon": "fa-solid fa-graduation-cap",
+      "timeLocation": {
+        "vi": "Học kỳ Spring 2025 • Bình Định",
+        "en": "Spring Semester 2025 • Binh Dinh"
+      },
+      "badgeType": {
+        "vi": "Xuất sắc • Spring 2025",
+        "en": "Excellence • Spring 2025"
+      },
+      "badgeClass": "badge-academic",
+      "badgeStyle": "background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);",
+      "badgeIcon": "fa-solid fa-graduation-cap",
+      "mainImage": "cert-sv-xuat-sac-2025.jpg",
+      "downloadName": "GiayKhen_SinhVienXuatSac_Spring2025_DoMinhTri.jpg",
+      "externalUrl": "https://fpt.edu.vn",
+      "externalTitle": "FPT Polyschool — Khối Giáo dục FPT",
+      "externalIcon": "fa-solid fa-graduation-cap",
+      "externalText": "FPT Polyschool",
+      "description": {
+        "vi": "Được Giám đốc cơ sở Bình Định (FPT Polyschool) vinh danh nhờ thành tích học tập xuất sắc trong học kỳ Spring 2025, khẳng định tinh thần kỷ luật và tư duy học tập chủ động.",
+        "en": "Commended by the Campus Director of FPT Polyschool for outstanding academic performance during Spring 2025, demonstrating discipline and proactive self-learning."
+      },
+      "metaItems": [
+        {
+          "label": {
+            "vi": "Người nhận khen thưởng",
+            "en": "Awardee"
+          },
+          "val": "Đỗ Minh Trí (Do Minh Tri)"
+        },
+        {
+          "label": {
+            "vi": "Đơn vị cấp quyết định",
+            "en": "Issuing Authority"
+          },
+          "val": "FPT Polyschool — Cơ sở Bình Định"
+        },
+        {
+          "label": {
+            "vi": "Thời gian vinh danh",
+            "en": "Commendation Period"
+          },
+          "val": "Học kỳ Spring 2025"
+        },
+        {
+          "label": {
+            "vi": "Danh hiệu khen thưởng",
+            "en": "Academic Honor"
+          },
+          "val": "Sinh viên Xuất sắc (Academic Excellence)",
+          "isHighlight": true
+        }
+      ],
+      "tags": [
+        "Thành tích học tập",
+        "Sinh viên xuất sắc",
+        "FPT Polyschool",
+        "Spring 2025",
+        "Kỷ luật & Tự học"
+      ],
+      "tasks": [
+        {
+          "vi": "Hoàn thành xuất sắc toàn bộ khối lượng kiến thức và môn học chuyên ngành trong học kỳ Spring 2025 với kết quả học tập vượt trội.",
+          "en": "Achieved outstanding marks across all core professional curriculum modules in Spring 2025."
+        },
+        {
+          "vi": "Chủ động nghiên cứu, vận dụng kiến thức lý thuyết vào các dự án môn học thực tế và tích cực dẫn dắt làm việc nhóm.",
+          "en": "Actively researched and bridged classroom theory into hands-on coursework projects."
+        },
+        {
+          "vi": "Duy trì tinh thần tự giác, chấp hành tốt nội quy học đường và đạt tiêu chuẩn khen thưởng của Ban Giám hiệu nhà trường.",
+          "en": "Maintained exemplary self-discipline and met all honor roll standards of the board."
+        }
+      ],
+      "result": {
+        "vi": "Được Giám đốc cơ sở Bình Định chính thức trao tặng giấy khen Sinh viên Xuất sắc, là minh chứng cho tinh thần kiên trì, thái độ học tập nghiêm túc và nền tảng chuyên môn vững vàng.",
+        "en": "Officially awarded Campus Commendation of Academic Excellence, demonstrating relentless dedication, rigorous work ethic, and solid academic foundation."
+      }
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "title": {
+        "vi": "BBE Pegasus Chapter — Ban Lãnh Đạo Nhiệm Kỳ I",
+        "en": "BBE Pegasus Chapter — Executive Board Term I"
+      },
+      "role": {
+        "vi": "Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I",
+        "en": "Vice President — Executive Board (Term I)"
+      },
+      "organization": "BBE Pegasus Chapter",
+      "orgIcon": "fa-solid fa-shield-halved",
+      "eventOrg": {
+        "vi": "BBE Pegasus Chapter",
+        "en": "BBE Pegasus Chapter"
+      },
+      "timeLocation": {
+        "vi": "01/02/2026 – 30/09/2026",
+        "en": "01/02/2026 – 30/09/2026"
+      },
+      "badgeType": {
+        "vi": "Ban Lãnh đạo",
+        "en": "Executive Board"
+      },
+      "badgeClass": "badge-leader",
+      "badgeIcon": "fa-solid fa-crown",
+      "mainImage": "act-pegasus.jpg",
+      "description": {
+        "vi": "Thể hiện tinh thần trách nhiệm cao, điều phối đội ngũ và hoàn thành xuất sắc nhiệm vụ trong vai trò Phó Chủ tịch nhiệm kỳ I.",
+        "en": "Demonstrated strong leadership, operational coordination, and successfully fulfilled executive responsibilities as Vice President during Term I."
+      },
+      "subPlaceholder1": {
+        "vi": "Ảnh hậu trường sinh hoạt & họp điều hành",
+        "en": "Operational meetings & internal activities"
+      },
+      "subPlaceholder2": {
+        "vi": "Ảnh tổ chức workshop & chia sẻ kỹ năng",
+        "en": "Workshops & skill-sharing sessions"
+      },
+      "tasks": [
+        {
+          "vi": "Điều phối thành viên, phân công công việc cụ thể và giám sát tiến độ hoạt động trong ban lãnh đạo.",
+          "en": "Coordinated team members, delegated operational duties, and supervised milestone delivery."
+        },
+        {
+          "vi": "Xây dựng quy trình sinh hoạt định kỳ, chuẩn hóa tài liệu và duy trì kỷ luật sinh hoạt chuyên nghiệp.",
+          "en": "Standardized chapter operations, meeting protocols, and maintained disciplined execution."
+        },
+        {
+          "vi": "Chủ trì tổ chức các buổi chia sẻ kỹ năng thực chiến và các hoạt động kết nối tinh thần đồng đội.",
+          "en": "Chaired practical skill-sharing workshops and facilitated team bonding experiences."
+        }
+      ],
+      "result": {
+        "vi": "Duy trì độ gắn kết đội ngũ cao trong suốt nhiệm kỳ I, củng cố năng lực điều hành và xây dựng văn hóa đội nhóm vững mạnh.",
+        "en": "Maintained high team cohesion throughout Term I, honing executive leadership and strengthening organizational culture."
+      }
+    },
+    {
+      "id": 2,
+      "title": {
+        "vi": "Lễ Tốt Nghiệp BTEC FPT 2026",
+        "en": "BTEC FPT Graduation Ceremony 2026"
+      },
+      "role": {
+        "vi": "Thành viên Ban Tổ chức (Organizing Committee)",
+        "en": "Organizing Committee Member"
+      },
+      "organization": "BTEC FPT",
+      "orgIcon": "fa-solid fa-graduation-cap",
+      "eventOrg": {
+        "vi": "Lễ Tốt nghiệp BTEC FPT 2026",
+        "en": "BTEC FPT Graduation Ceremony 2026"
+      },
+      "timeLocation": {
+        "vi": "25/10/2026 tại Đà Nẵng",
+        "en": "25/10/2026 in Danang City"
+      },
+      "badgeType": {
+        "vi": "Ban Tổ chức Sự kiện",
+        "en": "Event Organizing Committee"
+      },
+      "badgeClass": "badge-event",
+      "badgeIcon": "fa-solid fa-star",
+      "mainImage": "act-graduation.jpg",
+      "description": {
+        "vi": "Trực tiếp đóng góp và phối hợp vận hành sự kiện trọng đại cấp trường, đảm bảo trải nghiệm chuyên nghiệp cho sinh viên và khách mời.",
+        "en": "Directly contributed to orchestrating a high-profile commencement ceremony, ensuring a seamless experience for graduates, VIPs, and families."
+      },
+      "subPlaceholder1": {
+        "vi": "Ảnh hậu trường setup & vận hành sân khấu",
+        "en": "Stage setup & technical rehearsals"
+      },
+      "subPlaceholder2": {
+        "vi": "Ảnh điều phối tân cử nhân & đón tiếp khách mời",
+        "en": "VIP reception & graduate coordination"
+      },
+      "tasks": [
+        {
+          "vi": "Phối hợp chuẩn bị công tác hậu cần, kỹ thuật âm thanh, ánh sáng và kiểm soát bố cục sân khấu lễ tốt nghiệp.",
+          "en": "Collaborated on logistics, AV technical setups, and stage blocking control."
+        },
+        {
+          "vi": "Trực tiếp hướng dẫn, điều phối hàng ngũ khách mời danh dự, phụ huynh và tân cử nhân trong suốt buổi lễ.",
+          "en": "Guided and escorted VIPs, faculty, parents, and new graduates throughout the ceremony flow."
+        },
+        {
+          "vi": "Xử lý nhanh nhạy và kịp thời các tình huống phát sinh tại khu vực sân khấu chính và luồng di chuyển.",
+          "en": "Promptly resolved live contingencies on the main stage and guest circulation corridors."
+        }
+      ],
+      "result": {
+        "vi": "Sự kiện diễn ra suôn sẻ, chỉn chu và để lại ấn tượng tốt đẹp trong lòng sinh viên cùng khách mời; rèn luyện khả năng ứng biến dưới áp lực cao.",
+        "en": "The ceremony concluded smoothly and received praise from leadership; cultivated agility and composure under high-pressure event execution."
+      }
+    },
+    {
+      "id": 3,
+      "title": {
+        "vi": "Dự Án Thiện Nguyện \"Hành Trình Yêu Thương - Số Thứ 4\"",
+        "en": "Community Charity Project \"Love Journey - Vol. 4\""
+      },
+      "role": {
+        "vi": "Tình nguyện viên đóng góp tích cực",
+        "en": "Active Volunteer Contributor"
+      },
+      "organization": "BTEC FPT & Fusion Club",
+      "orgIcon": "fa-solid fa-heart",
+      "eventOrg": {
+        "vi": "Dự án thiện nguyện \"Hành Trình Yêu Thương - Số thứ 4\"",
+        "en": "Love Journey Vol. 4 Project"
+      },
+      "timeLocation": {
+        "vi": "Ngũ Hành Sơn, Đà Nẵng",
+        "en": "Ngu Hanh Son, Danang City"
+      },
+      "badgeType": {
+        "vi": "Thiện nguyện cộng đồng",
+        "en": "Community Volunteering"
+      },
+      "badgeClass": "badge-volunteer",
+      "badgeIcon": "fa-solid fa-hand-holding-heart",
+      "mainImage": "act-thien-nguyen.jpg",
+      "description": {
+        "vi": "Tham gia tổ chức và lan tỏa giá trị tích cực tại Mái Ấm Tình Thương (Ngũ Hành Sơn, Đà Nẵng).",
+        "en": "Co-organized and delivered compassionate support and meaningful donations to children at Mai Am Tinh Thuong Shelter in Danang."
+      },
+      "subPlaceholder1": {
+        "vi": "Ảnh chuẩn bị & phân loại quà tặng thiện nguyện",
+        "en": "Donation sorting & packaging"
+      },
+      "subPlaceholder2": {
+        "vi": "Ảnh sinh hoạt, giao lưu trò chơi cùng các em nhỏ",
+        "en": "Interactive games & activities with children"
+      },
+      "tasks": [
+        {
+          "vi": "Lên kế hoạch vận động, tiếp nhận và phân loại chu đáo các phần quà tặng gửi tới Mái Ấm Tình Thương.",
+          "en": "Mobilized, received, and systematically packaged essential donation packages."
+        },
+        {
+          "vi": "Tổ chức hoạt động giao lưu văn nghệ, trò chơi tập thể sôi nổi, an toàn và kết nối cùng các em nhỏ.",
+          "en": "Facilitated engaging, safe group games and artistic performances with children."
+        },
+        {
+          "vi": "Trực tiếp kết nối, lắng nghe, chăm sóc các em nhỏ tại Mái Ấm Tình Thương và hỗ trợ công tác hậu cần.",
+          "en": "Connected with children personally, provided companionship, and supported site logistics."
+        }
+      ],
+      "result": {
+        "vi": "Lan tỏa tinh thần sẻ chia và gắn kết cộng đồng sinh viên; nuôi dưỡng lòng trắc ẩn và tinh thần trách nhiệm xã hội.",
+        "en": "Fostered empathy, community connection, and active civic responsibility among student volunteers."
+      }
+    }
+  ]
+}

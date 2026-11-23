@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Portfolio Đỗ Minh Trí (Git-based CMS)</title>
+  <meta name="description" content="Trang quản trị CMS Portfolio kết nối trực tiếp với GitHub API (Git-based CMS).">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    /* ===================================================================
+       APPLE LIGHT BENTO CMS DESIGN SYSTEM
+       =================================================================== */
+    :root {
+      --bg-body: #F5F5F7;
+      --card-bg: #FFFFFF;
+      --card-border: 1px solid rgba(0, 0, 0, 0.06);
+      --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      --card-shadow-hover: 0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+      --text-main: #1D1D1F;
+      --text-secondary: #6E6E73;
+      --text-tertiary: #86868B;
+      --accent-apple: #0071E3;
+      --accent-apple-hover: #0077ED;
+      --accent-apple-subtle: rgba(0, 113, 227, 0.08);
+      --success: #10B981;
+      --danger: #EF4444;
+      --warning: #F59E0B;
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 60px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    a {
+      color: var(--accent-apple);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    /* Container */
+    .admin-container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Floating Pill Header */
+    .admin-header {
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      margin-bottom: 28px;
+    }
+
+    .header-pill {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: var(--card-border);
+      border-radius: var(--radius-pill);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-title span.accent {
+      color: var(--accent-apple);
+    }
+
+    .repo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--accent-apple-subtle);
+      color: var(--accent-apple);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--accent-apple);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 113, 227, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-apple-hover);
+      box-shadow: 0 6px 20px rgba(0, 113, 227, 0.35);
+    }
+
+    .btn-outline {
+      background: #FFFFFF;
+      color: var(--text-main);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-main);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-danger:hover {
+      background: var(--danger);
+      color: #FFFFFF;
+    }
+
+    .btn-sm {
+      padding: 6px 14px;
+      font-size: 0.8rem;
+    }
+
+    /* Tab Navigation */
+    .tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      background: #FFFFFF;
+      border: var(--card-border);
+      color: var(--text-secondary);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: #F9F9FB;
+    }
+
+    .tab-btn.active {
+      background: var(--text-main);
+      color: #FFFFFF;
+      border-color: var(--text-main);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .tab-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      background: rgba(0, 0, 0, 0.08);
+      color: inherit;
+    }
+
+    .tab-btn.active .tab-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    /* Bento Cards */
+    .bento-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: 28px;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title i {
+      color: var(--accent-apple);
+    }
+
+    .card-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+
+    /* Forms & Inputs */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-8 { grid-column: span 8; }
+    .col-6 { grid-column: span 6; }
+    .col-4 { grid-column: span 4; }
+    .col-3 { grid-column: span 3; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lang-indicator {
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .lang-vi { background: #FEE2E2; color: #DC2626; }
+    .lang-en { background: #DBEAFE; color: #2563EB; }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: #F9F9FB;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-control:focus {
+      background: #FFFFFF;
+      border-color: var(--accent-apple);
+      box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+    }
+
+    textarea.form-control {
+      min-height: 90px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    /* Items List (Projects, Certs, Activities) */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+
+    .item-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .item-card:hover {
+      box-shadow: var(--card-shadow-hover);
+      border-color: rgba(0, 113, 227, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .item-top {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .item-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      background: #F0F0F4;
+      flex-shrink: 0;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .item-thumb-placeholder {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 113, 227, 0.08);
+      color: var(--accent-apple);
+      margin-bottom: 4px;
+    }
+
+    .item-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      color: var(--text-main);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .item-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+    }
+
+    .item-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Avatar Upload Preview */
+    .avatar-preview-box {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 16px;
+      background: #F9F9FB;
+      border-radius: var(--radius-md);
+      border: 1px dashed rgba(0, 0, 0, 0.15);
+      margin-bottom: 16px;
+    }
+
+    .avatar-img-preview {
+      width: 90px;
+      height: 90px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Modal / Drawer */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      padding: 32px;
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .modal-foot {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    /* Login Screen */
+    .login-wrapper {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      border: var(--card-border);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      max-width: 480px;
+      width: 100%;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .login-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-apple-subtle);
+      color: var(--accent-apple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 18px;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background: #1D1D1F;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      animation: toastIn 0.3s ease forwards;
+    }
+
+    .toast.success i { color: #10B981; }
+    .toast.error i { color: #EF4444; }
+
+    @keyframes toastIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .col-8, .col-6, .col-4, .col-3 { grid-column: span 12; }
+      .header-pill { flex-wrap: wrap; }
+      .header-actions { width: 100%; justify-content: space-between; }
+      .items-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== MAIN ADMIN CONTAINER ==================== -->
+  <div class="admin-container">
+
+    <!-- Top Sticky Floating Bar -->
+    <header class="admin-header" id="admin-header" style="display: none;">
+      <div class="header-pill">
+        <div class="brand-group">
+          <div class="brand-title">
+            <span>ĐMT</span><span class="accent">.</span> <span>CMS</span>
+          </div>
+          <span class="repo-pill" id="header-repo-label">
+            <i class="fa-brands fa-github"></i> <span id="header-repo-name">repo</span>
+          </span>
+        </div>
+
+        <div class="header-actions">
+          <a href="index.html" target="_blank" class="btn btn-outline btn-sm" title="Mở trang Portfolio thực tế">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Xem Portfolio
+          </a>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-publish" onclick="publishDataToGitHub()">
+            <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản</span>
+          </button>
+          <button type="button" class="btn btn-ghost btn-sm" onclick="logoutAdmin()" title="Đăng xuất">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== VIEW 1: LOGIN SCREEN ==================== -->
+    <div class="login-wrapper" id="view-login">
+      <div class="login-card">
+        <div class="login-icon">
+          <i class="fa-brands fa-github"></i>
+        </div>
+        <h2 style="font-size: 1.5rem; margin-bottom: 8px;">Đăng Nhập Quản Trị</h2>
+        <p style="font-size: 0.88rem; color: var(--text-tertiary); margin-bottom: 24px;">
+          Kết nối trực tiếp với GitHub Repository qua Personal Access Token để quản lý dữ liệu Portfolio.
+        </p>
+
+        <form id="login-form" onsubmit="handleLoginSubmit(event)" style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
+          <div class="form-group">
+            <label class="form-label">GitHub Username (Owner)</label>
+            <input type="text" id="login-owner" class="form-control" placeholder="Ví dụ: dominhtri2206-create" required value="dominhtri2206-create">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tên Repository</label>
+            <input type="text" id="login-repo" class="form-control" placeholder="Ví dụ: portfolio-minh-tri" required value="portfolio-minh-tri">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Nhánh (Branch)</label>
+            <input type="text" id="login-branch" class="form-control" placeholder="main" required value="main">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>GitHub Personal Access Token (PAT)</span>
+              <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" style="font-size: 0.76rem;">Tạo token <i class="fa-solid fa-external-link"></i></a>
+            </label>
+            <div style="position: relative;">
+              <input type="password" id="login-token" class="form-control" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required style="padding-right: 40px;">
+              <button type="button" onclick="toggleTokenVisibility()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-tertiary); cursor: pointer;">
+                <i class="fa-solid fa-eye" id="token-eye-icon"></i>
+              </button>
+            </div>
+            <p style="font-size: 0.74rem; color: var(--text-tertiary); margin-top: 2px;">
+              Yêu cầu quyền hạn: <strong>repo</strong> (Classic Token) hoặc quyền <strong>Contents: Read and write</strong> (Fine-grained Token).
+            </p>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btn-login-submit" style="margin-top: 10px; width: 100%;">
+            <i class="fa-solid fa-bolt"></i> <span>Kết Nối & Vào Quản Trị</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 2: DASHBOARD TABS ==================== -->
+    <div id="view-dashboard" style="display: none;">
+
+      <!-- Navigation Tabs Bar -->
+      <nav class="tabs-bar">
+        <button class="tab-btn active" data-tab="tab-profile" onclick="switchTab('tab-profile')">
+          <i class="fa-solid fa-user"></i> <span>Hồ sơ & Avatar</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-projects" onclick="switchTab('tab-projects')">
+          <i class="fa-solid fa-briefcase"></i> <span>Dự án</span> <span class="tab-badge" id="badge-count-projects">0</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-certificates" onclick="switchTab('tab-certificates')">
+          <i class="fa-solid fa-certificate"></i> <span>Chứng chỉ</span> <span class="tab-badge" id="badge-count-certs">0</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-activities" onclick="switchTab('tab-activities')">
+          <i class="fa-solid fa-users"></i> <span>Hoạt động</span> <span class="tab-badge" id="badge-count-acts">0</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-raw" onclick="switchTab('tab-raw')">
+          <i class="fa-solid fa-code"></i> <span>JSON & Sao lưu</span>
+        </button>
+      </nav>
+
+      <!-- TAB 1: PROFILE & BIO -->
+      <section class="tab-content" id="tab-profile">
+        <!-- Bento Card: Avatar Management -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-image"></i> Ảnh Đại Diện (Avatar)</h3>
+              <p class="card-subtitle">Cập nhật ảnh đại diện hiển thị tại phần Hero chính của Portfolio</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="uploadAvatarToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Tải ảnh lên GitHub</span>
+            </button>
+          </div>
+
+          <div class="avatar-preview-box">
+            <img src="avatar.jpg" alt="Avatar Preview" class="avatar-img-preview" id="profile-avatar-preview">
+            <div style="flex: 1;">
+              <label class="form-label" style="margin-bottom: 6px;">Chọn file ảnh mới từ máy tính (.jpg, .png, .webp):</label>
+              <input type="file" id="avatar-file-input" class="form-control" accept="image/*" onchange="handleAvatarFileSelect(event)">
+              <p style="font-size: 0.76rem; color: var(--text-tertiary); margin-top: 6px;">
+                Đường dẫn hiện tại: <code id="profile-avatar-path">avatar.jpg</code>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card: Personal Bio & Positioning -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-id-card"></i> Thông Tin Cá Nhân & Định Vị</h3>
+              <p class="card-subtitle">Quản lý tên, chức danh, châm ngôn và tuyên ngôn cá nhân (Song ngữ VI / EN)</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-6">
+              <label class="form-label"><span>Họ và Tên</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="prof-name-vi" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Full Name</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="prof-name-en" class="form-control">
+            </div>
+
+            <div class="form-group col-4">
+              <label class="form-label">Bí danh / Alias</label>
+              <input type="text" id="prof-alias" class="form-control" placeholder="(Eric Do)">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label"><span>Châm ngôn (Motto)</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="prof-motto-vi" class="form-control">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label"><span>Motto</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="prof-motto-en" class="form-control">
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label"><span>Tiêu đề Tuyên ngôn (Tag)</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="prof-mission-tag-vi" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Mission Tag</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="prof-mission-tag-en" class="form-control">
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label"><span>Nội dung Tuyên ngôn cá nhân</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <textarea id="prof-mission-text-vi" class="form-control"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Personal Mission Text</span> <span class="lang-indicator lang-en">EN</span></label>
+              <textarea id="prof-mission-text-en" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label"><span>Đoạn văn giới thiệu bản thân</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <textarea id="prof-bio-vi" class="form-control" style="min-height: 120px;"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Biography Description</span> <span class="lang-indicator lang-en">EN</span></label>
+              <textarea id="prof-bio-en" class="form-control" style="min-height: 120px;"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card: Contact Info -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-address-book"></i> Thông Tin Liên Hệ Trực Tiếp</h3>
+              <p class="card-subtitle">Hiển thị tại mục Liên hệ và Footer</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-4">
+              <label class="form-label">Email liên hệ</label>
+              <input type="email" id="prof-email" class="form-control">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Số điện thoại</label>
+              <input type="text" id="prof-phone" class="form-control">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Địa chỉ</label>
+              <input type="text" id="prof-address-vi" class="form-control">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: PROJECTS -->
+      <section class="tab-content" id="tab-projects" style="display: none;">
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-briefcase"></i> Danh Sách Dự Án Tiêu Biểu</h3>
+              <p class="card-subtitle">Quản lý các thẻ dự án Bento và popup mô tả chi tiết quy trình</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="openProjectEditModal(null)">
+              <i class="fa-solid fa-plus"></i> <span>Thêm dự án mới</span>
+            </button>
+          </div>
+
+          <div class="items-grid" id="projects-list-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: CERTIFICATES -->
+      <section class="tab-content" id="tab-certificates" style="display: none;">
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-certificate"></i> Danh Sách Chứng Chỉ & Giải Thưởng</h3>
+              <p class="card-subtitle">Quản lý minh chứng năng lực thực tế và ảnh chứng chỉ</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="openCertEditModal(null)">
+              <i class="fa-solid fa-plus"></i> <span>Thêm chứng chỉ mới</span>
+            </button>
+          </div>
+
+          <div class="items-grid" id="certs-list-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: ACTIVITIES -->
+      <section class="tab-content" id="tab-activities" style="display: none;">
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-users"></i> Danh Sách Hoạt Động & Cộng Đồng</h3>
+              <p class="card-subtitle">Quản lý hoạt động ngoại khóa, vai trò điều phối sự kiện và ảnh minh chứng</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="openActEditModal(null)">
+              <i class="fa-solid fa-plus"></i> <span>Thêm hoạt động mới</span>
+            </button>
+          </div>
+
+          <div class="items-grid" id="acts-list-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: RAW JSON & BACKUP -->
+      <section class="tab-content" id="tab-raw" style="display: none;">
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-code"></i> Dữ Liệu JSON Gốc (data.json)</h3>
+              <p class="card-subtitle">Xem trực tiếp, sao lưu hoặc nhập dữ liệu JSON tùy biến</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="downloadDataJsonFile()">
+                <i class="fa-solid fa-download"></i> <span>Tải data.json về máy</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('import-json-input').click()">
+                <i class="fa-solid fa-upload"></i> <span>Nhập JSON từ máy</span>
+              </button>
+              <input type="file" id="import-json-input" accept=".json" style="display: none;" onchange="handleImportJsonFile(event)">
+            </div>
+          </div>
+
+          <textarea id="raw-json-editor" class="form-control" style="min-height: 400px; font-family: monospace; font-size: 0.86rem; background: #1E1E24; color: #5AF78E;"></textarea>
+
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
+            <button type="button" class="btn btn-outline btn-sm" onclick="applyJsonFromEditor()">
+              <i class="fa-solid fa-check"></i> Cập nhật dữ liệu từ Editor
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: ADD / EDIT PROJECT ==================== -->
+  <div class="modal-backdrop" id="modal-project-editor">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modal-project-title">Chỉnh Sửa Dự Án</h3>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="closeProjectEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="form-edit-project" onsubmit="saveProjectModal(event)">
+        <input type="hidden" id="proj-edit-id">
+
+        <div class="form-grid">
+          <div class="form-group col-6">
+            <label class="form-label"><span>Tiêu đề dự án</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="proj-title-vi" class="form-control" required>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Project Title</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="proj-title-en" class="form-control" required>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label"><span>Huy hiệu (Badge)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="proj-badge-vi" class="form-control" placeholder="Video Marketing">
+          </div>
+          <div class="form-group col-4">
+            <label class="form-label"><span>Vai trò tóm tắt</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="proj-role-vi" class="form-control" placeholder="Trưởng nhóm">
+          </div>
+          <div class="form-group col-4">
+            <label class="form-label"><span>Nền tảng (Platform)</span></label>
+            <input type="text" id="proj-platform-text" class="form-control" placeholder="Reels & TikTok">
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Mô tả ngắn (Excerpt)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="proj-excerpt-vi" class="form-control"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Short Excerpt</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="proj-excerpt-en" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Tổng quan đồ án (Overview)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="proj-overview-vi" class="form-control"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Project Overview</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="proj-overview-en" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Mục tiêu chiến dịch (1 mục mỗi dòng)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="proj-objectives-vi" class="form-control" placeholder="Mục tiêu 1&#10;Mục tiêu 2"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Campaign Objectives (1 per line)</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="proj-objectives-en" class="form-control" placeholder="Objective 1&#10;Objective 2"></textarea>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Đóng góp cá nhân (1 mục mỗi dòng)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="proj-contributions-vi" class="form-control"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Key Contributions (1 per line)</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="proj-contributions-en" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Kết quả đạt được (1 mục mỗi dòng)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="proj-results-vi" class="form-control"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Key Results (1 per line)</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="proj-results-en" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label">Công cụ & Kỹ thuật (cách nhau bằng dấu phẩy)</label>
+            <input type="text" id="proj-tools" class="form-control" placeholder="CapCut Pro, Premiere, Canva">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Thời gian & Quy mô nhóm</label>
+            <input type="text" id="proj-duration" class="form-control" placeholder="2 tháng | 4 thành viên">
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeProjectEditModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu dự án</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: ADD / EDIT CERTIFICATE ==================== -->
+  <div class="modal-backdrop" id="modal-cert-editor">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modal-cert-title">Chỉnh Sửa Chứng Chỉ</h3>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="closeCertEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="form-edit-cert" onsubmit="saveCertModal(event)">
+        <input type="hidden" id="cert-edit-id">
+
+        <div class="form-grid">
+          <!-- Image upload for Certificate -->
+          <div class="form-group col-12">
+            <label class="form-label">Ảnh chứng nhận / Bằng khen</label>
+            <div style="display: flex; gap: 14px; align-items: center;">
+              <input type="text" id="cert-main-image" class="form-control" placeholder="cert-chan-tran-khoi-nghiep.jpg" style="flex: 1;" required>
+              <input type="file" id="cert-file-picker" accept="image/*" style="display: none;" onchange="handleCertImageUpload(event)">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('cert-file-picker').click()">
+                <i class="fa-solid fa-upload"></i> Tải ảnh lên GitHub
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Tiêu đề chứng chỉ</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="cert-title-vi" class="form-control" required>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Certificate Title</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="cert-title-en" class="form-control" required>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Danh hiệu / Giải thưởng</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="cert-award-vi" class="form-control" placeholder="Top 2 • Á quân">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Đơn vị tổ chức</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="cert-org-vi" class="form-control" placeholder="BTEC FPT Đà Nẵng & DNES">
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label">Thời gian / Địa điểm</label>
+            <input type="text" id="cert-timeloc-vi" class="form-control" placeholder="14/08/2026 tại Đà Nẵng">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Nhãn huy hiệu (Badge)</label>
+            <input type="text" id="cert-badge-vi" class="form-control" placeholder="Top 2 • Á quân">
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label"><span>Mô tả chi tiết</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="cert-desc-vi" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label"><span>Giá trị đạt được / Bài học</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="cert-result-vi" class="form-control"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeCertEditModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu chứng chỉ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: ADD / EDIT ACTIVITY ==================== -->
+  <div class="modal-backdrop" id="modal-act-editor">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modal-act-title">Chỉnh Sửa Hoạt Động</h3>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="closeActEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="form-edit-act" onsubmit="saveActModal(event)">
+        <input type="hidden" id="act-edit-id">
+
+        <div class="form-grid">
+          <!-- Image upload for Activity -->
+          <div class="form-group col-12">
+            <label class="form-label">Ảnh minh chứng hoạt động</label>
+            <div style="display: flex; gap: 14px; align-items: center;">
+              <input type="text" id="act-main-image" class="form-control" placeholder="act-pegasus.jpg" style="flex: 1;" required>
+              <input type="file" id="act-file-picker" accept="image/*" style="display: none;" onchange="handleActImageUpload(event)">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('act-file-picker').click()">
+                <i class="fa-solid fa-upload"></i> Tải ảnh lên GitHub
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Tiêu đề hoạt động</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="act-title-vi" class="form-control" required>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Activity Title</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="act-title-en" class="form-control" required>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Vai trò đảm nhận</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="act-role-vi" class="form-control" placeholder="Phó Chủ tịch">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Đơn vị tổ chức</span></label>
+            <input type="text" id="act-org" class="form-control" placeholder="BBE Pegasus Chapter">
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label">Thời gian & Địa điểm</label>
+            <input type="text" id="act-timeloc-vi" class="form-control" placeholder="01/02/2026 – 30/09/2026">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Nhãn huy hiệu (Badge)</label>
+            <input type="text" id="act-badge-vi" class="form-control" placeholder="Ban Lãnh đạo">
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label"><span>Mô tả hoạt động & Đóng góp</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="act-desc-vi" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group col-12">
+            <label class="form-label"><span>Kết quả / Bài học</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="act-result-vi" class="form-control"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeActEditModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu hoạt động</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==================== JAVASCRIPT CMS ENGINE ==================== -->
+  <script>
+    // State
+    let authConfig = {
+      owner: '',
+      repo: '',
+      branch: 'main',
+      token: ''
+    };
+    let currentData = null;
+    let currentDataSha = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSavedAuth();
+    });
+
+    /* -------------------------------------------------------------------
+       1. AUTHENTICATION & LOGIN
+    ------------------------------------------------------------------- */
+    function loadSavedAuth() {
+      const saved = localStorage.getItem('portfolio_admin_auth');
+      if (saved) {
+        try {
+          authConfig = JSON.parse(saved);
+          if (authConfig.token && authConfig.repo && authConfig.owner) {
+            connectAndLoadDashboard();
+            return;
+          }
+        } catch (e) {
+          localStorage.removeItem('portfolio_admin_auth');
+        }
+      }
+      showLoginView();
+    }
+
+    function showLoginView() {
+      document.getElementById('view-login').style.display = 'flex';
+      document.getElementById('view-dashboard').style.display = 'none';
+      document.getElementById('admin-header').style.display = 'none';
+    }
+
+    function toggleTokenVisibility() {
+      const input = document.getElementById('login-token');
+      const icon = document.getElementById('token-eye-icon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      const owner = document.getElementById('login-owner').value.trim();
+      const repo = document.getElementById('login-repo').value.trim();
+      const branch = document.getElementById('login-branch').value.trim() || 'main';
+      const token = document.getElementById('login-token').value.trim();
+
+      const btn = document.getElementById('btn-login-submit');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang xác thực...';
+      btn.disabled = true;
+
+      try {
+        // Test connection to GitHub Repo
+        const testRes = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (!testRes.ok) {
+          throw new Error(`Xác thực thất bại (HTTP ${testRes.status}). Vui lòng kiểm tra lại Username, Tên Repo hoặc Token!`);
+        }
+
+        // Save auth config
+        authConfig = { owner, repo, branch, token };
+        localStorage.setItem('portfolio_admin_auth', JSON.stringify(authConfig));
+
+        showToast('Kết nối GitHub thành công!', 'success');
+        connectAndLoadDashboard();
+      } catch (err) {
+        alert(err.message || 'Lỗi kết nối GitHub.');
+      } finally {
+        btn.innerHTML = '<i class="fa-solid fa-bolt"></i> <span>Kết Nối & Vào Quản Trị</span>';
+        btn.disabled = false;
+      }
+    }
+
+    function logoutAdmin() {
+      if (confirm('Bạn có chắc chắn muốn đăng xuất? Token sẽ được xóa khỏi trình duyệt này.')) {
+        localStorage.removeItem('portfolio_admin_auth');
+        authConfig = { owner: '', repo: '', branch: 'main', token: '' };
+        showLoginView();
+        showToast('Đã đăng xuất tài khoản CMS.', 'info');
+      }
+    }
+
+    async function connectAndLoadDashboard() {
+      document.getElementById('view-login').style.display = 'none';
+      document.getElementById('view-dashboard').style.display = 'block';
+      document.getElementById('admin-header').style.display = 'block';
+
+      document.getElementById('header-repo-name').textContent = `${authConfig.owner}/${authConfig.repo}`;
+
+      // Fetch data.json from GitHub
+      await fetchPortfolioData();
+    }
+
+    /* -------------------------------------------------------------------
+       2. GITHUB REST API HELPER FUNCTIONS
+    ------------------------------------------------------------------- */
+    function utf8ToBase64(str) {
+      return window.btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function base64ToUtf8(str) {
+      return decodeURIComponent(escape(window.atob(str)));
+    }
+
+    async function fetchPortfolioData() {
+      showToast('Đang tải dữ liệu từ GitHub...', 'info');
+      try {
+        const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${authConfig.branch}&_t=${Date.now()}`;
+        const res = await fetch(url, {
+          headers: {
+            'Authorization': `Bearer ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (!res.ok) {
+          // If not found on GitHub, fallback to local data.json
+          const localRes = await fetch('data.json');
+          currentData = await localRes.json();
+          currentDataSha = null;
+        } else {
+          const fileInfo = await res.json();
+          currentDataSha = fileInfo.sha;
+          const jsonText = base64ToUtf8(fileInfo.content.replace(/\s/g, ''));
+          currentData = JSON.parse(jsonText);
+        }
+
+        renderDashboardAll();
+        showToast('Đã tải dữ liệu Portfolio thành công!', 'success');
+      } catch (err) {
+        console.error('Fetch error:', err);
+        showToast('Không thể tải dữ liệu: ' + err.message, 'error');
+      }
+    }
+
+    async function uploadFileToGitHub(path, base64Content, commitMessage) {
+      // 1. Check if file already exists to get its sha
+      let sha = null;
+      try {
+        const checkRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}?ref=${authConfig.branch}&_t=${Date.now()}`, {
+          headers: {
+            'Authorization': `Bearer ${authConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (checkRes.ok) {
+          const data = await checkRes.json();
+          sha = data.sha;
+        }
+      } catch (e) {}
+
+      // 2. PUT request to create/update
+      const body = {
+        message: commitMessage || `upload ${path} via CMS`,
+        content: base64Content,
+        branch: authConfig.branch
+      };
+      if (sha) body.sha = sha;
+
+      const putRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (!putRes.ok) {
+        const errJson = await putRes.json().catch(() => ({}));
+        throw new Error(errJson.message || `Lỗi tải file lên GitHub (HTTP ${putRes.status})`);
+      }
+
+      return await putRes.json();
+    }
+
+    async function publishDataToGitHub() {
+      if (!currentData) return;
+      collectProfileFormData();
+
+      const btn = document.getElementById('btn-publish');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Đang xuất bản...</span>';
+      btn.disabled = true;
+
+      try {
+        const jsonString = JSON.stringify(currentData, null, 2);
+        const base64Content = utf8ToBase64(jsonString);
+
+        // Fetch latest sha of data.json
+        let sha = currentDataSha;
+        try {
+          const checkRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json?ref=${authConfig.branch}&_t=${Date.now()}`, {
+            headers: {
+              'Authorization': `Bearer ${authConfig.token}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (checkRes.ok) {
+            const data = await checkRes.json();
+            sha = data.sha;
+          }
+        } catch (e) {}
+
+        const body = {
+          message: 'feat(cms): cập nhật nội dung Portfolio từ Admin Dashboard [skip ci]',
+          content: base64Content,
+          branch: authConfig.branch
+        };
+        if (sha) body.sha = sha;
+
+        const res = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/data.json`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${authConfig.token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify(body)
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.message || `Lỗi xuất bản HTTP ${res.status}`);
+        }
+
+        const resData = await res.json();
+        currentDataSha = resData.content.sha;
+        showToast('🚀 Đã xuất bản thành công lên GitHub!', 'success');
+      } catch (err) {
+        console.error('Publish error:', err);
+        showToast('Lỗi xuất bản: ' + err.message, 'error');
+      } finally {
+        btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản</span>';
+        btn.disabled = false;
+      }
+    }
+
+    /* -------------------------------------------------------------------
+       3. RENDER DASHBOARD TABS
+    ------------------------------------------------------------------- */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('.tab-content').forEach(sec => {
+        sec.style.display = (sec.id === tabId) ? 'block' : 'none';
+      });
+
+      if (tabId === 'tab-raw' && currentData) {
+        collectProfileFormData();
+        document.getElementById('raw-json-editor').value = JSON.stringify(currentData, null, 2);
+      }
+    }
+
+    function renderDashboardAll() {
+      if (!currentData) return;
+
+      // 1. Render Profile
+      const p = currentData.profile || {};
+      document.getElementById('prof-name-vi').value = p.name ? (p.name.vi || '') : '';
+      document.getElementById('prof-name-en').value = p.name ? (p.name.en || '') : '';
+      document.getElementById('prof-alias').value = p.alias || '';
+      document.getElementById('prof-motto-vi').value = p.motto ? (p.motto.vi || '') : '';
+      document.getElementById('prof-motto-en').value = p.motto ? (p.motto.en || '') : '';
+
+      document.getElementById('prof-mission-tag-vi').value = p.mission && p.mission.tag ? (p.mission.tag.vi || '') : '';
+      document.getElementById('prof-mission-tag-en').value = p.mission && p.mission.tag ? (p.mission.tag.en || '') : '';
+      document.getElementById('prof-mission-text-vi').value = p.mission && p.mission.text ? (p.mission.text.vi || '') : '';
+      document.getElementById('prof-mission-text-en').value = p.mission && p.mission.text ? (p.mission.text.en || '') : '';
+
+      document.getElementById('prof-bio-vi').value = p.bio ? (p.bio.vi || '') : '';
+      document.getElementById('prof-bio-en').value = p.bio ? (p.bio.en || '') : '';
+
+      const c = p.contact || {};
+      document.getElementById('prof-email').value = c.email || '';
+      document.getElementById('prof-phone').value = c.phone || '';
+      document.getElementById('prof-address-vi').value = c.address ? (c.address.vi || '') : '';
+
+      document.getElementById('profile-avatar-preview').src = p.avatar || 'avatar.jpg';
+      document.getElementById('profile-avatar-path').textContent = p.avatar || 'avatar.jpg';
+
+      // 2. Render Projects
+      renderProjectsList();
+
+      // 3. Render Certificates
+      renderCertsList();
+
+      // 4. Render Activities
+      renderActsList();
+    }
+
+    function collectProfileFormData() {
+      if (!currentData) return;
+      if (!currentData.profile) currentData.profile = {};
+
+      const p = currentData.profile;
+      p.name = {
+        vi: document.getElementById('prof-name-vi').value.trim(),
+        en: document.getElementById('prof-name-en').value.trim()
+      };
+      p.alias = document.getElementById('prof-alias').value.trim();
+      p.motto = {
+        vi: document.getElementById('prof-motto-vi').value.trim(),
+        en: document.getElementById('prof-motto-en').value.trim()
+      };
+      p.mission = {
+        tag: {
+          vi: document.getElementById('prof-mission-tag-vi').value.trim(),
+          en: document.getElementById('prof-mission-tag-en').value.trim()
+        },
+        text: {
+          vi: document.getElementById('prof-mission-text-vi').value.trim(),
+          en: document.getElementById('prof-mission-text-en').value.trim()
+        }
+      };
+      p.bio = {
+        vi: document.getElementById('prof-bio-vi').value.trim(),
+        en: document.getElementById('prof-bio-en').value.trim()
+      };
+
+      if (!p.contact) p.contact = {};
+      p.contact.email = document.getElementById('prof-email').value.trim();
+      p.contact.phone = document.getElementById('prof-phone').value.trim();
+      p.contact.address = {
+        vi: document.getElementById('prof-address-vi').value.trim(),
+        en: document.getElementById('prof-address-vi').value.trim()
+      };
+    }
+
+    /* -------------------------------------------------------------------
+       4. AVATAR UPLOAD HANDLING
+    ------------------------------------------------------------------- */
+    let selectedAvatarBase64 = null;
+    let selectedAvatarFileName = null;
+
+    function handleAvatarFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      selectedAvatarFileName = file.name;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target.result;
+        document.getElementById('profile-avatar-preview').src = dataUrl;
+        selectedAvatarBase64 = dataUrl.split(',')[1];
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function uploadAvatarToGitHub() {
+      if (!selectedAvatarBase64) {
+        alert('Vui lòng chọn một file ảnh từ máy tính trước!');
+        return;
+      }
+
+      showToast('Đang tải ảnh đại diện lên GitHub...', 'info');
+      try {
+        const ext = selectedAvatarFileName.split('.').pop() || 'jpg';
+        const targetPath = `images/avatar-${Date.now()}.${ext}`;
+
+        await uploadFileToGitHub(targetPath, selectedAvatarBase64, `upload avatar ${targetPath} via CMS`);
+
+        currentData.profile.avatar = targetPath;
+        document.getElementById('profile-avatar-path').textContent = targetPath;
+        showToast('Đã tải ảnh đại diện lên GitHub thành công!', 'success');
+      } catch (err) {
+        showToast('Lỗi tải ảnh: ' + err.message, 'error');
+      }
+    }
+
+    /* -------------------------------------------------------------------
+       5. PROJECTS MANAGEMENT
+    ------------------------------------------------------------------- */
+    function renderProjectsList() {
+      const list = currentData.projects || [];
+      document.getElementById('badge-count-projects').textContent = list.length;
+      const container = document.getElementById('projects-list-container');
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có dự án nào.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(p => {
+        const title = p.title ? (p.title.vi || p.title.en || '') : '';
+        const badge = p.badge ? (p.badge.vi || '') : '';
+        const role = p.role ? (p.role.vi || '') : '';
+
+        return `
+          <div class="item-card">
+            <div class="item-top">
+              <div class="item-thumb-placeholder" style="background: ${p.bannerGradient || 'linear-gradient(135deg, #1e3a8a, #3b82f6)'}">
+                <i class="${p.watermarkIcon || 'fa-solid fa-briefcase'}"></i>
+              </div>
+              <div class="item-info">
+                <span class="item-badge">${badge}</span>
+                <h4 class="item-title">${title}</h4>
+                <div class="item-subtitle">${role}</div>
+              </div>
+            </div>
+            <div class="item-actions">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openProjectEditModal(${p.id})">
+                <i class="fa-solid fa-pen"></i> Sửa
+              </button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="deleteProject(${p.id})">
+                <i class="fa-solid fa-trash"></i> Xóa
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openProjectEditModal(id) {
+      const modal = document.getElementById('modal-project-editor');
+      const titleEl = document.getElementById('modal-project-title');
+
+      if (id === null) {
+        titleEl.textContent = 'Thêm Dự Án Mới';
+        document.getElementById('proj-edit-id').value = '';
+        document.getElementById('proj-title-vi').value = '';
+        document.getElementById('proj-title-en').value = '';
+        document.getElementById('proj-badge-vi').value = 'Video Marketing';
+        document.getElementById('proj-role-vi').value = 'Trưởng nhóm';
+        document.getElementById('proj-platform-text').value = 'Reels & TikTok';
+        document.getElementById('proj-excerpt-vi').value = '';
+        document.getElementById('proj-excerpt-en').value = '';
+        document.getElementById('proj-overview-vi').value = '';
+        document.getElementById('proj-overview-en').value = '';
+        document.getElementById('proj-objectives-vi').value = '';
+        document.getElementById('proj-objectives-en').value = '';
+        document.getElementById('proj-contributions-vi').value = '';
+        document.getElementById('proj-contributions-en').value = '';
+        document.getElementById('proj-results-vi').value = '';
+        document.getElementById('proj-results-en').value = '';
+        document.getElementById('proj-tools').value = 'CapCut, Premiere, Canva';
+        document.getElementById('proj-duration').value = '2 tháng | 4 thành viên';
+      } else {
+        titleEl.textContent = 'Chỉnh Sửa Dự Án #' + id;
+        const p = currentData.projects.find(item => item.id == id);
+        if (!p) return;
+
+        document.getElementById('proj-edit-id').value = p.id;
+        document.getElementById('proj-title-vi').value = p.title ? (p.title.vi || '') : '';
+        document.getElementById('proj-title-en').value = p.title ? (p.title.en || '') : '';
+        document.getElementById('proj-badge-vi').value = p.badge ? (p.badge.vi || '') : '';
+        document.getElementById('proj-role-vi').value = p.role ? (p.role.vi || '') : '';
+        document.getElementById('proj-platform-text').value = p.platform ? (typeof p.platform === 'object' ? p.platform.text : p.platform) : '';
+        document.getElementById('proj-excerpt-vi').value = p.excerpt ? (p.excerpt.vi || '') : '';
+        document.getElementById('proj-excerpt-en').value = p.excerpt ? (p.excerpt.en || '') : '';
+        document.getElementById('proj-overview-vi').value = p.overview ? (p.overview.vi || '') : '';
+        document.getElementById('proj-overview-en').value = p.overview ? (p.overview.en || '') : '';
+
+        document.getElementById('proj-objectives-vi').value = (p.objectives || []).map(o => typeof o === 'object' ? (o.vi || '') : o).join('\n');
+        document.getElementById('proj-objectives-en').value = (p.objectives || []).map(o => typeof o === 'object' ? (o.en || '') : o).join('\n');
+
+        document.getElementById('proj-contributions-vi').value = (p.contributions || []).map(c => typeof c === 'object' ? (c.vi || '') : c).join('\n');
+        document.getElementById('proj-contributions-en').value = (p.contributions || []).map(c => typeof c === 'object' ? (c.en || '') : c).join('\n');
+
+        document.getElementById('proj-results-vi').value = (p.results || []).map(r => typeof r === 'object' ? (r.vi || '') : r).join('\n');
+        document.getElementById('proj-results-en').value = (p.results || []).map(r => typeof r === 'object' ? (r.en || '') : r).join('\n');
+
+        document.getElementById('proj-tools').value = (p.tools || []).join(', ');
+        document.getElementById('proj-duration').value = p.duration ? (p.duration.vi || '') : '';
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeProjectEditModal() {
+      document.getElementById('modal-project-editor').classList.remove('active');
+    }
+
+    function saveProjectModal(e) {
+      e.preventDefault();
+      const editId = document.getElementById('proj-edit-id').value;
+      const isNew = !editId;
+
+      const objLinesVi = document.getElementById('proj-objectives-vi').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const objLinesEn = document.getElementById('proj-objectives-en').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const objectives = objLinesVi.map((v, i) => ({ vi: v, en: objLinesEn[i] || v }));
+
+      const conLinesVi = document.getElementById('proj-contributions-vi').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const conLinesEn = document.getElementById('proj-contributions-en').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const contributions = conLinesVi.map((v, i) => ({ vi: v, en: conLinesEn[i] || v }));
+
+      const resLinesVi = document.getElementById('proj-results-vi').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const resLinesEn = document.getElementById('proj-results-en').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const results = resLinesVi.map((v, i) => ({ vi: v, en: resLinesEn[i] || v }));
+
+      const tools = document.getElementById('proj-tools').value.split(',').map(s => s.trim()).filter(Boolean);
+
+      const projectData = {
+        id: isNew ? (Date.now() % 10000) : Number(editId),
+        badge: {
+          vi: document.getElementById('proj-badge-vi').value.trim(),
+          en: document.getElementById('proj-badge-vi').value.trim()
+        },
+        role: {
+          vi: document.getElementById('proj-role-vi').value.trim(),
+          en: document.getElementById('proj-role-vi').value.trim()
+        },
+        platform: {
+          icon: 'fa-solid fa-layer-group',
+          text: document.getElementById('proj-platform-text').value.trim()
+        },
+        title: {
+          vi: document.getElementById('proj-title-vi').value.trim(),
+          en: document.getElementById('proj-title-en').value.trim()
+        },
+        excerpt: {
+          vi: document.getElementById('proj-excerpt-vi').value.trim(),
+          en: document.getElementById('proj-excerpt-en').value.trim()
+        },
+        overview: {
+          vi: document.getElementById('proj-overview-vi').value.trim(),
+          en: document.getElementById('proj-overview-en').value.trim()
+        },
+        objectives,
+        contributions,
+        results,
+        tools,
+        duration: {
+          vi: document.getElementById('proj-duration').value.trim(),
+          en: document.getElementById('proj-duration').value.trim()
+        },
+        teamSize: { vi: '4 thành viên', en: '4 members' },
+        bannerGradient: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)',
+        watermarkIcon: 'fa-solid fa-briefcase',
+        badgeProject: { vi: 'Đồ Án Thực Tế | FPT Digital Marketing', en: 'Academic Project | FPT Digital Marketing' }
+      };
+
+      if (!currentData.projects) currentData.projects = [];
+
+      if (isNew) {
+        currentData.projects.push(projectData);
+        showToast('Đã thêm dự án mới!', 'success');
+      } else {
+        const idx = currentData.projects.findIndex(p => p.id == editId);
+        if (idx !== -1) {
+          currentData.projects[idx] = { ...currentData.projects[idx], ...projectData };
+          showToast('Đã cập nhật dự án!', 'success');
+        }
+      }
+
+      closeProjectEditModal();
+      renderProjectsList();
+    }
+
+    function deleteProject(id) {
+      if (confirm('Bạn có chắc chắn muốn xóa dự án này?')) {
+        currentData.projects = currentData.projects.filter(p => p.id != id);
+        renderProjectsList();
+        showToast('Đã xóa dự án.', 'info');
+      }
+    }
+
+    /* -------------------------------------------------------------------
+       6. CERTIFICATES MANAGEMENT
+    ------------------------------------------------------------------- */
+    function renderCertsList() {
+      const list = currentData.certificates || [];
+      document.getElementById('badge-count-certs').textContent = list.length;
+      const container = document.getElementById('certs-list-container');
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có chứng chỉ nào.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(c => {
+        const title = c.title ? (c.title.vi || c.title.en || '') : '';
+        const badge = c.badgeType ? (c.badgeType.vi || '') : '';
+        const org = c.organization ? (c.organization.vi || '') : '';
+
+        return `
+          <div class="item-card">
+            <div class="item-top">
+              <img src="${c.mainImage || 'certificate-mos-excel.jpg'}" alt="${title}" class="item-thumb" onerror="this.src='CV.png'">
+              <div class="item-info">
+                <span class="item-badge">${badge}</span>
+                <h4 class="item-title">${title}</h4>
+                <div class="item-subtitle">${org}</div>
+              </div>
+            </div>
+            <div class="item-actions">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openCertEditModal(${c.id})">
+                <i class="fa-solid fa-pen"></i> Sửa
+              </button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="deleteCert(${c.id})">
+                <i class="fa-solid fa-trash"></i> Xóa
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openCertEditModal(id) {
+      const modal = document.getElementById('modal-cert-editor');
+      const titleEl = document.getElementById('modal-cert-title');
+
+      if (id === null) {
+        titleEl.textContent = 'Thêm Chứng Chỉ Mới';
+        document.getElementById('cert-edit-id').value = '';
+        document.getElementById('cert-main-image').value = 'cert-chan-tran-khoi-nghiep.jpg';
+        document.getElementById('cert-title-vi').value = '';
+        document.getElementById('cert-title-en').value = '';
+        document.getElementById('cert-award-vi').value = 'Á quân (Top 2 Chung kết)';
+        document.getElementById('cert-org-vi').value = 'BTEC FPT & DNES';
+        document.getElementById('cert-timeloc-vi').value = '14/08/2026 tại Đà Nẵng';
+        document.getElementById('cert-badge-vi').value = 'Top 2 • Á quân';
+        document.getElementById('cert-desc-vi').value = '';
+        document.getElementById('cert-result-vi').value = '';
+      } else {
+        titleEl.textContent = 'Chỉnh Sửa Chứng Chỉ #' + id;
+        const c = currentData.certificates.find(item => item.id == id);
+        if (!c) return;
+
+        document.getElementById('cert-edit-id').value = c.id;
+        document.getElementById('cert-main-image').value = c.mainImage || '';
+        document.getElementById('cert-title-vi').value = c.title ? (c.title.vi || '') : '';
+        document.getElementById('cert-title-en').value = c.title ? (c.title.en || '') : '';
+        document.getElementById('cert-award-vi').value = c.award ? (c.award.vi || '') : '';
+        document.getElementById('cert-org-vi').value = c.organization ? (c.organization.vi || '') : '';
+        document.getElementById('cert-timeloc-vi').value = c.timeLocation ? (c.timeLocation.vi || '') : '';
+        document.getElementById('cert-badge-vi').value = c.badgeType ? (c.badgeType.vi || '') : '';
+        document.getElementById('cert-desc-vi').value = c.description ? (c.description.vi || '') : '';
+        document.getElementById('cert-result-vi').value = c.result ? (c.result.vi || '') : '';
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeCertEditModal() {
+      document.getElementById('modal-cert-editor').classList.remove('active');
+    }
+
+    async function handleCertImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      showToast('Đang tải ảnh chứng chỉ lên GitHub...', 'info');
+      try {
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const base64 = event.target.result.split(',')[1];
+          const ext = file.name.split('.').pop() || 'jpg';
+          const targetPath = `images/cert-${Date.now()}.${ext}`;
+
+          await uploadFileToGitHub(targetPath, base64, `upload cert image ${targetPath} via CMS`);
+          document.getElementById('cert-main-image').value = targetPath;
+          showToast('Đã tải ảnh chứng chỉ lên GitHub thành công!', 'success');
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        showToast('Lỗi tải ảnh: ' + err.message, 'error');
+      }
+    }
+
+    function saveCertModal(e) {
+      e.preventDefault();
+      const editId = document.getElementById('cert-edit-id').value;
+      const isNew = !editId;
+
+      const certData = {
+        id: isNew ? (Date.now() % 10000) : Number(editId),
+        mainImage: document.getElementById('cert-main-image').value.trim(),
+        title: {
+          vi: document.getElementById('cert-title-vi').value.trim(),
+          en: document.getElementById('cert-title-en').value.trim()
+        },
+        award: {
+          vi: document.getElementById('cert-award-vi').value.trim(),
+          en: document.getElementById('cert-award-vi').value.trim()
+        },
+        organization: {
+          vi: document.getElementById('cert-org-vi').value.trim(),
+          en: document.getElementById('cert-org-vi').value.trim()
+        },
+        timeLocation: {
+          vi: document.getElementById('cert-timeloc-vi').value.trim(),
+          en: document.getElementById('cert-timeloc-vi').value.trim()
+        },
+        badgeType: {
+          vi: document.getElementById('cert-badge-vi').value.trim(),
+          en: document.getElementById('cert-badge-vi').value.trim()
+        },
+        description: {
+          vi: document.getElementById('cert-desc-vi').value.trim(),
+          en: document.getElementById('cert-desc-vi').value.trim()
+        },
+        result: {
+          vi: document.getElementById('cert-result-vi').value.trim(),
+          en: document.getElementById('cert-result-vi').value.trim()
+        },
+        badgeClass: 'badge-trophy',
+        orgIcon: 'fa-solid fa-building'
+      };
+
+      if (!currentData.certificates) currentData.certificates = [];
+
+      if (isNew) {
+        currentData.certificates.push(certData);
+        showToast('Đã thêm chứng chỉ mới!', 'success');
+      } else {
+        const idx = currentData.certificates.findIndex(c => c.id == editId);
+        if (idx !== -1) {
+          currentData.certificates[idx] = { ...currentData.certificates[idx], ...certData };
+          showToast('Đã cập nhật chứng chỉ!', 'success');
+        }
+      }
+
+      closeCertEditModal();
+      renderCertsList();
+    }
+
+    function deleteCert(id) {
+      if (confirm('Bạn có chắc chắn muốn xóa chứng chỉ này?')) {
+        currentData.certificates = currentData.certificates.filter(c => c.id != id);
+        renderCertsList();
+        showToast('Đã xóa chứng chỉ.', 'info');
+      }
+    }
+
+    /* -------------------------------------------------------------------
+       7. ACTIVITIES MANAGEMENT
+    ------------------------------------------------------------------- */
+    function renderActsList() {
+      const list = currentData.activities || [];
+      document.getElementById('badge-count-acts').textContent = list.length;
+      const container = document.getElementById('acts-list-container');
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có hoạt động nào.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(a => {
+        const title = a.title ? (a.title.vi || a.title.en || '') : '';
+        const badge = a.badgeType ? (a.badgeType.vi || '') : '';
+        const role = a.role ? (a.role.vi || '') : '';
+
+        return `
+          <div class="item-card">
+            <div class="item-top">
+              <img src="${a.mainImage || 'act-pegasus.jpg'}" alt="${title}" class="item-thumb" onerror="this.src='CV.png'">
+              <div class="item-info">
+                <span class="item-badge">${badge}</span>
+                <h4 class="item-title">${title}</h4>
+                <div class="item-subtitle">${role}</div>
+              </div>
+            </div>
+            <div class="item-actions">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openActEditModal(${a.id})">
+                <i class="fa-solid fa-pen"></i> Sửa
+              </button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="deleteAct(${a.id})">
+                <i class="fa-solid fa-trash"></i> Xóa
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openActEditModal(id) {
+      const modal = document.getElementById('modal-act-editor');
+      const titleEl = document.getElementById('modal-act-title');
+
+      if (id === null) {
+        titleEl.textContent = 'Thêm Hoạt Động Mới';
+        document.getElementById('act-edit-id').value = '';
+        document.getElementById('act-main-image').value = 'act-pegasus.jpg';
+        document.getElementById('act-title-vi').value = '';
+        document.getElementById('act-title-en').value = '';
+        document.getElementById('act-role-vi').value = 'Phó Chủ tịch';
+        document.getElementById('act-org').value = 'BBE Pegasus Chapter';
+        document.getElementById('act-timeloc-vi').value = '01/02/2026 – 30/09/2026';
+        document.getElementById('act-badge-vi').value = 'Ban Lãnh đạo';
+        document.getElementById('act-desc-vi').value = '';
+        document.getElementById('act-result-vi').value = '';
+      } else {
+        titleEl.textContent = 'Chỉnh Sửa Hoạt Động #' + id;
+        const a = currentData.activities.find(item => item.id == id);
+        if (!a) return;
+
+        document.getElementById('act-edit-id').value = a.id;
+        document.getElementById('act-main-image').value = a.mainImage || '';
+        document.getElementById('act-title-vi').value = a.title ? (a.title.vi || '') : '';
+        document.getElementById('act-title-en').value = a.title ? (a.title.en || '') : '';
+        document.getElementById('act-role-vi').value = a.role ? (a.role.vi || '') : '';
+        document.getElementById('act-org').value = typeof a.organization === 'object' ? (a.organization.vi || '') : a.organization;
+        document.getElementById('act-timeloc-vi').value = a.timeLocation ? (a.timeLocation.vi || '') : '';
+        document.getElementById('act-badge-vi').value = a.badgeType ? (a.badgeType.vi || '') : '';
+        document.getElementById('act-desc-vi').value = a.description ? (a.description.vi || '') : '';
+        document.getElementById('act-result-vi').value = a.result ? (a.result.vi || '') : '';
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeActEditModal() {
+      document.getElementById('modal-act-editor').classList.remove('active');
+    }
+
+    async function handleActImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      showToast('Đang tải ảnh hoạt động lên GitHub...', 'info');
+      try {
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const base64 = event.target.result.split(',')[1];
+          const ext = file.name.split('.').pop() || 'jpg';
+          const targetPath = `images/act-${Date.now()}.${ext}`;
+
+          await uploadFileToGitHub(targetPath, base64, `upload act image ${targetPath} via CMS`);
+          document.getElementById('act-main-image').value = targetPath;
+          showToast('Đã tải ảnh hoạt động lên GitHub thành công!', 'success');
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        showToast('Lỗi tải ảnh: ' + err.message, 'error');
+      }
+    }
+
+    function saveActModal(e) {
+      e.preventDefault();
+      const editId = document.getElementById('act-edit-id').value;
+      const isNew = !editId;
+
+      const actData = {
+        id: isNew ? (Date.now() % 10000) : Number(editId),
+        mainImage: document.getElementById('act-main-image').value.trim(),
+        title: {
+          vi: document.getElementById('act-title-vi').value.trim(),
+          en: document.getElementById('act-title-en').value.trim()
+        },
+        role: {
+          vi: document.getElementById('act-role-vi').value.trim(),
+          en: document.getElementById('act-role-vi').value.trim()
+        },
+        organization: document.getElementById('act-org').value.trim(),
+        timeLocation: {
+          vi: document.getElementById('act-timeloc-vi').value.trim(),
+          en: document.getElementById('act-timeloc-vi').value.trim()
+        },
+        badgeType: {
+          vi: document.getElementById('act-badge-vi').value.trim(),
+          en: document.getElementById('act-badge-vi').value.trim()
+        },
+        description: {
+          vi: document.getElementById('act-desc-vi').value.trim(),
+          en: document.getElementById('act-desc-vi').value.trim()
+        },
+        result: {
+          vi: document.getElementById('act-result-vi').value.trim(),
+          en: document.getElementById('act-result-vi').value.trim()
+        },
+        badgeClass: 'badge-leader',
+        badgeIcon: 'fa-solid fa-crown',
+        orgIcon: 'fa-solid fa-users'
+      };
+
+      if (!currentData.activities) currentData.activities = [];
+
+      if (isNew) {
+        currentData.activities.push(actData);
+        showToast('Đã thêm hoạt động mới!', 'success');
+      } else {
+        const idx = currentData.activities.findIndex(a => a.id == editId);
+        if (idx !== -1) {
+          currentData.activities[idx] = { ...currentData.activities[idx], ...actData };
+          showToast('Đã cập nhật hoạt động!', 'success');
+        }
+      }
+
+      closeActEditModal();
+      renderActsList();
+    }
+
+    function deleteAct(id) {
+      if (confirm('Bạn có chắc chắn muốn xóa hoạt động này?')) {
+        currentData.activities = currentData.activities.filter(a => a.id != id);
+        renderActsList();
+        showToast('Đã xóa hoạt động.', 'info');
+      }
+    }
+
+    /* -------------------------------------------------------------------
+       8. JSON BACKUP & RESTORE
+    ------------------------------------------------------------------- */
+    function downloadDataJsonFile() {
+      if (!currentData) return;
+      collectProfileFormData();
+      const str = JSON.stringify(currentData, null, 2);
+      const blob = new Blob([str], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `data_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Đã tải file sao lưu JSON về máy!', 'success');
+    }
+
+    function handleImportJsonFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const parsed = JSON.parse(event.target.result);
+          if (!parsed.profile || !parsed.projects) {
+            throw new Error('Cấu trúc file JSON không đúng chuẩn Portfolio!');
+          }
+          currentData = parsed;
+          renderDashboardAll();
+          showToast('Đã nhập dữ liệu JSON thành công! Hãy bấm "Lưu & Xuất bản" để đẩy lên GitHub.', 'success');
+        } catch (err) {
+          alert('Lỗi nhập JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function applyJsonFromEditor() {
+      try {
+        const val = document.getElementById('raw-json-editor').value;
+        currentData = JSON.parse(val);
+        renderDashboardAll();
+        showToast('Đã cập nhật dữ liệu từ Editor thành công!', 'success');
+      } catch (err) {
+        alert('Lỗi cú pháp JSON: ' + err.message);
+      }
+    }
+
+    /* -------------------------------------------------------------------
+       9. TOAST MESSAGES
+    ------------------------------------------------------------------- */
+    function showToast(msg, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      const icon = type === 'success' ? 'fa-circle-check' : (type === 'error' ? 'fa-triangle-exclamation' : 'fa-info-circle');
+      toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${msg}</span>`;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
