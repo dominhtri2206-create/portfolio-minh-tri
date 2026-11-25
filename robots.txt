@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dominhtri2206.github.io/portpolio/sitemap.xml

@@ -2195,6 +2195,8 @@
       setInputValue('ana-ga-id', ana.gaMeasurementId || '');
       setInputValue('ana-umami-id', ana.umamiWebsiteId || '');
       setInputValue('ana-umami-url', ana.umamiScriptUrl || 'https://cloud.umami.is/script.js');
+      const cfg = currentData.contactConfig || {};
+      setInputValue('contact-web3forms-key', cfg.web3formsKey || '');
 
       const avatarEl = document.getElementById('profile-avatar-preview');
       if (avatarEl) avatarEl.src = p.avatar || 'avatar.jpg';
@@ -3238,7 +3240,13 @@
         setInputValue('cert-timeloc-vi', c.timeLocation ? (c.timeLocation.vi || '') : '');
         setInputValue('cert-badge-vi', c.badgeType ? (c.badgeType.vi || '') : '');
         setInputValue('cert-desc-vi', c.description ? (c.description.vi || '') : '');
+        setInputValue('cert-award-en', c.award ? (c.award.en || c.award.vi || '') : '');
+        setInputValue('cert-org-en', c.organization ? (c.organization.en || c.organization.vi || '') : '');
+        setInputValue('cert-timeloc-en', c.timeLocation ? (c.timeLocation.en || c.timeLocation.vi || '') : '');
+        setInputValue('cert-badge-en', c.badgeType ? (c.badgeType.en || c.badgeType.vi || '') : '');
+        setInputValue('cert-desc-en', c.description ? (c.description.en || c.description.vi || '') : '');
         setInputValue('cert-result-vi', c.result ? (c.result.vi || '') : '');
+        setInputValue('cert-result-en', c.result ? (c.result.en || c.result.vi || '') : '');
         setInputValue('cert-ext-url', c.externalUrl || '');
         setInputValue('cert-ext-title', c.externalTitle || '');
         currentCertGallery = Array.isArray(c.gallery) ? [...c.gallery] : [];
@@ -3462,7 +3470,13 @@
         setInputValue('act-timeloc-vi', a.timeLocation ? (a.timeLocation.vi || '') : '');
         setInputValue('act-badge-vi', a.badgeType ? (a.badgeType.vi || '') : '');
         setInputValue('act-desc-vi', a.description ? (a.description.vi || '') : '');
+        setInputValue('act-role-en', a.role ? (a.role.en || a.role.vi || '') : '');
+        setInputValue('act-org-en', typeof a.organization === 'object' ? (a.organization.en || a.organization.vi || '') : (a.organization || ''));
+        setInputValue('act-timeloc-en', a.timeLocation ? (a.timeLocation.en || a.timeLocation.vi || '') : '');
+        setInputValue('act-badge-en', a.badgeType ? (a.badgeType.en || a.badgeType.vi || '') : '');
+        setInputValue('act-desc-en', a.description ? (a.description.en || a.description.vi || '') : '');
         setInputValue('act-result-vi', a.result ? (a.result.vi || '') : '');
+        setInputValue('act-result-en', a.result ? (a.result.en || a.result.vi || '') : '');
         setInputValue('act-ext-url', a.externalUrl || '');
         setInputValue('act-ext-title', a.externalTitle || '');
         currentActGallery = Array.isArray(a.gallery) ? [...a.gallery] : [];

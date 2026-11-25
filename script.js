@@ -69,8 +69,8 @@ const DEFAULT_PORTFOLIO_DATA = {
       }
     },
     "bio": {
-      "vi": "Chào bạn! Mình là Minh Trí (Eric) — sinh viên Quản trị Kinh doanh tại BTEC FPT Đà Nẵng và Tốt nghiệp Xuất Sắc chuyên ngành Digital Marketing. Mình kết hợp tư duy chiến lược thương hiệu, sáng tạo nội dung đa kênh với khả năng ứng dụng AI Agent thực chiến để tối ưu hiệu suất và tạo giá trị bền vững cho doanh nghiệp.",
-      "en": "Hi, I'm Minh Tri (Eric) — a Business Administration student at BTEC FPT Danang and High Distinction graduate in Digital Marketing. I combine brand strategy and omnichannel content creation with practical AI Agent workflows to drive measurable growth and business impact."
+      "vi": "Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông, nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công nghệ mới chính là chìa khóa để rèn giũa bản thân và tạo ra giá trị tích cực cho cộng đồng.",
+      "en": "Hello! I am Minh Tri (Eric) — a passionate learner keen on Business and enthusiastic about exploring and applying practical AI Agent solutions. Additionally, I enjoy public speaking & MCing, continuous research, and mastering foreign languages. I believe that constantly updating our mindset and embracing emerging technologies is key to self-refinement and creating positive value for our community."
     },
     "contact": {
       "email": "dominhtri2206@gmail.com",
@@ -3179,5 +3179,76 @@ function resetContactForm() {
   }
   if (successBox) {
     successBox.style.display = 'none';
+  }
+}
+
+
+/* -------------------------------------------------------------------
+   14. DIGITAL BUSINESS CARD (vCard QR) & CV PDF MODAL
+------------------------------------------------------------------- */
+function downloadVCard() {
+  const vcard = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'N:Đỗ;Minh Trí;;;',
+    'FN:Đỗ Minh Trí (Eric Do)',
+    'TITLE:Business & Digital Marketing | AI Agent Solutions',
+    'ORG:BTEC FPT Đà Nẵng',
+    'TEL;TYPE=CELL,VOICE:0934454099',
+    'EMAIL;TYPE=PREF,INTERNET:dominhtri2206@gmail.com',
+    'URL:https://dominhtri2206.github.io/portpolio/',
+    'ADR;TYPE=WORK:;;152 Phan Thanh, Thanh Khê;Đà Nẵng;;;Vietnam',
+    'NOTE:Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing',
+    'END:VCARD'
+  ].join('\r\n');
+
+  const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'DoMinhTri_Eric.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function openBusinessCardModal() {
+  const modal = document.getElementById('business-card-modal');
+  const backdrop = document.getElementById('business-card-backdrop');
+  if (modal && backdrop) {
+    modal.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeBusinessCardModal() {
+  const modal = document.getElementById('business-card-modal');
+  const backdrop = document.getElementById('business-card-backdrop');
+  if (modal && backdrop) {
+    modal.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function openCvPreviewModal() {
+  const modal = document.getElementById('cv-preview-modal');
+  const backdrop = document.getElementById('cv-preview-backdrop');
+  if (modal && backdrop) {
+    modal.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeCvPreviewModal() {
+  const modal = document.getElementById('cv-preview-modal');
+  const backdrop = document.getElementById('cv-preview-backdrop');
+  if (modal && backdrop) {
+    modal.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
   }
 }

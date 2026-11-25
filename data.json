@@ -60,8 +60,8 @@
       }
     },
     "bio": {
-      "vi": "Chào bạn! Mình là Minh Trí (Eric) — sinh viên Quản trị Kinh doanh tại BTEC FPT Đà Nẵng và Tốt nghiệp Xuất Sắc chuyên ngành Digital Marketing. Mình kết hợp tư duy chiến lược thương hiệu, sáng tạo nội dung đa kênh với khả năng ứng dụng AI Agent thực chiến để tối ưu hiệu suất và tạo giá trị bền vững cho doanh nghiệp.",
-      "en": "Hi, I'm Minh Tri (Eric) — a Business Administration student at BTEC FPT Danang and High Distinction graduate in Digital Marketing. I combine brand strategy and omnichannel content creation with practical AI Agent workflows to drive measurable growth and business impact."
+      "vi": "Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông, nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công nghệ mới chính là chìa khóa để rèn giũa bản thân và tạo ra giá trị tích cực cho cộng đồng.",
+      "en": "Hello! I am Minh Tri (Eric) — a passionate learner keen on Business and enthusiastic about exploring and applying practical AI Agent solutions. Additionally, I enjoy public speaking & MCing, continuous research, and mastering foreign languages. I believe that constantly updating our mindset and embracing emerging technologies is key to self-refinement and creating positive value for our community."
     },
     "contact": {
       "email": "dominhtri2206@gmail.com",
@@ -219,6 +219,256 @@
   ],
   "projects": [
     {
+      "id": 1,
+      "badge": {
+        "vi": "Video Marketing",
+        "en": "Video Marketing"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Biên tập Video",
+        "en": "Team Leader & Video Producer"
+      },
+      "platform": {
+        "icon": "fa-brands fa-instagram",
+        "text": "Reels & TikTok"
+      },
+      "title": {
+        "vi": "1. Dự Án Content Marketing & Video Ngắn (Reels/TikTok)",
+        "en": "1. Content Marketing & Short-form Video Project (Reels/TikTok)"
+      },
+      "excerpt": {
+        "vi": "Xây dựng chuỗi video ngắn định dạng dọc giới thiệu dòng sản phẩm đồ uống/thời trang cho giới trẻ. Trực tiếp lên kịch bản, quay dựng và tối ưu âm thanh bắt trend.",
+        "en": "Producing a vertical short-video campaign for youth lifestyle brands. Spearheaded scriptwriting, video shooting, audio sync, and trend optimization."
+      },
+      "highlights": [
+        {
+          "vi": "Nghiên cứu thị hiếu Gen Z",
+          "en": "Gen Z trend & insight analysis"
+        },
+        {
+          "vi": "Kịch bản 3 giây đầu thu hút (Hook)",
+          "en": "High-converting 3s hook scripting"
+        },
+        {
+          "vi": "Tối ưu tỷ lệ giữ chân người xem (Watch Time)",
+          "en": "Audience retention rate optimization"
+        }
+      ],
+      "tags": [
+        "CapCut Pro",
+        "Premiere",
+        "TikTok Trends",
+        "Canva"
+      ],
+      "thumbClass": "thumb-gradient-1",
+      "watermarkIcon": "fa-brands fa-tiktok",
+      "category": {
+        "vi": "Video Marketing & Social Viral",
+        "en": "Video Marketing & Social Viral"
+      },
+      "duration": {
+        "vi": "2 tháng (Học kỳ đồ án thực hành)",
+        "en": "2 months (Coursework Project)"
+      },
+      "teamSize": {
+        "vi": "4 thành viên",
+        "en": "4 members"
+      },
+      "tools": [
+        "CapCut Pro",
+        "Adobe Premiere Pro",
+        "TikTok Creator Studio",
+        "Canva Pro",
+        "Smartphone 4K & Gimbal"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Dự án tập trung vào việc nghiên cứu hành vi tiêu thụ video ngắn của đối tượng khách hàng Gen Z và người trẻ tuổi, từ đó lên kế hoạch sản xuất chuỗi 15 video ngắn định dạng dọc (9:16) cho thương hiệu đồ uống / thời trang trẻ trung.",
+        "en": "Researched short-video consumption patterns of Gen Z audiences and produced a 15-video vertical campaign (9:16) for modern lifestyle brands."
+      },
+      "objectives": [
+        {
+          "vi": "Xây dựng định vị hình ảnh thương hiệu năng động, gần gũi và hài hước trên nền tảng TikTok và Instagram Reels.",
+          "en": "Build a vibrant, relatable, and engaging brand persona on TikTok and Instagram Reels."
+        },
+        {
+          "vi": "Thử nghiệm các cấu trúc kịch bản Hook 3s (Tò mò, Đặt câu hỏi, Trước/Sau, Phản ứng bất ngờ) để tối ưu tỷ lệ giữ chân người xem.",
+          "en": "A/B test 3-second hook variations (Curiosity, Questions, Before/After, Surprises) to maximize viewer retention."
+        },
+        {
+          "vi": "Đạt mục tiêu tối thiểu 50.000 lượt xem tự nhiên (organic views) và tỷ lệ tương tác (engagement rate) trên 8%.",
+          "en": "Achieve over 50,000+ organic views and an engagement rate exceeding 8%."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Trực tiếp lên ý tưởng, viết kịch bản phân cảnh chi tiết (Storyboard) cho toàn bộ 15 video.",
+          "en": "Conceptualized and wrote detailed storyboards and scripts for all 15 videos."
+        },
+        {
+          "vi": "Phân công vai trò diễn xuất, chuẩn bị đạo cụ, góc quay và setup ánh sáng với gimbal.",
+          "en": "Managed talent staging, props, cinematography angles, and lighting with gimbal setups."
+        },
+        {
+          "vi": "Hậu kỳ cắt dựng, chỉnh màu sắc tươi sáng, chèn sound effects (SFX) và chọn nhạc nền thịnh hành (Trending BGM).",
+          "en": "Edited post-production, color grading, sound design (SFX), and selected trending soundtracks."
+        },
+        {
+          "vi": "Theo dõi dữ liệu phân tích từ TikTok Analytics để tinh chỉnh thời gian đăng bài và hashtag.",
+          "en": "Monitored TikTok Analytics to optimize posting schedule and hashtag strategies."
+        }
+      ],
+      "results": [
+        {
+          "vi": "Chiến dịch đạt hơn 120.000+ lượt xem tích lũy trên cả hai nền tảng.",
+          "en": "Campaign generated over 120,000+ cumulative views across both platforms."
+        },
+        {
+          "vi": "Video viral nhất đạt 45.000 lượt xem với hơn 3.200 lượt thả tim và 180 lượt chia sẻ.",
+          "en": "Top viral video achieved 45,000+ views, 3,200+ likes, and 180+ shares."
+        },
+        {
+          "vi": "Được giảng viên bộ môn đánh giá Xuất sắc (Điểm 9.5/10) về chất lượng hình ảnh và thông điệp truyền tải.",
+          "en": "Awarded an Excellent grade (9.5/10) by faculty for visual execution and narrative storytelling."
+        }
+      ],
+      "videoUrl": "",
+      "demoUrl": ""
+    },
+    {
+      "id": 2,
+      "badge": {
+        "vi": "SEO & Research",
+        "en": "SEO & Research"
+      },
+      "role": {
+        "vi": "Trưởng nhóm",
+        "en": "Team Leader"
+      },
+      "roleDetail": {
+        "vi": "Trưởng nhóm (Team Leader) & Phân tích Dữ liệu",
+        "en": "Team Leader & Data Analyst"
+      },
+      "platform": {
+        "icon": "fa-solid fa-globe",
+        "text": "SEO & Analytics"
+      },
+      "title": {
+        "vi": "2. Dự Án SEO & Nghiên Cứu Thị Trường Ngành Hàng",
+        "en": "2. SEO & Industry Market Research Project"
+      },
+      "excerpt": {
+        "vi": "Phân tích đối thủ cạnh tranh, nghiên cứu bộ từ khóa theo hành trình mua sắm của khách hàng (Buyer's Journey) và lập kế hoạch tối ưu cấu trúc nội dung Onpage.",
+        "en": "Competitor analysis, keyword mapping across the Buyer's Journey, and Onpage content architecture planning."
+      },
+      "highlights": [
+        {
+          "vi": "Phân tích Insight & Đối thủ",
+          "en": "Competitor & customer insight analysis"
+        },
+        {
+          "vi": "Lập bộ từ khóa 100+ keywords tiềm năng",
+          "en": "Building 100+ high-potential keywords"
+        },
+        {
+          "vi": "Tối ưu bài viết chuẩn SEO & UI/UX",
+          "en": "SEO content & UI/UX optimization"
+        }
+      ],
+      "tags": [
+        "Google Search Console",
+        "GA4",
+        "Keyword Planner",
+        "Excel MOS"
+      ],
+      "thumbClass": "thumb-gradient-2",
+      "watermarkIcon": "fa-solid fa-chart-line",
+      "category": {
+        "vi": "Search Engine Optimization & Market Research",
+        "en": "Search Engine Optimization & Market Research"
+      },
+      "duration": {
+        "vi": "2.5 tháng",
+        "en": "2.5 months"
+      },
+      "teamSize": {
+        "vi": "5 thành viên",
+        "en": "5 members"
+      },
+      "tools": [
+        "Google Search Console",
+        "Google Analytics (GA4)",
+        "Google Keyword Planner",
+        "Ahrefs",
+        "Microsoft Excel MOS"
+      ],
+      "bannerGradient": "linear-gradient(135deg, #065f46 0%, #059669 50%, #0284c7 100%)",
+      "badgeProject": {
+        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
+        "en": "Academic Project | FPT Digital Marketing"
+      },
+      "overview": {
+        "vi": "Đồ án nghiên cứu thị trường toàn diện và triển khai chiến lược SEO Onpage & Content Hub cho một website thương mại điện tử chuyên cung cấp sản phẩm phong cách sống.",
+        "en": "Conducted comprehensive market research and executed Onpage SEO & Content Hub strategy for an e-commerce lifestyle brand."
+      },
+      "objectives": [
+        {
+          "vi": "Thấu hiểu chân dung khách hàng mục tiêu (Buyer Persona) và hành trình tìm kiếm thông tin của người tiêu dùng.",
+          "en": "Identify Buyer Personas and search intent journeys across key stages."
+        },
+        {
+          "vi": "Phân tích điểm mạnh, điểm yếu của 3 đối thủ cạnh tranh trực tiếp trên bảng xếp hạng Google tìm kiếm.",
+          "en": "Analyze strengths and weaknesses of top 3 direct organic search competitors on Google."
+        },
+        {
+          "vi": "Xây dựng cấu trúc cây thư mục website (Site Architecture) và bộ từ khóa phủ rộng theo mô hình Topic Cluster.",
+          "en": "Develop website information architecture and extensive keyword mapping via Topic Clusters."
+        }
+      ],
+      "contributions": [
+        {
+          "vi": "Điều phối nhóm lọc bộ từ khóa hơn 150 keywords có lượng tìm kiếm cao và độ cạnh tranh (Keyword Difficulty) phù hợp.",
+          "en": "Led team in filtering 150+ high-volume keywords with balanced Keyword Difficulty."
+        },
+        {
+          "vi": "Áp dụng chứng chỉ MOS Excel 2019 để phân loại dữ liệu từ khóa, tính toán Search Volume và tiềm năng chuyển đổi.",
+          "en": "Leveraged MOS Excel 2019 data processing to segment search volume and conversion potential."
+        },
+        {
+          "vi": "Viết bài mẫu chuẩn SEO (1.500+ từ) tối ưu Heading, Meta Description, Alt ảnh và Internal Link.",
+          "en": "Authored SEO-standard pillar articles (1,500+ words) optimizing Headings, Meta, Alt, and Internal Links."
+        },
+        {
+          "vi": "Đo lường các chỉ số CTR, thời gian trên trang và thứ hạng từ khóa qua Google Search Console.",
+          "en": "Tracked CTR, dwell time, and keyword rankings via Google Search Console."
+        }
+      ],
+      "results": [
+        {
+          "vi": "15 từ khóa mục tiêu lọt Top 10 Google Search sau 6 tuần thử nghiệm index bài viết.",
+          "en": "15 target keywords reached Google Top 10 within 6 weeks post-indexing."
+        },
+        {
+          "vi": "Tăng lượng Organic Clicks lên 250% so với giai đoạn thử nghiệm ban đầu.",
+          "en": "Increased organic clicks by 250% compared to baseline benchmark."
+        },
+        {
+          "vi": "Được hội đồng chấm đồ án chọn làm bài báo cáo mẫu cho sinh viên khóa sau.",
+          "en": "Selected by the academic evaluation board as a showcase report for future cohorts."
+        }
+      ],
+      "videoUrl": "",
+      "demoUrl": ""
+    },
+    {
       "id": 3,
       "badge": {
         "vi": "Brand Campaign",
@@ -342,57 +592,6 @@
           "en": "Directly contributed to earning a High Distinction graduation grade at FPT Polyschool."
         }
       ]
-    },
-    {
-      "id": 7492,
-      "badge": {
-        "vi": "Video Marketing",
-        "en": "Video Marketing"
-      },
-      "role": {
-        "vi": "Trưởng nhóm",
-        "en": "Trưởng nhóm"
-      },
-      "platform": {
-        "icon": "fa-solid fa-layer-group",
-        "text": "Reels & TikTok"
-      },
-      "title": {
-        "vi": "d",
-        "en": "d"
-      },
-      "excerpt": {
-        "vi": "",
-        "en": ""
-      },
-      "overview": {
-        "vi": "",
-        "en": ""
-      },
-      "objectives": [],
-      "contributions": [],
-      "results": [],
-      "tools": [
-        "CapCut",
-        "Premiere",
-        "Canva"
-      ],
-      "videoUrl": "",
-      "demoUrl": "",
-      "duration": {
-        "vi": "2 tháng | 4 thành viên",
-        "en": "2 tháng | 4 thành viên"
-      },
-      "teamSize": {
-        "vi": "4 thành viên",
-        "en": "4 members"
-      },
-      "bannerGradient": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)",
-      "watermarkIcon": "fa-solid fa-briefcase",
-      "badgeProject": {
-        "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
-        "en": "Academic Project | FPT Digital Marketing"
-      }
     }
   ],
   "certificates": [
