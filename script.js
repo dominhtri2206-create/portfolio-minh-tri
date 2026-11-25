@@ -73,7 +73,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       "en": "Hello! I am Minh Tri (Eric) — a passionate learner keen on Business and enthusiastic about exploring and applying practical AI Agent solutions. Additionally, I enjoy public speaking & MCing, continuous research, and mastering foreign languages. I believe that constantly updating our mindset and embracing emerging technologies is key to self-refinement and creating positive value for our community."
     },
     "contact": {
-      "email": "dominhtri2206@gmail.com",
+      "email": "contact@dominhtri.id.vn",
       "phone": "0934 454 099",
       "zalo": "0934454099",
       "linkedin": "",
@@ -1786,7 +1786,7 @@ function trackPortfolioEvent(eventName, params = {}) {
 }
 
 function handleHeroCopyEmail(btnEl) {
-  const email = (portfolioData && portfolioData.profile && portfolioData.profile.contact && portfolioData.profile.contact.email) || 'dominhtri2206@gmail.com';
+  const email = (portfolioData && portfolioData.profile && portfolioData.profile.contact && portfolioData.profile.contact.email) || 'contact@dominhtri.id.vn';
   const msg = currentLang === 'en' ? `Copied Email: ${email}!` : `Đã sao chép Email: ${email}!`;
   copyToClipboard(email, msg);
   trackPortfolioEvent('copy_email', { location: 'hero' });
@@ -2047,7 +2047,7 @@ function renderHeroDynamic() {
 
   // Hero Quick-Connect & Contact Info Sync
   if (p.contact) {
-    const email = p.contact.email || 'dominhtri2206@gmail.com';
+    const email = p.contact.email || 'contact@dominhtri.id.vn';
     const phone = p.contact.phone || '0934 454 099';
     const cleanPhone = (p.contact.zalo || phone).replace(/\s+/g, '');
     const linkedin = (p.contact.linkedin || '').trim();
@@ -3257,7 +3257,7 @@ function downloadVCard() {
     'TITLE:Business & Digital Marketing | AI Agent Solutions',
     'ORG:BTEC FPT Đà Nẵng',
     'TEL;TYPE=CELL,VOICE:0934454099',
-    'EMAIL;TYPE=PREF,INTERNET:dominhtri2206@gmail.com',
+    'EMAIL;TYPE=PREF,INTERNET:contact@dominhtri.id.vn',
     'URL:https://dominhtri.id.vn/',
     'ADR;TYPE=WORK:;;Đà Nẵng;;;Vietnam',
     'NOTE:Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing',
