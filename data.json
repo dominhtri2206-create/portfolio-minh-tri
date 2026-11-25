@@ -17,7 +17,6 @@
     "heroGallery": [
       "avatar.jpg",
       "images/hero-award.jpg",
-      "images/hero-pitching.jpg",
       "images/hero-speaker.jpg",
       "images/hero-event.jpg"
     ],
@@ -70,7 +69,7 @@
       "linkedin": "",
       "address": {
         "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
-        "en": "152 Phan Thanh, Thanh Khe, Danang City"
+        "en": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng"
       },
       "reference": {
         "name": "Cô Nguyễn Thị Thanh Tâm",
