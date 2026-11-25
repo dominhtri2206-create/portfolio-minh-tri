@@ -915,6 +915,42 @@
               <label class="form-label">Bí danh / Alias</label>
               <input type="text" id="prof-alias" class="form-control" placeholder="(Eric Do)">
             </div>
+
+            <!-- Headline / Slogan -->
+            <div class="form-group col-6">
+              <label class="form-label"><span>Dòng tiêu đề chính (Headline)</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="prof-headline-vi" class="form-control" placeholder="Business &amp; Digital Marketing | Ứng dụng AI Agent">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Professional Headline</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="prof-headline-en" class="form-control" placeholder="Business &amp; Digital Marketing | AI Agent Solutions">
+            </div>
+
+            <!-- 3 Role Tags in Hero -->
+            <div class="form-group col-4">
+              <label class="form-label"><span>Role Tag 1 (VI)</span></label>
+              <input type="text" id="prof-role1-vi" class="form-control" placeholder="Business &amp; Digital Marketing">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label"><span>Role Tag 2 (VI)</span></label>
+              <input type="text" id="prof-role2-vi" class="form-control" placeholder="Ứng dụng AI Agent">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label"><span>Role Tag 3 (VI)</span></label>
+              <input type="text" id="prof-role3-vi" class="form-control" placeholder="MC &amp; Song ngữ Anh - Trung">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label"><span>Role Tag 1 (EN)</span></label>
+              <input type="text" id="prof-role1-en" class="form-control" placeholder="Business &amp; Digital Marketing">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label"><span>Role Tag 2 (EN)</span></label>
+              <input type="text" id="prof-role2-en" class="form-control" placeholder="AI Agent Solutions">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label"><span>Role Tag 3 (EN)</span></label>
+              <input type="text" id="prof-role3-en" class="form-control" placeholder="Public Speaker &amp; EN - ZH">
+            </div>
             <div class="form-group col-4">
               <label class="form-label"><span>Châm ngôn (Motto)</span> <span class="lang-indicator lang-vi">VI</span></label>
               <input type="text" id="prof-motto-vi" class="form-control">
@@ -996,6 +1032,27 @@
               <label class="form-label">Địa chỉ</label>
               <input type="text" id="prof-address-vi" class="form-control" placeholder="152 Phan Thanh, Thanh Khê, TP. Đà Nẵng">
             </div>
+            <!-- Người bảo chứng năng lực (Reference Person) -->
+            <div class="form-group col-12" style="margin-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 14px;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;"><i class="fa-solid fa-user-check text-primary-color"></i> Người Bảo Chứng Năng Lực (Reference Person)</h4>
+              <p style="font-size: 0.78rem; color: var(--text-tertiary); margin-bottom: 12px;">Thông tin giảng viên hoặc quản lý bảo chứng uy tín trong CV và hồ sơ</p>
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Họ tên người bảo chứng</label>
+              <input type="text" id="ref-name" class="form-control" placeholder="Cô Nguyễn Thị Thanh Tâm">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Chức vụ / Bộ môn (VI)</label>
+              <input type="text" id="ref-role-vi" class="form-control" placeholder="Giảng viên bộ môn Digital Marketing">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Số điện thoại liên hệ</label>
+              <input type="text" id="ref-phone" class="form-control" placeholder="0937.272.236">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Ghi chú xác thực năng lực (VI)</label>
+              <input type="text" id="ref-note-vi" class="form-control" placeholder="Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc tại trường.">
+            </div>
 
             <div class="form-group col-12">
               <label class="form-label">File CV định dạng PDF (Chuẩn ATS)</label>
@@ -1034,6 +1091,172 @@
             <div class="form-group col-4">
               <label class="form-label">Umami Script URL</label>
               <input type="url" id="ana-umami-url" class="form-control" placeholder="https://cloud.umami.is/script.js">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- TAB: ABOUT & EDUCATION -->
+      <section class="tab-content" id="tab-about" style="display: none;">
+        <!-- Header Info Card -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-graduation-cap"></i> Phần Giới Thiệu Bản Thân &amp; Nền Tảng (About)</h3>
+              <p class="card-subtitle">Chỉnh sửa tiêu đề, lời mở đầu và thông điệp hành trình tại phần "Về tôi" trên Portfolio</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Về tôi &amp; Học vấn</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-6">
+              <label class="form-label"><span>Nhãn phần (Tag)</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="about-tag-vi" class="form-control" placeholder="Hành trình & Năng lực">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Section Tag</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="about-tag-en" class="form-control" placeholder="Journey & Capabilities">
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label"><span>Tiêu đề lớn</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="about-title-vi" class="form-control" placeholder="Nền Tảng Kinh Doanh × Sức Mạnh AI">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Section Title</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="about-title-en" class="form-control" placeholder="Business Foundation × AI Power">
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label"><span>Đoạn mô tả ngắn</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <textarea id="about-subtitle-vi" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Subtitle Description</span> <span class="lang-indicator lang-en">EN</span></label>
+              <textarea id="about-subtitle-en" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card: Education Pathway -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-school"></i> Lộ Trình Đào Tạo &amp; Học Vấn (Education)</h3>
+              <p class="card-subtitle">2 cơ sở đào tạo chính: BTEC FPT & FPT Polyschool</p>
+            </div>
+          </div>
+
+          <div class="form-grid" style="border: 1px solid rgba(0,0,0,0.06); padding: 18px; border-radius: var(--radius-md); background: #F9F9FB; margin-bottom: 16px;">
+            <div class="form-group col-12" style="margin-bottom: 0;">
+              <strong style="color: var(--accent-apple);"><i class="fa-solid fa-landmark"></i> Cơ sở 1: BTEC FPT British College</strong>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Tên trường (VI)</label>
+              <input type="text" id="edu1-school-vi" class="form-control" placeholder="Cao đẳng Anh Quốc BTEC FPT Đà Nẵng">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Niên khóa / Huy hiệu (VI)</label>
+              <input type="text" id="edu1-badge-vi" class="form-control" placeholder="2024 – 2026 (Hiện tại)">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Chuyên ngành đào tạo (VI)</label>
+              <input type="text" id="edu1-major-vi" class="form-control" placeholder="Chuyên ngành Quản trị Kinh doanh Quốc tế (BTEC HND)">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Major in English (EN)</label>
+              <input type="text" id="edu1-major-en" class="form-control" placeholder="International Business Administration (BTEC HND)">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Mô tả trọng tâm đào tạo (VI)</label>
+              <textarea id="edu1-desc-vi" class="form-control" rows="2"></textarea>
+            </div>
+          </div>
+
+          <div class="form-grid" style="border: 1px solid rgba(0,0,0,0.06); padding: 18px; border-radius: var(--radius-md); background: #F9F9FB;">
+            <div class="form-group col-12" style="margin-bottom: 0;">
+              <strong style="color: #ea580c;"><i class="fa-solid fa-graduation-cap"></i> Cơ sở 2: FPT Polyschool</strong>
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Tên trường (VI)</label>
+              <input type="text" id="edu2-school-vi" class="form-control" placeholder="FPT Polyschool Đà Nẵng">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Niên khóa (VI)</label>
+              <input type="text" id="edu2-badge-vi" class="form-control" placeholder="2023 – 2025">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Thành tích tốt nghiệp</label>
+              <input type="text" id="edu2-pill-vi" class="form-control" placeholder="Tốt nghiệp Xuất Sắc">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Chuyên ngành đào tạo (VI)</label>
+              <input type="text" id="edu2-major-vi" class="form-control" placeholder="Chuyên ngành Digital Marketing (Thương mại điện tử)">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Major in English (EN)</label>
+              <input type="text" id="edu2-major-en" class="form-control" placeholder="Digital Marketing & E-Commerce">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Mô tả trọng tâm đào tạo (VI)</label>
+              <textarea id="edu2-desc-vi" class="form-control" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card: 3 Core Strengths -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-bolt"></i> 3 Trụ Cột Năng Lực Cốt Lõi (Core Strengths)</h3>
+              <p class="card-subtitle">Hiển thị trong 3 ô bento card tại mục Về tôi</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <!-- Strength 1 -->
+            <div class="form-group col-6">
+              <label class="form-label"><strong>Trụ cột 1: Tiêu đề (VI)</strong></label>
+              <input type="text" id="str1-title-vi" class="form-control" placeholder="Tư duy Chiến lược & AI Agent">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Trụ cột 1: Title (EN)</label>
+              <input type="text" id="str1-title-en" class="form-control" placeholder="Strategic Mindset & AI Agent">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Trụ cột 1: Mô tả chi tiết (VI)</label>
+              <textarea id="str1-desc-vi" class="form-control" rows="2"></textarea>
+            </div>
+
+            <!-- Strength 2 -->
+            <div class="form-group col-6">
+              <label class="form-label"><strong>Trụ cột 2: Tiêu đề (VI)</strong></label>
+              <input type="text" id="str2-title-vi" class="form-control" placeholder="Marketing Thực chiến & Data">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Trụ cột 2: Title (EN)</label>
+              <input type="text" id="str2-title-en" class="form-control" placeholder="Hands-on Marketing & Data">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Trụ cột 2: Mô tả chi tiết (VI)</label>
+              <textarea id="str2-desc-vi" class="form-control" rows="2"></textarea>
+            </div>
+
+            <!-- Strength 3 -->
+            <div class="form-group col-6">
+              <label class="form-label"><strong>Trụ cột 3: Tiêu đề (VI)</strong></label>
+              <input type="text" id="str3-title-vi" class="form-control" placeholder="Thuyết trình & MC Song ngữ">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Trụ cột 3: Title (EN)</label>
+              <input type="text" id="str3-title-en" class="form-control" placeholder="Public Speaking & Bilingual MC">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Trụ cột 3: Mô tả chi tiết (VI)</label>
+              <textarea id="str3-desc-vi" class="form-control" rows="2"></textarea>
             </div>
           </div>
         </div>

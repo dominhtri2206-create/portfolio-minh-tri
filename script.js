@@ -1915,6 +1915,68 @@ function renderHighlightsGrid() {
   }).join('');
 }
 
+
+function renderAboutDynamic() {
+  if (!portfolioData || !portfolioData.about) return;
+  const ab = portfolioData.about;
+
+  // Section Header
+  const tagEl = document.querySelector('#about [data-i18n="about.tag"]');
+  if (tagEl && ab.tag) tagEl.textContent = ab.tag[currentLang] || ab.tag.vi;
+
+  const titleEl = document.querySelector('#about [data-i18n="about.title"]');
+  if (titleEl && ab.title) titleEl.textContent = ab.title[currentLang] || ab.title.vi;
+
+  const subEl = document.querySelector('#about [data-i18n="about.subtitle"]');
+  if (subEl && ab.subtitle) subEl.textContent = ab.subtitle[currentLang] || ab.subtitle.vi;
+
+  // Education 1 (BTEC)
+  const edus = Array.isArray(ab.education) ? ab.education : [];
+  if (edus[0]) {
+    const e1 = edus[0];
+    const b1 = document.querySelector('[data-i18n="about.edu_btec_badge"]');
+    if (b1 && e1.badge) b1.textContent = e1.badge[currentLang] || e1.badge.vi;
+    const m1 = document.querySelector('[data-i18n="about.edu_btec_major"]');
+    if (m1 && e1.major) m1.textContent = e1.major[currentLang] || e1.major.vi;
+    const d1 = document.querySelector('[data-i18n="about.edu_btec_desc"]');
+    if (d1 && e1.desc) d1.textContent = e1.desc[currentLang] || e1.desc.vi;
+  }
+
+  // Education 2 (Poly)
+  if (edus[1]) {
+    const e2 = edus[1];
+    const b2 = document.querySelector('[data-i18n="about.edu_poly_badge"]');
+    if (b2 && e2.badge) b2.textContent = e2.badge[currentLang] || e2.badge.vi;
+    const p2 = document.querySelector('[data-i18n="about.edu_poly_pill"]');
+    if (p2 && e2.pill) p2.textContent = e2.pill[currentLang] || e2.pill.vi;
+    const m2 = document.querySelector('[data-i18n="about.edu_poly_major"]');
+    if (m2 && e2.major) m2.textContent = e2.major[currentLang] || e2.major.vi;
+    const d2 = document.querySelector('[data-i18n="about.edu_poly_desc"]');
+    if (d2 && e2.desc) d2.textContent = e2.desc[currentLang] || e2.desc.vi;
+  }
+
+  // Core Strengths
+  const strs = Array.isArray(ab.strengths) ? ab.strengths : [];
+  if (strs[0]) {
+    const t = document.querySelector('[data-i18n="about.str_ai_title"]');
+    if (t && strs[0].title) t.textContent = strs[0].title[currentLang] || strs[0].title.vi;
+    const d = document.querySelector('[data-i18n="about.str_ai_desc"]');
+    if (d && strs[0].desc) d.textContent = strs[0].desc[currentLang] || strs[0].desc.vi;
+  }
+  if (strs[1]) {
+    const t = document.querySelector('[data-i18n="about.str_biz_title"]');
+    if (t && strs[1].title) t.textContent = strs[1].title[currentLang] || strs[1].title.vi;
+    const d = document.querySelector('[data-i18n="about.str_biz_desc"]');
+    if (d && strs[1].desc) d.textContent = strs[1].desc[currentLang] || strs[1].desc.vi;
+  }
+  if (strs[2]) {
+    const t = document.querySelector('[data-i18n="about.str_mc_title"]');
+    if (t && strs[2].title) t.textContent = strs[2].title[currentLang] || strs[2].title.vi;
+    const d = document.querySelector('[data-i18n="about.str_mc_desc"]');
+    if (d && strs[2].desc) d.textContent = strs[2].desc[currentLang] || strs[2].desc.vi;
+  }
+}
+
 function renderHeroDynamic() {
   if (!portfolioData || !portfolioData.profile) return;
   const p = portfolioData.profile;

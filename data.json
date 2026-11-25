@@ -1217,5 +1217,139 @@
       },
       "isDark": false
     }
-  ]
+  ],
+  "about": {
+    "tag": {
+      "vi": "Hành trình & Năng lực",
+      "en": "Journey & Capabilities"
+    },
+    "title": {
+      "vi": "Nền Tảng Kinh Doanh × Sức Mạnh AI",
+      "en": "Business Foundation × AI Power"
+    },
+    "subtitle": {
+      "vi": "Sự giao thoa giữa tư duy Quản trị Kinh doanh chuẩn Anh Quốc, kỹ năng Digital Marketing thực chiến và khả năng điều phối AI Agent hiện đại.",
+      "en": "The intersection of UK-standard Business Administration thinking, hands-on Digital Marketing execution, and modern AI Agent orchestration."
+    },
+    "marqueeTools": [
+      {
+        "icon": "fa-solid fa-robot",
+        "name": "Google Antigravity AI"
+      },
+      {
+        "icon": "fa-solid fa-palette",
+        "name": "Canva Pro Brand Kit"
+      },
+      {
+        "icon": "fa-solid fa-video",
+        "name": "CapCut Pro & Premiere"
+      },
+      {
+        "icon": "fa-brands fa-meta",
+        "name": "Meta Business Suite"
+      },
+      {
+        "icon": "fa-solid fa-magnifying-glass-chart",
+        "name": "Google Analytics 4 & GSC"
+      },
+      {
+        "icon": "fa-solid fa-file-excel",
+        "name": "Microsoft Excel MOS 2019"
+      },
+      {
+        "icon": "fa-solid fa-table-columns",
+        "name": "Notion RACI & IMC Matrix"
+      },
+      {
+        "icon": "fa-solid fa-microphone-lines",
+        "name": "Public Speaking & Bilingual MC"
+      }
+    ],
+    "education": [
+      {
+        "id": 1,
+        "school": {
+          "vi": "Cao đẳng Anh Quốc BTEC FPT Đà Nẵng",
+          "en": "BTEC FPT British College Danang"
+        },
+        "badge": {
+          "vi": "2024 – 2026 (Hiện tại)",
+          "en": "2024 – 2026 (Current)"
+        },
+        "pill": {
+          "vi": "Quản trị Kinh doanh",
+          "en": "Business Administration"
+        },
+        "major": {
+          "vi": "Chuyên ngành Quản trị Kinh doanh Quốc tế (BTEC HND)",
+          "en": "International Business Administration (BTEC HND)"
+        },
+        "desc": {
+          "vi": "Đào tạo theo chuẩn giáo dục khảo thí Pearson Vương Quốc Anh. Trọng tâm nghiên cứu: Quản trị chiến lược, Phân tích thị trường, Vận hành dự án và Ứng dụng công nghệ chuyển đổi số trong kinh doanh hiện đại.",
+          "en": "Pearson UK accredited curriculum focusing on Strategic Management, Market Research, Project Operations, and Digital Business Transformation."
+        }
+      },
+      {
+        "id": 2,
+        "school": {
+          "vi": "FPT Polyschool Đà Nẵng",
+          "en": "FPT Polyschool Danang"
+        },
+        "badge": {
+          "vi": "2023 – 2025",
+          "en": "2023 – 2025"
+        },
+        "pill": {
+          "vi": "Tốt nghiệp Xuất Sắc",
+          "en": "High Distinction"
+        },
+        "major": {
+          "vi": "Chuyên ngành Digital Marketing (Thương mại điện tử)",
+          "en": "Digital Marketing & E-Commerce"
+        },
+        "desc": {
+          "vi": "Tốt nghiệp Xuất Sắc. Hoàn thành 100% các đồ án thực tế về Chiến dịch IMC đa kênh, Tối ưu SEO Onpage/Offpage, Sản xuất video ngắn viral và Thiết kế bộ nhận diện thương hiệu trên các nền tảng số.",
+          "en": "Graduated with High Distinction. Completed 100% hands-on capstone projects covering omnichannel IMC campaigns, SEO, viral video production, and brand identity design."
+        }
+      }
+    ],
+    "strengths": [
+      {
+        "id": 1,
+        "icon": "fa-solid fa-brain",
+        "title": {
+          "vi": "Tư duy Chiến lược & AI Agent",
+          "en": "Strategic Mindset & AI Agent"
+        },
+        "desc": {
+          "vi": "Ứng dụng các mô hình ngôn ngữ lớn (LLM), xây dựng quy trình tự động hóa (Agentic Workflow) để giải phóng sức lao động thủ công và x5 hiệu suất marketing.",
+          "en": "Leveraging LLMs and autonomous agentic workflows to automate repetitive marketing operations and achieve 5x execution speed."
+        }
+      },
+      {
+        "id": 2,
+        "icon": "fa-solid fa-chart-pie",
+        "title": {
+          "vi": "Marketing Thực chiến & Data",
+          "en": "Hands-on Marketing & Data"
+        },
+        "desc": {
+          "vi": "Thành thạo công cụ đo lường GA4, GSC, Meta Suite kết hợp tư duy phân tích dữ liệu MOS Excel để tối ưu chi phí chuyển đổi (CPA) và tăng trưởng doanh thu.",
+          "en": "Proficient in GA4, Search Console, Meta Suite, and MOS Excel data modeling to streamline acquisition costs and drive measurable revenue growth."
+        }
+      },
+      {
+        "id": 3,
+        "icon": "fa-solid fa-microphone-lines",
+        "title": {
+          "vi": "Thuyết trình & MC Song ngữ",
+          "en": "Public Speaking & Bilingual MC"
+        },
+        "desc": {
+          "vi": "Phong thái đĩnh đạc, khả năng hoạt ngôn và điều phối sân khấu linh hoạt; tự tin thuyết trình gọi vốn (Pitching) và dẫn dắt sự kiện song ngữ Anh - Trung.",
+          "en": "Charismatic stage presence and adaptive crowd engagement; confident startup pitching and bilingual event hosting in English and Chinese."
+        }
+      }
+    ]
+  }
 }
