@@ -53,7 +53,7 @@
   </g>
 
   <!-- Footer URL -->
-  <text x="80" y="555" font-family="'Segoe UI', system-ui, sans-serif" font-size="16" font-weight="700" fill="#64748b" letter-spacing="0.5">dominhtri2206.github.io/portpolio</text>
+  <text x="80" y="555" font-family="'Segoe UI', system-ui, sans-serif" font-size="16" font-weight="700" fill="#64748b" letter-spacing="0.5">dominhtri.id.vn</text>
 
   <!-- Right Avatar with Glowing Border -->
   <circle cx="940" cy="315" r="193" fill="none" stroke="#ff6b35" stroke-width="6" opacity="0.9" filter="url(#cardShadow)"/>

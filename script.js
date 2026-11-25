@@ -78,8 +78,8 @@ const DEFAULT_PORTFOLIO_DATA = {
       "zalo": "0934454099",
       "linkedin": "",
       "address": {
-        "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
-        "en": "152 Phan Thanh, Thanh Khe, Danang City"
+        "vi": "Đà Nẵng, Việt Nam",
+        "en": "Danang, Vietnam"
       },
       "reference": {
         "name": "Cô Nguyễn Thị Thanh Tâm",
@@ -87,10 +87,10 @@ const DEFAULT_PORTFOLIO_DATA = {
           "vi": "Giảng viên bộ môn Digital Marketing",
           "en": "Digital Marketing Lecturer"
         },
-        "phone": "0937.272.236",
+        "phone": "Thông tin người tham chiếu sẽ được cung cấp khi có yêu cầu",
         "note": {
-          "vi": "Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại trường.",
-          "en": "Direct instructor assessing my academic competence and professional working attitude."
+          "vi": "Thông tin liên hệ chi tiết của người tham chiếu sẽ được cung cấp khi có yêu cầu từ nhà tuyển dụng.",
+          "en": "Detailed referee contact information will be provided upon formal request."
         }
       }
     }
@@ -1329,13 +1329,13 @@ const translations = {
     'contact.lbl_phone': 'Số điện thoại:',
     'contact.copy_phone': 'Sao chép số điện thoại',
     'contact.lbl_address': 'Địa chỉ hiện tại:',
-    'contact.val_address': '152 Phan Thanh, Thanh Khê, TP. Đà Nẵng',
+    'contact.val_address': 'Đà Nẵng, Việt Nam',
     'contact.btn_call': 'Gọi điện ngay',
     'contact.btn_mail': 'Gửi email',
     'contact.ref_badge': 'Người Tham Chiếu (Reference)',
     'contact.ref_name': 'Cô Nguyễn Thị Thanh Tâm',
     'contact.ref_role': 'Giảng viên bộ môn Digital Marketing',
-    'contact.ref_phone': 'SĐT liên hệ: <strong>0937.272.236</strong>',
+    'contact.ref_phone': 'Thông tin người tham chiếu sẽ được cung cấp khi có yêu cầu',
     'contact.ref_note': 'Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại trường.',
     'contact.form_title': 'Gửi Lời Nhắn Nhanh',
     'contact.form_desc': 'Hãy để lại thông tin hoặc yêu cầu tuyển dụng, tôi sẽ phản hồi trong vòng 24 giờ!',
@@ -1565,13 +1565,13 @@ const translations = {
     'contact.lbl_phone': 'Phone number:',
     'contact.copy_phone': 'Copy phone number',
     'contact.lbl_address': 'Current location:',
-    'contact.val_address': '152 Phan Thanh, Thanh Khe, Danang City',
+    'contact.val_address': 'Danang, Vietnam',
     'contact.btn_call': 'Call Directly',
     'contact.btn_mail': 'Send Email',
     'contact.ref_badge': 'Professional Reference',
     'contact.ref_name': 'Ms. Nguyen Thi Thanh Tam',
     'contact.ref_role': 'Digital Marketing Lecturer',
-    'contact.ref_phone': 'Phone: <strong>0937.272.236</strong>',
+    'contact.ref_phone': 'Referee details available upon request',
     'contact.ref_note': 'Direct instructor assessing my academic competence and professional working attitude.',
     'contact.form_title': 'Send a Quick Message',
     'contact.form_desc': 'Leave your message or recruitment opportunity, and I will respond within 24 hours!',
@@ -3258,8 +3258,8 @@ function downloadVCard() {
     'ORG:BTEC FPT Đà Nẵng',
     'TEL;TYPE=CELL,VOICE:0934454099',
     'EMAIL;TYPE=PREF,INTERNET:dominhtri2206@gmail.com',
-    'URL:https://dominhtri2206.github.io/portpolio/',
-    'ADR;TYPE=WORK:;;152 Phan Thanh, Thanh Khê;Đà Nẵng;;;Vietnam',
+    'URL:https://dominhtri.id.vn/',
+    'ADR;TYPE=WORK:;;Đà Nẵng;;;Vietnam',
     'NOTE:Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing',
     'END:VCARD'
   ].join('\r\n');

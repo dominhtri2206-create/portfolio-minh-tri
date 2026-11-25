@@ -67,10 +67,10 @@
       "email": "dominhtri2206@gmail.com",
       "phone": "0934 454 099",
       "zalo": "0934454099",
-      "linkedin": "",
+      "linkedin": "https://www.linkedin.com/in/dominhtri2206",
       "address": {
-        "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
-        "en": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng"
+        "vi": "Đà Nẵng, Việt Nam",
+        "en": "Danang, Vietnam"
       },
       "reference": {
         "name": "Cô Nguyễn Thị Thanh Tâm",
@@ -78,12 +78,15 @@
           "vi": "Giảng viên bộ môn Digital Marketing",
           "en": "Digital Marketing Lecturer"
         },
-        "phone": "0937.272.236",
+        "phone": "Thông tin người tham chiếu sẽ được cung cấp khi có yêu cầu",
         "note": {
-          "vi": "Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc của tôi tại trường.",
-          "en": "Direct instructor assessing my academic competence and professional working attitude."
+          "vi": "Thông tin liên hệ chi tiết của người tham chiếu sẽ được cung cấp khi có yêu cầu từ nhà tuyển dụng.",
+          "en": "Detailed referee contact information will be provided upon formal request."
         }
-      }
+      },
+      "facebook": "https://www.facebook.com/dominhtri2206",
+      "github": "https://github.com/dominhtri2206-create",
+      "website": "https://dominhtri.id.vn/"
     }
   },
   "analytics": {
