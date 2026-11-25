@@ -19,6 +19,8 @@
   <!-- Cropper.js 1.6.1 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+  <!-- SortableJS 1.15.2 for Drag-and-Drop Reordering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
 
   <style>
     /* ===================================================================
@@ -292,6 +294,56 @@
     .tab-btn.active .tab-badge {
       background: rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
+    }
+
+    
+    /* ===================================================================
+       DRAG AND DROP UI STYLES (SortableJS + Drag Upload)
+       =================================================================== */
+    .drag-handle {
+      cursor: grab;
+      color: var(--text-tertiary);
+      padding: 6px 8px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      user-select: none;
+    }
+    .drag-handle:hover {
+      background: rgba(0, 0, 0, 0.06);
+      color: var(--text-main);
+    }
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+    .sortable-ghost {
+      opacity: 0.35 !important;
+      background: var(--accent-apple-subtle) !important;
+      border: 2px dashed var(--accent-apple) !important;
+      transform: scale(0.98);
+    }
+    .sortable-chosen {
+      background: #FFFFFF !important;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16) !important;
+      cursor: grabbing !important;
+    }
+    .sortable-drag {
+      opacity: 0.95 !important;
+      cursor: grabbing !important;
+    }
+    .drop-zone-active {
+      border-color: var(--accent-apple) !important;
+      background: rgba(0, 113, 227, 0.08) !important;
+      transform: scale(1.01);
+    }
+    .hero-gallery-item {
+      cursor: grab;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hero-gallery-item:active {
+      cursor: grabbing;
     }
 
     /* Bento Cards */
@@ -2306,6 +2358,86 @@
     let cropperCallback = null;
     let currentCropOptions = {};
 
+    
+    /* -------------------------------------------------------------------
+       SORTABLEJS DRAG & DROP INITIALIZER HELPER
+    ------------------------------------------------------------------- */
+    function initSortableForContainer(container, onEndCallback, handleSelector) {
+      if (!container || typeof Sortable === 'undefined') return;
+      if (container._sortableInstance) {
+        container._sortableInstance.destroy();
+      }
+      container._sortableInstance = new Sortable(container, {
+        animation: 200,
+        handle: handleSelector || undefined,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: function (evt) {
+          if (evt.oldIndex !== evt.newIndex && typeof onEndCallback === 'function') {
+            onEndCallback(evt.oldIndex, evt.newIndex);
+          }
+        }
+      });
+    }
+
+    /* -------------------------------------------------------------------
+       DRAG AND DROP FILE UPLOAD ZONES
+    ------------------------------------------------------------------- */
+    function setupDragAndDropUploads() {
+      // 1. Hero Gallery Drop Zone
+      const heroDropBox = document.getElementById('hero-gallery-dropzone') || document.querySelector('.hero-gallery-box');
+      if (heroDropBox) {
+        ['dragenter', 'dragover'].forEach(name => {
+          heroDropBox.addEventListener(name, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            heroDropBox.classList.add('drop-zone-active');
+          });
+        });
+        ['dragleave', 'drop'].forEach(name => {
+          heroDropBox.addEventListener(name, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            heroDropBox.classList.remove('drop-zone-active');
+          });
+        });
+        heroDropBox.addEventListener('drop', (e) => {
+          const files = e.dataTransfer.files;
+          if (files && files.length > 0) {
+            handleHeroGalleryAdd({ target: { files: files } });
+          }
+        });
+      }
+
+      // 2. Avatar Drop Zone
+      const avatarBox = document.querySelector('.avatar-preview-box');
+      if (avatarBox) {
+        ['dragenter', 'dragover'].forEach(name => {
+          avatarBox.addEventListener(name, (e) => {
+            e.preventDefault();
+            avatarBox.classList.add('drop-zone-active');
+          });
+        });
+        ['dragleave', 'drop'].forEach(name => {
+          avatarBox.addEventListener(name, (e) => {
+            e.preventDefault();
+            avatarBox.classList.remove('drop-zone-active');
+          });
+        });
+        avatarBox.addEventListener('drop', (e) => {
+          const files = e.dataTransfer.files;
+          if (files && files.length > 0) {
+            handleAvatarUpload({ target: { files: files } });
+          }
+        });
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(setupDragAndDropUploads, 500);
+    });
+
     function openCropperModal(file, options, callback) {
       if (!file) return;
       cropperCallback = callback;
@@ -2720,8 +2852,11 @@
         const period = exp.period ? (exp.period.vi || exp.period.en || '') : '';
 
         return `
-          <div class="item-card">
+          <div class="item-card" data-id="${exp.id}">
             <div class="item-top">
+              <div class="drag-handle" title="Kéo thả để sắp xếp timeline kinh nghiệm">
+                <i class="fa-solid fa-grip-vertical fa-lg"></i>
+              </div>
               <div class="item-thumb-placeholder" style="width: 48px; height: 48px; border-radius: 12px; background: var(--accent-apple-subtle); color: var(--accent-apple); font-size: 1.2rem;">
                 <i class="fa-solid fa-briefcase"></i>
               </div>
@@ -2732,12 +2867,6 @@
               </div>
             </div>
             <div class="item-actions">
-              <button type="button" class="btn btn-outline btn-sm" onclick="moveExp(${index}, -1)" ${index === 0 ? 'disabled' : ''} title="Di chuyển lên">
-                <i class="fa-solid fa-arrow-up"></i>
-              </button>
-              <button type="button" class="btn btn-outline btn-sm" onclick="moveExp(${index}, 1)" ${index === list.length - 1 ? 'disabled' : ''} title="Di chuyển xuống">
-                <i class="fa-solid fa-arrow-down"></i>
-              </button>
               <button type="button" class="btn btn-outline btn-sm" onclick="openExpEditModal(${exp.id})">
                 <i class="fa-solid fa-pen"></i> Sửa
               </button>
@@ -2748,6 +2877,13 @@
           </div>
         `;
       }).join('');
+
+      initSortableForContainer(container, (oldIndex, newIndex) => {
+        const item = currentData.experiences.splice(oldIndex, 1)[0];
+        currentData.experiences.splice(newIndex, 0, item);
+        renderExpsList();
+        showToast('Đã sắp xếp lại dòng thời gian! Nhớ bấm "Lưu & Đẩy lên GitHub".', 'info');
+      }, '.drag-handle');
     }
 
     function openExpEditModal(id) {
@@ -2893,8 +3029,11 @@
         const role = p.role ? (p.role.vi || '') : '';
 
         return `
-          <div class="item-card">
+          <div class="item-card" data-id="${p.id}">
             <div class="item-top">
+              <div class="drag-handle" title="Kéo thả để đổi thứ tự hiển thị dự án">
+                <i class="fa-solid fa-grip-vertical fa-lg"></i>
+              </div>
               <div class="item-thumb-placeholder" style="background: ${p.bannerGradient || 'linear-gradient(135deg, #1e3a8a, #3b82f6)'}">
                 <i class="${p.watermarkIcon || 'fa-solid fa-briefcase'}"></i>
               </div>
@@ -2915,6 +3054,13 @@
           </div>
         `;
       }).join('');
+
+      initSortableForContainer(container, (oldIndex, newIndex) => {
+        const item = currentData.projects.splice(oldIndex, 1)[0];
+        currentData.projects.splice(newIndex, 0, item);
+        renderProjectsList();
+        showToast('Đã sắp xếp lại thứ tự dự án! Nhớ bấm "Lưu & Đẩy lên GitHub".', 'info');
+      }, '.drag-handle');
     }
 
     function openProjectEditModal(id) {
@@ -3125,8 +3271,11 @@
         const galleryCount = (c.gallery && Array.isArray(c.gallery)) ? c.gallery.length : 0;
 
         return `
-          <div class="item-card">
+          <div class="item-card" data-id="${c.id}">
             <div class="item-top">
+              <div class="drag-handle" title="Kéo thả để sắp xếp vị trí giải thưởng / chứng chỉ">
+                <i class="fa-solid fa-grip-vertical fa-lg"></i>
+              </div>
               <img src="${c.mainImage || 'certificate-mos-excel.jpg'}" alt="${title}" class="item-thumb" onerror="this.src='CV.png'">
               <div class="item-info">
                 <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 2px;">
@@ -3148,6 +3297,13 @@
           </div>
         `;
       }).join('');
+
+      initSortableForContainer(container, (oldIndex, newIndex) => {
+        const item = currentData.certificates.splice(oldIndex, 1)[0];
+        currentData.certificates.splice(newIndex, 0, item);
+        renderCertsList();
+        showToast('Đã đổi vị trí chứng chỉ! Nhớ bấm "Lưu & Đẩy lên GitHub".', 'info');
+      }, '.drag-handle');
     }
 
     function renderCertGalleryPreviews() {
@@ -3355,8 +3511,11 @@
         const galleryCount = (a.gallery && Array.isArray(a.gallery)) ? a.gallery.length : 0;
 
         return `
-          <div class="item-card">
+          <div class="item-card" data-id="${a.id}">
             <div class="item-top">
+              <div class="drag-handle" title="Kéo thả để sắp xếp vị trí hoạt động">
+                <i class="fa-solid fa-grip-vertical fa-lg"></i>
+              </div>
               <img src="${a.mainImage || 'act-pegasus.jpg'}" alt="${title}" class="item-thumb" onerror="this.src='CV.png'">
               <div class="item-info">
                 <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 2px;">
@@ -3378,6 +3537,13 @@
           </div>
         `;
       }).join('');
+
+      initSortableForContainer(container, (oldIndex, newIndex) => {
+        const item = currentData.activities.splice(oldIndex, 1)[0];
+        currentData.activities.splice(newIndex, 0, item);
+        renderActsList();
+        showToast('Đã đổi vị trí hoạt động! Nhớ bấm "Lưu & Đẩy lên GitHub".', 'info');
+      }, '.drag-handle');
     }
 
     function renderActGalleryPreviews() {
