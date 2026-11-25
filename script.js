@@ -21,31 +21,40 @@ const DEFAULT_PORTFOLIO_DATA = {
       "en": "Do Minh Tri"
     },
     "alias": "(Eric Do)",
+    "headline": {
+      "vi": "Business & Digital Marketing | Ứng dụng AI Agent",
+      "en": "Business & Digital Marketing | AI Agent Solutions"
+    },
+    "statusBadge": {
+      "vi": "Sẵn sàng hợp tác • Business & Digital Marketing × AI Agent",
+      "en": "Open to Opportunities • Business & Digital Marketing × AI Agent"
+    },
     "avatar": "avatar.jpg",
+    "cvUrl": "CV_DoMinhTri.pdf",
     "motto": {
       "vi": "I never lose. I either win or learn!",
       "en": "I never lose. I either win or learn!"
     },
     "roles": [
       {
+        "icon": "fa-solid fa-chart-line",
+        "text": {
+          "vi": "Business & Digital Marketing",
+          "en": "Business & Digital Marketing"
+        }
+      },
+      {
         "icon": "fa-solid fa-robot",
         "text": {
-          "vi": "Business & Ứng dụng AI Agent",
-          "en": "Business & AI Agent Solutions"
+          "vi": "Ứng dụng AI Agent",
+          "en": "AI Agent Solutions"
         }
       },
       {
         "icon": "fa-solid fa-microphone-lines",
         "text": {
-          "vi": "MC & Nghiên cứu",
-          "en": "Public Speaker & Research"
-        }
-      },
-      {
-        "icon": "fa-solid fa-language",
-        "text": {
-          "vi": "Tiếng Anh & Tiếng Trung",
-          "en": "English & Chinese"
+          "vi": "MC & Song ngữ Anh - Trung",
+          "en": "Public Speaker & EN - ZH"
         }
       }
     ],
@@ -60,12 +69,14 @@ const DEFAULT_PORTFOLIO_DATA = {
       }
     },
     "bio": {
-      "vi": "Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông, nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công nghệ mới chính là chìa khóa để rèn giũa bản thân và tạo ra giá trị tích cực cho cộng đồng.",
-      "en": "Hello! I'm Minh Tri (Eric) — an energetic learner passionate about modern Business administration and real-world AI Agent implementations. Beyond tech, I thrive as a public speaker/MC, curious researcher, and language enthusiast. I believe relentless growth and adopting frontier technology are the keys to self-mastery and delivering meaningful social value."
+      "vi": "Chào bạn! Mình là Minh Trí (Eric) — sinh viên Quản trị Kinh doanh tại BTEC FPT Đà Nẵng và Tốt nghiệp Xuất Sắc chuyên ngành Digital Marketing. Mình kết hợp tư duy chiến lược thương hiệu, sáng tạo nội dung đa kênh với khả năng ứng dụng AI Agent thực chiến để tối ưu hiệu suất và tạo giá trị bền vững cho doanh nghiệp.",
+      "en": "Hi, I'm Minh Tri (Eric) — a Business Administration student at BTEC FPT Danang and High Distinction graduate in Digital Marketing. I combine brand strategy and omnichannel content creation with practical AI Agent workflows to drive measurable growth and business impact."
     },
     "contact": {
       "email": "dominhtri2206@gmail.com",
-      "phone": "0816 777 568",
+      "phone": "0934 454 099",
+      "zalo": "0934454099",
+      "linkedin": "",
       "address": {
         "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
         "en": "152 Phan Thanh, Thanh Khe, Danang City"
@@ -84,37 +95,96 @@ const DEFAULT_PORTFOLIO_DATA = {
       }
     }
   },
-  "highlights": [
+  "analytics": {
+    "gaMeasurementId": "",
+    "umamiWebsiteId": "",
+    "umamiScriptUrl": "https://cloud.umami.is/script.js"
+  },
+  "experiences": [
     {
       "id": 1,
-      "icon": "fa-solid fa-robot",
-      "iconColor": "icon-orange",
-      "title": { "vi": "Business & AI", "en": "Business & AI" },
-      "subtitle": { "vi": "Ứng dụng AI Agent", "en": "AI Agent Solutions" },
-      "isDark": false
+      "period": { "vi": "02/2026 – 09/2026", "en": "02/2026 – 09/2026" },
+      "role": { "vi": "Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I", "en": "Vice President — Executive Board (Term I)" },
+      "organization": { "vi": "BBE Pegasus Chapter", "en": "BBE Pegasus Chapter" },
+      "badge": { "vi": "Lãnh đạo & Điều hành", "en": "Executive Leadership" },
+      "isCurrent": true,
+      "summary": {
+        "vi": "Điều hành hoạt động đối nội, chuẩn hóa quy trình làm việc của Ban Lãnh đạo và phát triển năng lực thành viên.",
+        "en": "Directed internal operations, standardized executive workflows, and led member capability development."
+      },
+      "highlights": [
+        { "vi": "Điều phối đội ngũ, phân công nhiệm vụ và giám sát 100% tiến độ hoạt động nhiệm kỳ I", "en": "Coordinated cross-functional teams, delegated duties, and tracked 100% milestone delivery" },
+        { "vi": "Chủ trì tổ chức chuỗi workshop chia sẻ kỹ năng thực chiến và gắn kết văn hóa CLB", "en": "Chaired practical skill-sharing workshops and strengthened organizational cohesion" }
+      ],
+      "tags": ["Executive Leadership", "Team Operations", "Public Speaking", "Workshop Host"]
     },
     {
       "id": 2,
-      "icon": "fa-solid fa-trophy",
-      "iconColor": "icon-gold",
-      "title": { "vi": "Á Quân Khởi Nghiệp", "en": "Startup Runner-Up" },
-      "subtitle": { "vi": "Chân Trần Khởi Nghiệp Mùa 3", "en": "Barefoot Startup Season 3" },
-      "isDark": true
+      "period": { "vi": "09/2023 – 09/2025", "en": "09/2023 – 09/2025" },
+      "role": { "vi": "Trưởng nhóm Dự án Marketing Thực chiến (Team Leader)", "en": "Marketing Project Team Leader" },
+      "organization": { "vi": "FPT Polyschool — Chuyên ngành Digital Marketing", "en": "FPT Polyschool — Digital Marketing Department" },
+      "badge": { "vi": "Dự án Thực chiến", "en": "Hands-on Projects" },
+      "isCurrent": false,
+      "summary": {
+        "vi": "Trực tiếp dẫn dắt nhóm 4–5 thành viên lập kế hoạch truyền thông đa kênh (IMC), tối ưu SEO và sản xuất video ngắn TikTok/Reels.",
+        "en": "Led 4–5 member teams across omnichannel IMC campaigns, SEO research, and short-form TikTok/Reels video production."
+      },
+      "highlights": [
+        { "vi": "Tăng +180% tương tác tự nhiên trên Fanpage và thiết kế 20+ ấn phẩm chuẩn Brand Kit", "en": "Boosted organic Fanpage engagement by +180% and designed 20+ brand-aligned visual assets" },
+        { "vi": "Sản xuất chuỗi 15 video ngắn đạt 120.000+ lượt xem tích lũy (video top đạt 45.000+ views)", "en": "Produced 15 vertical short videos generating 120,000+ cumulative views (top video 45,000+ views)" },
+        { "vi": "Hoàn thành 100% KPI đúng hạn, góp phần đạt danh hiệu Tốt nghiệp Xuất Sắc", "en": "Delivered 100% of campaign KPIs on time, graduating with High Distinction honors" }
+      ],
+      "tags": ["IMC Strategy", "TikTok & Reels", "SEO & Content", "Team Leader (5 người)"]
     },
     {
       "id": 3,
-      "icon": "fa-solid fa-language",
-      "iconColor": "icon-blue",
-      "title": { "vi": "Ngoại ngữ", "en": "Languages" },
-      "subtitle": { "vi": "Tiếng Anh & Tiếng Trung", "en": "English & Chinese" },
+      "period": { "vi": "10/2026", "en": "10/2026" },
+      "role": { "vi": "Thành viên Ban Tổ chức Sự kiện (Organizing Committee)", "en": "Event Organizing Committee Member" },
+      "organization": { "vi": "Cao đẳng Anh Quốc BTEC FPT Đà Nẵng", "en": "BTEC FPT British College Danang" },
+      "badge": { "vi": "Vận hành Sự kiện", "en": "Event Operations" },
+      "isCurrent": false,
+      "summary": {
+        "vi": "Phối hợp vận hành Lễ Tốt nghiệp BTEC FPT 2026 quy mô toàn cơ sở, đảm bảo trải nghiệm trang trọng cho hàng trăm tân cử nhân và khách mời.",
+        "en": "Co-orchestrated the campus-wide BTEC FPT 2026 Graduation Ceremony for hundreds of graduates, VIPs, and families."
+      },
+      "highlights": [
+        { "vi": "Kiểm soát hậu cần, âm thanh ánh sáng sân khấu và luồng di chuyển trực tiếp tại sự kiện", "en": "Managed stage AV logistics, blocking, and live guest flow operations" },
+        { "vi": "Ứng biến và xử lý tức thời các tình huống phát sinh tại khu vực lễ đài chính", "en": "Resolved live on-stage contingencies under high-pressure timelines" }
+      ],
+      "tags": ["Event Operations", "Stage Coordination", "VIP Reception", "Problem Solving"]
+    }
+  ],
+  "highlights": [
+    {
+      "id": 1,
+      "icon": "fa-solid fa-trophy",
+      "iconColor": "icon-gold",
+      "title": { "vi": "Top 2 Chung Kết", "en": "Top 2 National Finalist" },
+      "subtitle": { "vi": "Á Quân Chân Trần Khởi Nghiệp Mùa 3", "en": "Runner-Up Barefoot Startup S3" },
+      "isDark": true
+    },
+    {
+      "id": 2,
+      "icon": "fa-solid fa-medal",
+      "iconColor": "icon-orange",
+      "title": { "vi": "Top 35 Toàn Quốc", "en": "Top 35 Nationwide" },
+      "subtitle": { "vi": "Bán kết FPT Biz Talent 2025", "en": "FPT Biz Talent 2025 Semi-finalist" },
+      "isDark": false
+    },
+    {
+      "id": 3,
+      "icon": "fa-solid fa-graduation-cap",
+      "iconColor": "icon-cyan",
+      "title": { "vi": "Tốt Nghiệp Xuất Sắc", "en": "High Distinction" },
+      "subtitle": { "vi": "Digital Marketing • BTEC & FPT", "en": "Digital Marketing • BTEC & FPT" },
       "isDark": false
     },
     {
       "id": 4,
-      "icon": "fa-solid fa-graduation-cap",
-      "iconColor": "icon-cyan",
-      "title": { "vi": "BTEC FPT Đà Nẵng", "en": "BTEC FPT Danang" },
-      "subtitle": { "vi": "Digital Marketing", "en": "Digital Marketing" },
+      "icon": "fa-solid fa-chart-line",
+      "iconColor": "icon-blue",
+      "title": { "vi": "+180% Tương Tác", "en": "+180% Engagement" },
+      "subtitle": { "vi": "100% KPI Chiến dịch & MOS Quốc tế", "en": "100% Campaign KPI & MOS Certified" },
       "isDark": false
     }
   ],
@@ -1042,6 +1112,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mark JavaScript as enabled
   document.documentElement.classList.add('js-enabled');
 
+  // Initialize Dark / Light Theme
+  initTheme();
+
   // Initialize Language Switcher (i18n) first
   initLanguageSwitcher();
 
@@ -1065,7 +1138,8 @@ const translations = {
   vi: {
     // Navigation
     'nav.home': 'Giới thiệu',
-    'nav.about': 'Về tôi & Kỹ năng',
+    'nav.about': 'Về tôi',
+    'nav.experience': 'Kinh nghiệm',
     'nav.projects': 'Dự án',
     'nav.achievements': 'Thành tích',
     'nav.certificates': 'Chứng chỉ',
@@ -1077,28 +1151,33 @@ const translations = {
     'mobile.contact_now': 'Liên hệ ngay',
 
     // Hero Section
-    'hero.ai_badge_main': 'Website Portfolio cá nhân được xây dựng bằng <strong>AI Agent (Google Antigravity)</strong> 🚀',
-    'hero.ai_beta': 'Phiên bản Beta',
-    'hero.ai_badge_sub': 'Đang tiếp tục nâng cấp và hoàn thiện mỗi ngày',
+    'hero.ai_badge_main': 'Sẵn sàng hợp tác • <strong>Business &amp; Digital Marketing | Ứng dụng AI Agent</strong>',
     'hero.greeting': 'Xin chào, mình là',
     'hero.motto': 'I never lose. I either win or learn!',
-    'hero.role_ai': '<i class="fa-solid fa-robot"></i> Business & Ứng dụng AI Agent',
-    'hero.role_mc': '<i class="fa-solid fa-microphone-lines"></i> MC & Nghiên cứu',
-    'hero.role_lang': '<i class="fa-solid fa-language"></i> Tiếng Anh & Tiếng Trung',
+    'hero.role_ai': '<i class="fa-solid fa-chart-line"></i> Business &amp; Digital Marketing',
+    'hero.role_mc': '<i class="fa-solid fa-robot"></i> Ứng dụng AI Agent',
+    'hero.role_lang': '<i class="fa-solid fa-microphone-lines"></i> MC &amp; Song ngữ Anh - Trung',
     'hero.mission_tag': 'Tuyên ngôn cá nhân',
     'hero.mission_text': '“You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the strength in others.”',
-    'hero.description': 'Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông, nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công nghệ mới chính là chìa khóa để rèn giũa bản thân và tạo ra giá trị tích cực cho cộng đồng.',
+    'hero.description': 'Chào bạn! Mình là Minh Trí (Eric) — sinh viên Quản trị Kinh doanh tại BTEC FPT Đà Nẵng và Tốt nghiệp Xuất Sắc chuyên ngành Digital Marketing. Mình kết hợp tư duy chiến lược thương hiệu, sáng tạo nội dung đa kênh với khả năng ứng dụng AI Agent thực chiến để tối ưu hiệu suất và tạo giá trị bền vững cho doanh nghiệp.',
     'hero.cta_projects': 'Xem dự án của tôi',
     'hero.cta_contact': 'Liên hệ ngay',
-    'hero.cta_cv': 'Xem CV',
-    'hero.cta_cv_title': 'Xem trước bản CV',
-    'hero.avatar_hint_title': 'Đỗ Minh Trí - Business & AI Agent Builder',
-    'hero.badge_ai_sub': 'Ứng dụng AI Agent',
-    'hero.badge_lang_title': 'Ngoại ngữ',
-    'hero.badge_lang_sub': 'Tiếng Anh & Tiếng Trung',
-    'hero.badge_award_title': 'Á Quân Khởi Nghiệp',
-    'hero.badge_award_sub': 'Chân Trần Khởi Nghiệp Mùa 3',
-    'hero.badge_edu_sub': 'Digital Marketing',
+    'hero.cta_cv': 'Xem CV (PDF)',
+    'hero.cta_cv_title': 'Xem bản CV PDF chuẩn ATS',
+    'hero.quick_label': 'Kết nối nhanh:',
+    'hero.avatar_hint_title': 'Đỗ Minh Trí - Business & Digital Marketing | AI Agent',
+    'hero.badge_ai_sub': 'Bán kết FPT Biz Talent 2025',
+    'hero.badge_lang_title': '+180% Tương Tác',
+    'hero.badge_lang_sub': '100% KPI Chiến dịch & MOS Quốc tế',
+    'hero.badge_award_title': 'Top 2 Chung Kết',
+    'hero.badge_award_sub': 'Á Quân Chân Trần Khởi Nghiệp Mùa 3',
+    'hero.badge_edu_title': 'Tốt Nghiệp Xuất Sắc',
+    'hero.badge_edu_sub': 'Digital Marketing • BTEC & FPT',
+
+    // Experience Section
+    'exp.tag': 'Lộ trình thực chiến',
+    'exp.title': 'Kinh Nghiệm & Vai Trò Thực Chiến',
+    'exp.subtitle': 'Các vị trí điều hành CLB, dẫn dắt dự án Marketing thực tế và tổ chức sự kiện quy mô lớn giúp tôi rèn giũa tư duy thực thi chuyên nghiệp.',
 
     // About Section
     'about.tag': 'Hành trình & Năng lực',
@@ -1278,11 +1357,11 @@ const translations = {
     'contact.btn_reset': 'Gửi tin nhắn khác',
 
     // Footer
-    'footer.bio': 'Đỗ Minh Trí — Thực Tập Sinh Marketing | Quay dựng Video ngắn & Sáng tạo Nội dung. Sẵn sàng mang đến những ý tưởng tươi mới và năng lượng tích cực cho đội ngũ của bạn.',
+    'footer.bio': 'Đỗ Minh Trí (Eric Do) — Business & Digital Marketing | Ứng dụng AI Agent. Sẵn sàng mang đến tư duy chiến lược, nội dung sáng tạo và giải pháp công nghệ thực chiến cho đội ngũ của bạn.',
     'footer.quick_links': 'Liên kết nhanh',
     'footer.docs_title': 'Tài liệu & Hồ sơ',
-    'footer.cv_desc': 'Tải bản CV đầy đủ kèm thông tin xác thực quá trình học tập và giải thưởng.',
-    'footer.download_cv': 'Tải bản CV hoàn chỉnh',
+    'footer.cv_desc': 'Tải bản CV PDF chuẩn ATS kèm thông tin xác thực quá trình học tập và giải thưởng.',
+    'footer.download_cv': 'Tải bản CV (PDF)',
     'footer.copyright': '© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả. Thiết kế chuyên nghiệp, tối ưu hóa giao diện người dùng (UI/UX).',
     'footer.back_to_top': 'Về đầu trang',
 
@@ -1294,8 +1373,9 @@ const translations = {
 
   en: {
     // Navigation
-    'nav.home': 'About Me',
-    'nav.about': 'Profile & Skills',
+    'nav.home': 'Home',
+    'nav.about': 'About',
+    'nav.experience': 'Experience',
     'nav.projects': 'Projects',
     'nav.achievements': 'Achievements',
     'nav.certificates': 'Certificates',
@@ -1307,28 +1387,33 @@ const translations = {
     'mobile.contact_now': 'Contact Now',
 
     // Hero Section
-    'hero.ai_badge_main': 'Personal Portfolio built with <strong>AI Agent (Google Antigravity)</strong> 🚀',
-    'hero.ai_beta': 'Beta Release',
-    'hero.ai_badge_sub': 'Continuously upgraded and optimized daily',
+    'hero.ai_badge_main': 'Open to Opportunities • <strong>Business &amp; Digital Marketing | AI Agent Solutions</strong>',
     'hero.greeting': 'Hello, I am',
     'hero.motto': 'I never lose. I either win or learn!',
-    'hero.role_ai': '<i class="fa-solid fa-robot"></i> Business & AI Agent Solutions',
-    'hero.role_mc': '<i class="fa-solid fa-microphone-lines"></i> Public Speaker & Research',
-    'hero.role_lang': '<i class="fa-solid fa-language"></i> English & Chinese',
+    'hero.role_ai': '<i class="fa-solid fa-chart-line"></i> Business &amp; Digital Marketing',
+    'hero.role_mc': '<i class="fa-solid fa-robot"></i> AI Agent Solutions',
+    'hero.role_lang': '<i class="fa-solid fa-microphone-lines"></i> Public Speaker &amp; EN - ZH',
     'hero.mission_tag': 'Personal Mission',
     'hero.mission_text': '“You may know me in many roles, but my true mission is to forge myself, pave the way, and awaken the strength in others.”',
-    'hero.description': 'Hello! I\'m Minh Tri (Eric) — an energetic learner passionate about modern Business administration and real-world AI Agent implementations. Beyond tech, I thrive as a public speaker/MC, curious researcher, and language enthusiast. I believe relentless growth and adopting frontier technology are the keys to self-mastery and delivering meaningful social value.',
+    'hero.description': 'Hi, I\'m Minh Tri (Eric) — a Business Administration student at BTEC FPT Danang and High Distinction graduate in Digital Marketing. I combine brand strategy and omnichannel content creation with practical AI Agent workflows to drive measurable growth and business impact.',
     'hero.cta_projects': 'Explore My Projects',
     'hero.cta_contact': 'Get In Touch',
-    'hero.cta_cv': 'View CV',
-    'hero.cta_cv_title': 'Preview Resume',
-    'hero.avatar_hint_title': 'Do Minh Tri - Business & AI Agent Builder',
-    'hero.badge_ai_sub': 'AI Agent Solutions',
-    'hero.badge_lang_title': 'Languages',
-    'hero.badge_lang_sub': 'English & Chinese',
-    'hero.badge_award_title': 'Startup Runner-Up',
-    'hero.badge_award_sub': 'Barefoot Startup Season 3',
-    'hero.badge_edu_sub': 'Digital Marketing',
+    'hero.cta_cv': 'View CV (PDF)',
+    'hero.cta_cv_title': 'Preview ATS-friendly PDF Resume',
+    'hero.quick_label': 'Quick connect:',
+    'hero.avatar_hint_title': 'Do Minh Tri - Business & Digital Marketing | AI Agent',
+    'hero.badge_ai_sub': 'FPT Biz Talent 2025 Semi-finalist',
+    'hero.badge_lang_title': '+180% Engagement',
+    'hero.badge_lang_sub': '100% Campaign KPI & MOS Certified',
+    'hero.badge_award_title': 'Top 2 National Finalist',
+    'hero.badge_award_sub': 'Runner-Up Barefoot Startup S3',
+    'hero.badge_edu_title': 'High Distinction',
+    'hero.badge_edu_sub': 'Digital Marketing • BTEC & FPT',
+
+    // Experience Section
+    'exp.tag': 'Practical Track Record',
+    'exp.title': 'Experience & Leadership Roles',
+    'exp.subtitle': 'Executive club leadership, hands-on marketing team management, and large-scale campus event operations.',
 
     // About Section
     'about.tag': 'Journey & Capabilities',
@@ -1508,11 +1593,11 @@ const translations = {
     'contact.btn_reset': 'Send Another Message',
 
     // Footer
-    'footer.bio': 'Do Minh Tri — Marketing Intern | Short-form Video Creator & Content Strategist. Ready to bring fresh ideas and energetic execution to your team.',
+    'footer.bio': 'Do Minh Tri (Eric Do) — Business & Digital Marketing | AI Agent Solutions. Ready to deliver strategic thinking, creative content, and AI-powered execution to your team.',
     'footer.quick_links': 'Quick Links',
     'footer.docs_title': 'Documents & Profile',
-    'footer.cv_desc': 'Download the full resume with verified academic credentials and honors.',
-    'footer.download_cv': 'Download Full Resume',
+    'footer.cv_desc': 'Download the ATS-friendly PDF resume with verified academic credentials and honors.',
+    'footer.download_cv': 'Download Resume (PDF)',
     'footer.copyright': '© 2026 <strong>Do Minh Tri</strong>. All rights reserved. Crafted with professional design & optimized UI/UX.',
     'footer.back_to_top': 'Back to Top',
 
@@ -1621,6 +1706,118 @@ function applyLanguage(lang) {
 }
 
 /* -------------------------------------------------------------------
+   1.5. DARK MODE & ANALYTICS (GA4 / UMAMI) ENGINE
+------------------------------------------------------------------- */
+function initTheme() {
+  const savedTheme = localStorage.getItem('portfolio_theme');
+  const isDark = (savedTheme === 'dark');
+  if (isDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  updateThemeIcons(isDark);
+}
+
+function toggleTheme() {
+  const isCurrentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const nextDark = !isCurrentlyDark;
+  if (nextDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('portfolio_theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('portfolio_theme', 'light');
+  }
+  updateThemeIcons(nextDark);
+  trackPortfolioEvent('toggle_theme', { theme: nextDark ? 'dark' : 'light' });
+}
+
+function updateThemeIcons(isDark) {
+  const icons = [
+    document.getElementById('theme-toggle-icon'),
+    document.getElementById('drawer-theme-icon')
+  ];
+  icons.forEach(icon => {
+    if (!icon) return;
+    icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  });
+}
+
+let analyticsInitialized = false;
+function initAnalytics(analyticsCfg) {
+  if (analyticsInitialized || !analyticsCfg) return;
+  const gaId = (analyticsCfg.gaMeasurementId || '').trim();
+  const umamiId = (analyticsCfg.umamiWebsiteId || '').trim();
+  const umamiSrc = (analyticsCfg.umamiScriptUrl || 'https://cloud.umami.is/script.js').trim();
+
+  if (gaId && /^G-[A-Z0-9]+$/i.test(gaId)) {
+    const gtagScript = document.createElement('script');
+    gtagScript.async = true;
+    gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`;
+    document.head.appendChild(gtagScript);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', gaId);
+    analyticsInitialized = true;
+  }
+
+  if (umamiId) {
+    const umamiScript = document.createElement('script');
+    umamiScript.defer = true;
+    umamiScript.src = umamiSrc;
+    umamiScript.setAttribute('data-website-id', umamiId);
+    document.head.appendChild(umamiScript);
+    analyticsInitialized = true;
+  }
+}
+
+function trackPortfolioEvent(eventName, params = {}) {
+  try {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+    if (window.umami && typeof window.umami.track === 'function') {
+      window.umami.track(eventName, params);
+    }
+  } catch (e) {}
+}
+
+function handleHeroCopyEmail(btnEl) {
+  const email = (portfolioData && portfolioData.profile && portfolioData.profile.contact && portfolioData.profile.contact.email) || 'dominhtri2206@gmail.com';
+  const msg = currentLang === 'en' ? `Copied Email: ${email}!` : `Đã sao chép Email: ${email}!`;
+  copyToClipboard(email, msg);
+  trackPortfolioEvent('copy_email', { location: 'hero' });
+
+  if (btnEl) {
+    const icon = btnEl.querySelector('i');
+    if (icon) {
+      const prevClass = icon.className;
+      icon.className = 'fa-solid fa-check text-success';
+      setTimeout(() => { icon.className = prevClass; }, 2000);
+    }
+  }
+}
+
+function handleHeroLinkedInClick(e) {
+  const linkedinUrl = (portfolioData && portfolioData.profile && portfolioData.profile.contact && portfolioData.profile.contact.linkedin || '').trim();
+  trackPortfolioEvent('click_linkedin', { configured: Boolean(linkedinUrl) });
+  if (linkedinUrl) {
+    return; // Normal anchor navigation to target="_blank"
+  }
+  e.preventDefault();
+  const contactEl = document.getElementById('contact');
+  if (contactEl) {
+    contactEl.scrollIntoView({ behavior: 'smooth' });
+  }
+  showToast(currentLang === 'en'
+    ? 'Connect directly via Email or Zalo below!'
+    : 'Kết nối trực tiếp qua Email hoặc Zalo bên dưới nhé!');
+}
+
+/* -------------------------------------------------------------------
    2.1. LOAD DYNAMIC DATA FROM data.json
 ------------------------------------------------------------------- */
 async function initPortfolioData() {
@@ -1633,6 +1830,9 @@ async function initPortfolioData() {
     console.warn('⚠️ Could not load data.json dynamically (possibly local file:// protocol), using fallback data.', err);
     portfolioData = DEFAULT_PORTFOLIO_DATA;
   }
+  if (portfolioData && portfolioData.analytics) {
+    initAnalytics(portfolioData.analytics);
+  }
   renderAllDynamicSections();
 }
 
@@ -1640,9 +1840,53 @@ function renderAllDynamicSections() {
   if (!portfolioData) return;
   renderHeroDynamic();
   renderHighlightsGrid();
+  renderExperienceTimeline();
   renderProjectsGrid();
   renderCertificatesGrid();
   renderActivitiesGrid();
+}
+
+function renderExperienceTimeline() {
+  const container = document.getElementById('experience-timeline');
+  if (!container || !portfolioData) return;
+
+  const list = portfolioData.experiences || DEFAULT_PORTFOLIO_DATA.experiences || [];
+  if (!Array.isArray(list) || list.length === 0) return;
+
+  container.innerHTML = list.map((exp, idx) => {
+    const period = exp.period ? (exp.period[currentLang] || exp.period.vi || '') : '';
+    const role = exp.role ? (exp.role[currentLang] || exp.role.vi || '') : '';
+    const org = exp.organization ? (typeof exp.organization === 'object' ? (exp.organization[currentLang] || exp.organization.vi) : exp.organization) : '';
+    const badge = exp.badge ? (exp.badge[currentLang] || exp.badge.vi || '') : '';
+    const summary = exp.summary ? (exp.summary[currentLang] || exp.summary.vi || '') : '';
+    const dotClass = (exp.isCurrent || idx === 0) ? 'active-dot' : '';
+
+    const hlHtml = (exp.highlights || []).map(item => {
+      const txt = typeof item === 'object' ? (item[currentLang] || item.vi || '') : item;
+      return `<li><i class="fa-solid fa-circle-check text-success"></i> <span>${txt}</span></li>`;
+    }).join('');
+
+    const tagsHtml = (exp.tags || []).map(t => `<span class="tool-pill">${t}</span>`).join('');
+
+    return `
+      <div class="exp-timeline-card bento-card reveal-up">
+        <div class="exp-timeline-dot ${dotClass}"></div>
+        <div class="exp-card-head">
+          <div>
+            <div class="exp-meta-pills">
+              <span class="exp-period-pill"><i class="fa-regular fa-calendar-check"></i> ${period}</span>
+              ${badge ? `<span class="exp-type-pill">${badge}</span>` : ''}
+            </div>
+            <h3 class="exp-role-title">${role}</h3>
+            <p class="exp-org-name"><i class="fa-solid fa-building-shield text-primary-color"></i> ${org}</p>
+          </div>
+        </div>
+        ${summary ? `<p class="exp-summary">${summary}</p>` : ''}
+        ${hlHtml ? `<ul class="exp-highlights-list">${hlHtml}</ul>` : ''}
+        ${tagsHtml ? `<div class="exp-tags">${tagsHtml}</div>` : ''}
+      </div>
+    `;
+  }).join('');
 }
 
 function renderHighlightsGrid() {
@@ -1723,6 +1967,60 @@ function renderHeroDynamic() {
   if (missionTextEl && p.mission && p.mission.text) {
     missionTextEl.textContent = p.mission.text[currentLang] || p.mission.text.vi;
   }
+
+  // Status Badge & Headline
+  const statusEl = document.getElementById('hero-status-badge');
+  if (statusEl && p.statusBadge && (p.statusBadge[currentLang] || p.statusBadge.vi)) {
+    statusEl.textContent = p.statusBadge[currentLang] || p.statusBadge.vi;
+  }
+
+  // Dynamic CV PDF Links
+  const cvPath = (p.cvUrl || 'CV_DoMinhTri.pdf').trim();
+  document.querySelectorAll('.cv-dynamic-link').forEach(link => {
+    link.href = cvPath;
+    if (link.hasAttribute('download')) {
+      link.setAttribute('download', cvPath.split('/').pop() || 'CV_DoMinhTri.pdf');
+    }
+  });
+
+  // Hero Quick-Connect & Contact Info Sync
+  if (p.contact) {
+    const email = p.contact.email || 'dominhtri2206@gmail.com';
+    const phone = p.contact.phone || '0934 454 099';
+    const cleanPhone = (p.contact.zalo || phone).replace(/\s+/g, '');
+    const linkedin = (p.contact.linkedin || '').trim();
+
+    const heroEmailText = document.getElementById('hero-email-pill-text');
+    if (heroEmailText) heroEmailText.textContent = email;
+
+    const heroZaloLink = document.getElementById('hero-zalo-link');
+    const heroZaloText = document.getElementById('hero-zalo-pill-text');
+    if (heroZaloLink) heroZaloLink.href = `https://zalo.me/${cleanPhone}`;
+    if (heroZaloText) heroZaloText.textContent = `Zalo: ${phone}`;
+
+    const heroLinkedinLink = document.getElementById('hero-linkedin-link');
+    if (heroLinkedinLink) {
+      if (linkedin) {
+        heroLinkedinLink.href = linkedin;
+        heroLinkedinLink.target = '_blank';
+        heroLinkedinLink.rel = 'noopener noreferrer';
+      } else {
+        heroLinkedinLink.href = '#contact';
+        heroLinkedinLink.removeAttribute('target');
+      }
+    }
+
+    const contactEmailEl = document.getElementById('email-text');
+    if (contactEmailEl) {
+      contactEmailEl.textContent = email;
+      contactEmailEl.href = `mailto:${email}`;
+    }
+    const contactPhoneEl = document.getElementById('phone-text');
+    if (contactPhoneEl) {
+      contactPhoneEl.textContent = phone;
+      contactPhoneEl.href = `tel:${phone.replace(/\s+/g, '')}`;
+    }
+  }
 }
 
 function renderProjectsGrid() {
@@ -1741,20 +2039,25 @@ function renderProjectsGrid() {
     const platformText = p.platform ? (typeof p.platform === 'object' ? p.platform.text : p.platform) : '';
     const platformIcon = (p.platform && p.platform.icon) || 'fa-solid fa-layer-group';
     const delayClass = idx > 0 ? `delay-${idx}` : '';
+    const hasVideo = Boolean(p.videoUrl && p.videoUrl.trim());
+    const bannerStyle = p.bannerImage
+      ? `background-image: linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.45)), url('${p.bannerImage}'); background-size: cover; background-position: center;`
+      : '';
 
     const highlightsHtml = (p.highlights || []).map(h => {
       const hText = typeof h === 'object' ? (h[currentLang] || h.vi) : h;
       return `<div class="highlight-item"><i class="fa-solid fa-check text-success"></i> <span>${hText}</span></div>`;
     }).join('');
 
-    const tagsHtml = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+    const tagsHtml = (p.tags || p.tools || []).slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('');
 
     return `
       <article class="project-card reveal-up ${delayClass}" data-project-id="${p.id}">
         <div class="project-thumb-container">
-          <div class="project-thumb-placeholder ${p.thumbClass || 'thumb-gradient-' + ((idx % 3) + 1)}">
-            <i class="${p.watermarkIcon || p.icon || 'fa-solid fa-briefcase'} project-watermark"></i>
+          <div class="project-thumb-placeholder ${p.thumbClass || 'thumb-gradient-' + ((idx % 3) + 1)}" style="${bannerStyle}">
+            ${!p.bannerImage ? `<i class="${p.watermarkIcon || p.icon || 'fa-solid fa-briefcase'} project-watermark"></i>` : ''}
             <div class="thumb-badge">${badge}</div>
+            ${hasVideo ? `<div class="thumb-video-pill"><i class="fa-solid fa-circle-play"></i> Video Demo</div>` : ''}
             <div class="thumb-actions">
               <button class="btn btn-sm btn-light btn-preview" onclick="openProjectModal(${p.id})">
                 <i class="fa-solid fa-magnifying-glass-plus"></i> <span>${quickViewText}</span>
@@ -1982,7 +2285,7 @@ function initMobileMenu() {
    6. SCROLL SPY FOR NAVIGATION
 ------------------------------------------------------------------- */
 function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id], footer[id]');
+  const sections = document.querySelectorAll('section[id], div#achievements, footer[id]');
   const navLinks = document.querySelectorAll('.nav-link');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
@@ -2068,13 +2371,110 @@ function initBackToTop() {
 }
 
 /* -------------------------------------------------------------------
-   9. PROJECT MODAL POPUP & DYNAMIC DATA
+   9. PROJECT MODAL POPUP, VIDEO EMBED & DYNAMIC DATA
 ------------------------------------------------------------------- */
+function buildVideoEmbedHtml(rawUrl, isEn) {
+  if (!rawUrl || !rawUrl.trim()) return '';
+  const url = rawUrl.trim();
+
+  // 1. YouTube (watch?v=, youtu.be/, shorts/, embed/)
+  const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,15})/);
+  if (ytMatch) {
+    const videoId = ytMatch[1];
+    const isShort = /youtube\.com\/shorts\//i.test(url);
+    return `
+      <div class="modal-video-showcase">
+        <div class="modal-section-title">
+          <i class="fa-brands fa-youtube" style="color: #FF0000;"></i>
+          <span>${isEn ? 'Project Demo Video' : 'Video Demo Sản Phẩm Thực Tế'}</span>
+        </div>
+        <div class="video-embed-frame ${isShort ? 'video-vertical' : ''}">
+          <iframe src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0"
+            title="YouTube Video Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    `;
+  }
+
+  // 2. TikTok (tiktok.com/@user/video/123456789)
+  const ttMatch = url.match(/tiktok\.com\/.*\/video\/(\d+)/i);
+  if (ttMatch) {
+    const ttId = ttMatch[1];
+    return `
+      <div class="modal-video-showcase">
+        <div class="modal-section-title" style="justify-content: space-between;">
+          <span style="display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fa-brands fa-tiktok"></i>
+            <span>${isEn ? 'TikTok Short-form Video Demo' : 'Video Ngắn TikTok Thực Chiến'}</span>
+          </span>
+          <a href="${url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> TikTok
+          </a>
+        </div>
+        <div class="video-embed-frame video-vertical">
+          <iframe src="https://www.tiktok.com/embed/v2/${ttId}"
+            title="TikTok Video Demo"
+            allow="encrypted-media;"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    `;
+  }
+
+  // 3. Direct MP4 / WebM video file
+  if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)) {
+    return `
+      <div class="modal-video-showcase">
+        <div class="modal-section-title">
+          <i class="fa-solid fa-circle-play text-primary-color"></i>
+          <span>${isEn ? 'Project Demo Video' : 'Video Demo Sản Phẩm'}</span>
+        </div>
+        <div class="video-embed-frame">
+          <video src="${url}" controls playsinline preload="metadata"></video>
+        </div>
+      </div>
+    `;
+  }
+
+  // 4. Google Drive / Other video link fallback
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/i);
+  if (driveMatch) {
+    return `
+      <div class="modal-video-showcase">
+        <div class="modal-section-title">
+          <i class="fa-brands fa-google-drive text-primary-color"></i>
+          <span>${isEn ? 'Project Video Preview' : 'Video Demo Dự Án (Google Drive)'}</span>
+        </div>
+        <div class="video-embed-frame">
+          <iframe src="https://drive.google.com/file/d/${driveMatch[1]}/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="modal-video-showcase">
+      <div class="modal-section-title" style="justify-content: space-between;">
+        <span style="display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-circle-play text-primary-color"></i>
+          <span>${isEn ? 'External Video Demo' : 'Video Demo Trực Tuyến'}</span>
+        </span>
+        <a href="${url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-play"></i> ${isEn ? 'Watch Video' : 'Mở xem Video'}
+        </a>
+      </div>
+    </div>
+  `;
+}
+
 function openProjectModal(projectId) {
   currentOpenProjectId = projectId;
   if (!portfolioData || !portfolioData.projects) return;
   const data = portfolioData.projects.find(p => p.id == projectId);
   if (!data) return;
+  trackPortfolioEvent('view_project', { project_id: projectId });
 
   const modal = document.getElementById('project-modal');
   const backdrop = document.getElementById('project-modal-backdrop');
@@ -2132,7 +2532,7 @@ function openProjectModal(projectId) {
       <h2 class="modal-title" id="modal-title">${title}</h2>
     </div>
 
-    <div class="modal-banner-box" style="background: ${data.bannerGradient || 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)'};">
+    <div class="modal-banner-box" style="background: ${data.bannerImage ? `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.6)), url('${data.bannerImage}') center/cover` : (data.bannerGradient || 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #ff6b35 100%)')};">
       <i class="${data.watermarkIcon || data.icon || 'fa-solid fa-briefcase'} project-watermark" style="font-size: 6rem; color: rgba(255,255,255,0.2);"></i>
       <div style="position: relative; z-index: 2; text-align: center; color: #ffffff; padding: 20px;">
         <span style="display: inline-block; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px;">
@@ -2141,6 +2541,8 @@ function openProjectModal(projectId) {
         <h3 style="font-size: 1.3rem; font-weight: 800; color: #ffffff;">${title}</h3>
       </div>
     </div>
+
+    ${buildVideoEmbedHtml(data.videoUrl, isEn)}
 
     <div class="modal-grid">
       <!-- Main Content Column -->
@@ -2209,10 +2611,17 @@ function openProjectModal(projectId) {
           <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
             ${isEn ? 'Click the button below to view live deliverables, reports, or videos:' : 'Nhấp vào nút bên dưới để mở liên kết sản phẩm, tài liệu phân tích hoặc video hoàn chỉnh:'}
           </p>
-          <a href="#contact" class="btn btn-primary btn-sm w-100" onclick="closeProjectModal()">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <span>${isEn ? 'Open Project Demo' : 'Mở liên kết dự án (Demo)'}</span>
-          </a>
+          ${(data.demoUrl || data.videoUrl) ? `
+            <a href="${data.demoUrl || data.videoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm w-100">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>${isEn ? 'Open Project Demo' : 'Mở liên kết dự án (Demo)'}</span>
+            </a>
+          ` : `
+            <a href="#contact" class="btn btn-primary btn-sm w-100" onclick="closeProjectModal()">
+              <i class="fa-solid fa-comments"></i>
+              <span>${isEn ? 'Request Full Case Study' : 'Liên hệ xem tài liệu đầy đủ'}</span>
+            </a>
+          `}
         </div>
       </div>
     </div>

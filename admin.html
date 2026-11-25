@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard | Portfolio Đỗ Minh Trí (Git-based CMS)</title>
+  <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="Trang quản trị CMS Portfolio kết nối trực tiếp với GitHub API (Git-based CMS).">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
@@ -773,6 +774,9 @@
         <button class="tab-btn" data-tab="tab-highlights" onclick="switchTab('tab-highlights')">
           <i class="fa-solid fa-star"></i> <span>Thành tích nổi bật</span> <span class="tab-badge" id="badge-count-highlights">0</span>
         </button>
+        <button class="tab-btn" data-tab="tab-experiences" onclick="switchTab('tab-experiences')">
+          <i class="fa-solid fa-timeline"></i> <span>Kinh nghiệm</span> <span class="tab-badge" id="badge-count-exps">0</span>
+        </button>
         <button class="tab-btn" data-tab="tab-projects" onclick="switchTab('tab-projects')">
           <i class="fa-solid fa-briefcase"></i> <span>Dự án</span> <span class="tab-badge" id="badge-count-projects">0</span>
         </button>
@@ -867,22 +871,31 @@
             </div>
 
             <div class="form-group col-6">
-              <label class="form-label"><span>Đoạn văn giới thiệu bản thân</span> <span class="lang-indicator lang-vi">VI</span></label>
-              <textarea id="prof-bio-vi" class="form-control" style="min-height: 120px;"></textarea>
+              <label class="form-label"><span>Nhãn trạng thái Hero (Status Badge)</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="prof-status-vi" class="form-control" placeholder="Sẵn sàng hợp tác • Business & Digital Marketing × AI Agent">
             </div>
             <div class="form-group col-6">
-              <label class="form-label"><span>Biography Description</span> <span class="lang-indicator lang-en">EN</span></label>
-              <textarea id="prof-bio-en" class="form-control" style="min-height: 120px;"></textarea>
+              <label class="form-label"><span>Hero Status Badge</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="prof-status-en" class="form-control" placeholder="Open to Opportunities • Business & Digital Marketing × AI Agent">
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label"><span>Đoạn văn giới thiệu bản thân (Tinh gọn 2 câu)</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <textarea id="prof-bio-vi" class="form-control" style="min-height: 110px;"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Biography Description (2 sharp sentences)</span> <span class="lang-indicator lang-en">EN</span></label>
+              <textarea id="prof-bio-en" class="form-control" style="min-height: 110px;"></textarea>
             </div>
           </div>
         </div>
 
-        <!-- Bento Card: Contact Info -->
+        <!-- Bento Card: Contact Info, Quick Socials & CV PDF -->
         <div class="bento-card">
           <div class="card-header-row">
             <div>
-              <h3 class="card-title"><i class="fa-solid fa-address-book"></i> Thông Tin Liên Hệ Trực Tiếp</h3>
-              <p class="card-subtitle">Hiển thị tại mục Liên hệ và Footer</p>
+              <h3 class="card-title"><i class="fa-solid fa-address-book"></i> Liên Hệ Nhanh (Hero), Mạng Xã Hội &amp; File CV PDF</h3>
+              <p class="card-subtitle">Quản lý Email, SĐT/Zalo, LinkedIn trên Hero và đường dẫn bản CV PDF chuẩn ATS</p>
             </div>
             <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
               <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu liên hệ lên GitHub</span>
@@ -892,16 +905,88 @@
           <div class="form-grid">
             <div class="form-group col-4">
               <label class="form-label">Email liên hệ</label>
-              <input type="email" id="prof-email" class="form-control">
+              <input type="email" id="prof-email" class="form-control" placeholder="dominhtri2206@gmail.com">
             </div>
             <div class="form-group col-4">
-              <label class="form-label">Số điện thoại</label>
-              <input type="text" id="prof-phone" class="form-control">
+              <label class="form-label">Số điện thoại hiển thị</label>
+              <input type="text" id="prof-phone" class="form-control" placeholder="0934 454 099">
             </div>
             <div class="form-group col-4">
+              <label class="form-label">Số Zalo (1-Click Chat)</label>
+              <input type="text" id="prof-zalo" class="form-control" placeholder="0934454099">
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label">Link LinkedIn cá nhân (URL)</label>
+              <input type="url" id="prof-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/dominhtri/">
+            </div>
+            <div class="form-group col-6">
               <label class="form-label">Địa chỉ</label>
-              <input type="text" id="prof-address-vi" class="form-control">
+              <input type="text" id="prof-address-vi" class="form-control" placeholder="152 Phan Thanh, Thanh Khê, TP. Đà Nẵng">
             </div>
+
+            <div class="form-group col-12">
+              <label class="form-label">File CV định dạng PDF (Chuẩn ATS)</label>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <input type="text" id="prof-cv-url" class="form-control" placeholder="CV_DoMinhTri.pdf" style="flex: 1;">
+                <input type="file" id="cv-pdf-picker" accept=".pdf,application/pdf" style="display: none;" onchange="handleCvPdfUpload(event)">
+                <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('cv-pdf-picker').click()">
+                  <i class="fa-solid fa-file-pdf"></i> Tải file PDF mới lên GitHub
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card: Google Analytics 4 & Umami -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-chart-pie"></i> Thống Kê Truy Cập (Google Analytics 4 &amp; Umami)</h3>
+              <p class="card-subtitle">Theo dõi số lượng nhà tuyển dụng xem Portfolio, bấm tải CV và mở xem Dự án (Bỏ trống nếu chưa kích hoạt)</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu cấu hình Analytics</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-4">
+              <label class="form-label">Google Analytics 4 Measurement ID</label>
+              <input type="text" id="ana-ga-id" class="form-control" placeholder="G-XXXXXXXXXX">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Umami Website ID (Tùy chọn)</label>
+              <input type="text" id="ana-umami-id" class="form-control" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Umami Script URL</label>
+              <input type="url" id="ana-umami-url" class="form-control" placeholder="https://cloud.umami.is/script.js">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: EXPERIENCES TIMELINE -->
+      <section class="tab-content" id="tab-experiences" style="display: none;">
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-timeline"></i> Kinh Nghiệm &amp; Vai Trò Thực Chiến (Timeline)</h3>
+              <p class="card-subtitle">Quản lý danh sách thực tập, vị trí điều hành CLB và vai trò dẫn dắt dự án theo dòng thời gian</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openExpEditModal(null)">
+                <i class="fa-solid fa-plus"></i> <span>Thêm kinh nghiệm mới</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu &amp; Xuất bản lên GitHub</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="items-grid" id="exps-list-container">
+            <!-- Dynamically populated -->
           </div>
         </div>
       </section>
@@ -1123,6 +1208,25 @@
           <div class="form-group col-6">
             <label class="form-label">Thời gian & Quy mô nhóm</label>
             <input type="text" id="proj-duration" class="form-control" placeholder="2 tháng | 4 thành viên">
+          </div>
+
+          <!-- Project Video Demo & External Demo Links -->
+          <div class="form-group col-6">
+            <label class="form-label"><i class="fa-solid fa-circle-play" style="color: #EF4444;"></i> Link Video Demo (YouTube / TikTok / MP4 / Drive)</label>
+            <input type="url" id="proj-video-url" class="form-control" placeholder="https://www.youtube.com/watch?v=... hoặc link TikTok">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link Sản phẩm / Báo cáo (Demo URL)</label>
+            <input type="url" id="proj-demo-url" class="form-control" placeholder="https://...">
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Số liệu nổi bật trên thẻ (1 dòng / ý)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="proj-highlights-vi" class="form-control" placeholder="+180% tương tác Fanpage&#10;20+ ấn phẩm Canva"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Card Metric Highlights (1 per line)</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="proj-highlights-en" class="form-control" placeholder="+180% Fanpage engagement&#10;20+ Canva assets"></textarea>
           </div>
 
           <!-- Project Banner Image Upload -->
@@ -1416,6 +1520,90 @@
           <button type="button" class="btn btn-ghost" onclick="closeHighlightEditModal()">Hủy</button>
           <button type="submit" class="btn btn-primary" id="btn-save-hl-modal">
             <i class="fa-solid fa-cloud-arrow-up"></i> Lưu & Đẩy lên GitHub
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: ADD / EDIT EXPERIENCE ==================== -->
+  <div class="modal-backdrop" id="modal-exp-editor">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modal-exp-title">Chỉnh Sửa Kinh Nghiệm &amp; Vai Trò</h3>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="closeExpEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="form-edit-exp" onsubmit="saveExpModal(event)">
+        <input type="hidden" id="exp-edit-id">
+
+        <div class="form-grid">
+          <div class="form-group col-6">
+            <label class="form-label"><span>Chức danh / Vai trò</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="exp-role-vi" class="form-control" placeholder="Ví dụ: Thực tập sinh Digital Marketing" required>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Role / Position Title</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="exp-role-en" class="form-control" placeholder="E.g. Digital Marketing Intern" required>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Công ty / Tổ chức</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="exp-org-vi" class="form-control" placeholder="Tên doanh nghiệp / CLB" required>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Company / Organization</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="exp-org-en" class="form-control" placeholder="Company / Organization Name" required>
+          </div>
+
+          <div class="form-group col-4">
+            <label class="form-label">Khoảng thời gian (VI / EN)</label>
+            <input type="text" id="exp-period-vi" class="form-control" placeholder="02/2026 – Hiện tại" required>
+          </div>
+          <div class="form-group col-4">
+            <label class="form-label"><span>Nhãn phân loại</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <input type="text" id="exp-badge-vi" class="form-control" placeholder="Thực tập / Lãnh đạo CLB">
+          </div>
+          <div class="form-group col-4">
+            <label class="form-label"><span>Category Badge</span> <span class="lang-indicator lang-en">EN</span></label>
+            <input type="text" id="exp-badge-en" class="form-control" placeholder="Internship / Leadership">
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Mô tả tóm tắt</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="exp-summary-vi" class="form-control"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Role Summary</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="exp-summary-en" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="form-label"><span>Thành tựu / Đầu việc chính (1 dòng / ý)</span> <span class="lang-indicator lang-vi">VI</span></label>
+            <textarea id="exp-hl-vi" class="form-control" placeholder="Tăng +180% tương tác Fanpage&#10;Hoàn thành 100% KPI"></textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label"><span>Key Achievements (1 per line)</span> <span class="lang-indicator lang-en">EN</span></label>
+            <textarea id="exp-hl-en" class="form-control" placeholder="Boosted Fanpage engagement by +180%&#10;Delivered 100% KPIs"></textarea>
+          </div>
+
+          <div class="form-group col-8">
+            <label class="form-label">Từ khóa kỹ năng (cách nhau bằng dấu phẩy)</label>
+            <input type="text" id="exp-tags" class="form-control" placeholder="IMC Strategy, TikTok & Reels, Team Operations">
+          </div>
+          <div class="form-group col-4" style="display: flex; align-items: center; justify-content: space-between; background: #F9F9FB; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.06); margin-top: 22px;">
+            <span style="font-size: 0.84rem; font-weight: 600;">Đang đảm nhiệm</span>
+            <label style="position: relative; display: inline-block; width: 44px; height: 24px; cursor: pointer;">
+              <input type="checkbox" id="exp-is-current" style="opacity: 0; width: 0; height: 0;">
+              <span class="toggle-slider" style="position: absolute; cursor: pointer; inset: 0; background-color: #D1D5DB; transition: .3s; border-radius: 24px;"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-foot">
+          <button type="button" class="btn btn-ghost" onclick="closeExpEditModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-exp-modal">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Lưu &amp; Đẩy lên GitHub
           </button>
         </div>
       </form>
@@ -1972,19 +2160,30 @@
 
       setInputValue('prof-bio-vi', p.bio ? p.bio.vi : '');
       setInputValue('prof-bio-en', p.bio ? p.bio.en : '');
+      setInputValue('prof-status-vi', p.statusBadge ? (p.statusBadge.vi || '') : '');
+      setInputValue('prof-status-en', p.statusBadge ? (p.statusBadge.en || '') : '');
+      setInputValue('prof-cv-url', p.cvUrl || 'CV_DoMinhTri.pdf');
 
       const c = p.contact || {};
       setInputValue('prof-email', c.email || '');
       setInputValue('prof-phone', c.phone || '');
+      setInputValue('prof-zalo', c.zalo || '');
+      setInputValue('prof-linkedin', c.linkedin || '');
       setInputValue('prof-address-vi', c.address ? (c.address.vi || '') : '');
+
+      const ana = currentData.analytics || {};
+      setInputValue('ana-ga-id', ana.gaMeasurementId || '');
+      setInputValue('ana-umami-id', ana.umamiWebsiteId || '');
+      setInputValue('ana-umami-url', ana.umamiScriptUrl || 'https://cloud.umami.is/script.js');
 
       const avatarEl = document.getElementById('profile-avatar-preview');
       if (avatarEl) avatarEl.src = p.avatar || 'avatar.jpg';
       const pathEl = document.getElementById('profile-avatar-path');
       if (pathEl) pathEl.textContent = p.avatar || 'avatar.jpg';
 
-      // 2. Render Highlights
+      // 2. Render Highlights & Experiences
       renderHighlightsList();
+      renderExpsList();
 
       // 3. Render Projects
       renderProjectsList();
@@ -2010,6 +2209,11 @@
         vi: getInputValue('prof-motto-vi', p.motto ? p.motto.vi : ''),
         en: getInputValue('prof-motto-en', p.motto ? p.motto.en : '')
       };
+      p.statusBadge = {
+        vi: getInputValue('prof-status-vi', p.statusBadge ? p.statusBadge.vi : ''),
+        en: getInputValue('prof-status-en', p.statusBadge ? p.statusBadge.en : '')
+      };
+      p.cvUrl = getInputValue('prof-cv-url', p.cvUrl || 'CV_DoMinhTri.pdf');
       p.mission = {
         tag: {
           vi: getInputValue('prof-mission-tag-vi', p.mission && p.mission.tag ? p.mission.tag.vi : ''),
@@ -2028,11 +2232,46 @@
       if (!p.contact) p.contact = {};
       p.contact.email = getInputValue('prof-email', p.contact.email || '');
       p.contact.phone = getInputValue('prof-phone', p.contact.phone || '');
+      p.contact.zalo = getInputValue('prof-zalo', p.contact.zalo || '');
+      p.contact.linkedin = getInputValue('prof-linkedin', p.contact.linkedin || '');
       const addr = getInputValue('prof-address-vi', p.contact.address ? (p.contact.address.vi || '') : '');
       p.contact.address = {
         vi: addr,
         en: addr
       };
+
+      currentData.analytics = {
+        gaMeasurementId: getInputValue('ana-ga-id', ''),
+        umamiWebsiteId: getInputValue('ana-umami-id', ''),
+        umamiScriptUrl: getInputValue('ana-umami-url', 'https://cloud.umami.is/script.js')
+      };
+    }
+
+    async function handleCvPdfUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      showToast('Đang tải file CV PDF lên GitHub...', 'info');
+      try {
+        const reader = new FileReader();
+        reader.onload = async (ev) => {
+          try {
+            const base64Data = ev.target.result.split(',')[1];
+            const safeName = 'CV_DoMinhTri.pdf';
+            await uploadFileToGitHub(safeName, base64Data, 'feat(cms): cap nhat file CV PDF chuan ATS');
+            setInputValue('prof-cv-url', safeName);
+            if (currentData && currentData.profile) currentData.profile.cvUrl = safeName;
+            showToast('Đã tải CV_DoMinhTri.pdf lên GitHub! Đang đồng bộ data.json...', 'success');
+            await publishDataToGitHub();
+          } catch (uploadErr) {
+            alert('Lỗi tải PDF lên GitHub: ' + uploadErr.message);
+          }
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        alert('Lỗi đọc file PDF: ' + err.message);
+      } finally {
+        e.target.value = '';
+      }
     }
 
     /* -------------------------------------------------------------------
@@ -2350,6 +2589,179 @@
     }
 
     /* -------------------------------------------------------------------
+       6.5. EXPERIENCES TIMELINE MANAGEMENT (ADD / EDIT / DELETE / MOVE)
+    ------------------------------------------------------------------- */
+    function renderExpsList() {
+      const list = currentData.experiences || [];
+      const badgeCount = document.getElementById('badge-count-exps');
+      if (badgeCount) badgeCount.textContent = list.length;
+      const container = document.getElementById('exps-list-container');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.9rem;">Chưa có mục kinh nghiệm nào.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map((exp, index) => {
+        const role = exp.role ? (exp.role.vi || exp.role.en || '') : '';
+        const org = exp.organization ? (typeof exp.organization === 'object' ? (exp.organization.vi || exp.organization.en) : exp.organization) : '';
+        const period = exp.period ? (exp.period.vi || exp.period.en || '') : '';
+
+        return `
+          <div class="item-card">
+            <div class="item-top">
+              <div class="item-thumb-placeholder" style="width: 48px; height: 48px; border-radius: 12px; background: var(--accent-apple-subtle); color: var(--accent-apple); font-size: 1.2rem;">
+                <i class="fa-solid fa-briefcase"></i>
+              </div>
+              <div class="item-info">
+                <span class="item-badge">${period}</span>
+                <h4 class="item-title">${role}</h4>
+                <div class="item-subtitle">${org}</div>
+              </div>
+            </div>
+            <div class="item-actions">
+              <button type="button" class="btn btn-outline btn-sm" onclick="moveExp(${index}, -1)" ${index === 0 ? 'disabled' : ''} title="Di chuyển lên">
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="moveExp(${index}, 1)" ${index === list.length - 1 ? 'disabled' : ''} title="Di chuyển xuống">
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="openExpEditModal(${exp.id})">
+                <i class="fa-solid fa-pen"></i> Sửa
+              </button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="deleteExp(${exp.id})">
+                <i class="fa-solid fa-trash"></i> Xóa
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openExpEditModal(id) {
+      const modal = document.getElementById('modal-exp-editor');
+      const titleEl = document.getElementById('modal-exp-title');
+
+      if (id === null) {
+        titleEl.textContent = 'Thêm Kinh Nghiệm / Vai Trò Mới';
+        setInputValue('exp-edit-id', '');
+        setInputValue('exp-role-vi', '');
+        setInputValue('exp-role-en', '');
+        setInputValue('exp-org-vi', '');
+        setInputValue('exp-org-en', '');
+        setInputValue('exp-period-vi', '02/2026 – Hiện tại');
+        setInputValue('exp-badge-vi', 'Thực tập / Dự án');
+        setInputValue('exp-badge-en', 'Internship / Project');
+        setInputValue('exp-summary-vi', '');
+        setInputValue('exp-summary-en', '');
+        setInputValue('exp-hl-vi', '');
+        setInputValue('exp-hl-en', '');
+        setInputValue('exp-tags', '');
+        document.getElementById('exp-is-current').checked = false;
+      } else {
+        titleEl.textContent = 'Chỉnh Sửa Kinh Nghiệm #' + id;
+        const exp = (currentData.experiences || []).find(item => item.id == id);
+        if (!exp) return;
+
+        setInputValue('exp-edit-id', exp.id);
+        setInputValue('exp-role-vi', exp.role ? (exp.role.vi || '') : '');
+        setInputValue('exp-role-en', exp.role ? (exp.role.en || '') : '');
+        setInputValue('exp-org-vi', exp.organization ? (typeof exp.organization === 'object' ? exp.organization.vi : exp.organization) : '');
+        setInputValue('exp-org-en', exp.organization ? (typeof exp.organization === 'object' ? exp.organization.en : exp.organization) : '');
+        setInputValue('exp-period-vi', exp.period ? (exp.period.vi || '') : '');
+        setInputValue('exp-badge-vi', exp.badge ? (exp.badge.vi || '') : '');
+        setInputValue('exp-badge-en', exp.badge ? (exp.badge.en || '') : '');
+        setInputValue('exp-summary-vi', exp.summary ? (exp.summary.vi || '') : '');
+        setInputValue('exp-summary-en', exp.summary ? (exp.summary.en || '') : '');
+        setInputValue('exp-hl-vi', (exp.highlights || []).map(h => typeof h === 'object' ? (h.vi || '') : h).join('\n'));
+        setInputValue('exp-hl-en', (exp.highlights || []).map(h => typeof h === 'object' ? (h.en || '') : h).join('\n'));
+        setInputValue('exp-tags', (exp.tags || []).join(', '));
+        document.getElementById('exp-is-current').checked = !!exp.isCurrent;
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeExpEditModal() {
+      document.getElementById('modal-exp-editor').classList.remove('active');
+    }
+
+    async function saveExpModal(e) {
+      e.preventDefault();
+      const editId = document.getElementById('exp-edit-id').value;
+      const isNew = !editId;
+
+      const hlVi = getInputValue('exp-hl-vi').split('\n').map(s => s.trim()).filter(Boolean);
+      const hlEn = getInputValue('exp-hl-en').split('\n').map(s => s.trim()).filter(Boolean);
+      const highlights = hlVi.map((v, i) => ({ vi: v, en: hlEn[i] || v }));
+      const tags = getInputValue('exp-tags').split(',').map(s => s.trim()).filter(Boolean);
+      const periodText = getInputValue('exp-period-vi');
+
+      const expData = {
+        id: isNew ? (Date.now() % 100000) : Number(editId),
+        period: {
+          vi: periodText,
+          en: periodText.replace(/Hiện tại/gi, 'Present')
+        },
+        role: {
+          vi: getInputValue('exp-role-vi'),
+          en: getInputValue('exp-role-en')
+        },
+        organization: {
+          vi: getInputValue('exp-org-vi'),
+          en: getInputValue('exp-org-en')
+        },
+        badge: {
+          vi: getInputValue('exp-badge-vi'),
+          en: getInputValue('exp-badge-en') || getInputValue('exp-badge-vi')
+        },
+        isCurrent: document.getElementById('exp-is-current').checked,
+        summary: {
+          vi: getInputValue('exp-summary-vi'),
+          en: getInputValue('exp-summary-en') || getInputValue('exp-summary-vi')
+        },
+        highlights,
+        tags
+      };
+
+      if (!currentData.experiences) currentData.experiences = [];
+      if (isNew) {
+        currentData.experiences.unshift(expData);
+      } else {
+        const idx = currentData.experiences.findIndex(item => item.id == editId);
+        if (idx !== -1) {
+          currentData.experiences[idx] = { ...currentData.experiences[idx], ...expData };
+        }
+      }
+
+      closeExpEditModal();
+      renderExpsList();
+      showToast(isNew ? 'Đang thêm kinh nghiệm mới và lưu lên GitHub...' : 'Đang cập nhật kinh nghiệm và lưu lên GitHub...', 'info');
+      await publishDataToGitHub();
+    }
+
+    async function deleteExp(id) {
+      if (!confirm('Bạn có chắc chắn muốn xóa mục kinh nghiệm này?')) return;
+      currentData.experiences = (currentData.experiences || []).filter(item => item.id != id);
+      renderExpsList();
+      showToast('Đang xóa mục kinh nghiệm và cập nhật lên GitHub...', 'info');
+      await publishDataToGitHub();
+    }
+
+    async function moveExp(index, direction) {
+      const list = currentData.experiences || [];
+      const target = index + direction;
+      if (target < 0 || target >= list.length) return;
+      const tmp = list[index];
+      list[index] = list[target];
+      list[target] = tmp;
+      renderExpsList();
+      showToast('Đang lưu thứ tự Kinh nghiệm lên GitHub...', 'info');
+      await publishDataToGitHub();
+    }
+
+    /* -------------------------------------------------------------------
        7. PROJECTS MANAGEMENT (ADD / EDIT / DELETE WITH AUTO-SYNC)
     ------------------------------------------------------------------- */
     function renderProjectsList() {
@@ -2419,6 +2831,10 @@
         setInputValue('proj-tools', 'CapCut, Premiere, Canva');
         setInputValue('proj-duration', '2 tháng | 4 thành viên');
         setInputValue('proj-thumb-image', '');
+        setInputValue('proj-video-url', '');
+        setInputValue('proj-demo-url', '');
+        setInputValue('proj-highlights-vi', '');
+        setInputValue('proj-highlights-en', '');
       } else {
         titleEl.textContent = 'Chỉnh Sửa Dự Án #' + id;
         const p = currentData.projects.find(item => item.id == id);
@@ -2444,9 +2860,14 @@
         setInputValue('proj-results-vi', (p.results || []).map(r => typeof r === 'object' ? (r.vi || '') : r).join('\n'));
         setInputValue('proj-results-en', (p.results || []).map(r => typeof r === 'object' ? (r.en || '') : r).join('\n'));
 
+        setInputValue('proj-highlights-vi', (p.highlights || []).map(h => typeof h === 'object' ? (h.vi || '') : h).join('\n'));
+        setInputValue('proj-highlights-en', (p.highlights || []).map(h => typeof h === 'object' ? (h.en || '') : h).join('\n'));
+
         setInputValue('proj-tools', (p.tools || []).join(', '));
         setInputValue('proj-duration', p.duration ? (p.duration.vi || '') : '');
         setInputValue('proj-thumb-image', p.bannerImage || '');
+        setInputValue('proj-video-url', p.videoUrl || '');
+        setInputValue('proj-demo-url', p.demoUrl || '');
       }
 
       modal.classList.add('active');
@@ -2488,8 +2909,14 @@
       const resLinesEn = getInputValue('proj-results-en').split('\n').map(s => s.trim()).filter(Boolean);
       const results = resLinesVi.map((v, i) => ({ vi: v, en: resLinesEn[i] || v }));
 
+      const hlLinesVi = getInputValue('proj-highlights-vi').split('\n').map(s => s.trim()).filter(Boolean);
+      const hlLinesEn = getInputValue('proj-highlights-en').split('\n').map(s => s.trim()).filter(Boolean);
+      const highlights = hlLinesVi.map((v, i) => ({ vi: v, en: hlLinesEn[i] || v }));
+
       const tools = getInputValue('proj-tools').split(',').map(s => s.trim()).filter(Boolean);
       const bannerImg = getInputValue('proj-thumb-image');
+      const videoUrl = getInputValue('proj-video-url');
+      const demoUrl = getInputValue('proj-demo-url');
 
       const projectData = {
         id: isNew ? (Date.now() % 10000) : Number(editId),
@@ -2513,6 +2940,7 @@
           vi: getInputValue('proj-excerpt-vi'),
           en: getInputValue('proj-excerpt-en')
         },
+        highlights,
         overview: {
           vi: getInputValue('proj-overview-vi'),
           en: getInputValue('proj-overview-en')
@@ -2521,6 +2949,8 @@
         contributions,
         results,
         tools,
+        videoUrl,
+        demoUrl,
         duration: {
           vi: getInputValue('proj-duration'),
           en: getInputValue('proj-duration')

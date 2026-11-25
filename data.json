@@ -5,31 +5,40 @@
       "en": "Do Minh Tri"
     },
     "alias": "(Eric Do)",
-    "avatar": "images/avatar-1795426413460.jpg",
+    "headline": {
+      "vi": "Business & Digital Marketing | Ứng dụng AI Agent",
+      "en": "Business & Digital Marketing | AI Agent Solutions"
+    },
+    "statusBadge": {
+      "vi": "Sẵn sàng hợp tác • Business & Digital Marketing × AI Agent",
+      "en": "Open to Opportunities • Business & Digital Marketing × AI Agent"
+    },
+    "avatar": "avatar.jpg",
+    "cvUrl": "CV_DoMinhTri.pdf",
     "motto": {
       "vi": "I never lose. I either win or learn!",
       "en": "I never lose. I either win or learn!"
     },
     "roles": [
       {
+        "icon": "fa-solid fa-chart-line",
+        "text": {
+          "vi": "Business & Digital Marketing",
+          "en": "Business & Digital Marketing"
+        }
+      },
+      {
         "icon": "fa-solid fa-robot",
         "text": {
-          "vi": "Business & Ứng dụng AI Agent",
-          "en": "Business & AI Agent Solutions"
+          "vi": "Ứng dụng AI Agent",
+          "en": "AI Agent Solutions"
         }
       },
       {
         "icon": "fa-solid fa-microphone-lines",
         "text": {
-          "vi": "MC & Nghiên cứu",
-          "en": "Public Speaker & Research"
-        }
-      },
-      {
-        "icon": "fa-solid fa-language",
-        "text": {
-          "vi": "Tiếng Anh & Tiếng Trung",
-          "en": "English & Chinese"
+          "vi": "MC & Song ngữ Anh - Trung",
+          "en": "Public Speaker & EN - ZH"
         }
       }
     ],
@@ -44,15 +53,17 @@
       }
     },
     "bio": {
-      "vi": "Chào bạn! Mình là Minh Trí (Eric) — một người trẻ mang tinh thần ham học hỏi, yêu thích lĩnh vực Business và đam mê khám phá, ứng dụng AI Agent vào thực tế. Bên cạnh đó, mình còn thích cầm mic nói trước đám đông, nghiên cứu những điều mới mẻ và chinh phục ngoại ngữ. Mình tin rằng việc không ngừng cập nhật tư duy và công nghệ mới chính là chìa khóa để rèn giũa bản thân và tạo ra giá trị tích cực cho cộng đồng.",
-      "en": "Hello! I'm Minh Tri (Eric) — an energetic learner passionate about modern Business administration and real-world AI Agent implementations. Beyond tech, I thrive as a public speaker/MC, curious researcher, and language enthusiast. I believe relentless growth and adopting frontier technology are the keys to self-mastery and delivering meaningful social value."
+      "vi": "Chào bạn! Mình là Minh Trí (Eric) — sinh viên Quản trị Kinh doanh tại BTEC FPT Đà Nẵng và Tốt nghiệp Xuất Sắc chuyên ngành Digital Marketing. Mình kết hợp tư duy chiến lược thương hiệu, sáng tạo nội dung đa kênh với khả năng ứng dụng AI Agent thực chiến để tối ưu hiệu suất và tạo giá trị bền vững cho doanh nghiệp.",
+      "en": "Hi, I'm Minh Tri (Eric) — a Business Administration student at BTEC FPT Danang and High Distinction graduate in Digital Marketing. I combine brand strategy and omnichannel content creation with practical AI Agent workflows to drive measurable growth and business impact."
     },
     "contact": {
       "email": "dominhtri2206@gmail.com",
-      "phone": "0816 777 568",
+      "phone": "0934 454 099",
+      "zalo": "0934454099",
+      "linkedin": "",
       "address": {
         "vi": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng",
-        "en": "152 Phan Thanh, Thanh Khê, TP. Đà Nẵng"
+        "en": "152 Phan Thanh, Thanh Khe, Danang City"
       },
       "reference": {
         "name": "Cô Nguyễn Thị Thanh Tâm",
@@ -68,6 +79,137 @@
       }
     }
   },
+  "analytics": {
+    "gaMeasurementId": "",
+    "umamiWebsiteId": "",
+    "umamiScriptUrl": "https://cloud.umami.is/script.js"
+  },
+  "experiences": [
+    {
+      "id": 1,
+      "period": {
+        "vi": "02/2026 – 09/2026",
+        "en": "02/2026 – 09/2026"
+      },
+      "role": {
+        "vi": "Phó Chủ tịch (Vice President) — Ban Lãnh đạo Nhiệm kỳ I",
+        "en": "Vice President — Executive Board (Term I)"
+      },
+      "organization": {
+        "vi": "BBE Pegasus Chapter",
+        "en": "BBE Pegasus Chapter"
+      },
+      "badge": {
+        "vi": "Lãnh đạo & Điều hành",
+        "en": "Executive Leadership"
+      },
+      "isCurrent": true,
+      "summary": {
+        "vi": "Điều hành hoạt động đối nội, chuẩn hóa quy trình làm việc của Ban Lãnh đạo và phát triển năng lực thành viên.",
+        "en": "Directed internal operations, standardized executive workflows, and led member capability development."
+      },
+      "highlights": [
+        {
+          "vi": "Điều phối đội ngũ, phân công nhiệm vụ và giám sát 100% tiến độ hoạt động nhiệm kỳ I",
+          "en": "Coordinated cross-functional teams, delegated duties, and tracked 100% milestone delivery"
+        },
+        {
+          "vi": "Chủ trì tổ chức chuỗi workshop chia sẻ kỹ năng thực chiến và gắn kết văn hóa CLB",
+          "en": "Chaired practical skill-sharing workshops and strengthened organizational cohesion"
+        }
+      ],
+      "tags": [
+        "Executive Leadership",
+        "Team Operations",
+        "Public Speaking",
+        "Workshop Host"
+      ]
+    },
+    {
+      "id": 2,
+      "period": {
+        "vi": "09/2023 – 09/2025",
+        "en": "09/2023 – 09/2025"
+      },
+      "role": {
+        "vi": "Trưởng nhóm Dự án Marketing Thực chiến (Team Leader)",
+        "en": "Marketing Project Team Leader"
+      },
+      "organization": {
+        "vi": "FPT Polyschool — Chuyên ngành Digital Marketing",
+        "en": "FPT Polyschool — Digital Marketing Department"
+      },
+      "badge": {
+        "vi": "Dự án Thực chiến",
+        "en": "Hands-on Projects"
+      },
+      "isCurrent": false,
+      "summary": {
+        "vi": "Trực tiếp dẫn dắt nhóm 4–5 thành viên lập kế hoạch truyền thông đa kênh (IMC), tối ưu SEO và sản xuất video ngắn TikTok/Reels.",
+        "en": "Led 4–5 member teams across omnichannel IMC campaigns, SEO research, and short-form TikTok/Reels video production."
+      },
+      "highlights": [
+        {
+          "vi": "Tăng +180% tương tác tự nhiên trên Fanpage và thiết kế 20+ ấn phẩm chuẩn Brand Kit",
+          "en": "Boosted organic Fanpage engagement by +180% and designed 20+ brand-aligned visual assets"
+        },
+        {
+          "vi": "Sản xuất chuỗi 15 video ngắn đạt 120.000+ lượt xem tích lũy (video top đạt 45.000+ views)",
+          "en": "Produced 15 vertical short videos generating 120,000+ cumulative views (top video 45,000+ views)"
+        },
+        {
+          "vi": "Hoàn thành 100% KPI đúng hạn, góp phần đạt danh hiệu Tốt nghiệp Xuất Sắc",
+          "en": "Delivered 100% of campaign KPIs on time, graduating with High Distinction honors"
+        }
+      ],
+      "tags": [
+        "IMC Strategy",
+        "TikTok & Reels",
+        "SEO & Content",
+        "Team Leader (5 người)"
+      ]
+    },
+    {
+      "id": 3,
+      "period": {
+        "vi": "10/2026",
+        "en": "10/2026"
+      },
+      "role": {
+        "vi": "Thành viên Ban Tổ chức Sự kiện (Organizing Committee)",
+        "en": "Event Organizing Committee Member"
+      },
+      "organization": {
+        "vi": "Cao đẳng Anh Quốc BTEC FPT Đà Nẵng",
+        "en": "BTEC FPT British College Danang"
+      },
+      "badge": {
+        "vi": "Vận hành Sự kiện",
+        "en": "Event Operations"
+      },
+      "isCurrent": false,
+      "summary": {
+        "vi": "Phối hợp vận hành Lễ Tốt nghiệp BTEC FPT 2026 quy mô toàn cơ sở, đảm bảo trải nghiệm trang trọng cho hàng trăm tân cử nhân và khách mời.",
+        "en": "Co-orchestrated the campus-wide BTEC FPT 2026 Graduation Ceremony for hundreds of graduates, VIPs, and families."
+      },
+      "highlights": [
+        {
+          "vi": "Kiểm soát hậu cần, âm thanh ánh sáng sân khấu và luồng di chuyển trực tiếp tại sự kiện",
+          "en": "Managed stage AV logistics, blocking, and live guest flow operations"
+        },
+        {
+          "vi": "Ứng biến và xử lý tức thời các tình huống phát sinh tại khu vực lễ đài chính",
+          "en": "Resolved live on-stage contingencies under high-pressure timelines"
+        }
+      ],
+      "tags": [
+        "Event Operations",
+        "Stage Coordination",
+        "VIP Reception",
+        "Problem Solving"
+      ]
+    }
+  ],
   "projects": [
     {
       "id": 3,
@@ -92,21 +234,21 @@
         "en": "3. Integrated Brand Content Planning & Execution Campaign"
       },
       "excerpt": {
-        "vi": "Xây dựng chiến dịch truyền thông đa kênh cho thương hiệu trong dịp lễ/mở bán mới. Thiết lập thông điệp cốt lõi, ma trận nội dung và quản trị tiến độ thực thi.",
-        "en": "Planning and executing an omnichannel campaign for seasonal launch. Establishing key messaging, content matrix, and timeline control."
+        "vi": "Xây dựng chiến dịch truyền thông đa kênh 30 ngày cho thương hiệu mới: thiết lập thông điệp cốt lõi, 20+ ấn phẩm nhận diện và tăng +180% tương tác tự nhiên.",
+        "en": "Planned and executed a 30-day omnichannel launch campaign: crafted core messaging, 20+ visual assets, and achieved +180% organic engagement growth."
       },
       "highlights": [
         {
-          "vi": "Lên lịch Content Calendar đa kênh",
-          "en": "Multichannel Content Calendar design"
+          "vi": "+180% tương tác tự nhiên trên Fanpage",
+          "en": "+180% organic Fanpage engagement growth"
         },
         {
-          "vi": "Thiết kế bộ nhận diện ấn phẩm mạng xã hội",
-          "en": "Social media visual brand kit design"
+          "vi": "20+ ấn phẩm Canva & 30 ngày Content Calendar",
+          "en": "20+ Canva assets & 30-day Content Calendar"
         },
         {
-          "vi": "Điều phối 5 thành viên hoàn thành đúng hạn",
-          "en": "Coordinating 5 team members to meet KPIs"
+          "vi": "Điều phối 5 thành viên đạt 100% KPI đúng hạn",
+          "en": "Led 5 team members to hit 100% KPIs on time"
         }
       ],
       "tags": [
@@ -136,6 +278,8 @@
         "Google Docs / Sheets",
         "Trello"
       ],
+      "videoUrl": "",
+      "demoUrl": "",
       "bannerGradient": "linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #f43f5e 100%)",
       "badgeProject": {
         "vi": "Đồ Án Thực Tế | FPT Digital Marketing",
@@ -226,6 +370,8 @@
         "Premiere",
         "Canva"
       ],
+      "videoUrl": "",
+      "demoUrl": "",
       "duration": {
         "vi": "2 tháng | 4 thành viên",
         "en": "2 tháng | 4 thành viên"
@@ -343,8 +489,8 @@
         "en": "National Semi-final — FPT Biz Talent 2025"
       },
       "award": {
-        "vi": "Bán kết Toàn quốc (Top đội thi xuất sắc)",
-        "en": "National Semi-finalist (Top Venture Teams)"
+        "vi": "Bán kết Toàn quốc (Top 35 đội thi xuất sắc)",
+        "en": "National Semi-finalist (Top 35 Venture Teams)"
       },
       "organization": {
         "vi": "Tập đoàn FPT — Ban Công tác Học đường",
@@ -356,8 +502,8 @@
         "en": "15/08/2025"
       },
       "badgeType": {
-        "vi": "Bán kết Toàn quốc",
-        "en": "National Semi-final"
+        "vi": "Top 35 • Bán kết Toàn quốc",
+        "en": "Top 35 • National Semi-final"
       },
       "badgeClass": "badge-fpt",
       "badgeStyle": "background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);",
@@ -405,7 +551,7 @@
       ],
       "tags": [
         "FPT Biz Talent",
-        "Ý tưởng kinh doanh",
+        "Top 35 Toàn quốc",
         "Ứng dụng AI ngành ẩm thực",
         "Bán kết toàn quốc"
       ],
@@ -424,8 +570,8 @@
         }
       ],
       "result": {
-        "vi": "Đạt thành tích Vòng Bán kết Toàn quốc cuộc thi khởi nghiệp FPT Biz Talent 2025; củng cố tư duy quản trị tài chính, mô hình kinh doanh và tầm nhìn công nghệ phục vụ đời sống.",
-        "en": "Ranked among National Semi-finalists of FPT Biz Talent 2025, sharpening financial management, business structuring, and technology vision."
+        "vi": "Đạt thành tích Top 35 / Vòng Bán kết Toàn quốc cuộc thi khởi nghiệp FPT Biz Talent 2025; củng cố tư duy quản trị tài chính, mô hình kinh doanh và tầm nhìn công nghệ phục vụ đời sống.",
+        "en": "Ranked among Top 35 National Semi-finalists of FPT Biz Talent 2025, sharpening financial management, business structuring, and technology vision."
       },
       "gallery": []
     },
@@ -811,57 +957,57 @@
   "highlights": [
     {
       "id": 1,
-      "icon": "fa-solid fa-robot",
-      "iconColor": "icon-orange",
+      "icon": "fa-solid fa-trophy",
+      "iconColor": "icon-gold",
       "title": {
-        "vi": "Business & AI",
-        "en": "Business & AI"
+        "vi": "Top 2 Chung Kết",
+        "en": "Top 2 National Finalist"
       },
       "subtitle": {
-        "vi": "Ứng dụng AI Agent",
-        "en": "AI Agent Solutions"
+        "vi": "Á Quân Chân Trần Khởi Nghiệp Mùa 3",
+        "en": "Runner-Up Barefoot Startup S3"
+      },
+      "isDark": true
+    },
+    {
+      "id": 2,
+      "icon": "fa-solid fa-medal",
+      "iconColor": "icon-orange",
+      "title": {
+        "vi": "Top 35 Toàn Quốc",
+        "en": "Top 35 Nationwide"
+      },
+      "subtitle": {
+        "vi": "Bán kết FPT Biz Talent 2025",
+        "en": "FPT Biz Talent 2025 Semi-finalist"
       },
       "isDark": false
     },
     {
       "id": 3,
-      "icon": "fa-solid fa-language",
-      "iconColor": "icon-blue",
+      "icon": "fa-solid fa-graduation-cap",
+      "iconColor": "icon-cyan",
       "title": {
-        "vi": "Ngoại ngữ",
-        "en": "Languages"
+        "vi": "Tốt Nghiệp Xuất Sắc",
+        "en": "High Distinction"
       },
       "subtitle": {
-        "vi": "Tiếng Anh & Tiếng Trung",
-        "en": "English & Chinese"
+        "vi": "Digital Marketing • BTEC & FPT",
+        "en": "Digital Marketing • BTEC & FPT"
       },
       "isDark": false
     },
     {
-      "id": 2,
-      "icon": "fa-solid fa-trophy",
-      "iconColor": "icon-gold",
-      "title": {
-        "vi": "Á Quân Khởi Nghiệp",
-        "en": "Startup Runner-Up"
-      },
-      "subtitle": {
-        "vi": "Chân Trần Khởi Nghiệp Mùa 3",
-        "en": "Barefoot Startup Season 3"
-      },
-      "isDark": true
-    },
-    {
       "id": 4,
-      "icon": "fa-solid fa-graduation-cap",
-      "iconColor": "icon-cyan",
+      "icon": "fa-solid fa-chart-line",
+      "iconColor": "icon-blue",
       "title": {
-        "vi": "BTEC FPT Đà Nẵng",
-        "en": "BTEC FPT Danang"
+        "vi": "+180% Tương Tác",
+        "en": "+180% Engagement"
       },
       "subtitle": {
-        "vi": "Digital Marketing",
-        "en": "Digital Marketing"
+        "vi": "100% KPI Chiến dịch & MOS Quốc tế",
+        "en": "100% Campaign KPI & MOS Certified"
       },
       "isDark": false
     }
