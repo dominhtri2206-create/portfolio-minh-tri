@@ -817,6 +817,26 @@
           </div>
         </div>
 
+        <!-- Bento Card: Hero Carousel Gallery Management -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-images"></i> Bộ Sưu Tập Ảnh Lướt Hero (Hero Carousel)</h3>
+              <p class="card-subtitle">Thêm, cắt ảnh, sắp xếp thứ tự hoặc xóa các ảnh tự động lướt ở khung chân dung bên phải Hero</p>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <input type="file" id="hero-gallery-file-picker" accept="image/*" style="display: none;" onchange="handleHeroGalleryAdd(event)">
+              <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('hero-gallery-file-picker').click()">
+                <i class="fa-solid fa-crop-simple"></i> <span>+ Thêm &amp; Cắt ảnh mới</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="hero-gallery-admin-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px;">
+            <!-- Dynamically populated Hero Carousel slides -->
+          </div>
+        </div>
+
         <!-- Bento Card: Personal Bio & Positioning -->
         <div class="bento-card">
           <div class="card-header-row">
@@ -2181,6 +2201,9 @@
       const pathEl = document.getElementById('profile-avatar-path');
       if (pathEl) pathEl.textContent = p.avatar || 'avatar.jpg';
 
+      // 1.5. Render Hero Carousel Gallery
+      renderHeroGalleryAdmin();
+
       // 2. Render Highlights & Experiences
       renderHighlightsList();
       renderExpsList();
@@ -2433,6 +2456,92 @@
 
     function uploadAvatarToGitHub() {
       document.getElementById('avatar-file-input').click();
+    }
+
+    /* -------------------------------------------------------------------
+       6.1. HERO CAROUSEL GALLERY MANAGEMENT (ADD WITH CROPPER / MOVE / DELETE)
+    ------------------------------------------------------------------- */
+    function renderHeroGalleryAdmin() {
+      const container = document.getElementById('hero-gallery-admin-grid');
+      if (!container || !currentData) return;
+      if (!currentData.profile) currentData.profile = {};
+      if (!Array.isArray(currentData.profile.heroGallery) || currentData.profile.heroGallery.length === 0) {
+        currentData.profile.heroGallery = [currentData.profile.avatar || 'avatar.jpg'];
+      }
+
+      const list = currentData.profile.heroGallery;
+      container.innerHTML = list.map((imgUrl, idx) => `
+        <div style="background: #F9F9FB; border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-md); padding: 10px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="position: relative; width: 100%; aspect-ratio: 4/5; border-radius: 12px; overflow: hidden; background: #EAEAEF;">
+            <img src="${imgUrl}" alt="Hero slide ${idx + 1}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;" onerror="this.src='CV.png'">
+            <span style="position: absolute; top: 8px; left: 8px; padding: 2px 9px; border-radius: 999px; background: rgba(29,29,31,0.82); color: #fff; font-size: 0.72rem; font-weight: 700;">#${idx + 1}</span>
+          </div>
+          <div style="font-size: 0.72rem; color: var(--text-tertiary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${imgUrl}">${imgUrl}</div>
+          <div style="display: flex; gap: 6px; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 4px;">
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 4px 9px;" onclick="moveHeroGalleryItem(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Chuyển sang trái">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 4px 9px;" onclick="moveHeroGalleryItem(${idx}, 1)" ${idx === list.length - 1 ? 'disabled' : ''} title="Chuyển sang phải">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+            <button type="button" class="btn btn-danger btn-sm" style="padding: 4px 9px;" onclick="removeHeroGalleryItem(${idx})" title="Xóa ảnh này">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleHeroGalleryAdd(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      openCropperModal(file, {
+        title: 'Cắt Ảnh Cho Hero Carousel (Khuyên dùng 4:5 hoặc Tự do)',
+        aspectRatio: 4 / 5,
+        lockRatio: false,
+        prefix: 'hero-slide'
+      }, async (targetPath) => {
+        if (!currentData.profile) currentData.profile = {};
+        if (!Array.isArray(currentData.profile.heroGallery)) {
+          currentData.profile.heroGallery = [currentData.profile.avatar || 'avatar.jpg'];
+        }
+        currentData.profile.heroGallery.push(targetPath);
+        renderHeroGalleryAdmin();
+        showToast('Đã thêm ảnh vào Hero Carousel! Đang lưu lên GitHub...', 'info');
+        await publishDataToGitHub();
+      });
+
+      e.target.value = '';
+    }
+
+    async function moveHeroGalleryItem(idx, dir) {
+      if (!currentData || !currentData.profile || !Array.isArray(currentData.profile.heroGallery)) return;
+      const list = currentData.profile.heroGallery;
+      const target = idx + dir;
+      if (target < 0 || target >= list.length) return;
+      const tmp = list[idx];
+      list[idx] = list[target];
+      list[target] = tmp;
+      renderHeroGalleryAdmin();
+      showToast('Đang lưu thứ tự ảnh Hero lên GitHub...', 'info');
+      await publishDataToGitHub();
+    }
+
+    async function removeHeroGalleryItem(idx) {
+      if (!currentData || !currentData.profile || !Array.isArray(currentData.profile.heroGallery)) return;
+      const list = currentData.profile.heroGallery;
+      if (list.length <= 1) {
+        alert('Cần giữ lại ít nhất 1 ảnh cho khung chân dung Hero!');
+        return;
+      }
+      if (!confirm('Bạn có chắc chắn muốn xóa ảnh này khỏi bộ sưu tập Hero Carousel?')) return;
+      list.splice(idx, 1);
+      renderHeroGalleryAdmin();
+      showToast('Đang xóa ảnh khỏi Hero Carousel và cập nhật GitHub...', 'info');
+      await publishDataToGitHub();
     }
 
     /* -------------------------------------------------------------------

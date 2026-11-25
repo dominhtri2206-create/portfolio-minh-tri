@@ -1036,7 +1036,43 @@
         }, { passive: true });
       }
 
-      // Hero Multi-Photo Auto-Slide & Swipe Carousel
+      // Hero Multi-Photo Auto-Slide & Swipe Carousel (Dynamic from data.json profile.heroGallery)
+      const heroCarouselState = {
+        currentIdx: 0,
+        total: 0,
+        autoTimer: null,
+        touchStartX: 0
+      };
+
+      function heroGoToSlide(idx) {
+        const track = document.getElementById('hero-slider-track');
+        const dotsWrap = document.getElementById('hero-slider-dots');
+        if (!track || heroCarouselState.total <= 0) return;
+        heroCarouselState.currentIdx = (idx + heroCarouselState.total) % heroCarouselState.total;
+        track.style.transform = `translateX(-${heroCarouselState.currentIdx * 100}%)`;
+        if (dotsWrap) {
+          dotsWrap.querySelectorAll('.hero-slider-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === heroCarouselState.currentIdx);
+          });
+        }
+      }
+
+      function heroStopAuto() {
+        if (heroCarouselState.autoTimer) {
+          clearInterval(heroCarouselState.autoTimer);
+          heroCarouselState.autoTimer = null;
+        }
+      }
+
+      function heroStartAuto() {
+        heroStopAuto();
+        if (heroCarouselState.total > 1) {
+          heroCarouselState.autoTimer = setInterval(() => {
+            heroGoToSlide(heroCarouselState.currentIdx + 1);
+          }, 3800);
+        }
+      }
+
       function initHeroCarousel() {
         const card = document.getElementById('hero-portrait-carousel');
         const track = document.getElementById('hero-slider-track');
@@ -1045,64 +1081,82 @@
         const nextBtn = document.getElementById('hero-slide-next');
         if (!card || !track || !dotsWrap) return;
 
-        const slides = track.querySelectorAll('.hero-slide');
-        const total = slides.length;
-        if (total <= 1) return;
+        // Dynamically rebuild slides if portfolioData.profile.heroGallery is present
+        if (typeof portfolioData !== 'undefined' && portfolioData && portfolioData.profile) {
+          const gallery = Array.isArray(portfolioData.profile.heroGallery) && portfolioData.profile.heroGallery.length > 0
+            ? portfolioData.profile.heroGallery
+            : (portfolioData.profile.avatar ? [portfolioData.profile.avatar] : []);
 
-        let currentIdx = 0;
-        let autoTimer = null;
-        let touchStartX = 0;
-
-        dotsWrap.innerHTML = Array.from({ length: total }, (_, i) =>
-          `<button type="button" class="hero-slider-dot ${i === 0 ? 'active' : ''}" aria-label="Ảnh ${i + 1}"></button>`
-        ).join('');
-        const dots = dotsWrap.querySelectorAll('.hero-slider-dot');
-
-        function goTo(idx) {
-          currentIdx = (idx + total) % total;
-          track.style.transform = `translateX(-${currentIdx * 100}%)`;
-          dots.forEach((d, i) => d.classList.toggle('active', i === currentIdx));
-        }
-
-        function startAuto() {
-          stopAuto();
-          autoTimer = setInterval(() => goTo(currentIdx + 1), 3800);
-        }
-
-        function stopAuto() {
-          if (autoTimer) {
-            clearInterval(autoTimer);
-            autoTimer = null;
+          if (gallery.length > 0) {
+            track.innerHTML = gallery.map((src, i) => `
+              <div class="hero-slide">
+                <img src="${src}" alt="Đỗ Minh Trí ${i + 1}" ${i === 0 ? 'id="user-avatar"' : ''} style="object-position: center 22%;" ${i > 0 ? 'loading="lazy"' : ''} onerror="this.onerror=null; this.src='CV.png';">
+              </div>
+            `).join('');
           }
         }
 
-        dots.forEach((dot, i) => {
+        const slides = track.querySelectorAll('.hero-slide');
+        heroCarouselState.total = slides.length;
+        heroCarouselState.currentIdx = 0;
+        track.style.transform = 'translateX(0%)';
+
+        if (heroCarouselState.total <= 1) {
+          dotsWrap.style.display = 'none';
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (nextBtn) nextBtn.style.display = 'none';
+          heroStopAuto();
+          return;
+        }
+
+        dotsWrap.style.display = 'flex';
+        if (prevBtn) prevBtn.style.display = '';
+        if (nextBtn) nextBtn.style.display = '';
+
+        dotsWrap.innerHTML = Array.from({ length: heroCarouselState.total }, (_, i) =>
+          `<button type="button" class="hero-slider-dot ${i === 0 ? 'active' : ''}" aria-label="Ảnh ${i + 1}"></button>`
+        ).join('');
+
+        dotsWrap.querySelectorAll('.hero-slider-dot').forEach((dot, i) => {
           dot.addEventListener('click', () => {
-            goTo(i);
-            startAuto();
+            heroGoToSlide(i);
+            heroStartAuto();
           });
         });
 
-        if (prevBtn) prevBtn.addEventListener('click', () => { goTo(currentIdx - 1); startAuto(); });
-        if (nextBtn) nextBtn.addEventListener('click', () => { goTo(currentIdx + 1); startAuto(); });
+        // Bind card/arrow events once
+        if (!card.dataset.carouselBound) {
+          card.dataset.carouselBound = 'true';
+          if (prevBtn) prevBtn.addEventListener('click', () => { heroGoToSlide(heroCarouselState.currentIdx - 1); heroStartAuto(); });
+          if (nextBtn) nextBtn.addEventListener('click', () => { heroGoToSlide(heroCarouselState.currentIdx + 1); heroStartAuto(); });
 
-        card.addEventListener('mouseenter', stopAuto);
-        card.addEventListener('mouseleave', startAuto);
+          card.addEventListener('mouseenter', heroStopAuto);
+          card.addEventListener('mouseleave', heroStartAuto);
 
-        card.addEventListener('touchstart', (e) => {
-          touchStartX = e.changedTouches[0].clientX;
-          stopAuto();
-        }, { passive: true });
+          card.addEventListener('touchstart', (e) => {
+            heroCarouselState.touchStartX = e.changedTouches[0].clientX;
+            heroStopAuto();
+          }, { passive: true });
 
-        card.addEventListener('touchend', (e) => {
-          const dx = e.changedTouches[0].clientX - touchStartX;
-          if (Math.abs(dx) > 40) {
-            goTo(dx < 0 ? currentIdx + 1 : currentIdx - 1);
-          }
-          startAuto();
-        }, { passive: true });
+          card.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - heroCarouselState.touchStartX;
+            if (Math.abs(dx) > 40) {
+              heroGoToSlide(dx < 0 ? heroCarouselState.currentIdx + 1 : heroCarouselState.currentIdx - 1);
+            }
+            heroStartAuto();
+          }, { passive: true });
+        }
 
-        startAuto();
+        heroStartAuto();
+      }
+
+      // Hook into renderHeroDynamic so async data.json updates refresh the carousel
+      if (typeof window.renderHeroDynamic === 'function') {
+        const origRenderHeroDynamic = window.renderHeroDynamic;
+        window.renderHeroDynamic = function () {
+          origRenderHeroDynamic.apply(this, arguments);
+          initHeroCarousel();
+        };
       }
 
       window.addEventListener('load', () => {
