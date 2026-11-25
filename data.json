@@ -1041,28 +1041,28 @@
       },
       "role": {
         "vi": "Thành viên Ban Tổ chức (Organizing Committee)",
-        "en": "Organizing Committee Member"
+        "en": "Thành viên Ban Tổ chức (Organizing Committee)"
       },
       "organization": "BTEC FPT",
-      "orgIcon": "fa-solid fa-graduation-cap",
+      "orgIcon": "fa-solid fa-users",
       "eventOrg": {
         "vi": "Lễ Tốt nghiệp BTEC FPT 2026",
         "en": "BTEC FPT Graduation Ceremony 2026"
       },
       "timeLocation": {
         "vi": "25/10/2026 tại Đà Nẵng",
-        "en": "25/10/2026 in Danang City"
+        "en": "25/10/2026 tại Đà Nẵng"
       },
       "badgeType": {
         "vi": "Ban Tổ chức Sự kiện",
-        "en": "Event Organizing Committee"
+        "en": "Ban Tổ chức Sự kiện"
       },
-      "badgeClass": "badge-event",
-      "badgeIcon": "fa-solid fa-star",
+      "badgeClass": "badge-leader",
+      "badgeIcon": "fa-solid fa-crown",
       "mainImage": "act-graduation.jpg",
       "description": {
         "vi": "Trực tiếp đóng góp và phối hợp vận hành sự kiện trọng đại cấp trường, đảm bảo trải nghiệm chuyên nghiệp cho sinh viên và khách mời.",
-        "en": "Directly contributed to orchestrating a high-profile commencement ceremony, ensuring a seamless experience for graduates, VIPs, and families."
+        "en": "Trực tiếp đóng góp và phối hợp vận hành sự kiện trọng đại cấp trường, đảm bảo trải nghiệm chuyên nghiệp cho sinh viên và khách mời."
       },
       "subPlaceholder1": {
         "vi": "Ảnh hậu trường setup & vận hành sân khấu",
@@ -1088,9 +1088,12 @@
       ],
       "result": {
         "vi": "Sự kiện diễn ra suôn sẻ, chỉn chu và để lại ấn tượng tốt đẹp trong lòng sinh viên cùng khách mời; rèn luyện khả năng ứng biến dưới áp lực cao.",
-        "en": "The ceremony concluded smoothly and received praise from leadership; cultivated agility and composure under high-pressure event execution."
+        "en": "Sự kiện diễn ra suôn sẻ, chỉn chu và để lại ấn tượng tốt đẹp trong lòng sinh viên cùng khách mời; rèn luyện khả năng ứng biến dưới áp lực cao."
       },
-      "gallery": [],
+      "gallery": [
+        "images/act-sub-1795617992626.jpg",
+        "images/act-sub-1795618010606.jpg"
+      ],
       "externalUrl": "",
       "externalTitle": "",
       "externalText": "",
