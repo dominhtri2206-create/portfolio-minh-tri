@@ -183,16 +183,46 @@
           </div>
         </div>
 
-        <!-- Right 4-Col Editorial Full-Bleed Portrait Card (#4) -->
-        <div class="hero-editorial-card bento-card v2-anim">
-          <img src="avatar.jpg" alt="Đỗ Minh Trí (Eric Do)" class="editorial-portrait-img" id="user-avatar"
-            onerror="this.onerror=null; this.src='CV.png';">
+        <!-- Right 4-Col Editorial Full-Bleed Portrait Carousel -->
+        <div class="hero-editorial-card bento-card v2-anim" id="hero-portrait-carousel">
+          <div class="hero-slider-viewport">
+            <div class="hero-slider-track" id="hero-slider-track">
+              <div class="hero-slide">
+                <img src="avatar.jpg" alt="Đỗ Minh Trí (Eric Do)" id="user-avatar" style="object-position: center 18%;"
+                  onerror="this.onerror=null; this.src='CV.png';">
+              </div>
+              <div class="hero-slide">
+                <img src="images/hero-award.jpg" alt="Á Quân Chân Trần Khởi Nghiệp Mùa 3" style="object-position: center 20%;" loading="lazy">
+              </div>
+              <div class="hero-slide">
+                <img src="images/hero-pitching.jpg" alt="Thuyết trình dự án Smart Mini Storage" style="object-position: center 28%;" loading="lazy">
+              </div>
+              <div class="hero-slide">
+                <img src="images/hero-speaker.jpg" alt="Chia sẻ kỹ năng & Workshop BBE" style="object-position: center 25%;" loading="lazy">
+              </div>
+              <div class="hero-slide">
+                <img src="images/hero-event.jpg" alt="Điều phối hậu trường sự kiện BTEC FPT" style="object-position: center 22%;" loading="lazy">
+              </div>
+            </div>
+          </div>
+
           <div class="editorial-gradient-mask"></div>
 
           <div class="editorial-top-pill">
             <i class="fa-solid fa-circle-check"></i>
             <span>Đỗ Minh Trí • Đà Nẵng</span>
           </div>
+
+          <!-- Slide Progress Dots -->
+          <div class="hero-slider-dots" id="hero-slider-dots" aria-label="Chuyển ảnh chân dung"></div>
+
+          <!-- Prev / Next Arrows -->
+          <button type="button" class="hero-slider-arrow hero-slider-prev" id="hero-slide-prev" aria-label="Ảnh trước">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button type="button" class="hero-slider-arrow hero-slider-next" id="hero-slide-next" aria-label="Ảnh tiếp theo">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
 
           <blockquote class="hero-mission-quote">
             <div class="mission-tag">
@@ -1006,11 +1036,81 @@
         }, { passive: true });
       }
 
+      // Hero Multi-Photo Auto-Slide & Swipe Carousel
+      function initHeroCarousel() {
+        const card = document.getElementById('hero-portrait-carousel');
+        const track = document.getElementById('hero-slider-track');
+        const dotsWrap = document.getElementById('hero-slider-dots');
+        const prevBtn = document.getElementById('hero-slide-prev');
+        const nextBtn = document.getElementById('hero-slide-next');
+        if (!card || !track || !dotsWrap) return;
+
+        const slides = track.querySelectorAll('.hero-slide');
+        const total = slides.length;
+        if (total <= 1) return;
+
+        let currentIdx = 0;
+        let autoTimer = null;
+        let touchStartX = 0;
+
+        dotsWrap.innerHTML = Array.from({ length: total }, (_, i) =>
+          `<button type="button" class="hero-slider-dot ${i === 0 ? 'active' : ''}" aria-label="Ảnh ${i + 1}"></button>`
+        ).join('');
+        const dots = dotsWrap.querySelectorAll('.hero-slider-dot');
+
+        function goTo(idx) {
+          currentIdx = (idx + total) % total;
+          track.style.transform = `translateX(-${currentIdx * 100}%)`;
+          dots.forEach((d, i) => d.classList.toggle('active', i === currentIdx));
+        }
+
+        function startAuto() {
+          stopAuto();
+          autoTimer = setInterval(() => goTo(currentIdx + 1), 3800);
+        }
+
+        function stopAuto() {
+          if (autoTimer) {
+            clearInterval(autoTimer);
+            autoTimer = null;
+          }
+        }
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            goTo(i);
+            startAuto();
+          });
+        });
+
+        if (prevBtn) prevBtn.addEventListener('click', () => { goTo(currentIdx - 1); startAuto(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { goTo(currentIdx + 1); startAuto(); });
+
+        card.addEventListener('mouseenter', stopAuto);
+        card.addEventListener('mouseleave', startAuto);
+
+        card.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].clientX;
+          stopAuto();
+        }, { passive: true });
+
+        card.addEventListener('touchend', (e) => {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          if (Math.abs(dx) > 40) {
+            goTo(dx < 0 ? currentIdx + 1 : currentIdx - 1);
+          }
+          startAuto();
+        }, { passive: true });
+
+        startAuto();
+      }
+
       window.addEventListener('load', () => {
         if (portfolioData) {
           window.renderProjectsGrid();
           window.renderCertificatesGrid();
         }
+        initHeroCarousel();
         initV2Reveal();
         initMobileDock();
         updateNavSlidingPill();
