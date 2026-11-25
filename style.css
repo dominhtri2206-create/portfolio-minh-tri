@@ -2617,3 +2617,113 @@ textarea.form-control { min-height: 105px; resize: vertical; }
   height: 100%;
   background: #525659;
 }
+
+@media (max-width: 768px) {
+
+  /* Enhanced Mobile Touch & Layout Optimizations */
+  .hero-title {
+    font-size: 2.25rem !important;
+    line-height: 1.18 !important;
+  }
+  .hero-greeting-line {
+    font-size: 0.95rem !important;
+    margin-bottom: 2px;
+  }
+  .role-badge-container {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .role-tag {
+    font-size: 0.76rem !important;
+    padding: 4px 10px !important;
+  }
+  .hero-description {
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.92rem;
+  }
+  .hero-quick-connect {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .quick-connect-pill {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
+
+  /* Modals on Mobile */
+  .vcard-modal-box {
+    width: 94% !important;
+    max-width: 360px !important;
+    padding: 22px 18px 20px !important;
+    border-radius: 24px !important;
+  }
+  .vcard-avatar {
+    width: 72px !important;
+    height: 72px !important;
+  }
+  .vcard-name {
+    font-size: 1.15rem !important;
+  }
+  .vcard-qr-box svg {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  .cv-preview-modal-box {
+    width: 96% !important;
+    height: 90vh !important;
+    border-radius: 20px !important;
+  }
+  .cv-preview-header {
+    padding: 12px 16px !important;
+  }
+  .cv-preview-header .btn span {
+    display: none;
+  }
+  .cv-preview-header .btn {
+    padding: 6px 10px;
+  }
+
+  /* Keynote Project Cards on Mobile */
+  .project-v2-card {
+    border-radius: 20px;
+  }
+  .project-mockup-stage {
+    min-height: 220px;
+  }
+  .project-v2-body {
+    padding: 20px 18px;
+  }
+  .project-v2-title {
+    font-size: 1.25rem !important;
+  }
+  .project-kpi-strip {
+    gap: 8px;
+    padding: 10px;
+  }
+  .kpi-cell strong {
+    font-size: 1rem !important;
+  }
+  .kpi-cell span {
+    font-size: 0.68rem !important;
+  }
+
+  /* Navigation drawer styling */
+  .mobile-drawer {
+    width: 86vw;
+    max-width: 340px;
+  }
+
+}
