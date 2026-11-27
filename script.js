@@ -1839,7 +1839,7 @@ async function initPortfolioData() {
 function renderAllDynamicSections() {
   if (!portfolioData) return;
   renderHeroDynamic();
-  renderHighlightsGrid();
+  // renderHighlightsGrid(); // Loai bo 4 the metric cards
   renderExperienceTimeline();
   renderProjectsGrid();
   renderCertificatesGrid();

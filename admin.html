@@ -963,9 +963,6 @@
         <button class="tab-btn active" data-tab="tab-profile" onclick="switchTab('tab-profile')">
           <i class="fa-solid fa-user"></i> <span>Hồ sơ & Avatar</span>
         </button>
-        <button class="tab-btn" data-tab="tab-highlights" onclick="switchTab('tab-highlights')">
-          <i class="fa-solid fa-star"></i> <span>Thành tích nổi bật</span> <span class="tab-badge" id="badge-count-highlights">0</span>
-        </button>
         <button class="tab-btn" data-tab="tab-experiences" onclick="switchTab('tab-experiences')">
           <i class="fa-solid fa-timeline"></i> <span>Kinh nghiệm</span> <span class="tab-badge" id="badge-count-exps">0</span>
         </button>
@@ -1426,29 +1423,7 @@
         </div>
       </section>
 
-      <!-- TAB: HIGHLIGHTS (THÀNH TÍCH NỔI BẬT HERO) -->
-      <section class="tab-content" id="tab-highlights" style="display: none;">
-        <div class="bento-card">
-          <div class="card-header-row">
-            <div>
-              <h3 class="card-title"><i class="fa-solid fa-star"></i> Thành Tích Nổi Bật (Hero Highlights)</h3>
-              <p class="card-subtitle">Quản lý các thẻ thông số / thành tích nổi bật hiển thị ở hàng dưới phần Hero (Hỗ trợ ô nền đen tương phản)</p>
-            </div>
-            <div style="display: flex; gap: 10px;">
-              <button type="button" class="btn btn-primary btn-sm" onclick="openHighlightEditModal(null)">
-                <i class="fa-solid fa-plus"></i> <span>Thêm thẻ mới</span>
-              </button>
-              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
-                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
-              </button>
-            </div>
-          </div>
 
-          <div class="items-grid" id="highlights-list-container">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-      </section>
 
       <!-- TAB 2: PROJECTS -->
       <section class="tab-content" id="tab-projects" style="display: none;">
