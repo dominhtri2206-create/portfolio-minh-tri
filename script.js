@@ -3314,3 +3314,44 @@ function closeCvPreviewModal() {
     document.body.style.overflow = '';
   }
 }
+
+
+/* -------------------------------------------------------------------
+   15. MACOS INTERACTIVE DOCK TOOLTIP & MAGNIFICATION
+------------------------------------------------------------------- */
+function initMacOsDock() {
+  const dock = document.getElementById('macos-tool-dock');
+  const bubble = document.getElementById('dock-tooltip-bubble');
+  if (!dock) return;
+
+  const items = dock.querySelectorAll('.dock-item');
+  items.forEach((item, index) => {
+    item.addEventListener('mouseenter', () => {
+      const tooltip = item.getAttribute('data-tooltip') || '';
+      if (bubble) bubble.textContent = tooltip;
+      item.style.transform = 'translateY(-10px) scale(1.22)';
+      
+      // Neighbor magnification
+      if (items[index - 1]) items[index - 1].style.transform = 'translateY(-5px) scale(1.1)';
+      if (items[index + 1]) items[index + 1].style.transform = 'translateY(-5px) scale(1.1)';
+    });
+
+    item.addEventListener('mouseleave', () => {
+      items.forEach(it => {
+        it.style.transform = '';
+      });
+      if (bubble) bubble.textContent = 'Chạm công cụ để xem';
+    });
+
+    item.addEventListener('click', () => {
+      const tooltip = item.getAttribute('data-tooltip') || '';
+      if (bubble) bubble.textContent = 'Đang sử dụng: ' + tooltip;
+      item.style.transform = 'translateY(-14px) scale(1.28)';
+      setTimeout(() => { item.style.transform = ''; }, 300);
+    });
+  });
+}
+
+window.addEventListener('load', () => {
+  setTimeout(initMacOsDock, 300);
+});

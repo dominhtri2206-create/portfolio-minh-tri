@@ -73,7 +73,7 @@
   <!-- Single Unified Typography: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6.5.1 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -184,11 +184,15 @@
             </span>
           </div>
 
-          <h1 class="hero-title">
-            <span class="hero-greeting-line" data-i18n="hero.greeting">Xin chào, mình là</span>
-            <span class="text-highlight">Đỗ Minh Trí</span>
-            <span class="hero-alias">(Eric Do)</span>
-          </h1>
+          <div class="hero-title-editorial-wrap">
+            <span class="editorial-watermark-text" aria-hidden="true">PORTFOLIO</span>
+            <h1 class="hero-title">
+              <span class="hero-greeting-line" data-i18n="hero.greeting">Xin chào, mình là</span>
+              <span class="text-highlight">Đỗ Minh Trí</span>
+              <span class="hero-alias">(Eric Do)</span>
+              <span class="editorial-script-badge" aria-hidden="true">Strategic &amp; Creative Mind</span>
+            </h1>
+          </div>
 
           <div class="role-badge-container">
             <span class="role-tag"><i class="fa-solid fa-chart-line"></i> Business &amp; Digital Marketing</span>
@@ -314,7 +318,84 @@
             </div>
           </div>
         </div>
-      </div>
+      
+        <!-- ==================== VISUAL CHAPTER GUIDE (ARCH PILL CARDS #BEHANCE) ==================== -->
+        <div class="visual-chapter-guide v2-anim" aria-label="Mục lục trực quan">
+          <div class="chapter-guide-header">
+            <div class="chapter-guide-title">
+              <i class="fa-solid fa-compass text-primary-color"></i>
+              <span class="chapter-eyebrow">Visual Index • Khám phá theo chủ đề</span>
+            </div>
+            <span class="chapter-guide-tag"><i class="fa-solid fa-arrow-pointer"></i> Chạm thẻ chuyển đến mục</span>
+          </div>
+
+          <div class="chapter-pills-grid">
+            <a href="#about" class="chapter-arch-card" style="--card-accent: #ff6b35;">
+              <div class="arch-card-top">
+                <span class="arch-num">01</span>
+                <span class="arch-badge">Nền tảng</span>
+              </div>
+              <div class="arch-card-preview">
+                <img src="images/hero-speaker.jpg" alt="Về tôi & Học vấn" onerror="this.src='avatar.jpg'">
+                <div class="arch-overlay-tint"></div>
+              </div>
+              <div class="arch-card-bottom">
+                <h4>Về tôi &amp; Kỹ năng</h4>
+                <p>Quản trị KD × AI Agent</p>
+                <span class="arch-arrow"><i class="fa-solid fa-arrow-down-long"></i></span>
+              </div>
+            </a>
+
+            <a href="#projects" class="chapter-arch-card" style="--card-accent: #0071e3;">
+              <div class="arch-card-top">
+                <span class="arch-num">02</span>
+                <span class="arch-badge">Thực chiến</span>
+              </div>
+              <div class="arch-card-preview">
+                <img src="images/hero-pitching.jpg" alt="Case Studies Dự án" onerror="this.src='avatar.jpg'">
+                <div class="arch-overlay-tint"></div>
+              </div>
+              <div class="arch-card-bottom">
+                <h4>Case Studies</h4>
+                <p>TikTok • SEO • Brand IMC</p>
+                <span class="arch-arrow"><i class="fa-solid fa-arrow-down-long"></i></span>
+              </div>
+            </a>
+
+            <a href="#experience" class="chapter-arch-card" style="--card-accent: #10b981;">
+              <div class="arch-card-top">
+                <span class="arch-num">03</span>
+                <span class="arch-badge">Lãnh đạo</span>
+              </div>
+              <div class="arch-card-preview">
+                <img src="images/hero-event.jpg" alt="Kinh nghiệm thực tế" onerror="this.src='avatar.jpg'">
+                <div class="arch-overlay-tint"></div>
+              </div>
+              <div class="arch-card-bottom">
+                <h4>Kinh nghiệm</h4>
+                <p>Phó Chủ tịch BBE &amp; Sự kiện</p>
+                <span class="arch-arrow"><i class="fa-solid fa-arrow-down-long"></i></span>
+              </div>
+            </a>
+
+            <a href="#certificates" class="chapter-arch-card" style="--card-accent: #f59e0b;">
+              <div class="arch-card-top">
+                <span class="arch-num">04</span>
+                <span class="arch-badge">Xác thực</span>
+              </div>
+              <div class="arch-card-preview">
+                <img src="images/hero-award.jpg" alt="Giải thưởng & Bằng khen" onerror="this.src='avatar.jpg'">
+                <div class="arch-overlay-tint"></div>
+              </div>
+              <div class="arch-card-bottom">
+                <h4>Giải thưởng</h4>
+                <p>Top 2 Khởi Nghiệp • MOS</p>
+                <span class="arch-arrow"><i class="fa-solid fa-arrow-down-long"></i></span>
+              </div>
+            </a>
+          </div>
+        </div>
+</div>
     </section>
 
     <!-- ==================== 3. VỀ TÔI, TOOL STACK MARQUEE & NĂNG LỰC (#6) ==================== -->
@@ -329,6 +410,50 @@
         </div>
 
         <!-- Infinite Tool Stack Marquee (#6 - Replaces outdated % bars) -->
+        <!-- macOS Interactive Tool Dock (#Behance Style) -->
+        <div class="macos-dock-wrapper v2-anim">
+          <div class="macos-dock-shelf" id="macos-tool-dock" aria-label="Bàn làm việc số & Bộ công cụ">
+            <div class="dock-item" data-tooltip="Google Antigravity AI • AI Agent Studio">
+              <i class="fa-solid fa-robot dock-icon icon-ai"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-item" data-tooltip="Canva Pro • Brand Kit & Visuals">
+              <i class="fa-solid fa-palette dock-icon icon-canva"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-item" data-tooltip="CapCut Pro & Premiere • Video Editing">
+              <i class="fa-solid fa-video dock-icon icon-video"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-item" data-tooltip="Meta Business Suite • Fanpage & Ads">
+              <i class="fa-brands fa-meta dock-icon icon-meta"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-divider"></div>
+            <div class="dock-item" data-tooltip="Google Analytics 4 • Data & Traffic">
+              <i class="fa-solid fa-magnifying-glass-chart dock-icon icon-ga4"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-item" data-tooltip="Microsoft Excel MOS 2019 • Certified">
+              <i class="fa-solid fa-file-excel dock-icon icon-excel"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-item" data-tooltip="Notion • RACI & IMC Project Board">
+              <i class="fa-solid fa-table-columns dock-icon icon-notion"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-item" data-tooltip="GitHub & Markdown • Static CMS">
+              <i class="fa-brands fa-github dock-icon icon-gh"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+            <div class="dock-item" data-tooltip="Bilingual MC & Public Speaking">
+              <i class="fa-solid fa-microphone-lines dock-icon icon-mc"></i>
+              <span class="dock-active-dot"></span>
+            </div>
+          </div>
+          <div class="dock-tooltip-bubble" id="dock-tooltip-bubble">Chạm công cụ để xem</div>
+        </div>
+
         <div class="tool-marquee-band v2-anim" aria-label="Bộ công cụ chuyên môn">
           <div class="tool-marquee-track">
             <span class="marquee-tool-chip"><i class="fa-solid fa-robot"></i> Google Antigravity AI</span>
