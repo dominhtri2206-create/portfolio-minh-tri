@@ -19,6 +19,9 @@
   <meta name="twitter:title" content="Giải Thưởng & Chứng Chỉ Quốc Tế | Đỗ Minh Trí — Portfolio 2026">
   <meta name="twitter:description" content="Tổng hợp thành tích khởi nghiệp cấp quốc gia, giải thưởng học thuật và các chứng chỉ Microsoft, Google xác thực của Đỗ Minh Trí.">
   <meta name="twitter:image" content="https://dominhtri.id.vn/images/og-preview.png">
+  <meta name="theme-color" content="#F5F5F7">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="avatar.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="favicon.svg">
 
@@ -310,6 +313,11 @@
       <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
       <div class="lightbox-img-wrapper">
         <img id="lightbox-img" src="" alt="Ảnh minh chứng" class="lightbox-img">
+        <div class="lightbox-zoom-bar">
+          <button type="button" class="lightbox-zoom-btn" onclick="adjustLightboxZoom(-0.4)" aria-label="Thu nhỏ"><i class="fa-solid fa-minus"></i></button>
+          <span class="lightbox-zoom-lvl" id="lightbox-zoom-lvl" onclick="resetLightboxZoom()" style="cursor:pointer;" title="Đặt lại 100%">100%</span>
+          <button type="button" class="lightbox-zoom-btn" onclick="adjustLightboxZoom(0.4)" aria-label="Phóng to"><i class="fa-solid fa-plus"></i></button>
+        </div>
       </div>
       <div class="lightbox-footer">
         <div class="lightbox-info">

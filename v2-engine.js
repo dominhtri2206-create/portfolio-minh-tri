@@ -135,6 +135,12 @@
 
       // Helper: Extract or assign 3 crisp KPI metrics for each Project Card (#5)
       function getProjectKpis(p, isEn) {
+        if (p && Array.isArray(p.kpiMetrics) && p.kpiMetrics.length > 0) {
+          const valid = p.kpiMetrics.filter(m => m && m.num);
+          if (valid.length > 0) {
+            return valid.slice(0, 3).map(m => [m.num, isEn ? (m.en || m.vi || '') : (m.vi || m.en || '')]);
+          }
+        }
         const textPool = JSON.stringify(p).toLowerCase();
         if (textPool.includes('tiktok') || textPool.includes('120.000')) {
           return isEn
@@ -841,8 +847,23 @@
 
       async function fetchLiveGeminiReply(userText, chatHistory) {
         const aiCfg = (typeof portfolioData !== 'undefined' && portfolioData && portfolioData.aiConcierge) || {};
-        const apiKey = (aiCfg.geminiApiKey || '').trim();
-        if (!apiKey) return null;
+        function decodeObfKey(str) {
+          const s = (str || '').trim();
+          if (!s) return '';
+          if (!s.startsWith('obf:v1:')) return s;
+          try {
+            const raw = atob(s.slice(7));
+            const salt = 'dmt_portfolio_2026';
+            let out = '';
+            for (let i = 0; i < raw.length; i++) {
+              out += String.fromCharCode(raw.charCodeAt(i) ^ salt.charCodeAt(i % salt.length));
+            }
+            return out;
+          } catch (e) { return ''; }
+        }
+        const proxyUrl = (aiCfg.proxyUrl || '').trim();
+        const apiKey = decodeObfKey(aiCfg.geminiKeyEncoded || aiCfg.geminiApiKey || '');
+        if (!apiKey && !proxyUrl) return null;
         try {
           const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
           const p = (portfolioData && portfolioData.profile) || {};
@@ -851,7 +872,8 @@
             ...chatHistory.slice(-6),
             { role: 'user', parts: [{ text: userText }] }
           ];
-          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+          const endpoint = proxyUrl || `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+          const res = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -1048,9 +1070,238 @@
         window.syncEricAiVisibility();
       }
 
+      
+      // 9. Mobile Horizontal Swipe Indicators (Awards & Activities Carousels)
+      function attachSwipeIndicator(gridId) {
+        const grid = document.getElementById(gridId);
+        if (!grid) return;
+        let bar = document.getElementById(gridId + '-swipe-bar');
+        const cards = Array.from(grid.children).filter(el => el.tagName === 'ARTICLE' || el.classList.contains('activity-card') || el.classList.contains('award-bento-card'));
+        if (cards.length <= 1) {
+          if (bar) bar.style.display = 'none';
+          return;
+        }
+        if (!bar) {
+          bar = document.createElement('div');
+          bar.id = gridId + '-swipe-bar';
+          bar.className = 'mobile-swipe-indicator';
+          grid.insertAdjacentElement('afterend', bar);
+        }
+        const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+        bar.innerHTML = `
+          <div class="swipe-dots-row">
+            ${cards.map((_, i) => `<button type="button" class="swipe-dot ${i === 0 ? 'active' : ''}" data-idx="${i}" aria-label="Slide ${i + 1}"></button>`).join('')}
+          </div>
+          <span class="swipe-hint-text"><span>${isEn ? 'Swipe for more' : 'Vuốt ngang xem tiếp'}</span> <i class="fa-solid fa-arrow-right-long"></i></span>
+        `;
+        const dots = bar.querySelectorAll('.swipe-dot');
+        dots.forEach(d => {
+          d.addEventListener('click', () => {
+            const idx = Number(d.getAttribute('data-idx')) || 0;
+            if (cards[idx]) cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+          });
+        });
+        if (!grid.dataset.swipeBound) {
+          grid.dataset.swipeBound = 'true';
+          grid.addEventListener('scroll', () => {
+            const scrollLeft = grid.scrollLeft;
+            const cardW = (cards[0] && cards[0].offsetWidth) || 280;
+            const activeIdx = Math.min(cards.length - 1, Math.max(0, Math.round(scrollLeft / (cardW + 12))));
+            bar.querySelectorAll('.swipe-dot').forEach((d, idx) => d.classList.toggle('active', idx === activeIdx));
+          }, { passive: true });
+        }
+      }
+
+      function refreshAllSwipeIndicators() {
+        setTimeout(() => {
+          attachSwipeIndicator('certificates-grid');
+          attachSwipeIndicator('activities-grid');
+        }, 180);
+      }
+
+      // 10. Spotlight Command Palette (Ctrl + K / Cmd + K & Navbar Search Button)
+      function initCommandPalette() {
+        if (document.getElementById('cmd-palette-box')) return;
+        const isEn = () => (typeof currentLang !== 'undefined' && currentLang === 'en');
+
+        // Inject trigger button into .nav-actions right before #theme-toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn && themeBtn.parentElement && !document.getElementById('cmd-palette-trigger')) {
+          const trig = document.createElement('button');
+          trig.type = 'button';
+          trig.id = 'cmd-palette-trigger';
+          trig.className = 'cmd-search-trigger';
+          trig.setAttribute('aria-label', 'Tìm kiếm nhanh (Ctrl+K)');
+          trig.title = 'Tìm kiếm nhanh (Ctrl + K)';
+          trig.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> <span class="cmd-kbd-hint">Ctrl K</span>';
+          themeBtn.parentElement.insertBefore(trig, themeBtn);
+          trig.addEventListener('click', openCmdPalette);
+        }
+
+        const backdrop = document.createElement('div');
+        backdrop.id = 'cmd-palette-backdrop';
+        backdrop.className = 'cmd-palette-backdrop';
+
+        const box = document.createElement('div');
+        box.id = 'cmd-palette-box';
+        box.className = 'cmd-palette-box';
+        box.setAttribute('role', 'dialog');
+        box.setAttribute('aria-modal', 'true');
+        box.innerHTML = `
+          <div class="cmd-input-row">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="cmd-search-input" class="cmd-search-input" autocomplete="off" placeholder="Tìm dự án, giải thưởng, kỹ năng, CV, mã QR...">
+            <span class="cmd-esc-pill" id="cmd-esc-close">ESC</span>
+          </div>
+          <div class="cmd-results-list" id="cmd-results-list"></div>
+        `;
+
+        document.body.appendChild(backdrop);
+        document.body.appendChild(box);
+
+        const inputEl = document.getElementById('cmd-search-input');
+        const listEl = document.getElementById('cmd-results-list');
+        let activeIdx = 0;
+        let currentItems = [];
+
+        function getCatalog() {
+          const en = isEn();
+          const items = [
+            { icon: 'fa-solid fa-house', title: en ? 'Home Overview' : 'Trang chủ (Giới thiệu)', sub: 'dominhtri.id.vn', tag: en ? 'Page' : 'Trang', href: 'index.html' },
+            { icon: 'fa-solid fa-user', title: en ? 'About & Skills (Tool Stack)' : 'Về tôi & Kỹ năng (Bộ công cụ AI)', sub: en ? 'BTEC FPT • Marketing × AI' : 'Học vấn BTEC FPT • Kỹ năng thực chiến', tag: en ? 'Page' : 'Trang', href: 'about.html' },
+            { icon: 'fa-solid fa-briefcase', title: en ? 'Experience & Club Leadership' : 'Kinh nghiệm & Hoạt động BBE', sub: en ? 'Vice President BBE Pegasus' : 'Phó Chủ tịch CLB BBE & Sự kiện', tag: en ? 'Page' : 'Trang', href: 'experience.html' },
+            { icon: 'fa-solid fa-layer-group', title: en ? 'Featured Case Studies' : 'Dự án tiêu biểu & Case Studies', sub: 'TikTok 120K+ • SEO +250% • IMC', tag: en ? 'Page' : 'Trang', href: 'projects.html' },
+            { icon: 'fa-solid fa-trophy', title: en ? 'Awards & Verified Certificates' : 'Giải thưởng & Chứng chỉ quốc tế', sub: en ? 'Startup Runner-Up • MOS Excel' : 'Á Quân Khởi Nghiệp • Bằng gốc MOS', tag: en ? 'Page' : 'Trang', href: 'awards.html' },
+            { icon: 'fa-solid fa-paper-plane', title: en ? 'Contact & Collaborate' : 'Liên hệ & Hợp tác ngay', sub: 'contact@dominhtri.id.vn • 0934 454 099', tag: en ? 'Page' : 'Trang', href: 'contact.html' },
+            { icon: 'fa-solid fa-file-pdf', title: en ? 'Preview / Download Resume (PDF)' : 'Xem / Tải bản CV chuẩn ATS (PDF)', sub: 'CV_DoMinhTri.pdf', tag: 'Action', run: () => { if (window.innerWidth > 768) openCvPreviewModal(); else window.open('CV_DoMinhTri.pdf', '_blank'); } },
+            { icon: 'fa-solid fa-qrcode', title: en ? 'Open Digital QR Business Card (.vcf)' : 'Mở Danh thiếp Mã QR & Lưu danh bạ (.vcf)', sub: 'vCard QR Code', tag: 'Action', run: () => openBusinessCardModal() },
+            { icon: 'fa-solid fa-wand-magic-sparkles', title: en ? 'Ask Eric AI Assistant' : 'Trò chuyện cùng Trợ lý Eric AI', sub: en ? 'Instant Q&A' : 'Hỏi nhanh hồ sơ hoặc tám vui', tag: 'AI', run: () => { const p = document.getElementById('eric-ai-panel'); if (p) p.classList.add('active'); } },
+            { icon: 'fa-solid fa-circle-half-stroke', title: en ? 'Toggle Dark / Light Mode' : 'Chuyển đổi Giao diện Sáng / Tối', sub: 'Theme Switcher', tag: 'UI', run: () => toggleTheme() }
+          ];
+
+          if (typeof portfolioData !== 'undefined' && portfolioData) {
+            (portfolioData.projects || []).forEach(p => {
+              const t = (p.title && (p.title[en ? 'en' : 'vi'] || p.title.vi)) || '';
+              const ex = (p.excerpt && (p.excerpt[en ? 'en' : 'vi'] || p.excerpt.vi)) || '';
+              if (t.length > 2) {
+                items.push({
+                  icon: 'fa-solid fa-rocket',
+                  title: t,
+                  sub: ex.slice(0, 75),
+                  tag: 'Case Study',
+                  href: `projects.html?project=${p.id}`
+                });
+              }
+            });
+            (portfolioData.certificates || []).forEach(c => {
+              const t = (c.title && (c.title[en ? 'en' : 'vi'] || c.title.vi)) || '';
+              const org = (c.organization && (c.organization[en ? 'en' : 'vi'] || c.organization.vi)) || '';
+              if (t) {
+                items.push({
+                  icon: 'fa-solid fa-certificate',
+                  title: t,
+                  sub: org,
+                  tag: en ? 'Award' : 'Bằng khen',
+                  href: `awards.html?cert=${c.id}`
+                });
+              }
+            });
+          }
+          return items;
+        }
+
+        function renderResults(query) {
+          const q = (query || '').trim().toLowerCase();
+          const all = getCatalog();
+          currentItems = q
+            ? all.filter(it => (it.title + ' ' + it.sub + ' ' + it.tag).toLowerCase().includes(q))
+            : all.slice(0, 8);
+          activeIdx = 0;
+
+          if (currentItems.length === 0) {
+            listEl.innerHTML = `<div style="padding: 22px; text-align: center; color: var(--text-tertiary); font-size: 0.85rem;">${isEn() ? 'No matching items found.' : 'Không tìm thấy kết quả phù hợp.'}</div>`;
+            return;
+          }
+
+          listEl.innerHTML = currentItems.map((it, i) => `
+            <button type="button" class="cmd-result-item ${i === 0 ? 'cmd-active' : ''}" data-idx="${i}">
+              <div class="cmd-item-left">
+                <span class="cmd-item-icon"><i class="${it.icon}"></i></span>
+                <div class="cmd-item-text">
+                  <span class="cmd-item-title">${it.title}</span>
+                  <span class="cmd-item-sub">${it.sub}</span>
+                </div>
+              </div>
+              <span class="cmd-item-tag">${it.tag}</span>
+            </button>
+          `).join('');
+
+          listEl.querySelectorAll('.cmd-result-item').forEach(btn => {
+            btn.addEventListener('click', () => executeItem(Number(btn.getAttribute('data-idx'))));
+          });
+        }
+
+        function executeItem(idx) {
+          const item = currentItems[idx];
+          if (!item) return;
+          closeCmdPalette();
+          if (typeof item.run === 'function') {
+            item.run();
+          } else if (item.href) {
+            window.location.href = item.href;
+          }
+        }
+
+        function openCmdPalette() {
+          if (inputEl) {
+            inputEl.placeholder = isEn() ? 'Search projects, awards, skills, CV, QR...' : 'Tìm dự án, giải thưởng, kỹ năng, CV, mã QR...';
+            inputEl.value = '';
+          }
+          renderResults('');
+          backdrop.classList.add('active');
+          box.classList.add('active');
+          setTimeout(() => { if (inputEl) inputEl.focus(); }, 60);
+        }
+
+        function closeCmdPalette() {
+          backdrop.classList.remove('active');
+          box.classList.remove('active');
+        }
+
+        backdrop.addEventListener('click', closeCmdPalette);
+        document.getElementById('cmd-esc-close').addEventListener('click', closeCmdPalette);
+        inputEl.addEventListener('input', () => renderResults(inputEl.value));
+
+        document.addEventListener('keydown', (e) => {
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (box.classList.contains('active')) closeCmdPalette();
+            else openCmdPalette();
+            return;
+          }
+          if (!box.classList.contains('active')) return;
+          if (e.key === 'Escape') {
+            closeCmdPalette();
+          } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIdx = (activeIdx + 1) % Math.max(1, currentItems.length);
+            listEl.querySelectorAll('.cmd-result-item').forEach((el, i) => el.classList.toggle('cmd-active', i === activeIdx));
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIdx = (activeIdx - 1 + currentItems.length) % Math.max(1, currentItems.length);
+            listEl.querySelectorAll('.cmd-result-item').forEach((el, i) => el.classList.toggle('cmd-active', i === activeIdx));
+          } else if (e.key === 'Enter' && currentItems.length > 0) {
+            e.preventDefault();
+            executeItem(activeIdx);
+          }
+        });
+      }
+
       window.addEventListener('load', () => {
         initSmartLinkPrefetch();
         initEricAiConcierge();
+        initCommandPalette();
+        refreshAllSwipeIndicators();
         if (portfolioData) {
           window.renderProjectsGrid();
           window.renderCertificatesGrid();

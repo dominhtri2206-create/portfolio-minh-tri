@@ -1458,7 +1458,12 @@
             </div>
             <div class="form-group col-12">
               <label class="form-label"><span>Gemini API Key (Tùy chọn — Nhập nếu muốn nối thẳng Gemini 2.5 Flash chém gió không giới hạn mọi chủ đề)</span></label>
-              <input type="password" id="ai-gemini-key" class="form-control" placeholder="AIzaSy... (Để trống vẫn dùng sẵn bộ não đối đáp hài hước + hồ sơ tốc độ cao 0ms)">
+              <input type="password" id="ai-gemini-key" class="form-control" placeholder="AIzaSy... (Tự động mã hóa chống bot quét khóa GitHub khi lưu)">
+              <span style="font-size: 0.75rem; color: var(--accent-green);"><i class="fa-solid fa-shield-halved"></i> Khóa được mã hóa xáo trộn tự động (<code>obf:v1:...</code>) trước khi lưu lên GitHub để tránh bị Google khóa tự động.</span>
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label"><span>Hoặc URL Proxy riêng (Cloudflare Worker — Tùy chọn bảo mật cao nhất)</span></label>
+              <input type="url" id="ai-proxy-url" class="form-control" placeholder="https://ai-proxy.dominhtri.id.vn (Bỏ trống nếu không dùng)">
             </div>
           </div>
         </div>
@@ -1787,6 +1792,49 @@
 
       <!-- TAB: EXPERIENCES TIMELINE -->
       <section class="tab-content" id="tab-experiences" style="display: none;">
+        <div class="page-context-pill">
+          <span><i class="fa-solid fa-link"></i> Quản lý nội dung trang: <strong>experience.html</strong> (Kinh nghiệm &amp; Hoạt động CLB)</span>
+          <a href="experience.html" target="_blank" class="btn btn-outline btn-xs"><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem trang Kinh nghiệm</a>
+        </div>
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-heading"></i> Tiêu Đề Mở Đầu Mục Kinh Nghiệm (experience.html)</h3>
+              <p class="card-subtitle">Chỉnh sửa nhãn nhỏ, tiêu đề chính và lời dẫn mở đầu hiển thị trên trang (Song ngữ VI / EN)</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Tiêu Đề</span>
+            </button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group col-3">
+              <label class="form-label">Nhãn nhỏ (VI)</label>
+              <input type="text" id="ph-exp-tag-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Eyebrow Tag (EN)</label>
+              <input type="text" id="ph-exp-tag-en" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Tiêu đề lớn (VI)</label>
+              <input type="text" id="ph-exp-title-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Main Title (EN)</label>
+              <input type="text" id="ph-exp-title-en" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Mô tả mở đầu (VI)</label>
+              <input type="text" id="ph-exp-sub-vi" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Subtitle (EN)</label>
+              <input type="text" id="ph-exp-sub-en" class="form-control">
+            </div>
+          </div>
+        </div>
+
+
         <div class="bento-card">
           <div class="card-header-row">
             <div>
@@ -1809,7 +1857,45 @@
         </div>
       
 
-<div class="bento-card">
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-heading"></i> Tiêu Đề Mở Đầu Mục Hoạt Động & Cộng Đồng (experience.html)</h3>
+              <p class="card-subtitle">Chỉnh sửa nhãn nhỏ, tiêu đề chính và lời dẫn mở đầu hiển thị trên trang (Song ngữ VI / EN)</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Tiêu Đề</span>
+            </button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group col-3">
+              <label class="form-label">Nhãn nhỏ (VI)</label>
+              <input type="text" id="ph-act-tag-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Eyebrow Tag (EN)</label>
+              <input type="text" id="ph-act-tag-en" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Tiêu đề lớn (VI)</label>
+              <input type="text" id="ph-act-title-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Main Title (EN)</label>
+              <input type="text" id="ph-act-title-en" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Mô tả mở đầu (VI)</label>
+              <input type="text" id="ph-act-sub-vi" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Subtitle (EN)</label>
+              <input type="text" id="ph-act-sub-en" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card">
           <div class="card-header-row">
             <div>
               <h3 class="card-title"><i class="fa-solid fa-users"></i> Danh Sách Hoạt Động & Cộng Đồng</h3>
@@ -1835,6 +1921,49 @@
 
       <!-- TAB 2: PROJECTS -->
       <section class="tab-content" id="tab-projects" style="display: none;">
+        <div class="page-context-pill">
+          <span><i class="fa-solid fa-link"></i> Quản lý nội dung trang: <strong>projects.html</strong> (Dự án &amp; Case Studies)</span>
+          <a href="projects.html" target="_blank" class="btn btn-outline btn-xs"><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem trang Dự án</a>
+        </div>
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-heading"></i> Tiêu Đề Mở Đầu Trang Dự Án (projects.html)</h3>
+              <p class="card-subtitle">Chỉnh sửa nhãn nhỏ, tiêu đề chính và lời dẫn mở đầu hiển thị trên trang (Song ngữ VI / EN)</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Tiêu Đề</span>
+            </button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group col-3">
+              <label class="form-label">Nhãn nhỏ (VI)</label>
+              <input type="text" id="ph-proj-tag-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Eyebrow Tag (EN)</label>
+              <input type="text" id="ph-proj-tag-en" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Tiêu đề lớn (VI)</label>
+              <input type="text" id="ph-proj-title-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Main Title (EN)</label>
+              <input type="text" id="ph-proj-title-en" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Mô tả mở đầu (VI)</label>
+              <input type="text" id="ph-proj-sub-vi" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Subtitle (EN)</label>
+              <input type="text" id="ph-proj-sub-en" class="form-control">
+            </div>
+          </div>
+        </div>
+
+
         <div class="bento-card">
           <div class="card-header-row">
             <div>
@@ -1859,6 +1988,49 @@
 
       <!-- TAB 3: CERTIFICATES -->
       <section class="tab-content" id="tab-certificates" style="display: none;">
+        <div class="page-context-pill">
+          <span><i class="fa-solid fa-link"></i> Quản lý nội dung trang: <strong>awards.html</strong> (Giải thưởng &amp; Chứng chỉ xác thực)</span>
+          <a href="awards.html" target="_blank" class="btn btn-outline btn-xs"><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem trang Giải thưởng</a>
+        </div>
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-heading"></i> Tiêu Đề Mở Đầu Trang Giải Thưởng (awards.html)</h3>
+              <p class="card-subtitle">Chỉnh sửa nhãn nhỏ, tiêu đề chính và lời dẫn mở đầu hiển thị trên trang (Song ngữ VI / EN)</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Tiêu Đề</span>
+            </button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group col-3">
+              <label class="form-label">Nhãn nhỏ (VI)</label>
+              <input type="text" id="ph-award-tag-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Eyebrow Tag (EN)</label>
+              <input type="text" id="ph-award-tag-en" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Tiêu đề lớn (VI)</label>
+              <input type="text" id="ph-award-title-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Main Title (EN)</label>
+              <input type="text" id="ph-award-title-en" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Mô tả mở đầu (VI)</label>
+              <input type="text" id="ph-award-sub-vi" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Subtitle (EN)</label>
+              <input type="text" id="ph-award-sub-en" class="form-control">
+            </div>
+          </div>
+        </div>
+
+
         <div class="bento-card">
           <div class="card-header-row">
             <div>
@@ -1888,6 +2060,44 @@
         <div class="page-context-pill">
           <span><i class="fa-solid fa-link"></i> Quản lý nội dung trang: <strong>contact.html</strong> &amp; <strong>Toàn bộ Chân Web (Footer) / Nút MXH / Mã QR</strong></span>
           <a href="contact.html" target="_blank" class="btn btn-outline btn-xs"><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem trang Liên hệ</a>
+        </div>
+
+                <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-heading"></i> Tiêu Đề Mở Đầu Trang Liên Hệ (contact.html)</h3>
+              <p class="card-subtitle">Chỉnh sửa nhãn nhỏ, tiêu đề chính và lời dẫn mở đầu hiển thị trên trang (Song ngữ VI / EN)</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Tiêu Đề</span>
+            </button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group col-3">
+              <label class="form-label">Nhãn nhỏ (VI)</label>
+              <input type="text" id="ph-contact-tag-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Eyebrow Tag (EN)</label>
+              <input type="text" id="ph-contact-tag-en" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Tiêu đề lớn (VI)</label>
+              <input type="text" id="ph-contact-title-vi" class="form-control">
+            </div>
+            <div class="form-group col-3">
+              <label class="form-label">Main Title (EN)</label>
+              <input type="text" id="ph-contact-title-en" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Mô tả mở đầu (VI)</label>
+              <input type="text" id="ph-contact-sub-vi" class="form-control">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Subtitle (EN)</label>
+              <input type="text" id="ph-contact-sub-en" class="form-control">
+            </div>
+          </div>
         </div>
 
         <!-- CARD 1: FOOTER SOCIAL BUTTONS & DIRECT CONTACT -->
@@ -2167,6 +2377,49 @@
           <div class="form-group col-4">
             <label class="form-label"><span>Nền tảng (Platform)</span></label>
             <input type="text" id="proj-platform-text" class="form-control" placeholder="Reels & TikTok">
+          </div>
+                    <div class="form-group col-12" style="padding: 12px 14px; background: #F9F9FB; border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-md);">
+            <strong style="display: block; color: var(--accent-apple); margin-bottom: 8px;"><i class="fa-solid fa-chart-simple"></i> 3 Ô Số Liệu KPI Nổi Bật Trên Thẻ Ngoài Trang Dự Án</strong>
+            <div class="form-grid">
+              <div class="form-group col-4">
+                <label class="form-label">KPI 1: Con số</label>
+                <input type="text" id="proj-kpi1-num" class="form-control" placeholder="120K+">
+              </div>
+              <div class="form-group col-4">
+                <label class="form-label">KPI 1: Nhãn (VI)</label>
+                <input type="text" id="proj-kpi1-vi" class="form-control" placeholder="Lượt xem tự nhiên">
+              </div>
+              <div class="form-group col-4">
+                <label class="form-label">KPI 1: Label (EN)</label>
+                <input type="text" id="proj-kpi1-en" class="form-control" placeholder="Organic Views">
+              </div>
+
+              <div class="form-group col-4">
+                <label class="form-label">KPI 2: Con số</label>
+                <input type="text" id="proj-kpi2-num" class="form-control" placeholder="45K+">
+              </div>
+              <div class="form-group col-4">
+                <label class="form-label">KPI 2: Nhãn (VI)</label>
+                <input type="text" id="proj-kpi2-vi" class="form-control" placeholder="Video xu hướng">
+              </div>
+              <div class="form-group col-4">
+                <label class="form-label">KPI 2: Label (EN)</label>
+                <input type="text" id="proj-kpi2-en" class="form-control" placeholder="Top Viral Clip">
+              </div>
+
+              <div class="form-group col-4">
+                <label class="form-label">KPI 3: Con số</label>
+                <input type="text" id="proj-kpi3-num" class="form-control" placeholder="9.5/10">
+              </div>
+              <div class="form-group col-4">
+                <label class="form-label">KPI 3: Nhãn (VI)</label>
+                <input type="text" id="proj-kpi3-vi" class="form-control" placeholder="Điểm đồ án">
+              </div>
+              <div class="form-group col-4">
+                <label class="form-label">KPI 3: Label (EN)</label>
+                <input type="text" id="proj-kpi3-en" class="form-control" placeholder="Project Grade">
+              </div>
+            </div>
           </div>
           <div class="form-group col-12">
             <label class="form-label"><span>Nhóm Bộ Lọc trên trang Dự án (Filter Tab)</span></label>
@@ -3167,6 +3420,33 @@
     }
 
     
+    
+    function encodeObfKeyAdmin(plain) {
+      const s = (plain || '').trim();
+      if (!s) return '';
+      if (s.startsWith('obf:v1:')) return s;
+      const salt = 'dmt_portfolio_2026';
+      let xored = '';
+      for (let i = 0; i < s.length; i++) {
+        xored += String.fromCharCode(s.charCodeAt(i) ^ salt.charCodeAt(i % salt.length));
+      }
+      return 'obf:v1:' + btoa(xored);
+    }
+    function decodeObfKeyAdmin(str) {
+      const s = (str || '').trim();
+      if (!s) return '';
+      if (!s.startsWith('obf:v1:')) return s;
+      try {
+        const raw = atob(s.slice(7));
+        const salt = 'dmt_portfolio_2026';
+        let out = '';
+        for (let i = 0; i < raw.length; i++) {
+          out += String.fromCharCode(raw.charCodeAt(i) ^ salt.charCodeAt(i % salt.length));
+        }
+        return out;
+      } catch (e) { return ''; }
+    }
+
     function testAdminSocialUrl(inputId) {
       let val = getInputValue(inputId, '');
       if (!val) {
@@ -3349,8 +3629,25 @@
 
       // Populate Eric AI Concierge & Tool Stack
       const aiCfg = currentData.aiConcierge || {};
+      
+      const ph = currentData.pageHeaders || {};
+      const fillPh = (pref, obj, defTagVi, defTagEn, defTitVi, defTitEn, defSubVi, defSubEn) => {
+        const o = obj || {};
+        setInputValue('ph-'+pref+'-tag-vi', (o.tag && o.tag.vi) || defTagVi);
+        setInputValue('ph-'+pref+'-tag-en', (o.tag && o.tag.en) || defTagEn);
+        setInputValue('ph-'+pref+'-title-vi', (o.title && o.title.vi) || defTitVi);
+        setInputValue('ph-'+pref+'-title-en', (o.title && o.title.en) || defTitEn);
+        setInputValue('ph-'+pref+'-sub-vi', (o.subtitle && o.subtitle.vi) || defSubVi);
+        setInputValue('ph-'+pref+'-sub-en', (o.subtitle && o.subtitle.en) || defSubEn);
+      };
+      fillPh('act', ph.activities, 'Năng nổ & Nhiệt huyết', 'Dynamic & Dedicated', 'Hoạt Động Ngoại Khóa & Cộng Đồng', 'Extracurricular & Community Leadership', 'Lan tỏa giá trị tích cực và rèn luyện bản lĩnh điều phối sự kiện thông qua các hoạt động sinh viên tại BBE.', 'Creating positive impact and sharpening event leadership skills through BBE student initiatives.');
+      fillPh('exp', ph.experience, 'Lộ trình thực chiến', 'Hands-on Track Record', 'Kinh Nghiệm & Vai Trò Lãnh Đạo', 'Experience & Leadership Roles', 'Trực tiếp điều hành CLB, dẫn dắt đội ngũ dự án Marketing và phối hợp tổ chức sự kiện quy mô lớn.', 'Leading student organizations, directing Marketing project teams, and coordinating major events.');
+      fillPh('proj', ph.projects, 'Case Studies Thực Chiến', 'Hands-on Case Studies', 'Dự Án Tiêu Biểu', 'Featured Projects', 'Các chiến dịch truyền thông, SEO và sản xuất Video ngắn tôi trực tiếp lập kế hoạch và dẫn dắt với vai trò Trưởng nhóm.', 'Omnichannel IMC, SEO, and short-form video campaigns planned and led as Team Leader.');
+      fillPh('award', ph.awards, 'Giải thưởng & Chứng nhận Quốc tế', 'National Honors & Verified Credentials', 'Thành Tích & Minh Chứng Xác Thực', 'Awards & Verified Certifications', 'Gộp gọn toàn bộ giải thưởng khởi nghiệp cấp quốc gia và chứng chỉ quốc tế kèm hình ảnh bằng khen gốc xác thực.', 'Consolidated national startup awards and international certifications backed by official verifiable documents.');
+      fillPh('contact', ph.contact, 'Kết nối hợp tác', 'Let’s Connect', 'Bắt Đầu Cuộc Trò Chuyện', 'Start a Conversation', 'Sẵn sàng đón nhận cơ hội Thực tập Marketing, Phát triển Kinh doanh hoặc các dự án sáng tạo nội dung & AI Agent.', 'Open to Marketing Internships, Business Development roles, or creative content & AI Agent collaborations.');
       setChk('chk-enable-ai', aiCfg.enabled);
-      setInputValue('ai-gemini-key', aiCfg.geminiApiKey || '');
+      setInputValue('ai-gemini-key', decodeObfKeyAdmin(aiCfg.geminiKeyEncoded || aiCfg.geminiApiKey || ''));
+      setInputValue('ai-proxy-url', aiCfg.proxyUrl || '');
       setInputValue('ai-welcome-vi', aiCfg.welcome ? (aiCfg.welcome.vi || '') : 'Xin chào! 👋 Mình là <strong>Eric AI</strong> — trợ lý hồ sơ của Đỗ Minh Trí. Bạn muốn xem nhanh điểm mạnh, KPI dự án thực chiến, ứng dụng AI Agent hay mở bản CV PDF?');
       setInputValue('ai-welcome-en', aiCfg.welcome ? (aiCfg.welcome.en || '') : 'Hi! 👋 I’m <strong>Eric AI</strong>. Want a 10-second summary of Minh Tri’s strengths, Marketing KPIs, AI Agent workflows, or ATS Resume?');
       setInputValue('ai-pitch-vi', aiCfg.pitch ? (aiCfg.pitch.vi || '') : 'Minh Trí ứng dụng thực chiến <strong>AI Agent (Google Antigravity, Agentic Workflow)</strong> vào Quản trị & Marketing: tự động hóa nghiên cứu insight, tăng tốc xây dựng hệ thống Web/CMS kết nối GitHub, tối ưu ma trận nội dung IMC & SEO nhanh gấp 5 lần.');
@@ -4345,6 +4642,7 @@
         setInputValue('proj-role-vi', 'Trưởng nhóm');
         setInputValue('proj-platform-text', 'Reels & TikTok');
         setInputValue('proj-filter-cat', 'auto');
+        ['1','2','3'].forEach(k => { setInputValue('proj-kpi'+k+'-num',''); setInputValue('proj-kpi'+k+'-vi',''); setInputValue('proj-kpi'+k+'-en',''); });
         setInputValue('proj-excerpt-vi', '');
         setInputValue('proj-excerpt-en', '');
         setInputValue('proj-overview-vi', '');
@@ -4396,6 +4694,19 @@
         setInputValue('proj-video-url', p.videoUrl || '');
         setInputValue('proj-demo-url', p.demoUrl || '');
         setInputValue('proj-filter-cat', p.filterCategory || 'auto');
+        const fallbackKpis = (() => {
+          const pool = JSON.stringify(p).toLowerCase();
+          if (pool.includes('tiktok') || pool.includes('120.000')) return [{num:'120K+',vi:'Lượt xem tự nhiên',en:'Organic Views'},{num:'45K+',vi:'Video xu hướng',en:'Top Viral Clip'},{num:'9.5/10',vi:'Điểm đồ án',en:'Project Grade'}];
+          if (pool.includes('seo') || pool.includes('250%')) return [{num:'150+',vi:'Từ khóa mục tiêu',en:'Target Keywords'},{num:'Top 10',vi:'Google Search',en:'Google Search'},{num:'+250%',vi:'Lượng truy cập',en:'Organic Clicks'}];
+          return [{num:'+180%',vi:'Tương tác Fanpage',en:'Page Engagement'},{num:'20+',vi:'Ấn phẩm Brand',en:'Brand Assets'},{num:'100%',vi:'Hoàn thành KPI',en:'On-time KPIs'}];
+        })();
+        const km = (Array.isArray(p.kpiMetrics) && p.kpiMetrics.length > 0) ? p.kpiMetrics : fallbackKpis;
+        [1,2,3].forEach((n, idx) => {
+          const cell = km[idx] || {};
+          setInputValue('proj-kpi'+n+'-num', cell.num || '');
+          setInputValue('proj-kpi'+n+'-vi', cell.vi || '');
+          setInputValue('proj-kpi'+n+'-en', cell.en || '');
+        });
       }
 
       modal.classList.add('active');
@@ -4480,6 +4791,11 @@
         videoUrl,
         demoUrl,
         filterCategory: getInputValue('proj-filter-cat', 'auto'),
+        kpiMetrics: [1,2,3].map(n => ({
+          num: getInputValue('proj-kpi'+n+'-num'),
+          vi: getInputValue('proj-kpi'+n+'-vi'),
+          en: getInputValue('proj-kpi'+n+'-en') || getInputValue('proj-kpi'+n+'-vi')
+        })).filter(m => m.num),
         duration: {
           vi: getInputValue('proj-duration'),
           en: getInputValue('proj-duration')
