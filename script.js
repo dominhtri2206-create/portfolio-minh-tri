@@ -1811,6 +1811,8 @@ function handleHeroLinkedInClick(e) {
   const contactEl = document.getElementById('contact');
   if (contactEl) {
     contactEl.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    window.location.href = 'contact.html';
   }
   showToast(currentLang === 'en'
     ? 'Connect directly via Email or Zalo below!'
@@ -2352,6 +2354,8 @@ function initScrollSpy() {
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
   if (sections.length === 0) return;
+  const hasPageLinks = Array.from(navLinks).some(link => (link.getAttribute('href') || '').includes('.html'));
+  if (hasPageLinks) return;
 
   const onScroll = () => {
     const scrollPos = window.scrollY + 120;
