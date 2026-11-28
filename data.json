@@ -29,6 +29,7 @@
     "roles": [
       {
         "icon": "fa-solid fa-chart-line",
+        "href": "projects.html",
         "text": {
           "vi": "Business & Digital Marketing",
           "en": "Business & Digital Marketing"
@@ -36,6 +37,7 @@
       },
       {
         "icon": "fa-solid fa-robot",
+        "href": "about.html",
         "text": {
           "vi": "Ứng dụng AI Agent",
           "en": "AI Agent Solutions"
@@ -43,6 +45,7 @@
       },
       {
         "icon": "fa-solid fa-microphone-lines",
+        "href": "about.html",
         "text": {
           "vi": "MC & Song ngữ Anh - Trung",
           "en": "Public Speaker & EN - ZH"
@@ -70,7 +73,7 @@
       "linkedin": "https://www.linkedin.com/in/dominhtri2206",
       "address": {
         "vi": "Đà Nẵng, Việt Nam",
-        "en": "Danang, Vietnam"
+        "en": "Đà Nẵng, Việt Nam"
       },
       "reference": {
         "name": "Cô Nguyễn Thị Thanh Tâm",
@@ -84,9 +87,100 @@
           "en": "Detailed referee contact information will be provided upon formal request."
         }
       },
-      "facebook": "https://www.facebook.com/dominhtri2206",
+      "facebook": "https://www.facebook.com/EricDo.102",
       "github": "https://github.com/dominhtri2206-create",
-      "website": "https://dominhtri.id.vn/"
+      "website": "https://dominhtri.id.vn/",
+      "socialVisibility": {
+        "email": true,
+        "zalo": true,
+        "facebook": true,
+        "linkedin": true,
+        "github": true,
+        "qr": true
+      }
+    },
+    "reference": {
+      "name": "Cô Nguyễn Thị Thanh Tâm",
+      "role": {
+        "vi": "Giảng viên bộ môn Digital Marketing",
+        "en": "Digital Marketing Lecturer"
+      },
+      "phone": "Thông tin người tham chiếu sẽ được cung cấp khi có yêu cầu",
+      "note": {
+        "vi": "Thông tin liên hệ chi tiết của người tham chiếu sẽ được cung cấp khi có yêu cầu từ nhà tuyển dụng.",
+        "en": "Detailed referee contact information will be provided upon formal request."
+      }
+    },
+    "visualIndex": [
+      {
+        "badge": {
+          "vi": "Nền tảng",
+          "en": "Foundation"
+        },
+        "title": {
+          "vi": "Về tôi & Kỹ năng",
+          "en": "About & Skills"
+        },
+        "sub": {
+          "vi": "Quản trị KD × AI Agent",
+          "en": "Business Admin × AI Agent"
+        },
+        "href": "about.html",
+        "image": "images/hero-speaker.jpg"
+      },
+      {
+        "badge": {
+          "vi": "Thực chiến",
+          "en": "Execution"
+        },
+        "title": {
+          "vi": "Case Studies",
+          "en": "Case Studies"
+        },
+        "sub": {
+          "vi": "TikTok • SEO • Brand IMC",
+          "en": "TikTok • SEO • Brand IMC"
+        },
+        "href": "projects.html",
+        "image": "images/hero-pitching.jpg"
+      },
+      {
+        "badge": {
+          "vi": "Lãnh đạo",
+          "en": "Leadership"
+        },
+        "title": {
+          "vi": "Kinh nghiệm",
+          "en": "Experience"
+        },
+        "sub": {
+          "vi": "Phó Chủ tịch BBE & Sự kiện",
+          "en": "Vice President BBE & Events"
+        },
+        "href": "experience.html",
+        "image": "images/hero-event.jpg"
+      },
+      {
+        "badge": {
+          "vi": "Xác thực",
+          "en": "Verified"
+        },
+        "title": {
+          "vi": "Giải thưởng",
+          "en": "Honors & Certs"
+        },
+        "sub": {
+          "vi": "Top 2 Khởi Nghiệp • MOS",
+          "en": "Startup Runner-Up • MOS"
+        },
+        "href": "awards.html",
+        "image": "images/hero-award.jpg"
+      }
+    ],
+    "vcard": {
+      "title": "Business & Digital Marketing | AI Agent Solutions",
+      "org": "dominhtri.id.vn • Đà Nẵng, Việt Nam",
+      "note": "Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing"
     }
   },
   "analytics": {
@@ -1356,6 +1450,66 @@
           "en": "Charismatic stage presence and adaptive crowd engagement; confident startup pitching and bilingual event hosting in English and Chinese."
         }
       }
+    ],
+    "skillCards": [
+      {
+        "proof": "+180% Engagement",
+        "title": {
+          "vi": "Chiến lược IMC & Copywriting",
+          "en": "IMC Strategy & Copywriting"
+        },
+        "desc": {
+          "vi": "Xây dựng ma trận nội dung 70-20-10, thông điệp AIDA/PAS chạm đúng insight khách hàng trẻ.",
+          "en": "70-20-10 content matrix and AIDA/PAS messaging tailored to Gen Z insights."
+        },
+        "tools": [
+          "IMC Plan",
+          "Storytelling",
+          "Meta Suite"
+        ]
+      },
+      {
+        "proof": "120K+ Organic Views",
+        "title": {
+          "vi": "Sản xuất Video ngắn TikTok / Reels",
+          "en": "Short-form Video (TikTok / Reels)"
+        },
+        "desc": {
+          "vi": "Lên kịch bản Hook 3s đầu, trực tiếp quay dựng, xử lý nhịp điệu âm thanh & màu sắc bắt xu hướng.",
+          "en": "3-second hook scripting, shooting, and trend-driven pacing in CapCut & Premiere."
+        },
+        "tools": [
+          "CapCut Pro",
+          "Premiere Pro",
+          "Hook 3s"
+        ]
+      },
+      {
+        "proof": "MOS Certified",
+        "title": {
+          "vi": "SEO Onpage & Phân tích Dữ liệu",
+          "en": "Onpage SEO & Data Analytics"
+        },
+        "desc": {
+          "vi": "Nghiên cứu 150+ từ khóa theo hành trình mua hàng, xử lý báo cáo KPI bằng Excel MOS chuẩn quốc tế.",
+          "en": "Researching 150+ buyer-journey keywords and modeling KPI dashboards with certified MOS Excel."
+        },
+        "tools": [
+          "Search Console",
+          "Excel MOS",
+          "GA4"
+        ]
+      }
     ]
+  },
+  "footer": {
+    "bio": {
+      "vi": "Đỗ Minh Trí (Eric Do) — Business & Digital Marketing | Ứng dụng AI Agent. Sẵn sàng mang đến tư duy chiến lược, nội dung sáng tạo và giải pháp công nghệ thực chiến cho đội ngũ của bạn.",
+      "en": "Do Minh Tri (Eric Do) — Business & Digital Marketing | AI Agent Solutions. Ready to deliver strategic thinking, creative content, and AI-powered execution to your team."
+    },
+    "copyright": {
+      "vi": "© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả.",
+      "en": "© 2026 <strong>Do Minh Tri</strong>. All rights reserved."
+    }
   }
 }
