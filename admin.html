@@ -959,29 +959,33 @@
       </div>
 
       <!-- Navigation Tabs Bar -->
+            <!-- Navigation Tabs Bar Grouped by Website Pages -->
       <nav class="tabs-bar">
-        <button class="tab-btn active" data-tab="tab-profile" onclick="switchTab('tab-profile')">
-          <i class="fa-solid fa-user"></i> <span>Hồ sơ & Avatar</span>
+        <button class="tab-btn active" data-tab="tab-home" onclick="switchTab('tab-home')">
+          <i class="fa-solid fa-house"></i> <span>1. Trang Chủ</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-about" onclick="switchTab('tab-about')">
+          <i class="fa-solid fa-user"></i> <span>2. Về Tôi &amp; Kỹ Năng</span>
         </button>
         <button class="tab-btn" data-tab="tab-experiences" onclick="switchTab('tab-experiences')">
-          <i class="fa-solid fa-timeline"></i> <span>Kinh nghiệm</span> <span class="tab-badge" id="badge-count-exps">0</span>
+          <i class="fa-solid fa-briefcase"></i> <span>3. Kinh Nghiệm &amp; Hoạt Động</span> <span class="tab-badge" id="badge-count-exps">0</span>
         </button>
         <button class="tab-btn" data-tab="tab-projects" onclick="switchTab('tab-projects')">
-          <i class="fa-solid fa-briefcase"></i> <span>Dự án</span> <span class="tab-badge" id="badge-count-projects">0</span>
+          <i class="fa-solid fa-layer-group"></i> <span>4. Dự Án Tiêu Biểu</span> <span class="tab-badge" id="badge-count-projects">0</span>
         </button>
         <button class="tab-btn" data-tab="tab-certificates" onclick="switchTab('tab-certificates')">
-          <i class="fa-solid fa-certificate"></i> <span>Chứng chỉ</span> <span class="tab-badge" id="badge-count-certs">0</span>
+          <i class="fa-solid fa-trophy"></i> <span>5. Giải Thưởng &amp; Chứng Chỉ</span> <span class="tab-badge" id="badge-count-certs">0</span>
         </button>
-        <button class="tab-btn" data-tab="tab-activities" onclick="switchTab('tab-activities')">
-          <i class="fa-solid fa-users"></i> <span>Hoạt động</span> <span class="tab-badge" id="badge-count-acts">0</span>
+        <button class="tab-btn" data-tab="tab-contact" onclick="switchTab('tab-contact')">
+          <i class="fa-solid fa-paper-plane"></i> <span>6. Liên Hệ &amp; Tham Chiếu</span>
         </button>
         <button class="tab-btn" data-tab="tab-raw" onclick="switchTab('tab-raw')">
-          <i class="fa-solid fa-code"></i> <span>JSON & Sao lưu</span>
+          <i class="fa-solid fa-code"></i> <span>Hệ Thống &amp; JSON</span>
         </button>
       </nav>
 
       <!-- TAB 1: PROFILE & BIO -->
-      <section class="tab-content" id="tab-profile">
+      <section class="tab-content" id="tab-home">
         <!-- Bento Card: Avatar Management -->
         <div class="bento-card">
           <div class="card-header-row">
@@ -1136,74 +1140,6 @@
         </div>
 
         <!-- Bento Card: Contact Info, Quick Socials & CV PDF -->
-        <div class="bento-card">
-          <div class="card-header-row">
-            <div>
-              <h3 class="card-title"><i class="fa-solid fa-address-book"></i> Liên Hệ Nhanh (Hero), Mạng Xã Hội &amp; File CV PDF</h3>
-              <p class="card-subtitle">Quản lý Email, SĐT/Zalo, LinkedIn trên Hero và đường dẫn bản CV PDF chuẩn ATS</p>
-            </div>
-            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
-              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu liên hệ lên GitHub</span>
-            </button>
-          </div>
-
-          <div class="form-grid">
-            <div class="form-group col-4">
-              <label class="form-label">Email liên hệ</label>
-              <input type="email" id="prof-email" class="form-control" placeholder="contact@dominhtri.id.vn">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Số điện thoại hiển thị</label>
-              <input type="text" id="prof-phone" class="form-control" placeholder="0934 454 099">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Số Zalo (1-Click Chat)</label>
-              <input type="text" id="prof-zalo" class="form-control" placeholder="0934454099">
-            </div>
-
-            <div class="form-group col-6">
-              <label class="form-label">Link LinkedIn cá nhân (URL)</label>
-              <input type="url" id="prof-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/dominhtri/">
-            </div>
-            <div class="form-group col-6">
-              <label class="form-label">Địa chỉ</label>
-              <input type="text" id="prof-address-vi" class="form-control" placeholder="152 Phan Thanh, Thanh Khê, TP. Đà Nẵng">
-            </div>
-            <!-- Người bảo chứng năng lực (Reference Person) -->
-            <div class="form-group col-12" style="margin-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 14px;">
-              <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;"><i class="fa-solid fa-user-check text-primary-color"></i> Người Bảo Chứng Năng Lực (Reference Person)</h4>
-              <p style="font-size: 0.78rem; color: var(--text-tertiary); margin-bottom: 12px;">Thông tin giảng viên hoặc quản lý bảo chứng uy tín trong CV và hồ sơ</p>
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Họ tên người bảo chứng</label>
-              <input type="text" id="ref-name" class="form-control" placeholder="Cô Nguyễn Thị Thanh Tâm">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Chức vụ / Bộ môn (VI)</label>
-              <input type="text" id="ref-role-vi" class="form-control" placeholder="Giảng viên bộ môn Digital Marketing">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Số điện thoại liên hệ</label>
-              <input type="text" id="ref-phone" class="form-control" placeholder="0937.272.236">
-            </div>
-            <div class="form-group col-12">
-              <label class="form-label">Ghi chú xác thực năng lực (VI)</label>
-              <input type="text" id="ref-note-vi" class="form-control" placeholder="Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc tại trường.">
-            </div>
-
-            <div class="form-group col-12">
-              <label class="form-label">File CV định dạng PDF (Chuẩn ATS)</label>
-              <div style="display: flex; gap: 12px; align-items: center;">
-                <input type="text" id="prof-cv-url" class="form-control" placeholder="CV_DoMinhTri.pdf" style="flex: 1;">
-                <input type="file" id="cv-pdf-picker" accept=".pdf,application/pdf" style="display: none;" onchange="handleCvPdfUpload(event)">
-                <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('cv-pdf-picker').click()">
-                  <i class="fa-solid fa-file-pdf"></i> Tải file PDF mới lên GitHub
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Bento Card: Google Analytics 4 & Umami -->
         <div class="bento-card">
           <div class="card-header-row">
@@ -1421,6 +1357,28 @@
             <!-- Dynamically populated -->
           </div>
         </div>
+      
+
+<div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-users"></i> Danh Sách Hoạt Động & Cộng Đồng</h3>
+              <p class="card-subtitle">Quản lý hoạt động ngoại khóa, vai trò điều phối sự kiện và ảnh minh chứng</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openActEditModal(null)">
+                <i class="fa-solid fa-plus"></i> <span>Thêm hoạt động mới</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="items-grid" id="acts-list-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
       </section>
 
 
@@ -1473,31 +1431,85 @@
         </div>
       </section>
 
-      <!-- TAB 4: ACTIVITIES -->
-      <section class="tab-content" id="tab-activities" style="display: none;">
+      
+
+            <!-- TAB 6: CONTACT & REFERENCES (contact.html) -->
+      <section class="tab-content" id="tab-contact" style="display: none;">
+        <div class="page-context-pill">
+          <span><i class="fa-solid fa-link"></i> Quản lý nội dung trang: <strong>contact.html (Liên Hệ &amp; Hợp Tác)</strong></span>
+          <a href="contact.html" target="_blank" class="btn btn-outline btn-xs"><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem trang thực tế</a>
+        </div>
+
         <div class="bento-card">
           <div class="card-header-row">
             <div>
-              <h3 class="card-title"><i class="fa-solid fa-users"></i> Danh Sách Hoạt Động & Cộng Đồng</h3>
-              <p class="card-subtitle">Quản lý hoạt động ngoại khóa, vai trò điều phối sự kiện và ảnh minh chứng</p>
+              <h3 class="card-title"><i class="fa-solid fa-paper-plane"></i> Thông Tin Liên Hệ Trực Tiếp, Tham Chiếu &amp; Bản CV PDF</h3>
+              <p class="card-subtitle">Quản lý Email, SĐT/Zalo, Địa chỉ, Người tham chiếu (Reference) và bản CV PDF hiển thị trên trang contact.html</p>
             </div>
-            <div style="display: flex; gap: 10px;">
-              <button type="button" class="btn btn-primary btn-sm" onclick="openActEditModal(null)">
-                <i class="fa-solid fa-plus"></i> <span>Thêm hoạt động mới</span>
-              </button>
-              <button type="button" class="btn btn-outline btn-sm btn-save-github" onclick="publishDataToGitHub()">
-                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu & Xuất bản lên GitHub</span>
-              </button>
-            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu liên hệ lên GitHub</span>
+            </button>
           </div>
 
-          <div class="items-grid" id="acts-list-container">
-            <!-- Dynamically populated -->
+          <div class="form-grid">
+            <div class="form-group col-4">
+              <label class="form-label">Email liên hệ</label>
+              <input type="email" id="prof-email" class="form-control" placeholder="contact@dominhtri.id.vn">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Số điện thoại hiển thị</label>
+              <input type="text" id="prof-phone" class="form-control" placeholder="0934 454 099">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Số Zalo (1-Click Chat)</label>
+              <input type="text" id="prof-zalo" class="form-control" placeholder="0934454099">
+            </div>
+
+            <div class="form-group col-6">
+              <label class="form-label">Link LinkedIn cá nhân (URL)</label>
+              <input type="url" id="prof-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/dominhtri/">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Địa chỉ</label>
+              <input type="text" id="prof-address-vi" class="form-control" placeholder="152 Phan Thanh, Thanh Khê, TP. Đà Nẵng">
+            </div>
+            <!-- Người bảo chứng năng lực (Reference Person) -->
+            <div class="form-group col-12" style="margin-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 14px;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;"><i class="fa-solid fa-user-check text-primary-color"></i> Người Bảo Chứng Năng Lực (Reference Person)</h4>
+              <p style="font-size: 0.78rem; color: var(--text-tertiary); margin-bottom: 12px;">Thông tin giảng viên hoặc quản lý bảo chứng uy tín trong CV và hồ sơ</p>
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Họ tên người bảo chứng</label>
+              <input type="text" id="ref-name" class="form-control" placeholder="Cô Nguyễn Thị Thanh Tâm">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Chức vụ / Bộ môn (VI)</label>
+              <input type="text" id="ref-role-vi" class="form-control" placeholder="Giảng viên bộ môn Digital Marketing">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Số điện thoại liên hệ</label>
+              <input type="text" id="ref-phone" class="form-control" placeholder="0937.272.236">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Ghi chú xác thực năng lực (VI)</label>
+              <input type="text" id="ref-note-vi" class="form-control" placeholder="Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc tại trường.">
+            </div>
+
+            <div class="form-group col-12">
+              <label class="form-label">File CV định dạng PDF (Chuẩn ATS)</label>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <input type="text" id="prof-cv-url" class="form-control" placeholder="CV_DoMinhTri.pdf" style="flex: 1;">
+                <input type="file" id="cv-pdf-picker" accept=".pdf,application/pdf" style="display: none;" onchange="handleCvPdfUpload(event)">
+                <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('cv-pdf-picker').click()">
+                  <i class="fa-solid fa-file-pdf"></i> Tải file PDF mới lên GitHub
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- TAB 5: RAW JSON & BACKUP -->
+<!-- TAB 5: RAW JSON & BACKUP -->
       <section class="tab-content" id="tab-raw" style="display: none;">
         <div class="bento-card">
           <div class="card-header-row">
@@ -2594,7 +2606,58 @@
       if (pathEl) pathEl.textContent = p.avatar || 'avatar.jpg';
 
       // 1.5. Render Hero Carousel Gallery
-      renderHeroGalleryAdmin();
+            renderHeroGalleryAdmin();
+
+      // Populate About (about.html)
+      const ab = currentData.about || {};
+      setInputValue('about-tag-vi', ab.tag ? (ab.tag.vi || '') : '');
+      setInputValue('about-tag-en', ab.tag ? (ab.tag.en || '') : '');
+      setInputValue('about-title-vi', ab.title ? (ab.title.vi || '') : '');
+      setInputValue('about-title-en', ab.title ? (ab.title.en || '') : '');
+      setInputValue('about-subtitle-vi', ab.subtitle ? (ab.subtitle.vi || '') : '');
+      setInputValue('about-subtitle-en', ab.subtitle ? (ab.subtitle.en || '') : '');
+
+      const edus = ab.education || [];
+      if (edus[0]) {
+        setInputValue('edu1-school-vi', edus[0].school ? edus[0].school.vi : '');
+        setInputValue('edu1-badge-vi', edus[0].badge ? edus[0].badge.vi : '');
+        setInputValue('edu1-major-vi', edus[0].major ? edus[0].major.vi : '');
+        setInputValue('edu1-major-en', edus[0].major ? edus[0].major.en : '');
+        setInputValue('edu1-desc-vi', edus[0].desc ? edus[0].desc.vi : '');
+        setInputValue('edu1-desc-en', edus[0].desc ? edus[0].desc.en : '');
+      }
+      if (edus[1]) {
+        setInputValue('edu2-school-vi', edus[1].school ? edus[1].school.vi : '');
+        setInputValue('edu2-badge-vi', edus[1].badge ? edus[1].badge.vi : '');
+        setInputValue('edu2-major-vi', edus[1].major ? edus[1].major.vi : '');
+        setInputValue('edu2-major-en', edus[1].major ? edus[1].major.en : '');
+        setInputValue('edu2-desc-vi', edus[1].desc ? edus[1].desc.vi : '');
+        setInputValue('edu2-desc-en', edus[1].desc ? edus[1].desc.en : '');
+      }
+
+      const strs = ab.strengths || [];
+      if (strs[0]) {
+        setInputValue('str1-title-vi', strs[0].title ? strs[0].title.vi : '');
+        setInputValue('str1-title-en', strs[0].title ? strs[0].title.en : '');
+        setInputValue('str1-desc-vi', strs[0].desc ? strs[0].desc.vi : '');
+      }
+      if (strs[1]) {
+        setInputValue('str2-title-vi', strs[1].title ? strs[1].title.vi : '');
+        setInputValue('str2-title-en', strs[1].title ? strs[1].title.en : '');
+        setInputValue('str2-desc-vi', strs[1].desc ? strs[1].desc.vi : '');
+      }
+      if (strs[2]) {
+        setInputValue('str3-title-vi', strs[2].title ? strs[2].title.vi : '');
+        setInputValue('str3-title-en', strs[2].title ? strs[2].title.en : '');
+        setInputValue('str3-desc-vi', strs[2].desc ? strs[2].desc.vi : '');
+      }
+
+      // Populate Reference in Contact
+      const ref = p.reference || {};
+      setInputValue('ref-name', ref.name || '');
+      setInputValue('ref-role-vi', ref.role ? (ref.role.vi || '') : '');
+      setInputValue('ref-phone', ref.phone || '');
+      setInputValue('ref-note-vi', ref.note ? (ref.note.vi || '') : '');
 
       // 2. Render Highlights & Experiences
       renderHighlightsList();
@@ -2653,6 +2716,103 @@
       p.contact.address = {
         vi: addr,
         en: addr
+      };
+
+            // Collect About (about.html)
+      if (!currentData.about) currentData.about = {};
+      const ab = currentData.about;
+      ab.tag = {
+        vi: getInputValue('about-tag-vi', ab.tag ? ab.tag.vi : 'Hành trình & Năng lực'),
+        en: getInputValue('about-tag-en', ab.tag ? ab.tag.en : 'Journey & Capabilities')
+      };
+      ab.title = {
+        vi: getInputValue('about-title-vi', ab.title ? ab.title.vi : 'Nền Tảng Kinh Doanh × Sức Mạnh AI'),
+        en: getInputValue('about-title-en', ab.title ? ab.title.en : 'Business Foundation × AI Power')
+      };
+      ab.subtitle = {
+        vi: getInputValue('about-subtitle-vi', ab.subtitle ? ab.subtitle.vi : ''),
+        en: getInputValue('about-subtitle-en', ab.subtitle ? ab.subtitle.en : '')
+      };
+
+      if (!ab.education) ab.education = [];
+      if (!ab.education[0]) ab.education[0] = { id: 1 };
+      ab.education[0].school = {
+        vi: getInputValue('edu1-school-vi', ab.education[0].school ? ab.education[0].school.vi : ''),
+        en: ab.education[0].school ? (ab.education[0].school.en || 'BTEC FPT British College Danang') : 'BTEC FPT British College Danang'
+      };
+      ab.education[0].badge = {
+        vi: getInputValue('edu1-badge-vi', ab.education[0].badge ? ab.education[0].badge.vi : ''),
+        en: ab.education[0].badge ? (ab.education[0].badge.en || '2024 – 2026 (Current)') : '2024 – 2026 (Current)'
+      };
+      ab.education[0].major = {
+        vi: getInputValue('edu1-major-vi', ab.education[0].major ? ab.education[0].major.vi : ''),
+        en: getInputValue('edu1-major-en', ab.education[0].major ? ab.education[0].major.en : '')
+      };
+      ab.education[0].desc = {
+        vi: getInputValue('edu1-desc-vi', ab.education[0].desc ? ab.education[0].desc.vi : ''),
+        en: getInputValue('edu1-desc-en', ab.education[0].desc ? ab.education[0].desc.en : '')
+      };
+
+      if (!ab.education[1]) ab.education[1] = { id: 2 };
+      ab.education[1].school = {
+        vi: getInputValue('edu2-school-vi', ab.education[1].school ? ab.education[1].school.vi : ''),
+        en: ab.education[1].school ? (ab.education[1].school.en || 'FPT Polyschool Danang') : 'FPT Polyschool Danang'
+      };
+      ab.education[1].badge = {
+        vi: getInputValue('edu2-badge-vi', ab.education[1].badge ? ab.education[1].badge.vi : ''),
+        en: ab.education[1].badge ? (ab.education[1].badge.en || '2023 – 2025') : '2023 – 2025'
+      };
+      ab.education[1].major = {
+        vi: getInputValue('edu2-major-vi', ab.education[1].major ? ab.education[1].major.vi : ''),
+        en: getInputValue('edu2-major-en', ab.education[1].major ? ab.education[1].major.en : '')
+      };
+      ab.education[1].desc = {
+        vi: getInputValue('edu2-desc-vi', ab.education[1].desc ? ab.education[1].desc.vi : ''),
+        en: getInputValue('edu2-desc-en', ab.education[1].desc ? ab.education[1].desc.en : '')
+      };
+
+      if (!ab.strengths) ab.strengths = [];
+      if (!ab.strengths[0]) ab.strengths[0] = { id: 1, icon: 'fa-solid fa-brain' };
+      ab.strengths[0].title = {
+        vi: getInputValue('str1-title-vi', ab.strengths[0].title ? ab.strengths[0].title.vi : ''),
+        en: getInputValue('str1-title-en', ab.strengths[0].title ? ab.strengths[0].title.en : '')
+      };
+      ab.strengths[0].desc = {
+        vi: getInputValue('str1-desc-vi', ab.strengths[0].desc ? ab.strengths[0].desc.vi : ''),
+        en: ab.strengths[0].desc ? ab.strengths[0].desc.en : ''
+      };
+
+      if (!ab.strengths[1]) ab.strengths[1] = { id: 2, icon: 'fa-solid fa-chart-pie' };
+      ab.strengths[1].title = {
+        vi: getInputValue('str2-title-vi', ab.strengths[1].title ? ab.strengths[1].title.vi : ''),
+        en: getInputValue('str2-title-en', ab.strengths[1].title ? ab.strengths[1].title.en : '')
+      };
+      ab.strengths[1].desc = {
+        vi: getInputValue('str2-desc-vi', ab.strengths[1].desc ? ab.strengths[1].desc.vi : ''),
+        en: ab.strengths[1].desc ? ab.strengths[1].desc.en : ''
+      };
+
+      if (!ab.strengths[2]) ab.strengths[2] = { id: 3, icon: 'fa-solid fa-microphone-lines' };
+      ab.strengths[2].title = {
+        vi: getInputValue('str3-title-vi', ab.strengths[2].title ? ab.strengths[2].title.vi : ''),
+        en: getInputValue('str3-title-en', ab.strengths[2].title ? ab.strengths[2].title.en : '')
+      };
+      ab.strengths[2].desc = {
+        vi: getInputValue('str3-desc-vi', ab.strengths[2].desc ? ab.strengths[2].desc.vi : ''),
+        en: ab.strengths[2].desc ? ab.strengths[2].desc.en : ''
+      };
+
+      // Collect Reference (contact.html)
+      if (!p.reference) p.reference = {};
+      p.reference.name = getInputValue('ref-name', p.reference.name || 'Cô Nguyễn Thị Thanh Tâm');
+      p.reference.role = {
+        vi: getInputValue('ref-role-vi', p.reference.role ? p.reference.role.vi : 'Giảng viên bộ môn Digital Marketing'),
+        en: p.reference.role ? (p.reference.role.en || 'Digital Marketing Lecturer') : 'Digital Marketing Lecturer'
+      };
+      p.reference.phone = getInputValue('ref-phone', p.reference.phone || '');
+      p.reference.note = {
+        vi: getInputValue('ref-note-vi', p.reference.note ? p.reference.note.vi : ''),
+        en: p.reference.note ? (p.reference.note.en || '') : ''
       };
 
       currentData.analytics = {
@@ -3022,7 +3182,10 @@
     function renderHighlightsList() {
       const list = currentData.highlights || [];
       const badgeCount = document.getElementById('badge-count-highlights');
-      if (badgeCount) badgeCount.textContent = list.length;
+      if (badgeCount) {
+        const actsCount = (currentData && currentData.activities) ? currentData.activities.length : 0;
+        badgeCount.textContent = list.length + (actsCount > 0 ? (' + ' + actsCount) : '');
+      }
       const container = document.getElementById('highlights-list-container');
       if (!container) return;
 
