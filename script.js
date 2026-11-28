@@ -9,8 +9,11 @@
 // Global state for active language and open modals
 let currentLang = 'vi';
 let currentOpenProjectId = null;
+  clearDeepLinkParam('project');
 let currentOpenActivityId = null;
+  clearDeepLinkParam('act');
 let currentOpenCertId = null;
+  clearDeepLinkParam('cert');
 let portfolioData = null;
 
 // Embedded fallback data (in case data.json is blocked by local file:// CORS)
@@ -1822,20 +1825,48 @@ function handleHeroLinkedInClick(e) {
 /* -------------------------------------------------------------------
    2.1. LOAD DYNAMIC DATA FROM data.json
 ------------------------------------------------------------------- */
+const PORTFOLIO_CACHE_KEY = 'dmt_portfolio_cache_v6';
+
 async function initPortfolioData() {
+  let renderedFromCache = false;
   try {
-    const res = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
+    const cachedRaw = sessionStorage.getItem(PORTFOLIO_CACHE_KEY);
+    if (cachedRaw) {
+      portfolioData = JSON.parse(cachedRaw);
+      renderedFromCache = true;
+      if (portfolioData && portfolioData.analytics) initAnalytics(portfolioData.analytics);
+      renderAllDynamicSections();
+      if (typeof window.renderProjectsGrid === 'function') window.renderProjectsGrid();
+      if (typeof window.renderCertificatesGrid === 'function') window.renderCertificatesGrid();
+      checkUrlDeepLinks();
+    }
+  } catch (e) {}
+
+  try {
+    const res = await fetch('data.json?v=' + Math.floor(Date.now() / 30000), { cache: 'no-cache' });
     if (!res.ok) throw new Error('Status: ' + res.status);
-    portfolioData = await res.json();
-    console.log('✅ Loaded data.json successfully.');
+    const freshText = await res.text();
+    const prevText = sessionStorage.getItem(PORTFOLIO_CACHE_KEY);
+    if (freshText !== prevText || !renderedFromCache) {
+      portfolioData = JSON.parse(freshText);
+      try { sessionStorage.setItem(PORTFOLIO_CACHE_KEY, freshText); } catch (e) {}
+      if (!renderedFromCache && portfolioData && portfolioData.analytics) {
+        initAnalytics(portfolioData.analytics);
+      }
+      renderAllDynamicSections();
+      if (typeof window.renderProjectsGrid === 'function') window.renderProjectsGrid();
+      if (typeof window.renderCertificatesGrid === 'function') window.renderCertificatesGrid();
+      if (!renderedFromCache) checkUrlDeepLinks();
+    }
+    if (typeof window.syncEricAiVisibility === 'function') window.syncEricAiVisibility();
   } catch (err) {
-    console.warn('⚠️ Could not load data.json dynamically (possibly local file:// protocol), using fallback data.', err);
-    portfolioData = DEFAULT_PORTFOLIO_DATA;
+    if (!renderedFromCache) {
+      console.warn('Using fallback portfolio data:', err);
+      portfolioData = DEFAULT_PORTFOLIO_DATA;
+      renderAllDynamicSections();
+      checkUrlDeepLinks();
+    }
   }
-  if (portfolioData && portfolioData.analytics) {
-    initAnalytics(portfolioData.analytics);
-  }
-  renderAllDynamicSections();
 }
 
 function renderAllDynamicSections() {
@@ -2001,6 +2032,46 @@ function renderAboutDynamic() {
         toolsWrap.innerHTML = sc.tools.map(t => `<span class="tool-pill">${t}</span>`).join('');
       }
     });
+  }
+
+  // Dynamic macOS Tool Dock & Infinite Marquee Band from data.json (ab.marqueeTools)
+  if (Array.isArray(ab.marqueeTools) && ab.marqueeTools.length > 0) {
+    const marqueeTrack = document.querySelector('.tool-marquee-track');
+    if (marqueeTrack) {
+      const doubled = [...ab.marqueeTools, ...ab.marqueeTools];
+      marqueeTrack.innerHTML = doubled.map(t =>
+        `<span class="marquee-tool-chip"><i class="${t.icon || 'fa-solid fa-bolt'}"></i> ${t.name || ''}</span>`
+      ).join('');
+    }
+    const dockShelf = document.getElementById('macos-tool-dock');
+    if (dockShelf) {
+      const resolveDockColor = (iconStr) => {
+        const s = (iconStr || '').toLowerCase();
+        if (s.includes('robot') || s.includes('brain')) return 'icon-ai';
+        if (s.includes('palette') || s.includes('pen')) return 'icon-canva';
+        if (s.includes('video') || s.includes('clapper') || s.includes('tiktok')) return 'icon-video';
+        if (s.includes('meta') || s.includes('facebook') || s.includes('bullhorn')) return 'icon-meta';
+        if (s.includes('chart') || s.includes('magnifying')) return 'icon-ga4';
+        if (s.includes('excel') || s.includes('table-cells')) return 'icon-excel';
+        if (s.includes('github') || s.includes('code')) return 'icon-gh';
+        if (s.includes('microphone')) return 'icon-mc';
+        return 'icon-notion';
+      };
+      const dockHtml = [];
+      ab.marqueeTools.forEach((t, idx) => {
+        if (idx === 4) dockHtml.push('<div class="dock-divider"></div>');
+        const tip = t.tooltip || t.name || '';
+        const colCls = resolveDockColor(t.icon);
+        dockHtml.push(`
+          <div class="dock-item" data-tooltip="${tip.replace(/"/g, '&quot;')}">
+            <i class="${t.icon || 'fa-solid fa-bolt'} dock-icon ${colCls}"></i>
+            <span class="dock-active-dot"></span>
+          </div>
+        `);
+      });
+      dockShelf.innerHTML = dockHtml.join('');
+      initMacOsDock();
+    }
   }
 }
 
@@ -2615,6 +2686,7 @@ function openProjectModal(projectId) {
   const data = portfolioData.projects.find(p => p.id == projectId);
   if (!data) return;
   trackPortfolioEvent('view_project', { project_id: projectId });
+  setDeepLinkParam('project', projectId);
 
   const modal = document.getElementById('project-modal');
   const backdrop = document.getElementById('project-modal-backdrop');
@@ -2757,7 +2829,7 @@ function openProjectModal(projectId) {
               <span>${isEn ? 'Open Project Demo' : 'Mở liên kết dự án (Demo)'}</span>
             </a>
           ` : `
-            <a href="#contact" class="btn btn-primary btn-sm w-100" onclick="closeProjectModal()">
+            <a href="contact.html" class="btn btn-primary btn-sm w-100">
               <i class="fa-solid fa-comments"></i>
               <span>${isEn ? 'Request Full Case Study' : 'Liên hệ xem tài liệu đầy đủ'}</span>
             </a>
@@ -2767,13 +2839,16 @@ function openProjectModal(projectId) {
     </div>
 
     <!-- Modal Footer Actions -->
-    <div class="modal-actions" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end;">
+    <div class="modal-actions" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end;">
+      <button type="button" class="btn btn-outline btn-sm" onclick="copyShareableDeepLink('project', ${data.id})">
+        <i class="fa-solid fa-link"></i> ${isEn ? 'Copy Project Link' : 'Sao chép link dự án'}
+      </button>
+      <a href="contact.html" class="btn btn-primary btn-sm">
+        <i class="fa-solid fa-comments"></i> ${isEn ? 'Discuss this project' : 'Trao đổi về dự án này'}
+      </a>
       <button type="button" class="btn btn-ghost btn-sm" onclick="closeProjectModal()">
         <i class="fa-solid fa-xmark"></i> ${isEn ? 'Close' : 'Đóng'}
       </button>
-      <a href="#contact" class="btn btn-primary btn-sm" onclick="closeProjectModal()">
-        <i class="fa-solid fa-comments"></i> ${isEn ? 'Discuss this project' : 'Trao đổi về dự án này'}
-      </a>
     </div>
   `;
 
@@ -2954,6 +3029,7 @@ function openActivityModal(activityId) {
     </div>
 
     <div class="modal-actions">
+      <button type="button" class="btn btn-outline btn-sm" onclick="copyShareableDeepLink('act', ${data.id})"><i class="fa-solid fa-link"></i> ${isEn ? 'Copy Link' : 'Sao chép link'}</button>
       <button type="button" class="btn btn-outline btn-sm" onclick="openLightbox('${data.mainImage}', '${title.replace(/'/g, "\\'")}')">
         <i class="fa-solid fa-expand"></i> ${isEn ? 'Enlarge Photo' : 'Phóng to ảnh chứng nhận'}
       </button>
@@ -2993,6 +3069,7 @@ function closeActivityModal() {
 ------------------------------------------------------------------- */
 function openCertificateModal(certId) {
   currentOpenCertId = certId;
+  setDeepLinkParam('cert', certId);
   if (!portfolioData || !portfolioData.certificates) return;
   const data = portfolioData.certificates.find(c => c.id == certId);
   if (!data) return;
@@ -3129,6 +3206,9 @@ function openCertificateModal(certId) {
 
     <!-- Modal Actions -->
     <div class="modal-actions" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;">
+      <button type="button" class="btn btn-outline btn-sm" onclick="copyShareableDeepLink('cert', ${data.id})">
+        <i class="fa-solid fa-link"></i> ${isEn ? 'Copy Link' : 'Sao chép link'}
+      </button>
       <button type="button" class="btn btn-primary btn-sm" onclick="openLightbox('${data.mainImage}', '${title.replace(/'/g, "\\'")}')">
         <i class="fa-solid fa-expand"></i> ${isEn ? 'Enlarge Image' : 'Phóng to ảnh'}
       </button>
@@ -3294,6 +3374,60 @@ function showToast(message, duration = 3000) {
 /* -------------------------------------------------------------------
    13. CONTACT FORM INTERACTION
 ------------------------------------------------------------------- */
+function setDeepLinkParam(key, val) {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set(key, val);
+    window.history.replaceState({}, '', url.pathname + url.search);
+  } catch (e) {}
+}
+
+function clearDeepLinkParam(key) {
+  try {
+    const url = new URL(window.location.href);
+    if (url.searchParams.has(key)) {
+      url.searchParams.delete(key);
+      const qs = url.searchParams.toString();
+      window.history.replaceState({}, '', url.pathname + (qs ? '?' + qs : ''));
+    }
+  } catch (e) {}
+}
+
+function copyShareableDeepLink(type, id) {
+  const pageMap = { project: 'projects.html', cert: 'awards.html', act: 'experience.html' };
+  const targetPage = pageMap[type] || 'index.html';
+  const baseOrigin = (window.location.origin && window.location.origin !== 'null' && !window.location.origin.startsWith('file'))
+    ? window.location.origin
+    : 'https://dominhtri.id.vn';
+  const shareUrl = `${baseOrigin}/${targetPage}?${type}=${id}`;
+  const msg = (currentLang === 'en')
+    ? 'Direct share link copied to clipboard!'
+    : 'Đã sao chép link chia sẻ trực tiếp!';
+  copyToClipboard(shareUrl, msg);
+}
+
+let deepLinkHandledOnce = false;
+function checkUrlDeepLinks() {
+  if (deepLinkHandledOnce || !portfolioData) return;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const projId = params.get('project') || params.get('case') || params.get('id');
+    const certId = params.get('cert') || params.get('award');
+    const actId = params.get('act');
+
+    if (projId && document.getElementById('project-modal')) {
+      deepLinkHandledOnce = true;
+      setTimeout(() => openProjectModal(projId), 120);
+    } else if (certId && document.getElementById('certificate-modal')) {
+      deepLinkHandledOnce = true;
+      setTimeout(() => openCertificateModal(certId), 120);
+    } else if (actId && document.getElementById('activity-modal')) {
+      deepLinkHandledOnce = true;
+      setTimeout(() => openActivityModal(actId), 120);
+    }
+  } catch (e) {}
+}
+
 function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
@@ -3307,6 +3441,99 @@ function initContactForm() {
         input.style.borderColor = '';
       }
     });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const isEn = (currentLang === 'en');
+    const nameVal = (document.getElementById('name') && document.getElementById('name').value || '').trim();
+    const emailVal = (document.getElementById('email') && document.getElementById('email').value || '').trim();
+    const phoneVal = (document.getElementById('phone') && document.getElementById('phone').value || '').trim();
+    const subjEl = document.getElementById('subject');
+    const subjText = subjEl && subjEl.selectedIndex >= 0 ? subjEl.options[subjEl.selectedIndex].text : 'Liên hệ hợp tác';
+    const msgVal = (document.getElementById('message') && document.getElementById('message').value || '').trim();
+
+    if (!nameVal || !emailVal || !msgVal) {
+      showToast(isEn ? 'Please fill in all required fields!' : 'Vui lòng điền đầy đủ các trường bắt buộc!');
+      return;
+    }
+
+    const submitBtn = document.getElementById('submit-btn');
+    const origBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> <span>${isEn ? 'Sending...' : 'Đang gửi tin nhắn...'}</span>`;
+    }
+
+    const web3Key = (portfolioData && portfolioData.contactConfig && portfolioData.contactConfig.web3formsKey || '').trim();
+    const ownerEmail = (portfolioData && portfolioData.profile && portfolioData.profile.contact && portfolioData.profile.contact.email) || 'contact@dominhtri.id.vn';
+    const ownerZalo = ((portfolioData && portfolioData.profile && portfolioData.profile.contact && portfolioData.profile.contact.zalo) || '0934454099').replace(/\s+/g, '');
+
+    let sentViaApi = false;
+    if (web3Key) {
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: web3Key,
+            subject: `[Portfolio dominhtri.id.vn] ${subjText} — ${nameVal}`,
+            from_name: nameVal,
+            email: emailVal,
+            phone: phoneVal || 'N/A',
+            message: msgVal
+          })
+        });
+        const result = await res.json();
+        if (result && result.success) {
+          sentViaApi = true;
+        }
+      } catch (err) {
+        console.warn('Web3Forms fallback to direct mailto:', err);
+      }
+    }
+
+    if (!sentViaApi) {
+      const mailSubject = `[Portfolio Hợp Tác] ${subjText} — ${nameVal}`;
+      const mailBody = [
+        `Xin chào Đỗ Minh Trí,`,
+        ``,
+        `• Họ và tên: ${nameVal}`,
+        `• Email: ${emailVal}`,
+        `• Số điện thoại: ${phoneVal || 'Chưa cung cấp'}`,
+        `• Mục đích: ${subjText}`,
+        ``,
+        `Nội dung lời nhắn:`,
+        msgVal
+      ].join('\r\n');
+      window.location.href = `mailto:${ownerEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = origBtnHtml;
+    }
+
+    trackPortfolioEvent('submit_contact_form', { mode: sentViaApi ? 'web3forms' : 'mailto' });
+    form.style.display = 'none';
+    const successBox = document.getElementById('form-success-message');
+    if (successBox) {
+      successBox.style.display = 'block';
+      let extraZaloBtn = document.getElementById('form-zalo-followup');
+      if (!extraZaloBtn) {
+        extraZaloBtn = document.createElement('a');
+        extraZaloBtn.id = 'form-zalo-followup';
+        extraZaloBtn.className = 'btn btn-primary btn-sm mt-3';
+        extraZaloBtn.style.marginRight = '8px';
+        extraZaloBtn.target = '_blank';
+        extraZaloBtn.rel = 'noopener noreferrer';
+        const resetBtn = successBox.querySelector('button');
+        if (resetBtn) successBox.insertBefore(extraZaloBtn, resetBtn);
+      }
+      extraZaloBtn.href = `https://zalo.me/${ownerZalo}`;
+      extraZaloBtn.innerHTML = `<i class="fa-solid fa-comment-dots"></i> <span>${isEn ? 'Chat on Zalo Immediately' : 'Nhắn Zalo trực tiếp'}</span>`;
+    }
+    showToast(isEn ? 'Thank you! Your message is ready/sent.' : 'Cảm ơn bạn! Tin nhắn đã được xử lý thành công.');
   });
 }
 

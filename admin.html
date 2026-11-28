@@ -1424,6 +1424,41 @@
           </div>
         </div>
 
+                <!-- Bento Card: Eric AI Concierge Assistant Manager -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Trợ Lý Ảo Eric AI Concierge (Hỏi Nhanh Hồ Sơ)</h3>
+              <p class="card-subtitle">Quản lý nút chat trợ lý AI phản hồi tức thì cho Nhà tuyển dụng ở góc dưới màn hình</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <label style="font-size: 0.82rem; font-weight: 600; cursor: pointer;"><input type="checkbox" id="chk-enable-ai" checked> Hiện nút Eric AI trên web</label>
+              <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu cấu hình AI</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-6">
+              <label class="form-label"><span>Lời chào mở đầu của Eric AI</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <textarea id="ai-welcome-vi" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Eric AI Welcome Message</span> <span class="lang-indicator lang-en">EN</span></label>
+              <textarea id="ai-welcome-en" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Câu trả lời trọng tâm về Ứng dụng AI Agent</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <textarea id="ai-pitch-vi" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>AI Agent Workflow Pitch</span> <span class="lang-indicator lang-en">EN</span></label>
+              <textarea id="ai-pitch-en" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
         <!-- Bento Card: Google Analytics 4 & Umami -->
         <div class="bento-card">
           <div class="card-header-row">
@@ -1723,6 +1758,27 @@
             </div>
           </div>
         </div>
+      
+        <!-- Bento Card: macOS Tool Dock & Infinite Marquee Stack -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-laptop-code"></i> Bàn Làm Việc Số macOS Dock &amp; Dải Băng Công Cụ (Tool Stack)</h3>
+              <p class="card-subtitle">Quản lý danh sách công cụ hiển thị trên khay macOS Dock tương tác và dải băng chạy ngang tại trang about.html (Mỗi dòng 1 công cụ theo định dạng: <code>icon | Tên công cụ | Chú thích Tooltip</code>)</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Bộ Công Cụ</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-12">
+              <label class="form-label">Danh sách công cụ (1 dòng = <code>Mã Icon FontAwesome | Tên ngắn | Tooltip khi chạm</code>)</label>
+              <textarea id="about-tools-lines" class="form-control" rows="8" style="font-family: monospace; font-size: 0.85rem;" placeholder="fa-solid fa-robot | Google Antigravity AI | Google Antigravity AI • AI Agent Studio&#10;fa-solid fa-palette | Canva Pro Brand Kit | Canva Pro • Brand Kit & Visuals"></textarea>
+              <span style="font-size: 0.76rem; color: var(--text-tertiary);">Gợi ý icon đẹp: <code>fa-solid fa-robot</code>, <code>fa-solid fa-palette</code>, <code>fa-solid fa-video</code>, <code>fa-brands fa-meta</code>, <code>fa-solid fa-magnifying-glass-chart</code>, <code>fa-solid fa-file-excel</code>, <code>fa-solid fa-table-columns</code>, <code>fa-brands fa-github</code>, <code>fa-solid fa-microphone-lines</code>, <code>fa-brands fa-tiktok</code></span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- TAB: EXPERIENCES TIMELINE -->
@@ -2005,6 +2061,26 @@
             <div class="form-group col-12">
               <label class="form-label">Ghi chú xác thực năng lực (VI)</label>
               <input type="text" id="ref-note-vi" class="form-control" placeholder="Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật &amp; thái độ làm việc tại trường.">
+            </div>
+          </div>
+        </div>
+      
+        <!-- CARD 5: WEB3FORMS DIRECT EMAIL SUBMISSION -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-envelope-circle-check"></i> Cấu Hình Form Liên Hệ Gửi Thẳng Về Email (Web3Forms)</h3>
+              <p class="card-subtitle">Nhập Access Key miễn phí từ web3forms.com để nhận tin nhắn trực tiếp từ form contact.html. Nếu để trống, web sẽ tự động mở trình gửi Email &amp; Zalo soạn sẵn an toàn (không bao giờ lỗi 405).</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Cấu Hình Form</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-12">
+              <label class="form-label">Web3Forms Access Key (Tùy chọn — Miễn phí tại https://web3forms.com)</label>
+              <input type="text" id="contact-web3forms-key" class="form-control" placeholder="Ví dụ: a1b2c3d4-e5f6-7890-abcd-ef1234567890 (Để trống nếu dùng chế độ Email/Zalo trực tiếp)">
             </div>
           </div>
         </div>
@@ -3266,6 +3342,30 @@
       setInputValue('footer-bio-en', ft.bio ? (ft.bio.en || '') : 'Do Minh Tri (Eric Do) — Business & Digital Marketing | AI Agent Solutions. Ready to deliver strategic thinking, creative content, and AI-powered execution to your team.');
       setInputValue('footer-copy-vi', ft.copyright ? (ft.copyright.vi || '') : '© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả.');
       setInputValue('footer-copy-en', ft.copyright ? (ft.copyright.en || '') : '© 2026 <strong>Do Minh Tri</strong>. All rights reserved.');
+
+      // Populate Eric AI Concierge & Tool Stack
+      const aiCfg = currentData.aiConcierge || {};
+      setChk('chk-enable-ai', aiCfg.enabled);
+      setInputValue('ai-welcome-vi', aiCfg.welcome ? (aiCfg.welcome.vi || '') : 'Xin chào! 👋 Mình là <strong>Eric AI</strong> — trợ lý hồ sơ của Đỗ Minh Trí. Bạn muốn xem nhanh điểm mạnh, KPI dự án thực chiến, ứng dụng AI Agent hay mở bản CV PDF?');
+      setInputValue('ai-welcome-en', aiCfg.welcome ? (aiCfg.welcome.en || '') : 'Hi! 👋 I’m <strong>Eric AI</strong>. Want a 10-second summary of Minh Tri’s strengths, Marketing KPIs, AI Agent workflows, or ATS Resume?');
+      setInputValue('ai-pitch-vi', aiCfg.pitch ? (aiCfg.pitch.vi || '') : 'Minh Trí ứng dụng thực chiến <strong>AI Agent (Google Antigravity, Agentic Workflow)</strong> vào Quản trị & Marketing: tự động hóa nghiên cứu insight, tăng tốc xây dựng hệ thống Web/CMS kết nối GitHub, tối ưu ma trận nội dung IMC & SEO nhanh gấp 5 lần.');
+      setInputValue('ai-pitch-en', aiCfg.pitch ? (aiCfg.pitch.en || '') : 'Minh Tri applies <strong>AI Agents (Google Antigravity, LLM Workflows)</strong> directly into Business & Marketing: building Git-based CMS systems, automating market research, accelerating SEO content matrices, and optimizing campaign workflows up to 5x faster.');
+
+      const defaultTools = [
+        { icon: 'fa-solid fa-robot', name: 'Google Antigravity AI', tooltip: 'Google Antigravity AI • AI Agent Studio' },
+        { icon: 'fa-solid fa-palette', name: 'Canva Pro Brand Kit', tooltip: 'Canva Pro • Brand Kit & Visuals' },
+        { icon: 'fa-solid fa-video', name: 'CapCut Pro & Premiere', tooltip: 'CapCut Pro & Premiere • Video Editing' },
+        { icon: 'fa-brands fa-meta', name: 'Meta Business Suite', tooltip: 'Meta Business Suite • Fanpage & Ads' },
+        { icon: 'fa-solid fa-magnifying-glass-chart', name: 'Google Analytics 4 & GSC', tooltip: 'Google Analytics 4 • Data & Traffic' },
+        { icon: 'fa-solid fa-file-excel', name: 'Microsoft Excel MOS 2019', tooltip: 'Microsoft Excel MOS 2019 • Certified' },
+        { icon: 'fa-solid fa-table-columns', name: 'Notion RACI & IMC Matrix', tooltip: 'Notion • RACI & IMC Project Board' },
+        { icon: 'fa-brands fa-github', name: 'GitHub & Git-based CMS', tooltip: 'GitHub & Markdown • Static CMS' },
+        { icon: 'fa-solid fa-microphone-lines', name: 'Public Speaking & Bilingual MC', tooltip: 'Bilingual MC & Public Speaking' }
+      ];
+      const mTools = (currentData.about && Array.isArray(currentData.about.marqueeTools) && currentData.about.marqueeTools.length > 0)
+        ? currentData.about.marqueeTools
+        : defaultTools;
+      setInputValue('about-tools-lines', mTools.map(t => `${t.icon || 'fa-solid fa-bolt'} | ${t.name || ''} | ${t.tooltip || t.name || ''}`).join('\n'));
 
       // 2. Render Highlights & Experiences
       renderHighlightsList();
