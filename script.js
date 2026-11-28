@@ -1841,6 +1841,7 @@ async function initPortfolioData() {
 function renderAllDynamicSections() {
   if (!portfolioData) return;
   renderHeroDynamic();
+  renderAboutDynamic();
   // renderHighlightsGrid(); // Loai bo 4 the metric cards
   renderExperienceTimeline();
   renderProjectsGrid();
@@ -1936,6 +1937,8 @@ function renderAboutDynamic() {
   const edus = Array.isArray(ab.education) ? ab.education : [];
   if (edus[0]) {
     const e1 = edus[0];
+    const s1 = document.getElementById('edu1-school-title');
+    if (s1 && e1.school) s1.textContent = e1.school[currentLang] || e1.school.vi;
     const b1 = document.querySelector('[data-i18n="about.edu_btec_badge"]');
     if (b1 && e1.badge) b1.textContent = e1.badge[currentLang] || e1.badge.vi;
     const m1 = document.querySelector('[data-i18n="about.edu_btec_major"]');
@@ -1947,6 +1950,8 @@ function renderAboutDynamic() {
   // Education 2 (Poly)
   if (edus[1]) {
     const e2 = edus[1];
+    const s2 = document.getElementById('edu2-school-name');
+    if (s2 && e2.school) s2.textContent = e2.school[currentLang] || e2.school.vi;
     const b2 = document.querySelector('[data-i18n="about.edu_poly_badge"]');
     if (b2 && e2.badge) b2.textContent = e2.badge[currentLang] || e2.badge.vi;
     const p2 = document.querySelector('[data-i18n="about.edu_poly_pill"]');
@@ -2007,13 +2012,15 @@ function renderHeroDynamic() {
     mottoEl.textContent = p.motto[currentLang] || p.motto.vi;
   }
 
-  // Roles
+  // Roles (Interactive Multi-page Anchor Tags)
   const rolesContainer = document.querySelector('.role-badge-container');
   if (rolesContainer && p.roles && p.roles.length > 0) {
-    rolesContainer.innerHTML = p.roles.map((r, idx) => `
-      <span class="role-tag"><i class="${r.icon || 'fa-solid fa-check'}"></i> ${r.text[currentLang] || r.text.vi}</span>
-      ${idx < p.roles.length - 1 ? '<span class="role-separator">•</span>' : ''}
-    `).join('');
+    const roleHrefs = ['projects.html', 'about.html', 'about.html'];
+    rolesContainer.innerHTML = p.roles.map((r, idx) => {
+      const targetHref = r.href || roleHrefs[idx] || 'about.html';
+      const label = (r.text && (r.text[currentLang] || r.text.vi)) || '';
+      return `<a href="${targetHref}" class="role-tag"><i class="${r.icon || 'fa-solid fa-check'}"></i> <span>${label}</span></a>`;
+    }).join('');
   }
 
   // Bio
@@ -2038,7 +2045,7 @@ function renderHeroDynamic() {
     statusEl.textContent = p.statusBadge[currentLang] || p.statusBadge.vi;
   }
 
-  // Dynamic CV PDF Links
+  // Dynamic CV PDF Links (Buttons + Inline CV Modal)
   const cvPath = (p.cvUrl || 'CV_DoMinhTri.pdf').trim();
   document.querySelectorAll('.cv-dynamic-link').forEach(link => {
     link.href = cvPath;
@@ -2046,13 +2053,23 @@ function renderHeroDynamic() {
       link.setAttribute('download', cvPath.split('/').pop() || 'CV_DoMinhTri.pdf');
     }
   });
+  const cvObj = document.getElementById('cv-modal-object');
+  if (cvObj) cvObj.setAttribute('data', cvPath);
+  const cvIframe = document.getElementById('cv-modal-iframe');
+  if (cvIframe) cvIframe.setAttribute('src', cvPath);
 
-  // Hero Quick-Connect & Contact Info Sync
+  // Sync Digital Business Card Modal Profile Info
+  const vcardAvatar = document.querySelector('#business-card-modal .vcard-avatar');
+  if (vcardAvatar && p.avatar) vcardAvatar.src = p.avatar;
+
+  // Hero Quick-Connect, Social Channels, Address & Reference Sync
   if (p.contact) {
     const email = p.contact.email || 'contact@dominhtri.id.vn';
     const phone = p.contact.phone || '0934 454 099';
     const cleanPhone = (p.contact.zalo || phone).replace(/\s+/g, '');
-    const linkedin = (p.contact.linkedin || '').trim();
+    const linkedin = (p.contact.linkedin || 'https://www.linkedin.com/in/dominhtri2206').trim();
+    const facebook = (p.contact.facebook || 'https://www.facebook.com/dominhtri2206').trim();
+    const github = (p.contact.github || 'https://github.com/dominhtri2206-create').trim();
 
     const heroEmailText = document.getElementById('hero-email-pill-text');
     if (heroEmailText) heroEmailText.textContent = email;
@@ -2062,6 +2079,22 @@ function renderHeroDynamic() {
     if (heroZaloLink) heroZaloLink.href = `https://zalo.me/${cleanPhone}`;
     if (heroZaloText) heroZaloText.textContent = `Zalo: ${phone}`;
 
+    document.querySelectorAll('.dyn-linkedin-link').forEach(el => {
+      if (linkedin) {
+        el.href = linkedin;
+        el.target = '_blank';
+        el.rel = 'noopener noreferrer';
+      } else {
+        el.href = 'contact.html';
+      }
+    });
+    document.querySelectorAll('.dyn-facebook-link').forEach(el => {
+      if (facebook) { el.href = facebook; el.target = '_blank'; el.rel = 'noopener noreferrer'; }
+    });
+    document.querySelectorAll('.dyn-github-link').forEach(el => {
+      if (github) { el.href = github; el.target = '_blank'; el.rel = 'noopener noreferrer'; }
+    });
+
     const heroLinkedinLink = document.getElementById('hero-linkedin-link');
     if (heroLinkedinLink) {
       if (linkedin) {
@@ -2069,7 +2102,7 @@ function renderHeroDynamic() {
         heroLinkedinLink.target = '_blank';
         heroLinkedinLink.rel = 'noopener noreferrer';
       } else {
-        heroLinkedinLink.href = '#contact';
+        heroLinkedinLink.href = 'contact.html';
         heroLinkedinLink.removeAttribute('target');
       }
     }
@@ -2083,6 +2116,27 @@ function renderHeroDynamic() {
     if (contactPhoneEl) {
       contactPhoneEl.textContent = phone;
       contactPhoneEl.href = `tel:${phone.replace(/\s+/g, '')}`;
+    }
+    const addrEl = document.querySelector('[data-i18n="contact.val_address"]');
+    if (addrEl && p.contact.address) {
+      addrEl.textContent = p.contact.address[currentLang] || p.contact.address.vi || 'Đà Nẵng, Việt Nam';
+    }
+
+    // Reference Person Sync (supports both p.contact.reference and p.reference)
+    const ref = p.contact.reference || p.reference;
+    if (ref) {
+      const refNameEl = document.querySelector('[data-i18n="contact.ref_name"]');
+      if (refNameEl && ref.name) refNameEl.textContent = ref.name;
+      const refRoleEl = document.querySelector('[data-i18n="contact.ref_role"]');
+      if (refRoleEl && ref.role) refRoleEl.textContent = typeof ref.role === 'object' ? (ref.role[currentLang] || ref.role.vi) : ref.role;
+      const refPhoneEl = document.querySelector('[data-i18n="contact.ref_phone"]');
+      if (refPhoneEl && ref.phone) {
+        refPhoneEl.textContent = (currentLang === 'en' && ref.phone.includes('yêu cầu'))
+          ? 'Referee contact details will be provided upon request'
+          : ref.phone;
+      }
+      const refNoteEl = document.querySelector('[data-i18n="contact.ref_note"]');
+      if (refNoteEl && ref.note) refNoteEl.textContent = typeof ref.note === 'object' ? (ref.note[currentLang] || ref.note.vi) : ref.note;
     }
   }
 }
@@ -3344,12 +3398,12 @@ function initMacOsDock() {
       items.forEach(it => {
         it.style.transform = '';
       });
-      if (bubble) bubble.textContent = 'Chạm công cụ để xem';
+      if (bubble) bubble.textContent = (currentLang === 'en') ? 'Hover or tap a tool to inspect' : 'Chạm công cụ để xem';
     });
 
     item.addEventListener('click', () => {
       const tooltip = item.getAttribute('data-tooltip') || '';
-      if (bubble) bubble.textContent = 'Đang sử dụng: ' + tooltip;
+      if (bubble) bubble.textContent = ((currentLang === 'en') ? 'Active workflow: ' : 'Đang sử dụng: ') + tooltip;
       item.style.transform = 'translateY(-14px) scale(1.28)';
       setTimeout(() => { item.style.transform = ''; }, 300);
     });
@@ -3358,4 +3412,23 @@ function initMacOsDock() {
 
 window.addEventListener('load', () => {
   setTimeout(initMacOsDock, 300);
+});
+
+
+function handleCvViewClick(e) {
+  if (window.innerWidth > 768) {
+    const modal = document.getElementById('cv-preview-modal');
+    if (modal) {
+      if (e) e.preventDefault();
+      openCvPreviewModal();
+      trackPortfolioEvent('preview_cv_modal');
+    }
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeBusinessCardModal();
+    closeCvPreviewModal();
+  }
 });

@@ -1465,13 +1465,21 @@
               <input type="text" id="prof-zalo" class="form-control" placeholder="0934454099">
             </div>
 
-            <div class="form-group col-6">
+            <div class="form-group col-4">
               <label class="form-label">Link LinkedIn cá nhân (URL)</label>
-              <input type="url" id="prof-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/dominhtri/">
+              <input type="url" id="prof-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/dominhtri2206">
             </div>
-            <div class="form-group col-6">
-              <label class="form-label">Địa chỉ</label>
-              <input type="text" id="prof-address-vi" class="form-control" placeholder="152 Phan Thanh, Thanh Khê, TP. Đà Nẵng">
+            <div class="form-group col-4">
+              <label class="form-label">Link Facebook cá nhân (URL)</label>
+              <input type="url" id="prof-facebook" class="form-control" placeholder="https://www.facebook.com/dominhtri2206">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Link GitHub cá nhân (URL)</label>
+              <input type="url" id="prof-github" class="form-control" placeholder="https://github.com/dominhtri2206-create">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Địa chỉ hiển thị (Bảo mật)</label>
+              <input type="text" id="prof-address-vi" class="form-control" placeholder="Đà Nẵng, Việt Nam">
             </div>
             <!-- Người bảo chứng năng lực (Reference Person) -->
             <div class="form-group col-12" style="margin-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 14px;">
@@ -2591,6 +2599,8 @@
       setInputValue('prof-phone', c.phone || '');
       setInputValue('prof-zalo', c.zalo || '');
       setInputValue('prof-linkedin', c.linkedin || '');
+      setInputValue('prof-facebook', c.facebook || '');
+      setInputValue('prof-github', c.github || '');
       setInputValue('prof-address-vi', c.address ? (c.address.vi || '') : '');
 
       const ana = currentData.analytics || {};
@@ -2653,7 +2663,7 @@
       }
 
       // Populate Reference in Contact
-      const ref = p.reference || {};
+      const ref = (p.contact && p.contact.reference) || p.reference || {};
       setInputValue('ref-name', ref.name || '');
       setInputValue('ref-role-vi', ref.role ? (ref.role.vi || '') : '');
       setInputValue('ref-phone', ref.phone || '');
@@ -2712,6 +2722,8 @@
       p.contact.phone = getInputValue('prof-phone', p.contact.phone || '');
       p.contact.zalo = getInputValue('prof-zalo', p.contact.zalo || '');
       p.contact.linkedin = getInputValue('prof-linkedin', p.contact.linkedin || '');
+      p.contact.facebook = getInputValue('prof-facebook', p.contact.facebook || '');
+      p.contact.github = getInputValue('prof-github', p.contact.github || '');
       const addr = getInputValue('prof-address-vi', p.contact.address ? (p.contact.address.vi || '') : '');
       p.contact.address = {
         vi: addr,
@@ -2803,7 +2815,8 @@
       };
 
       // Collect Reference (contact.html)
-      if (!p.reference) p.reference = {};
+      const existingRef = (p.contact && p.contact.reference) || p.reference || {};
+      p.reference = existingRef;
       p.reference.name = getInputValue('ref-name', p.reference.name || 'Cô Nguyễn Thị Thanh Tâm');
       p.reference.role = {
         vi: getInputValue('ref-role-vi', p.reference.role ? p.reference.role.vi : 'Giảng viên bộ môn Digital Marketing'),
@@ -2814,6 +2827,8 @@
         vi: getInputValue('ref-note-vi', p.reference.note ? p.reference.note.vi : ''),
         en: p.reference.note ? (p.reference.note.en || '') : ''
       };
+
+      if (p.contact) p.contact.reference = p.reference;
 
       currentData.analytics = {
         gaMeasurementId: getInputValue('ana-ga-id', ''),

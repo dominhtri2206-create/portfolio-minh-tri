@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liên Hệ & Kết Nối Hợp Tác | Đỗ Minh Trí — Portfolio 2026</title>
-  <meta name="description" content="Kết nối với Đỗ Minh Trí (Eric Do) cho các cơ hội nghề nghiệp, thực tập sinh Marketing, quản trị dự án hoặc dự án ứng dụng AI Agent.">
+  <meta name="description" content="Kết nối với Đỗ Minh Trí (Eric Do) qua Email contact@dominhtri.id.vn, Zalo, LinkedIn, Facebook, GitHub hoặc tải danh thiếp số QR (.vcf).">
+  <link rel="canonical" href="https://dominhtri.id.vn/contact.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Đỗ Minh Trí | Business & Digital Marketing — Ứng dụng AI Agent">
-  <meta property="og:image" content="images/og-preview.svg">
+  <meta property="og:url" content="https://dominhtri.id.vn/contact.html">
+  <meta property="og:site_name" content="Đỗ Minh Trí (Eric Do) — Portfolio">
+  <meta property="og:title" content="Liên Hệ & Kết Nối Hợp Tác | Đỗ Minh Trí — Portfolio 2026">
+  <meta property="og:description" content="Kết nối với Đỗ Minh Trí (Eric Do) qua Email contact@dominhtri.id.vn, Zalo, LinkedIn, Facebook, GitHub hoặc tải danh thiếp số QR (.vcf).">
+  <meta property="og:image" content="https://dominhtri.id.vn/images/og-preview.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Đỗ Minh Trí | Business &amp; Digital Marketing — Ứng dụng AI Agent">
-  <meta name="twitter:image" content="images/og-preview.svg">
+  <meta name="twitter:title" content="Liên Hệ & Kết Nối Hợp Tác | Đỗ Minh Trí — Portfolio 2026">
+  <meta name="twitter:description" content="Kết nối với Đỗ Minh Trí (Eric Do) qua Email contact@dominhtri.id.vn, Zalo, LinkedIn, Facebook, GitHub hoặc tải danh thiếp số QR (.vcf).">
+  <meta name="twitter:image" content="https://dominhtri.id.vn/images/og-preview.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="favicon.svg">
 
@@ -27,6 +33,11 @@
     "description": "Chuyên ngành Quản trị Kinh doanh & Digital Marketing, ứng dụng thực tế AI Agent vào tối ưu vận hành và chiến dịch đa kênh.",
     "url": "https://dominhtri.id.vn/",
     "image": "https://dominhtri.id.vn/avatar.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/dominhtri2206",
+      "https://www.facebook.com/dominhtri2206",
+      "https://github.com/dominhtri2206-create"
+    ],
     "telephone": "+84-934-454-099",
     "email": "contact@dominhtri.id.vn",
     "address": {
@@ -45,14 +56,6 @@
       "Top 2 Chung kết Cuộc thi Chân Trần Khởi Nghiệp Mùa 3 (DNES & BTEC)",
       "Bán kết Toàn quốc Top 35 FPT Biz Talent 2025",
       "Tốt nghiệp Xuất Sắc chuyên ngành Digital Marketing"
-    ],
-    "knowsAbout": [
-      "AI Agent Applications",
-      "Digital Marketing",
-      "Integrated Marketing Campaign (IMC)",
-      "Short-form Video Production",
-      "Market Research & SEO",
-      "Public Speaking"
     ]
   }
   </script>
@@ -68,7 +71,7 @@
     })();
   </script>
 
-  <!-- Single Unified Typography: Plus Jakarta Sans -->
+  <!-- Typography: Plus Jakarta Sans + Syne + Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
@@ -83,7 +86,6 @@
   <!-- Scroll Progress -->
   <div id="scroll-progress" class="scroll-progress"></div>
 
-
   <!-- ==================== 1. CLEAN FLOATING NAVBAR + SLIDING PILL ==================== -->
   <header class="site-header" id="header">
     <nav class="nav-container">
@@ -91,7 +93,6 @@
         <span class="logo-accent">ĐMT</span><span class="logo-dot">.</span>
       </a>
 
-      <!-- Clean 6-Item Text-Only Menu + Sliding Pill -->
       <ul class="nav-menu" id="nav-menu">
         <div class="nav-sliding-pill" id="nav-sliding-pill"></div>
         <li class="nav-item"><a href="index.html" class="nav-link " data-i18n="nav.home">Giới thiệu</a></li>
@@ -112,7 +113,7 @@
           <i class="fa-solid fa-moon" id="theme-toggle-icon"></i>
         </button>
 
-        <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-sm btn-outline nav-cv-btn cv-dynamic-link" download="CV_DoMinhTri.pdf">
+        <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-sm btn-outline nav-cv-btn cv-dynamic-link" onclick="handleCvViewClick(event)">
           <i class="fa-solid fa-file-pdf"></i> <span data-i18n="nav.cv">Tải CV</span>
         </a>
         <a href="contact.html" class="btn btn-sm btn-primary nav-contact-btn">
@@ -151,14 +152,17 @@
 
     <ul class="mobile-menu-links">
       <li><a href="index.html" class="mobile-link "><i class="fa-solid fa-house"></i> <span data-i18n="nav.home">Giới thiệu</span></a></li>
-      <li><a href="about.html" class="mobile-link "><i class="fa-solid fa-user"></i> <span data-i18n="nav.about">Về tôi &amp; Kỹ năng</span></a></li>
-      <li><a href="experience.html" class="mobile-link "><i class="fa-solid fa-briefcase"></i> <span data-i18n="nav.experience">Kinh nghiệm &amp; Hoạt động</span></a></li>
-      <li><a href="projects.html" class="mobile-link "><i class="fa-solid fa-layer-group"></i> <span data-i18n="nav.projects">Dự án tiêu biểu</span></a></li>
-      <li><a href="awards.html" class="mobile-link "><i class="fa-solid fa-trophy"></i> <span data-i18n="v2.nav_awards">Giải thưởng &amp; Chứng chỉ</span></a></li>
+      <li><a href="about.html" class="mobile-link "><i class="fa-solid fa-user"></i> <span data-i18n="bc.about">Về tôi &amp; Kỹ năng</span></a></li>
+      <li><a href="experience.html" class="mobile-link "><i class="fa-solid fa-briefcase"></i> <span data-i18n="bc.experience">Kinh nghiệm &amp; Hoạt động</span></a></li>
+      <li><a href="projects.html" class="mobile-link "><i class="fa-solid fa-layer-group"></i> <span data-i18n="bc.projects">Dự án tiêu biểu</span></a></li>
+      <li><a href="awards.html" class="mobile-link "><i class="fa-solid fa-trophy"></i> <span data-i18n="bc.awards">Giải thưởng &amp; Chứng chỉ</span></a></li>
       <li><a href="contact.html" class="mobile-link active"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="nav.contact">Liên hệ</span></a></li>
     </ul>
 
     <div class="drawer-footer">
+      <button type="button" class="btn btn-outline w-100 mb-2" onclick="closeDrawerSafe(); openBusinessCardModal();">
+        <i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.btn_open_card">Danh thiếp QR (.vcf)</span>
+      </button>
       <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-outline w-100 mb-2 cv-dynamic-link" download="CV_DoMinhTri.pdf">
         <i class="fa-solid fa-file-pdf"></i> <span data-i18n="nav.cv">Tải CV (PDF)</span>
       </a>
@@ -168,17 +172,15 @@
     </div>
   </aside>
 
-
   <main>
-
     <div class="container" style="padding-top: 96px;">
       <nav class="subpage-breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a>
+        <a href="index.html"><i class="fa-solid fa-house"></i> <span data-i18n="bc.home">Trang chủ</span></a>
         <i class="fa-solid fa-chevron-right"></i>
-        <span class="current-page">Liên hệ &amp; Hợp tác</span>
+        <span class="current-page" data-i18n="bc.contact">Liên hệ &amp; Hợp tác</span>
       </nav>
     </div>
-<!-- ==================== 8. LIÊN HỆ & THAM CHIẾU ==================== -->
+    <!-- ==================== 8. LIÊN HỆ & THAM CHIẾU ==================== -->
     <section class="section contact-section" style="padding-top: 10px;" id="contact">
       <div class="container">
         <div class="section-header text-center v2-anim">
@@ -227,12 +229,30 @@
                 </div>
               </div>
 
-              <div class="contact-quick-actions">
+              <div class="contact-quick-actions" style="flex-wrap: wrap;">
                 <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
                   <i class="fa-solid fa-comment-dots"></i> <span>Nhắn Zalo ngay</span>
                 </a>
                 <a href="mailto:contact@dominhtri.id.vn" class="btn btn-outline btn-sm">
                   <i class="fa-solid fa-envelope"></i> <span data-i18n="contact.btn_mail">Gửi Email</span>
+                </a>
+                <button type="button" class="btn btn-outline btn-sm" onclick="openBusinessCardModal()">
+                  <i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.btn_open_card">Danh thiếp QR (.vcf)</span>
+                </button>
+              </div>
+
+              <div class="contact-social-strip">
+                <a href="https://www.linkedin.com/in/dominhtri2206" target="_blank" rel="noopener noreferrer" class="social-channel-pill dyn-linkedin-link">
+                  <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> <span>LinkedIn</span>
+                </a>
+                <a href="https://www.facebook.com/dominhtri2206" target="_blank" rel="noopener noreferrer" class="social-channel-pill dyn-facebook-link">
+                  <i class="fa-brands fa-facebook" style="color: #1877f2;"></i> <span>Facebook</span>
+                </a>
+                <a href="https://github.com/dominhtri2206-create" target="_blank" rel="noopener noreferrer" class="social-channel-pill dyn-github-link">
+                  <i class="fa-brands fa-github"></i> <span>GitHub</span>
+                </a>
+                <a href="CV_DoMinhTri.pdf" target="_blank" class="social-channel-pill cv-dynamic-link" onclick="handleCvViewClick(event)">
+                  <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i> <span data-i18n="hero.cta_cv">Xem CV (PDF)</span>
                 </a>
               </div>
             </div>
@@ -330,11 +350,23 @@
         </div>
       </div>
     </section>
-  
+    <div class="next-chapter-wrap ">
+      <div class="container">
+        <a href="projects.html" class="next-chapter-card v2-anim">
+          <div>
+            <span class="next-chapter-eyebrow"><i class="fa-solid fa-compass"></i> <span data-i18n="nc.revisit_eyebrow">Chương tiếp theo</span></span>
+            <h3 class="next-chapter-title" data-i18n="nc.to_proj_revisit_title">Xem lại các Case Studies thực chiến</h3>
+            <p class="next-chapter-desc" data-i18n="nc.to_proj_revisit_desc">Đi sâu vào quy trình lập kế hoạch, thực thi và đo lường hiệu quả từng chiến dịch.</p>
+          </div>
+          <div class="next-chapter-actions">
+            <span class="next-chapter-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+    </div>
   </main>
 
-
-  <!-- ==================== FOOTER ==================== -->
+  <!-- ==================== SUBPAGE FULL FOOTER (ADMIN LINK REMOVED FOR SECURITY) ==================== -->
   <footer class="site-footer">
     <div class="container footer-container">
       <div>
@@ -342,24 +374,30 @@
         <p class="footer-bio" data-i18n="footer.bio">
           Đỗ Minh Trí (Eric Do) — Business &amp; Digital Marketing | Ứng dụng AI Agent. Sẵn sàng mang đến tư duy chiến lược, nội dung sáng tạo và giải pháp công nghệ thực chiến cho đội ngũ của bạn.
         </p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
+          <a href="https://www.linkedin.com/in/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-linkedin-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="https://www.facebook.com/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-facebook-link"><i class="fa-brands fa-facebook"></i> Facebook</a>
+          <a href="https://github.com/dominhtri2206-create" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+          <button type="button" class="minimal-pill-link minimal-pill-qr" onclick="openBusinessCardModal()"><i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.pill_label">Mã QR / vCard</span></button>
+        </div>
       </div>
 
       <div>
         <h4 class="footer-heading" data-i18n="footer.quick_links">Điều hướng trang</h4>
         <ul class="footer-links">
           <li><a href="index.html" data-i18n="nav.home">Giới thiệu (Trang chủ)</a></li>
-          <li><a href="about.html" data-i18n="nav.about">Về tôi &amp; Kỹ năng</a></li>
-          <li><a href="experience.html" data-i18n="nav.experience">Kinh nghiệm &amp; Hoạt động</a></li>
-          <li><a href="projects.html" data-i18n="nav.projects">Dự án tiêu biểu</a></li>
-          <li><a href="awards.html" data-i18n="v2.nav_awards">Giải thưởng &amp; Chứng chỉ</a></li>
-          <li><a href="contact.html" data-i18n="nav.contact">Liên hệ &amp; Hợp tác</a></li>
+          <li><a href="about.html" data-i18n="bc.about">Về tôi &amp; Kỹ năng</a></li>
+          <li><a href="experience.html" data-i18n="bc.experience">Kinh nghiệm &amp; Hoạt động</a></li>
+          <li><a href="projects.html" data-i18n="bc.projects">Dự án tiêu biểu</a></li>
+          <li><a href="awards.html" data-i18n="bc.awards">Giải thưởng &amp; Chứng chỉ</a></li>
+          <li><a href="contact.html" data-i18n="bc.contact">Liên hệ &amp; Hợp tác</a></li>
         </ul>
       </div>
 
       <div>
         <h4 class="footer-heading" data-i18n="footer.docs_title">Hồ sơ năng lực</h4>
         <p class="footer-cv-desc" data-i18n="footer.cv_desc">Tải bản CV PDF chuẩn ATS kèm thông tin xác thực quá trình học tập và giải thưởng.</p>
-        <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-outline btn-sm mb-3 cv-dynamic-link" download="CV_DoMinhTri.pdf">
+        <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-outline btn-sm mb-3 cv-dynamic-link" onclick="handleCvViewClick(event)">
           <i class="fa-solid fa-file-pdf"></i> <span data-i18n="footer.download_cv">Tải bản CV (PDF)</span>
         </a>
         <div class="footer-contact-direct">
@@ -372,13 +410,12 @@
     <div class="footer-bottom">
       <div class="container footer-bottom-content">
         <p data-i18n="footer.copyright">© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả.</p>
-        <div style="display: flex; gap: 16px; align-items: center;">
-          <a href="admin.html" class="admin-cms-link" style="padding: 4px 12px; border-radius: 999px; background: var(--bg-pill);"><i class="fa-solid fa-lock"></i> Admin CMS</a>
+        <div style="font-size: 0.8rem; color: var(--text-tertiary);">
+          <span>dominhtri.id.vn</span>
         </div>
       </div>
     </div>
   </footer>
-
   <!-- Mobile Floating Quick Dock (#10) -->
   <div class="mobile-floating-dock" id="mobile-floating-dock">
     <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="dock-action-btn dock-zalo">
@@ -394,7 +431,6 @@
   <button id="back-to-top" class="back-to-top-btn" aria-label="Lên đầu trang">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
-
 
   <!-- ==================== MODALS & LIGHTBOX ==================== -->
   <div class="modal-backdrop" id="project-modal-backdrop" onclick="closeProjectModal()"></div>
@@ -441,89 +477,367 @@
 
   <div id="toast-container" class="toast-container"></div>
 
-  <!-- Core Portfolio Engine (Shared Data, Modals, i18n, Theme, Analytics) -->
-  <script src="script.js"></script>
-  <!-- V2 UI Upgrade Engine (Sliding Pill, Device Mockup Cards, Asymmetric Awards Bento, Spotlight & Mobile Dock) -->
-  <script src="v2-engine.js"></script>
-
-  <!-- ==================== DIGITAL BUSINESS CARD & VCARD MODAL ==================== -->
+  <!-- ==================== DIGITAL BUSINESS CARD & REAL SCANNABLE QR MODAL ==================== -->
   <div class="modal-backdrop" id="business-card-backdrop" onclick="closeBusinessCardModal()"></div>
   <div class="vcard-modal-box" id="business-card-modal" role="dialog" aria-modal="true">
     <button class="modal-close-btn" onclick="closeBusinessCardModal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
     <div class="vcard-modal-content">
       <div class="vcard-header-badge">
         <span class="live-status-dot"></span>
-        <span>Danh Thiếp Số • Verified Card</span>
+        <span data-i18n="qr.modal_badge">Danh Thiếp Số • Verified Card</span>
       </div>
       <div class="vcard-user-info">
         <img src="avatar.jpg" alt="Đỗ Minh Trí" class="vcard-avatar" onerror="this.src='CV.png'">
         <h3 class="vcard-name">Đỗ Minh Trí <span class="vcard-alias">(Eric Do)</span></h3>
         <p class="vcard-title">Business &amp; Digital Marketing | AI Agent Solutions</p>
-        <p class="vcard-org"><i class="fa-solid fa-building-columns"></i> BTEC FPT Đà Nẵng</p>
+        <p class="vcard-org"><i class="fa-solid fa-globe"></i> dominhtri.id.vn • Đà Nẵng, Việt Nam</p>
       </div>
 
       <div class="vcard-qr-box">
-        <svg class="vcard-qr-svg" viewBox="0 0 100 100" width="160" height="160" aria-label="QR Code kết nối">
-          <rect width="100" height="100" fill="#ffffff" rx="8"/>
-          <rect x="10" y="10" width="24" height="24" fill="#0f172a" rx="4"/>
-          <rect x="14" y="14" width="16" height="16" fill="#ffffff" rx="2"/>
-          <rect x="18" y="18" width="8" height="8" fill="#ff6b35" rx="1"/>
-
-          <rect x="66" y="10" width="24" height="24" fill="#0f172a" rx="4"/>
-          <rect x="70" y="14" width="16" height="16" fill="#ffffff" rx="2"/>
-          <rect x="74" y="18" width="8" height="8" fill="#ff6b35" rx="1"/>
-
-          <rect x="10" y="66" width="24" height="24" fill="#0f172a" rx="4"/>
-          <rect x="14" y="70" width="16" height="16" fill="#ffffff" rx="2"/>
-          <rect x="18" y="74" width="8" height="8" fill="#ff6b35" rx="1"/>
-
-          <circle cx="42" cy="18" r="2.5" fill="#0f172a"/>
-          <circle cx="50" cy="18" r="2.5" fill="#0f172a"/>
-          <circle cx="58" cy="18" r="2.5" fill="#0f172a"/>
-
-          <circle cx="42" cy="26" r="2.5" fill="#0f172a"/>
-          <circle cx="58" cy="26" r="2.5" fill="#0f172a"/>
-
-          <circle cx="18" cy="42" r="2.5" fill="#0f172a"/>
-          <circle cx="26" cy="42" r="2.5" fill="#0f172a"/>
-          <circle cx="34" cy="42" r="2.5" fill="#0f172a"/>
-          <circle cx="46" cy="42" r="3.5" fill="#ff6b35"/>
-          <circle cx="54" cy="42" r="2.5" fill="#0f172a"/>
-          <circle cx="66" cy="42" r="2.5" fill="#0f172a"/>
-          <circle cx="78" cy="42" r="2.5" fill="#0f172a"/>
-
-          <circle cx="18" cy="50" r="2.5" fill="#0f172a"/>
-          <circle cx="38" cy="50" r="2.5" fill="#0f172a"/>
-          <circle cx="50" cy="50" r="4" fill="#0f172a"/>
-          <circle cx="62" cy="50" r="2.5" fill="#0f172a"/>
-          <circle cx="82" cy="50" r="2.5" fill="#0f172a"/>
-
-          <circle cx="26" cy="58" r="2.5" fill="#0f172a"/>
-          <circle cx="42" cy="58" r="2.5" fill="#0f172a"/>
-          <circle cx="54" cy="58" r="3" fill="#ff6b35"/>
-          <circle cx="70" cy="58" r="2.5" fill="#0f172a"/>
-
-          <circle cx="42" cy="68" r="2.5" fill="#0f172a"/>
-          <circle cx="50" cy="68" r="2.5" fill="#0f172a"/>
-          <circle cx="62" cy="68" r="2.5" fill="#0f172a"/>
-          <circle cx="78" cy="68" r="2.5" fill="#0f172a"/>
-
-          <circle cx="46" cy="78" r="2.5" fill="#0f172a"/>
-          <circle cx="58" cy="78" r="2.5" fill="#0f172a"/>
-          <circle cx="70" cy="78" r="2.5" fill="#0f172a"/>
-          <circle cx="82" cy="78" r="2.5" fill="#0f172a"/>
+        <svg class="vcard-qr-svg" viewBox="0 0 31 31" width="168" height="168" shape-rendering="geometricPrecision" aria-label="QR Code https://dominhtri.id.vn/">
+          <rect width="31" height="31" fill="#ffffff" rx="2.2"/>
+          <rect x="3" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="8" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="22" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="25" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="3" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="4" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="5" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="6" y="5" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="7" y="5" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="9" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="5" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="24" y="5" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="25" y="5" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="27" y="5" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="6" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="6" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="6" y="6" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="7" y="6" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="9" y="6" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="6" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="6" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="6" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="6" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="6" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="24" y="6" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="25" y="6" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="27" y="6" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="7" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="6" y="7" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="7" y="7" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="9" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="7" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="24" y="7" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="25" y="7" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="27" y="7" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="8" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="8" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="22" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="25" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="9" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="10" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="10" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="10" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="10" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="8" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="10" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="25" y="11" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="8" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="12" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="25" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="13" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="8" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="14" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="15" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="10" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="16" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="22" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="25" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="17" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="10" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="18" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="22" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="19" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="20" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="8" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="21" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="22" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="23" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="6" y="23" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="7" y="23" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="9" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="22" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="23" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="24" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="6" y="24" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="7" y="24" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="9" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="22" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="25" y="24" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="25" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="25" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="6" y="25" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="7" y="25" width="1" height="1" rx="0.18" fill="#ff6b35"/>
+          <rect x="9" y="25" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="25" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="25" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="25" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="25" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="25" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="13" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="23" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="24" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="26" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="3" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="4" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="5" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="6" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="7" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="8" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="9" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="11" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="12" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="14" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="15" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="16" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="17" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="18" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="19" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="20" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="21" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="22" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="26" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
+          <rect x="27" y="27" width="1" height="1" rx="0.18" fill="#0f172a"/>
         </svg>
-        <span class="vcard-scan-text"><i class="fa-solid fa-camera"></i> Quét camera để xem hồ sơ trên điện thoại</span>
+        <span class="vcard-scan-text"><i class="fa-solid fa-camera"></i> <span data-i18n="qr.scan_hint">Quét camera điện thoại để mở dominhtri.id.vn</span></span>
       </div>
 
       <div class="vcard-actions">
         <button type="button" class="btn btn-primary w-100" onclick="downloadVCard()">
           <i class="fa-solid fa-address-card"></i>
-          <span>Lưu Danh Bạ (.vcf vào điện thoại)</span>
+          <span data-i18n="qr.save_vcf">Lưu Danh Bạ (.vcf vào điện thoại)</span>
         </button>
         <div style="display: flex; gap: 10px; width: 100%;">
           <a href="tel:0934454099" class="btn btn-outline flex-1" style="justify-content: center;">
-            <i class="fa-solid fa-phone"></i> Gọi điện
+            <i class="fa-solid fa-phone"></i> <span data-i18n="qr.call_now">Gọi điện</span>
           </a>
           <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="btn btn-outline flex-1" style="justify-content: center;">
             <i class="fa-solid fa-comment-dots"></i> Zalo
@@ -541,27 +855,40 @@
         <i class="fa-solid fa-file-pdf" style="color: #ef4444; font-size: 1.4rem;"></i>
         <div>
           <h4 style="margin: 0; font-size: 1rem; font-weight: 700;">CV_DoMinhTri.pdf</h4>
-          <span style="font-size: 0.78rem; color: var(--text-tertiary);">Bản chuẩn ATS • Cập nhật mới nhất</span>
+          <span style="font-size: 0.78rem; color: var(--text-tertiary);" data-i18n="cv.modal_sub">Bản chuẩn ATS • Cập nhật mới nhất</span>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px;">
-        <a href="CV_DoMinhTri.pdf" download="CV_DoMinhTri.pdf" class="btn btn-primary btn-sm">
-          <i class="fa-solid fa-download"></i> <span>Tải xuống</span>
+        <a href="CV_DoMinhTri.pdf" download="CV_DoMinhTri.pdf" class="btn btn-primary btn-sm cv-dynamic-link" id="cv-modal-download-btn">
+          <i class="fa-solid fa-download"></i> <span data-i18n="cv.download">Tải xuống</span>
         </a>
-        <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-outline btn-sm">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở tab mới</span>
+        <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-outline btn-sm cv-dynamic-link" id="cv-modal-newtab-btn">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="cv.open_tab">Mở tab mới</span>
         </a>
         <button type="button" class="modal-close-btn" onclick="closeCvPreviewModal()" style="position: static; margin-left: 6px;"><i class="fa-solid fa-xmark"></i></button>
       </div>
     </div>
     <div class="cv-preview-body">
-      <object data="CV_DoMinhTri.pdf" type="application/pdf" width="100%" height="100%">
-        <iframe src="CV_DoMinhTri.pdf" width="100%" height="100%" style="border: none;">
-          <p>Trình duyệt của bạn không hỗ trợ xem trực tiếp PDF. Vui lòng <a href="CV_DoMinhTri.pdf" download>bấm vào đây để tải về</a>.</p>
+      <object id="cv-modal-object" data="CV_DoMinhTri.pdf" type="application/pdf" width="100%" height="100%">
+        <iframe id="cv-modal-iframe" src="CV_DoMinhTri.pdf" width="100%" height="100%" style="border: none;">
+          <p>Trình duyệt của bạn không hỗ trợ xem trực tiếp PDF. Vui lòng <a href="CV_DoMinhTri.pdf" class="cv-dynamic-link" download>bấm vào đây để tải về</a>.</p>
         </iframe>
       </object>
     </div>
   </div>
+
+  <script>
+    function closeDrawerSafe() {
+      var d = document.getElementById('mobile-drawer');
+      var b = document.getElementById('mobile-backdrop');
+      if (d) d.classList.remove('active');
+      if (b) b.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  </script>
+  <!-- Core Portfolio Engine -->
+  <script src="script.js"></script>
+  <!-- V2 UI Upgrade Engine -->
+  <script src="v2-engine.js"></script>
 </body>
 </html>
-

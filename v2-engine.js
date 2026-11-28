@@ -5,14 +5,126 @@
           'v2.nav_awards': 'Giải thưởng',
           'v2.awards_eyebrow': 'Giải thưởng & Chứng nhận Quốc tế',
           'v2.awards_title': 'Thành Tích & Minh Chứng Xác Thực',
-          'v2.awards_sub': 'Gộp gọn toàn bộ giải thưởng khởi nghiệp cấp quốc gia và chứng chỉ quốc tế kèm hình ảnh bằng khen gốc xác thực.'
+          'v2.awards_sub': 'Gộp gọn toàn bộ giải thưởng khởi nghiệp cấp quốc gia và chứng chỉ quốc tế kèm hình ảnh bằng khen gốc xác thực.',
+          'v2.vi_eyebrow': 'Visual Index • Khám phá theo chủ đề',
+          'v2.vi_hint': 'Chạm thẻ để mở trang',
+          'v2.c1_badge': 'Nền tảng',
+          'v2.c1_title': 'Về tôi & Kỹ năng',
+          'v2.c1_sub': 'Quản trị KD × AI Agent',
+          'v2.c2_badge': 'Thực chiến',
+          'v2.c2_title': 'Case Studies',
+          'v2.c2_sub': 'TikTok • SEO • Brand IMC',
+          'v2.c3_badge': 'Lãnh đạo',
+          'v2.c3_title': 'Kinh nghiệm',
+          'v2.c3_sub': 'Phó Chủ tịch BBE & Sự kiện',
+          'v2.c4_badge': 'Xác thực',
+          'v2.c4_title': 'Giải thưởng',
+          'v2.c4_sub': 'Top 2 Khởi Nghiệp • MOS',
+          'bc.home': 'Trang chủ',
+          'bc.about': 'Về tôi & Kỹ năng',
+          'bc.experience': 'Kinh nghiệm & Hoạt động',
+          'bc.projects': 'Dự án tiêu biểu',
+          'bc.awards': 'Giải thưởng & Chứng chỉ',
+          'bc.contact': 'Liên hệ & Hợp tác',
+          'pf.all': 'Tất cả dự án',
+          'pf.video': 'Video & TikTok',
+          'pf.seo': 'SEO & Website',
+          'pf.brand': 'Brand & IMC',
+          'nc.eyebrow': 'Chương tiếp theo',
+          'nc.revisit_eyebrow': 'Tiếp tục khám phá',
+          'nc.back_home': 'Về Trang chủ',
+          'nc.to_exp_title': '02. Kinh nghiệm & Vai trò lãnh đạo',
+          'nc.to_exp_desc': 'Hành trình điều hành CLB BBE Pegasus Chapter và điều phối sự kiện quy mô lớn.',
+          'nc.to_proj_title': '03. Dự án tiêu biểu & Case Studies',
+          'nc.to_proj_desc': 'Khám phá chi tiết KPI thực chiến: TikTok 120K+ views, SEO +250% clicks & chiến dịch IMC.',
+          'nc.to_awards_title': '04. Giải thưởng & Chứng chỉ quốc tế',
+          'nc.to_awards_desc': 'Á Quân Chân Trần Khởi Nghiệp Mùa 3, Top 35 FPT Biz Talent & chứng nhận MOS.',
+          'nc.to_contact_title': '05. Kết nối & Hợp tác ngay',
+          'nc.to_contact_desc': 'Trao đổi cơ hội Thực tập Marketing, Business hoặc dự án ứng dụng AI Agent.',
+          'nc.to_proj_revisit_title': 'Xem lại các Case Studies thực chiến',
+          'nc.to_proj_revisit_desc': 'Đi sâu vào quy trình lập kế hoạch, thực thi và đo lường hiệu quả từng chiến dịch.',
+          'skills.seo_title': 'SEO Onpage & Phân tích Dữ liệu',
+          'skills.seo_desc': 'Nghiên cứu 150+ từ khóa theo hành trình mua hàng, xử lý báo cáo KPI bằng Excel MOS chuẩn quốc tế.',
+          'dock.hint': 'Chạm công cụ để xem',
+          'qr.pill_label': 'Mã QR / vCard',
+          'qr.btn_open_card': 'Danh thiếp QR (.vcf)',
+          'qr.modal_badge': 'Danh Thiếp Số • Verified Card',
+          'qr.scan_hint': 'Quét camera điện thoại để mở dominhtri.id.vn',
+          'qr.save_vcf': 'Lưu Danh Bạ (.vcf vào điện thoại)',
+          'qr.call_now': 'Gọi điện',
+          'cv.modal_sub': 'Bản chuẩn ATS • Cập nhật mới nhất',
+          'cv.download': 'Tải xuống',
+          'cv.open_tab': 'Mở tab mới',
+          'err.title': 'Không tìm thấy trang bạn yêu cầu',
+          'err.desc': 'Đường dẫn có thể đã thay đổi sau khi nâng cấp cấu trúc đa trang. Hãy quay về Trang chủ hoặc khám phá các mục bên dưới nhé!',
+          'err.btn_home': 'Về Trang chủ',
+          'err.btn_projects': 'Xem Dự án',
+          'err.btn_contact': 'Liên hệ ngay'
         });
         Object.assign(translations.en, {
           'v2.nav_awards': 'Awards',
           'v2.awards_eyebrow': 'National Honors & Verified Credentials',
           'v2.awards_title': 'Awards & Verified Certifications',
-          'v2.awards_sub': 'Consolidated national startup awards and international certifications backed by official verifiable documents.'
+          'v2.awards_sub': 'Consolidated national startup awards and international certifications backed by official verifiable documents.',
+          'v2.vi_eyebrow': 'Visual Index • Explore by Chapter',
+          'v2.vi_hint': 'Tap a card to open page',
+          'v2.c1_badge': 'Foundation',
+          'v2.c1_title': 'About & Skills',
+          'v2.c1_sub': 'Business Admin × AI Agent',
+          'v2.c2_badge': 'Execution',
+          'v2.c2_title': 'Case Studies',
+          'v2.c2_sub': 'TikTok • SEO • Brand IMC',
+          'v2.c3_badge': 'Leadership',
+          'v2.c3_title': 'Experience',
+          'v2.c3_sub': 'Vice President BBE & Events',
+          'v2.c4_badge': 'Verified',
+          'v2.c4_title': 'Honors & Certs',
+          'v2.c4_sub': 'Startup Runner-Up • MOS',
+          'bc.home': 'Home',
+          'bc.about': 'About & Skills',
+          'bc.experience': 'Experience & Activities',
+          'bc.projects': 'Featured Projects',
+          'bc.awards': 'Awards & Certifications',
+          'bc.contact': 'Contact & Collaborate',
+          'pf.all': 'All Projects',
+          'pf.video': 'Video & TikTok',
+          'pf.seo': 'SEO & Analytics',
+          'pf.brand': 'Brand & IMC',
+          'nc.eyebrow': 'Next Chapter',
+          'nc.revisit_eyebrow': 'Continue Exploring',
+          'nc.back_home': 'Back to Home',
+          'nc.to_exp_title': '02. Experience & Leadership Roles',
+          'nc.to_exp_desc': 'Executive leadership at BBE Pegasus Chapter and large-scale university event operations.',
+          'nc.to_proj_title': '03. Featured Projects & Case Studies',
+          'nc.to_proj_desc': 'Deep dive into real KPIs: 120K+ TikTok organic views, +250% SEO clicks & IMC campaigns.',
+          'nc.to_awards_title': '04. National Awards & Certifications',
+          'nc.to_awards_desc': 'Barefoot Startup S3 Runner-Up, Top 35 FPT Biz Talent & Microsoft MOS credentials.',
+          'nc.to_contact_title': '05. Let’s Connect & Collaborate',
+          'nc.to_contact_desc': 'Open to Marketing/Business internships, creative campaigns, and AI Agent workflows.',
+          'nc.to_proj_revisit_title': 'Explore Featured Case Studies',
+          'nc.to_proj_revisit_desc': 'Review full campaign planning, execution frameworks, and measurable outcomes.',
+          'skills.seo_title': 'Onpage SEO & Data Analytics',
+          'skills.seo_desc': 'Researching 150+ buyer-journey keywords and modeling KPI dashboards with certified MOS Excel.',
+          'dock.hint': 'Hover or tap a tool to inspect',
+          'qr.pill_label': 'QR / vCard',
+          'qr.btn_open_card': 'Digital QR (.vcf)',
+          'qr.modal_badge': 'Digital vCard • Verified Profile',
+          'qr.scan_hint': 'Point phone camera to open dominhtri.id.vn',
+          'qr.save_vcf': 'Save Contact (.vcf to Phone)',
+          'qr.call_now': 'Call Now',
+          'cv.modal_sub': 'ATS-Friendly Resume • Latest Edition',
+          'cv.download': 'Download',
+          'cv.open_tab': 'Open in New Tab',
+          'err.title': 'Page Not Found',
+          'err.desc': 'The link you followed may have moved during our multi-page upgrade. Head back home or explore key chapters below!',
+          'err.btn_home': 'Back to Home',
+          'err.btn_projects': 'View Projects',
+          'err.btn_contact': 'Contact Me'
         });
+        // Re-apply active language so newly registered v2 keys render immediately!
+        if (typeof applyLanguage === 'function' && typeof currentLang !== 'undefined') {
+          applyLanguage(currentLang);
+        }
       }
 
       // Helper: Extract or assign 3 crisp KPI metrics for each Project Card (#5)
@@ -68,6 +180,21 @@
         `;
       }
 
+      window.currentProjectFilter = 'all';
+      function classifyProjectCategory(p) {
+        const pool = JSON.stringify(p).toLowerCase();
+        if (/tiktok|reels|video|capcut/.test(pool)) return 'video';
+        if (/seo|keyword|search console|từ khóa/.test(pool)) return 'seo';
+        return 'brand';
+      }
+      window.filterProjects = function (cat) {
+        window.currentProjectFilter = cat || 'all';
+        document.querySelectorAll('.project-filter-pill').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-filter') === window.currentProjectFilter);
+        });
+        window.renderProjectsGrid();
+      };
+
       // Override renderProjectsGrid for V2 Keynote Dark Showcase (#3 & #5)
       window.renderProjectsGrid = function () {
         const container = document.getElementById('projects-grid');
@@ -97,6 +224,9 @@
           });
         }
 
+        if (window.currentProjectFilter && window.currentProjectFilter !== 'all') {
+          list = list.filter(p => classifyProjectCategory(p) === window.currentProjectFilter);
+        }
         const stageClasses = ['stage-blue', 'stage-slate', 'stage-indigo'];
 
         container.innerHTML = list.map((p, idx) => {

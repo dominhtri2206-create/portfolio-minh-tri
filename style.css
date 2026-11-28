@@ -3179,3 +3179,312 @@ textarea.form-control { min-height: 105px; resize: vertical; }
   color: var(--accent-apple);
 }
 
+/* ===================================================================
+   MULTI-PAGE V3 POLISH: SECURITY, MINIMAL HOME FOOTER, NEXT CHAPTER,
+   KEYNOTE PROJECT FILTERS, SOCIAL PILLS & 404 PAGE
+   =================================================================== */
+
+/* 1. Hide Admin CMS link on all public pages */
+.admin-cms-link {
+  display: none !important;
+}
+
+/* 2. Tighter Hero & Minimalist One-Line Footer for Standalone Home (index.html) */
+body.home-one-screen .hero-section {
+  padding-bottom: 28px;
+}
+
+.home-minimal-footer {
+  padding: 18px 0;
+  border-top: var(--border-subtle);
+  background: var(--bg-subtle);
+}
+
+.home-minimal-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.home-minimal-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.home-minimal-left .brand-logo {
+  font-size: 1.1rem;
+}
+
+.home-minimal-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.minimal-pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: var(--border-subtle);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.minimal-pill-link:hover {
+  color: var(--accent-apple);
+  border-color: var(--accent-apple);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.12);
+}
+
+.minimal-pill-qr {
+  background: var(--accent-apple-subtle);
+  color: var(--accent-apple);
+  border-color: rgba(0, 113, 227, 0.2);
+}
+
+/* 3. Seamless Dark Breadcrumb & Filter Pills on Projects Page */
+.projects-standalone-section {
+  padding-top: 108px !important;
+  padding-bottom: 84px;
+  min-height: calc(100vh - 200px);
+}
+
+.subpage-breadcrumb-dark {
+  margin-bottom: 24px;
+  color: rgba(245, 245, 247, 0.55);
+}
+
+.subpage-breadcrumb-dark a {
+  color: rgba(245, 245, 247, 0.78);
+}
+
+.subpage-breadcrumb-dark a:hover {
+  color: #38BDF8;
+}
+
+.subpage-breadcrumb-dark span.current-page {
+  color: #38BDF8;
+}
+
+.project-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: -12px auto 38px;
+}
+
+.project-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(245, 245, 247, 0.8);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-apple);
+}
+
+.project-filter-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.project-filter-pill.active {
+  background: linear-gradient(135deg, #0071e3, #2563eb);
+  border-color: rgba(56, 189, 248, 0.55);
+  color: #FFFFFF;
+  box-shadow: 0 8px 22px rgba(0, 113, 227, 0.38);
+}
+
+/* 4. Next Chapter Navigation Card at Bottom of Subpages */
+.next-chapter-wrap {
+  padding: 12px 0 68px;
+}
+
+.next-chapter-wrap-dark {
+  background: var(--bg-keynote, #0B0C10);
+  padding: 0 0 76px;
+}
+
+.next-chapter-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 34px;
+  border-radius: var(--radius-bento);
+  background: var(--bg-card);
+  border: var(--border-subtle);
+  box-shadow: var(--shadow-apple);
+  text-decoration: none;
+  color: var(--text-main);
+  transition: transform 0.32s var(--ease-apple), box-shadow 0.32s var(--ease-apple), border-color 0.28s ease;
+}
+
+.next-chapter-wrap-dark .next-chapter-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.next-chapter-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-apple);
+  box-shadow: var(--shadow-apple-hover);
+}
+
+.next-chapter-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-apple);
+  margin-bottom: 6px;
+}
+
+.next-chapter-wrap-dark .next-chapter-eyebrow {
+  color: #38BDF8;
+}
+
+.next-chapter-title {
+  font-size: 1.32rem;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.next-chapter-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.next-chapter-wrap-dark .next-chapter-desc {
+  color: rgba(245, 245, 247, 0.68);
+}
+
+.next-chapter-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.next-chapter-arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--accent-apple);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  transition: transform 0.25s ease;
+}
+
+.next-chapter-card:hover .next-chapter-arrow {
+  transform: translateX(5px);
+}
+
+/* 5. Contact Social Strip & QR Trigger */
+.contact-social-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.social-channel-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-subtle);
+  border: var(--border-subtle);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-channel-pill:hover {
+  border-color: var(--accent-apple);
+  color: var(--accent-apple);
+  transform: translateY(-2px);
+}
+
+/* 6. Branded 404 Error Page */
+.error-404-section {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 60px;
+}
+
+.error-404-card {
+  max-width: 620px;
+  width: 100%;
+  text-align: center;
+  padding: 48px 36px;
+}
+
+.error-404-code {
+  font-family: var(--font-display);
+  font-size: clamp(4.2rem, 12vw, 6.8rem);
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #0071e3, #ff6b35);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .home-minimal-footer-inner {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+  .home-minimal-links {
+    justify-content: center;
+  }
+  .next-chapter-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 20px;
+  }
+  .projects-standalone-section {
+    padding-top: 92px !important;
+  }
+}
+
+
