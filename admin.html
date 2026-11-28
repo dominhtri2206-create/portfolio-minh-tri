@@ -1456,6 +1456,10 @@
               <label class="form-label"><span>AI Agent Workflow Pitch</span> <span class="lang-indicator lang-en">EN</span></label>
               <textarea id="ai-pitch-en" class="form-control" rows="3"></textarea>
             </div>
+            <div class="form-group col-12">
+              <label class="form-label"><span>Gemini API Key (Tùy chọn — Nhập nếu muốn nối thẳng Gemini 2.5 Flash chém gió không giới hạn mọi chủ đề)</span></label>
+              <input type="password" id="ai-gemini-key" class="form-control" placeholder="AIzaSy... (Để trống vẫn dùng sẵn bộ não đối đáp hài hước + hồ sơ tốc độ cao 0ms)">
+            </div>
           </div>
         </div>
 
@@ -3346,6 +3350,7 @@
       // Populate Eric AI Concierge & Tool Stack
       const aiCfg = currentData.aiConcierge || {};
       setChk('chk-enable-ai', aiCfg.enabled);
+      setInputValue('ai-gemini-key', aiCfg.geminiApiKey || '');
       setInputValue('ai-welcome-vi', aiCfg.welcome ? (aiCfg.welcome.vi || '') : 'Xin chào! 👋 Mình là <strong>Eric AI</strong> — trợ lý hồ sơ của Đỗ Minh Trí. Bạn muốn xem nhanh điểm mạnh, KPI dự án thực chiến, ứng dụng AI Agent hay mở bản CV PDF?');
       setInputValue('ai-welcome-en', aiCfg.welcome ? (aiCfg.welcome.en || '') : 'Hi! 👋 I’m <strong>Eric AI</strong>. Want a 10-second summary of Minh Tri’s strengths, Marketing KPIs, AI Agent workflows, or ATS Resume?');
       setInputValue('ai-pitch-vi', aiCfg.pitch ? (aiCfg.pitch.vi || '') : 'Minh Trí ứng dụng thực chiến <strong>AI Agent (Google Antigravity, Agentic Workflow)</strong> vào Quản trị & Marketing: tự động hóa nghiên cứu insight, tăng tốc xây dựng hệ thống Web/CMS kết nối GitHub, tối ưu ma trận nội dung IMC & SEO nhanh gấp 5 lần.');

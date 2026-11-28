@@ -596,10 +596,23 @@
         document.addEventListener('touchstart', triggerPrefetch, { passive: true });
       }
 
-      // 8. Eric AI Agent Concierge (Live Portfolio Q&A Assistant)
+      // 8. Eric AI Agent Concierge (Witty Conversational NLU + Optional Live Gemini LLM)
+      function pickRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      // Word-boundary matcher safe for Vietnamese UTF-8 (prevents "đẹp trai" matching "ai"!)
+      function matchWords(text, patterns) {
+        return patterns.some(pat => {
+          const re = new RegExp('(^|[^a-zA-Z0-9À-ỹ])(' + pat + ')($|[^a-zA-Z0-9À-ỹ])', 'i');
+          return re.test(text);
+        });
+      }
+
       function buildEricAiReply(queryRaw) {
         const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
-        const q = (queryRaw || '').toLowerCase();
+        const rawTrim = (queryRaw || '').trim();
+        const q = rawTrim.toLowerCase();
         const p = (typeof portfolioData !== 'undefined' && portfolioData && portfolioData.profile) || {};
         const ab = (typeof portfolioData !== 'undefined' && portfolioData && portfolioData.about) || {};
         const aiCfg = (typeof portfolioData !== 'undefined' && portfolioData && portfolioData.aiConcierge) || {};
@@ -607,8 +620,135 @@
         const phone = c.phone || '0934 454 099';
         const email = c.email || 'contact@dominhtri.id.vn';
 
-        // Intent 1: AI Agent workflows
-        if (/ai|agent|antigravity|tự động|automation|llm|workflow|công nghệ/.test(q)) {
+        // 1. Fun / Playful: Looks & Compliments ("đẹp trai không", "ngầu", "xinh", "dễ thương", "handsome")
+        if (matchWords(q, ['đẹp trai', 'dep trai', 'xinh', 'ngầu', 'dễ thương', 'cute', 'visual', 'phong độ', 'cao mét', 'bảnh', 'handsome', 'good looking', 'cool guy'])) {
+          return {
+            html: isEn
+              ? pickRandom([
+                  'Easily a solid <strong>9.5/10</strong> — matching his exact TikTok project grade! 😎 Even sharper when he’s holding a mic on stage as a bilingual MC!',
+                  'Clean and sharp — just like the UI of <code>dominhtri.id.vn</code>! 😄 Want to verify his stage presence in real event photos?'
+                ])
+              : pickRandom([
+                  'Đẹp trai cỡ <strong>9.5/10</strong> — bằng đúng điểm tổng kết đồ án kênh TikTok 120K+ views luôn nha! 😎 Mà bật mí là lúc Trí cầm mic MC hay đứng sân khấu Pitching khởi nghiệp còn sáng sân khấu gấp đôi nữa đó!',
+                  'Giao diện uy tín, sáng sủa y hệt cái web <code>dominhtri.id.vn</code> này luôn bạn ơi! 😄 Vừa điềm đạm chất Quản trị Kinh doanh BTEC, vừa năng động chất Marketing nha!',
+                  'Chấm sương sương 10 điểm thần thái (không có nhưng)! ✨ Bạn lướt thử bộ ảnh sự kiện ngoài Trang chủ hoặc mục Kinh nghiệm kiểm chứng liền tay nhé!'
+                ]),
+            actions: [
+              { label: isEn ? 'See Event Photos' : 'Xem Kinh nghiệm & Sự kiện', href: 'experience.html', icon: 'fa-solid fa-camera' }
+            ]
+          };
+        }
+
+        // 2. Fun / Playful: Relationship / Crush / Single ("người yêu", "ny", "crush", "bồ", "ế", "vợ")
+        if (matchWords(q, ['người yêu', 'nguoi yeu', 'có ny', 'crush', 'có bồ', 'bạn gái', 'độc thân', 'đang ế', 'cưới', 'lấy vợ', 'thả thính', 'yêu trí', 'thích trí', 'girlfriend', 'single', 'dating'])) {
+          return {
+            html: isEn
+              ? pickRandom([
+                  'Right now Minh Tri’s biggest crush is <strong>Digital Marketing</strong> and <strong>AI Agents</strong>! 😂 His calendar is 100% open for coffee chats and project collaborations though!',
+                  'Currently in a committed relationship with KPIs and deadlines! 💘 Always happy to connect and make new friends!'
+                ])
+              : pickRandom([
+                  'Hiện tại crush lớn nhất của Trí là <strong>Marketing thực chiến</strong> và <strong>AI Agent</strong> thôi nha! 😂 Còn lịch hẹn cà phê trao đổi dự án hay kết bạn thì luôn bật đèn xanh 24/7 nè!',
+                  'Trái tim đang bận chạy KPI với tối ưu chiến dịch IMC rồi bạn ơi! 💘 Nhưng nhắn Zalo làm quen hay rủ làm dự án chung là Trí bắt máy liền nha!'
+                ]),
+            actions: [
+              { label: isEn ? 'Say Hi on Contact' : 'Nhắn làm quen ngay', href: 'contact.html', icon: 'fa-solid fa-heart' }
+            ]
+          };
+        }
+
+        // 3. Fun / Playful: Food / Coffee / Daily life ("ăn cơm", "trà sữa", "cà phê", "đang làm gì", "khỏe không", "ngủ chưa")
+        if (matchWords(q, ['ăn cơm', 'an com', 'ăn gì', 'đói bụng', 'trà sữa', 'cà phê', 'cafe', 'uống nước', 'đi nhậu', 'khỏe không', 'khoe khong', 'đang làm gì', 'ngủ chưa', 'thức khuya', 'mệt không', 'how are you', 'what are you doing', 'coffee'])) {
+          return {
+            html: isEn
+              ? pickRandom([
+                  'Running on 100% <strong>Danang salted coffee</strong> and clean JSON data — feeling great! ☕ How’s your day going?',
+                  'On duty 24/7 right here on <code>dominhtri.id.vn</code>! 😄 Fancy grabbing a coffee with Minh Tri in Danang sometime?'
+                ])
+              : pickRandom([
+                  'Mình chạy bằng năng lượng <strong>cà phê muối Đà Nẵng</strong> pha thêm tô mì Quảng nên lúc nào cũng full 200% pin! ☕🍜 Còn bạn hôm nay ăn uống gì chưa đó?',
+                  'Đang trực tổng đài <code>dominhtri.id.vn</code> chờ tám chuyện với bạn nè! 😄 Nào rảnh ghé Đà Nẵng mời chính chủ Minh Trí ly cà phê giao lưu nha!'
+                ]),
+            actions: []
+          };
+        }
+
+        // 4. Fun / Playful: Laughs, Teasing, Jokes, Praise ("haha", "xạo", "điêu", "chém gió", "lầy", "mặn", "giỏi quá", "kể chuyện", "buồn", "chán")
+        if (/haha|hihi|kaka|hehe|:v|:d|=\)\)|:\)\)/.test(q) || matchWords(q, ['xạo', 'điêu', 'chém gió', 'nổ', 'lầy', 'mặn', 'hài', 'vui tính', 'kể chuyện', 'hát nghe', 'buồn quá', 'chán quá', 'giỏi quá', 'đỉnh quá', 'xịn quá', 'tuyệt vời', 'joke', 'funny', 'awesome'])) {
+          return {
+            html: isEn
+              ? pickRandom([
+                  'Haha glad I could make you smile! 😆 Humor is creative, but every KPI and certificate on this site is <strong>100% verified</strong>!',
+                  'Good vibes only! ✨ Ask me anything else — casual or professional, I’m all ears!'
+                ])
+              : pickRandom([
+                  'Haha dân Marketing mà bạn, nói chuyện phải mặn mòi tí mới cuốn chứ! 😆 Cơ mà bật mí là độ vui tính thì 10 điểm, mà số liệu KPI với bằng khen trên web là <strong>người thật việc thật 100%</strong> nha!',
+                  'Cười tươi thế này là hợp vía với năng lượng tích cực của Minh Trí rồi đó! 😄 Đố bạn kiếm thêm được câu nào làm khó được mình nữa nè!'
+                ]),
+            actions: []
+          };
+        }
+
+        // 5. Personal Trivia: Age, Birthday, Hometown, Hobbies, Personality ("bao nhiêu tuổi", "sinh năm", "quê", "ở đâu", "sở thích", "tính cách", "mbti")
+        if (matchWords(q, ['bao nhiêu tuổi', 'mấy tuổi', 'sinh năm', 'ngày sinh', 'cung gì', 'quê ở đâu', 'quê quán', 'sống ở đâu', 'ở đâu', 'đà nẵng', 'sở thích', 'thích gì', 'tính cách', 'mbti', 'ngoài đời', 'age', 'birthday', 'hobby', 'hobbies', 'where do you live'])) {
+          return {
+            html: isEn
+              ? 'Fun facts about <strong>Minh Tri (Eric)</strong>: Based in <strong>Danang, Vietnam</strong> 🌊. Outside of Business & AI, he loves holding the stage mic as an MC, learning English & Chinese, organizing student club events at BBE, and exploring new tech tools!'
+              : 'Bật mí góc đời thường của <strong>Minh Trí (Eric)</strong> nè: Hiện Trí đang sống & học tập tại <strong>Đà Nẵng</strong> 🌊. Ngoài giờ làm dự án, Trí cực mê cầm mic dẫn chương trình (MC), chinh phục ngoại ngữ <strong>Anh - Trung</strong>, đọc sách kinh doanh và cháy hết mình cùng anh em CLB BBE trong các sự kiện sinh viên!',
+            actions: [
+              { label: isEn ? 'More About Tri' : 'Khám phá trang Về tôi', href: 'about.html', icon: 'fa-solid fa-user' }
+            ]
+          };
+        }
+
+        // 6. Greetings & Bot Identity ("hi", "hello", "chào", "alo", "ê", "bạn là ai", "ai tạo ra")
+        if (matchWords(q, ['hi', 'hello', 'hey', 'alo', 'chào', 'xin chào', 'hú', 'ê', 'ơi', 'bạn là ai', 'mày là ai', 'em là ai', 'ai tạo ra', 'bot à', 'who are you'])) {
+          return {
+            html: isEn
+              ? 'Hey there! 👋 I’m <strong>Eric AI</strong> — Minh Tri’s digital twin! You can grill me with tough HR interview questions OR just chat casually for fun. What’s on your mind?'
+              : 'Chào đằng ấy nha! 👋 Mình là <strong>Eric AI</strong> — trợ lý số kiêm "người phát ngôn" vui tính của Đỗ Minh Trí đây! Bạn muốn hỏi công việc nghiêm túc hay hỏi chuyện lan man chơi chơi mình đều tiếp chiêu hết nè!',
+            actions: []
+          };
+        }
+
+        // 7. Tough HR Curveballs: Salary, Weaknesses, Overtime, Why Hire ("lương", "điểm yếu", "áp lực", "tại sao chọn")
+        if (matchWords(q, ['lương', 'mức lương', 'thu nhập', 'deal lương', 'điểm yếu', 'nhược điểm', 'áp lực', 'tăng ca', 'ot', 'tại sao chọn', 'salary', 'weakness', 'overtime', 'why hire'])) {
+          return {
+            html: isEn
+              ? 'Great HR question! 💼 Minh Tri prioritizes <strong>real-world impact, measurable KPIs, and fast team synergy</strong> (compensation is flexible per company standards and role scope). As for a tiny "weakness": he sometimes gets too absorbed automating workflows late at night until everything runs smoothly! 😉'
+              : 'Câu hỏi chuẩn bài phỏng vấn luôn! 💼 Với Minh Trí, ưu tiên số 1 hiện tại là <strong>môi trường thực chiến tạo ra giá trị thật & KPI đo lường được</strong> (mức thu nhập/hỗ trợ linh hoạt theo quy chuẩn doanh nghiệp). Còn "điểm yếu" nho nhỏ là đôi khi hơi cầu toàn, đã bắt tay làm dự án hay vọc AI là cuốn tới khi mượt mới chịu nghỉ! 😉',
+            actions: [
+              { label: isEn ? 'Book an Interview' : 'Liên hệ trao đổi trực tiếp', href: 'contact.html', icon: 'fa-solid fa-handshake' }
+            ]
+          };
+        }
+
+        // 8. Bilingual / MC / Languages ("tiếng anh", "tiếng trung", "ngoại ngữ", "mc", "thuyết trình")
+        if (matchWords(q, ['tiếng anh', 'tiếng trung', 'song ngữ', 'ngoại ngữ', 'mc', 'dẫn chương trình', 'thuyết trình', 'pitching', 'english', 'chinese', 'mandarin', 'speaking'])) {
+          return {
+            html: isEn
+              ? 'Minh Tri hosts university & startup events and communicates bilingually (<strong>English & Chinese</strong>), backed by confident stage presence and startup pitching experience (Runner-Up at Barefoot Startup S3)!'
+              : 'Minh Trí có thế mạnh nổi bật về <strong>MC sự kiện, Thuyết trình gọi vốn (Pitching)</strong> và giao tiếp ngoại ngữ <strong>Anh – Trung</strong> tự tin, từng trực tiếp bảo vệ dự án đạt Á Quân Khởi Nghiệp cấp thành phố & trường!',
+            actions: [
+              { label: isEn ? 'Skills & Languages' : 'Xem Kỹ năng & Học vấn', href: 'about.html', icon: 'fa-solid fa-microphone-lines' }
+            ]
+          };
+        }
+
+        // 9. Experience & Club Leadership ("kinh nghiệm", "lãnh đạo", "bbe", "phó chủ tịch", "hoạt động", "clb")
+        if (matchWords(q, ['kinh nghiệm', 'đi làm', 'thực tập', 'lãnh đạo', 'phó chủ tịch', 'bbe', 'pegasus', 'câu lạc bộ', 'clb', 'hoạt động', 'sự kiện', 'tình nguyện', 'experience', 'leadership', 'club'])) {
+          return {
+            html: isEn
+              ? 'Minh Tri serves as <strong>Vice President of BBE Pegasus Chapter</strong>, leading cross-functional student teams, standardizing RACI workflows, and coordinating major university events & community initiatives!'
+              : 'Minh Trí đảm nhận vai trò <strong>Phó Chủ tịch CLB BBE Pegasus Chapter</strong>, trực tiếp điều phối nhân sự theo mô hình RACI, dẫn dắt các team dự án Marketing và vận hành hậu cần nhiều sự kiện lớn tại BTEC FPT!',
+            actions: [
+              { label: isEn ? 'View Timeline' : 'Xem Kinh nghiệm & Hoạt động', href: 'experience.html', icon: 'fa-solid fa-briefcase' }
+            ]
+          };
+        }
+
+        // 10. AI Agent workflows (STRICT word boundaries so "đẹp trai" / "phải" / "mai" NEVER trigger this!)
+        if (matchWords(q, ['ai', 'ai agent', 'agent', 'antigravity', 'tự động hóa', 'automation', 'llm', 'chatgpt', 'gemini', 'workflow', 'công cụ', 'tool'])) {
           const customPitch = aiCfg.pitch && (aiCfg.pitch[isEn ? 'en' : 'vi'] || aiCfg.pitch.vi);
           const text = customPitch || (isEn
             ? 'Minh Tri applies <strong>AI Agents (Google Antigravity, LLM Workflows)</strong> directly into Business & Marketing: building Git-based CMS systems, automating market research, accelerating SEO content matrices, and optimizing campaign workflows up to 5x faster.'
@@ -622,8 +762,8 @@
           };
         }
 
-        // Intent 2: Projects / Case Studies / KPIs / TikTok / SEO
-        if (/dự án|project|case|kpi|tiktok|video|seo|imc|thực chiến/.test(q)) {
+        // 11. Projects / Case Studies / KPIs / TikTok / SEO
+        if (matchWords(q, ['dự án', 'project', 'projects', 'case study', 'case', 'kpi', 'tiktok', 'video', 'reels', 'seo', 'imc', 'fanpage', 'thực chiến', 'marketing'])) {
           const projCount = (portfolioData && Array.isArray(portfolioData.projects)) ? portfolioData.projects.length : 3;
           const text = isEn
             ? `Minh Tri has led <strong>${projCount}+ hands-on Marketing Case Studies</strong> as Team Leader:<ul><li><strong>TikTok Viral Channel:</strong> 120K+ organic views, 45K+ top clip (Grade 9.5/10).</li><li><strong>SEO & Content Strategy:</strong> 150+ target keywords, +250% organic clicks.</li><li><strong>Brand IMC Campaign:</strong> +180% Fanpage engagement, 100% on-time KPIs.</li></ul>`
@@ -636,8 +776,8 @@
           };
         }
 
-        // Intent 3: Awards / Honors / Education / Certificates
-        if (/giải thưởng|award|thành tích|chứng chỉ|cert|mos|học vấn|btec|trường|gpa|xuất sắc/.test(q)) {
+        // 12. Awards / Honors / Education / Certificates
+        if (matchWords(q, ['giải thưởng', 'award', 'awards', 'thành tích', 'chứng chỉ', 'bằng khen', 'mos', 'excel', 'học vấn', 'btec', 'polyschool', 'trường', 'xuất sắc', 'khởi nghiệp'])) {
           const text = isEn
             ? 'Key academic credentials & national startup honors:<ul><li><strong>Runner-Up (Top 2 Finalist):</strong> Barefoot Startup Season 3 (DNES & BTEC).</li><li><strong>Top 35 Nationwide:</strong> FPT Biz Talent 2025 Semi-finalist.</li><li><strong>High Distinction Graduate</strong> in Digital Marketing & current BTEC HND Business Administration student + <strong>MOS Excel Certified</strong>.</li></ul>'
             : 'Thành tích học thuật & khởi nghiệp nổi bật của Minh Trí:<ul><li><strong>Á Quân (Top 2 Chung kết):</strong> Chân Trần Khởi Nghiệp Mùa 3 (DNES & BTEC).</li><li><strong>Top 35 Toàn quốc:</strong> Bán kết FPT Biz Talent 2025.</li><li><strong>Tốt nghiệp Xuất Sắc</strong> Digital Marketing, sinh viên Quản trị Kinh doanh chuẩn Anh Quốc BTEC FPT & chứng chỉ quốc tế <strong>MOS Excel</strong>.</li></ul>';
@@ -649,8 +789,24 @@
           };
         }
 
-        // Intent 4: CV / Contact / Interview / Phone / Zalo / QR
-        if (/cv|resume|liên hệ|contact|tuyển|phỏng vấn|hire|sđt|phone|zalo|email|qr/.test(q)) {
+        // 13. Core Strengths explicit query
+        if (matchWords(q, ['điểm mạnh', 'thế mạnh', 'năng lực', 'kỹ năng', 'core strengths', 'strengths', 'skills'])) {
+          const strs = (ab && Array.isArray(ab.strengths) && ab.strengths.length >= 3) ? ab.strengths : null;
+          const s1 = strs ? (strs[0].title[isEn ? 'en' : 'vi'] || strs[0].title.vi) : (isEn ? 'AI Agent Orchestration' : 'Tư duy Chiến lược & AI Agent');
+          const s2 = strs ? (strs[1].title[isEn ? 'en' : 'vi'] || strs[1].title.vi) : (isEn ? 'Data-driven Marketing' : 'Marketing Thực chiến & Data');
+          const s3 = strs ? (strs[2].title[isEn ? 'en' : 'vi'] || strs[2].title.vi) : (isEn ? 'Bilingual MC & Pitching' : 'Thuyết trình & MC Song ngữ');
+          return {
+            html: isEn
+              ? `<strong>Do Minh Tri (Eric Do)</strong> combines 3 core strengths:<br>1️⃣ <strong>${s1}</strong><br>2️⃣ <strong>${s2}</strong><br>3️⃣ <strong>${s3}</strong>`
+              : `<strong>Đỗ Minh Trí (Eric Do)</strong> hội tụ 3 điểm mạnh cốt lõi:<br>1️⃣ <strong>${s1}</strong><br>2️⃣ <strong>${s2}</strong><br>3️⃣ <strong>${s3}</strong>`,
+            actions: [
+              { label: isEn ? 'Explore Skills' : 'Chi tiết Kỹ năng', href: 'about.html', icon: 'fa-solid fa-bolt' }
+            ]
+          };
+        }
+
+        // 14. CV / Contact / Phone / Zalo / QR
+        if (matchWords(q, ['cv', 'resume', 'liên hệ', 'contact', 'tuyển dụng', 'phỏng vấn', 'hire', 'sđt', 'số điện thoại', 'phone', 'zalo', 'email', 'qr', 'danh bạ'])) {
           const text = isEn
             ? `Ready for Marketing, Business Development, and AI Agent roles in Danang or Remote!<br>• <strong>Email:</strong> ${email}<br>• <strong>Phone / Zalo:</strong> ${phone}`
             : `Minh Trí sẵn sàng cho cơ hội Thực tập / Cộng tác Marketing, Phát triển Kinh doanh & AI Agent!<br>• <strong>Email:</strong> ${email}<br>• <strong>SĐT / Zalo:</strong> ${phone}`;
@@ -664,21 +820,54 @@
           };
         }
 
-        // Default / Core Strengths Summary
-        const strs = (ab && Array.isArray(ab.strengths) && ab.strengths.length >= 3) ? ab.strengths : null;
-        const s1 = strs ? (strs[0].title[isEn ? 'en' : 'vi'] || strs[0].title.vi) : (isEn ? 'AI Agent Orchestration' : 'Tư duy Chiến lược & AI Agent');
-        const s2 = strs ? (strs[1].title[isEn ? 'en' : 'vi'] || strs[1].title.vi) : (isEn ? 'Data-driven Marketing' : 'Marketing Thực chiến & Data');
-        const s3 = strs ? (strs[2].title[isEn ? 'en' : 'vi'] || strs[2].title.vi) : (isEn ? 'Bilingual MC & Pitching' : 'Thuyết trình & MC Song ngữ');
-        const text = isEn
-          ? `<strong>Do Minh Tri (Eric Do)</strong> combines 3 core pillars:<br>1️⃣ <strong>${s1}</strong><br>2️⃣ <strong>${s2}</strong><br>3️⃣ <strong>${s3}</strong><br>Tap any topic below or ask me about projects, awards, or contact details!`
-          : `<strong>Đỗ Minh Trí (Eric Do)</strong> hội tụ 3 lợi thế cạnh tranh cốt lõi:<br>1️⃣ <strong>${s1}</strong><br>2️⃣ <strong>${s2}</strong><br>3️⃣ <strong>${s3}</strong><br>Bạn có thể chạm các gợi ý bên dưới hoặc hỏi trực tiếp về Dự án, Giải thưởng, Kinh nghiệm hay CV nhé!`;
+        // 15. Natural, Witty Conversational Catch-All (when user asks random off-script questions!)
+        const safeEcho = rawTrim.length > 42 ? rawTrim.slice(0, 42) + '...' : rawTrim;
         return {
-          html: text,
+          html: isEn
+            ? pickRandom([
+                `Haha "${safeEcho.replace(/</g, '&lt;')}" — now that’s an unexpected question! 😄 I’m Tri’s portfolio assistant so I know all his secrets about Marketing, AI, hobbies, and Danang coffee, or you can ping Tri directly on Zalo to chat more!`,
+                `Ooh good one! 🤔 I haven’t been briefed on that exact secret yet — try asking me if Tri is single, handsome, what he eats in Danang, or check out his Case Studies & Resume!`
+              ])
+            : pickRandom([
+                `Haha câu <em>"${safeEcho.replace(/</g, '&lt;')}"</em> này xoáy nha! 😄 Ca này hơi vượt giáo trình hồ sơ một xíu — bạn thử hỏi mình về độ đẹp trai, crush, sở thích, cà phê Đà Nẵng, lương bổng hay dự án của Trí xem, hoặc nhắn Zalo hỏi thẳng chính chủ luôn nè!`,
+                `Ồ câu hỏi thú vị thật sự! 🤔 Vụ này chắc phải để chính chủ Đỗ Minh Trí trực tiếp bật mí mới chuẩn bài! Trong lúc chờ bạn có thể hỏi chơi chơi về tính cách, tuổi tác, tài lẻ MC hay xem nhanh CV của Trí nha!`
+              ]),
           actions: [
-            { label: isEn ? 'Experience & Leadership' : 'Kinh nghiệm lãnh đạo', href: 'experience.html', icon: 'fa-solid fa-briefcase' },
-            { label: isEn ? 'Preview CV' : 'Xem CV PDF', action: 'cv', icon: 'fa-solid fa-file-pdf' }
+            { label: isEn ? 'Chat on Zalo' : 'Nhắn Zalo hỏi Trí liền', href: `https://zalo.me/${(c.zalo || phone).replace(/\s+/g, '')}`, external: true, icon: 'fa-solid fa-comment-dots' },
+            { label: isEn ? 'Featured Projects' : 'Xem Dự án', href: 'projects.html', icon: 'fa-solid fa-layer-group' }
           ]
         };
+      }
+
+      async function fetchLiveGeminiReply(userText, chatHistory) {
+        const aiCfg = (typeof portfolioData !== 'undefined' && portfolioData && portfolioData.aiConcierge) || {};
+        const apiKey = (aiCfg.geminiApiKey || '').trim();
+        if (!apiKey) return null;
+        try {
+          const isEn = (typeof currentLang !== 'undefined' && currentLang === 'en');
+          const p = (portfolioData && portfolioData.profile) || {};
+          const sysPrompt = `Bạn là Eric AI — trợ lý ảo thông minh, duyên dáng, hài hước vừa phải và chuyên nghiệp trên website portfolio dominhtri.id.vn của Đỗ Minh Trí (Eric Do, sinh viên Quản trị Kinh doanh BTEC FPT Đà Nẵng, Tốt nghiệp Xuất Sắc Digital Marketing, Á Quân Chân Trần Khởi Nghiệp Mùa 3, Top 35 FPT Biz Talent, Phó Chủ tịch CLB BBE Pegasus Chapter, SĐT/Zalo: 0934 454 099, Email: contact@dominhtri.id.vn). Nếu khách hỏi vui/lan man đời thường (như khen đẹp trai, hỏi ăn cơm chưa, người yêu, trêu đùa...), hãy đối đáp thật tự nhiên, hóm hỉnh, thân thiện bằng ${isEn ? 'tiếng Anh' : 'tiếng Việt'} trong 2-3 câu ngắn gọn. Nếu khách hỏi công việc/kỹ năng/dự án, hãy trả lời súc tích dựa trên hồ sơ thật.`;
+          const contents = [
+            ...chatHistory.slice(-6),
+            { role: 'user', parts: [{ text: userText }] }
+          ];
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              systemInstruction: { parts: [{ text: sysPrompt }] },
+              contents,
+              generationConfig: { maxOutputTokens: 260, temperature: 0.8 }
+            })
+          });
+          if (!res.ok) return null;
+          const json = await res.json();
+          const replyText = json && json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts && json.candidates[0].content.parts[0] && json.candidates[0].content.parts[0].text;
+          if (!replyText) return null;
+          return replyText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        } catch (e) {
+          return null;
+        }
       }
 
       window.syncEricAiVisibility = function () {
@@ -693,6 +882,7 @@
       function initEricAiConcierge() {
         if (document.getElementById('eric-ai-launcher')) return;
         const isEn = () => (typeof currentLang !== 'undefined' && currentLang === 'en');
+        const geminiHistory = [];
 
         const launcher = document.createElement('button');
         launcher.type = 'button';
@@ -714,7 +904,7 @@
               <img src="avatar.jpg" alt="Eric AI" class="eric-ai-avatar" onerror="this.src='CV.png'">
               <div>
                 <h4 class="eric-ai-head-title">Eric AI Concierge <i class="fa-solid fa-circle-check" style="color:#38BDF8;font-size:0.76rem;"></i></h4>
-                <div class="eric-ai-head-sub"><span class="live-status-dot" style="width:7px;height:7px;"></span> <span id="eric-ai-sub-label">${isEn() ? 'Instant Portfolio Assistant' : 'Trợ lý hồ sơ phản hồi tức thì'}</span></div>
+                <div class="eric-ai-head-sub"><span class="live-status-dot" style="width:7px;height:7px;"></span> <span id="eric-ai-sub-label">${isEn() ? 'Chat work or casual fun!' : 'Hỏi công việc hay tám vui đều được!'}</span></div>
               </div>
             </div>
             <button type="button" class="eric-ai-close" id="eric-ai-close" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
@@ -722,7 +912,7 @@
           <div class="eric-ai-messages" id="eric-ai-messages"></div>
           <div class="eric-ai-chips" id="eric-ai-chips"></div>
           <form class="eric-ai-form" id="eric-ai-form">
-            <input type="text" class="eric-ai-input" id="eric-ai-input" autocomplete="off" placeholder="${isEn() ? 'Ask about skills, KPIs, CV...' : 'Hỏi về kỹ năng, dự án, CV...'}">
+            <input type="text" class="eric-ai-input" id="eric-ai-input" autocomplete="off" placeholder="${isEn() ? 'Ask anything (work or fun)...' : 'Hỏi bất cứ điều gì (công việc hoặc vui vẻ)...'}">
             <button type="submit" class="eric-ai-send" aria-label="Gửi"><i class="fa-solid fa-paper-plane"></i></button>
           </form>
         `;
@@ -746,7 +936,8 @@
               if (a.action === 'qr') {
                 return `<button type="button" class="ai-msg-btn" onclick="openBusinessCardModal()"><i class="${a.icon}"></i> ${a.label}</button>`;
               }
-              return `<a href="${a.href}" class="ai-msg-btn"><i class="${a.icon}"></i> ${a.label}</a>`;
+              const extAttrs = a.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+              return `<a href="${a.href}" class="ai-msg-btn"${extAttrs}><i class="${a.icon}"></i> ${a.label}</a>`;
             }).join('') + '</div>';
           }
           div.innerHTML = `<div>${htmlText}</div>${actHtml}`;
@@ -759,20 +950,20 @@
           const lbl = document.getElementById('eric-ai-launcher-label');
           if (lbl) lbl.textContent = en ? 'Ask Eric AI' : 'Hỏi Eric AI';
           const sub = document.getElementById('eric-ai-sub-label');
-          if (sub) sub.textContent = en ? 'Instant Portfolio Assistant' : 'Trợ lý hồ sơ phản hồi tức thì';
-          if (inputEl) inputEl.placeholder = en ? 'Ask about skills, KPIs, CV...' : 'Hỏi về kỹ năng, dự án, CV...';
+          if (sub) sub.textContent = en ? 'Chat work or casual fun!' : 'Hỏi công việc hay tám vui đều được!';
+          if (inputEl) inputEl.placeholder = en ? 'Ask anything (work or fun)...' : 'Hỏi bất cứ điều gì (công việc hoặc vui vẻ)...';
 
           const prompts = en
             ? [
                 ['🎯 Core Strengths', 'Core strengths of Minh Tri?'],
                 ['🚀 Projects & KPIs', 'Key Marketing projects and KPIs?'],
-                ['🤖 AI Agent Workflow', 'How does Minh Tri apply AI Agents?'],
+                ['😎 Is Tri handsome?', 'Is Minh Tri handsome?'],
                 ['📄 Resume & Contact', 'View CV PDF and contact info']
               ]
             : [
-                ['🎯 3 Điểm mạnh cốt lõi', 'Điểm mạnh cốt lõi của Minh Trí là gì?'],
-                ['🚀 Dự án & KPI thực chiến', 'Các dự án Marketing và KPI nổi bật?'],
-                ['🤖 Ứng dụng AI Agent', 'Minh Trí ứng dụng AI Agent như thế nào?'],
+                ['🎯 3 Điểm mạnh', 'Điểm mạnh cốt lõi của Minh Trí là gì?'],
+                ['🚀 Dự án & KPI', 'Các dự án Marketing và KPI nổi bật?'],
+                ['😎 Trí đẹp trai không?', 'Trí có đẹp trai không?'],
                 ['📄 Xem CV & Liên hệ', 'Xem CV PDF và thông tin liên hệ phỏng vấn']
               ];
 
@@ -789,26 +980,43 @@
             const aiCfg = (typeof portfolioData !== 'undefined' && portfolioData && portfolioData.aiConcierge) || {};
             const customWelcome = aiCfg.welcome && (aiCfg.welcome[en ? 'en' : 'vi'] || aiCfg.welcome.vi);
             const welcomeText = customWelcome || (en
-              ? 'Hi! 👋 I’m <strong>Eric AI</strong>. Want a 10-second summary of Minh Tri’s strengths, Marketing KPIs, AI Agent workflows, or ATS Resume?'
-              : 'Xin chào! 👋 Mình là <strong>Eric AI</strong> — trợ lý hồ sơ của Đỗ Minh Trí. Bạn muốn xem nhanh điểm mạnh, KPI dự án thực chiến, ứng dụng AI Agent hay mở bản CV PDF?');
+              ? 'Hi! 👋 I’m <strong>Eric AI</strong>. Ask me about Minh Tri’s Marketing KPIs, AI workflows, Resume — or ask something fun & casual!'
+              : 'Xin chào! 👋 Mình là <strong>Eric AI</strong> — trợ lý của Đỗ Minh Trí. Bạn muốn xem nhanh KPI dự án, CV PDF hay hỏi lan man vui vẻ gì mình cũng cân tất nha!');
             appendBotMessage(welcomeText, []);
           }
         }
 
-        function handleUserAsk(text) {
+        async function handleUserAsk(text) {
           const clean = (text || '').trim();
           if (!clean) return;
           const uDiv = document.createElement('div');
           uDiv.className = 'ai-msg ai-msg-user';
           uDiv.textContent = clean;
           msgBox.appendChild(uDiv);
-          msgBox.scrollTop = msgBox.scrollHeight;
           if (inputEl) inputEl.value = '';
 
+          // Show subtle typing indicator
+          const typingDiv = document.createElement('div');
+          typingDiv.className = 'ai-msg ai-msg-bot';
+          typingDiv.innerHTML = '<div class="ai-typing-dots"><span></span><span></span><span></span></div>';
+          msgBox.appendChild(typingDiv);
+          msgBox.scrollTop = msgBox.scrollHeight;
+
+          // Try live Gemini LLM first if configured in Admin CMS, otherwise use witty built-in NLU
+          const liveLlmHtml = await fetchLiveGeminiReply(clean, geminiHistory);
+          if (liveLlmHtml) {
+            if (typingDiv.parentNode) typingDiv.parentNode.removeChild(typingDiv);
+            geminiHistory.push({ role: 'user', parts: [{ text: clean }] });
+            geminiHistory.push({ role: 'model', parts: [{ text: liveLlmHtml.replace(/<[^>]+>/g, '') }] });
+            appendBotMessage(liveLlmHtml, []);
+            return;
+          }
+
           setTimeout(() => {
+            if (typingDiv.parentNode) typingDiv.parentNode.removeChild(typingDiv);
             const reply = buildEricAiReply(clean);
             appendBotMessage(reply.html, reply.actions);
-          }, 220);
+          }, 260);
         }
 
         launcher.addEventListener('click', () => {
