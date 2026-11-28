@@ -160,7 +160,7 @@
     </ul>
 
     <div class="drawer-footer">
-      <button type="button" class="btn btn-outline w-100 mb-2" onclick="closeDrawerSafe(); openBusinessCardModal();">
+      <button type="button" class="btn btn-outline w-100 mb-2 dyn-qr-btn" onclick="closeDrawerSafe(); openBusinessCardModal();">
         <i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.btn_open_card">Danh thiếp QR (.vcf)</span>
       </button>
       <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-outline w-100 mb-2 cv-dynamic-link" download="CV_DoMinhTri.pdf">
@@ -229,6 +229,10 @@
               <i class="fa-solid fa-comment-dots"></i>
               <span id="hero-zalo-pill-text">Zalo: 0934 454 099</span>
             </a>
+            <a href="https://www.facebook.com/dominhtri2206" target="_blank" rel="noopener noreferrer" class="quick-connect-pill dyn-facebook-link" id="hero-facebook-link">
+              <i class="fa-brands fa-facebook"></i>
+              <span>Facebook</span>
+            </a>
             <a href="https://www.linkedin.com/in/dominhtri2206" target="_blank" rel="noopener noreferrer" class="quick-connect-pill dyn-linkedin-link" id="hero-linkedin-link">
               <i class="fa-brands fa-linkedin"></i>
               <span>LinkedIn</span>
@@ -237,7 +241,7 @@
               <i class="fa-brands fa-github"></i>
               <span>GitHub</span>
             </a>
-            <button type="button" class="quick-connect-pill" onclick="openBusinessCardModal()" style="border-color: rgba(0, 113, 227, 0.28); color: var(--accent-apple);">
+            <button type="button" class="quick-connect-pill dyn-qr-btn" onclick="openBusinessCardModal()" style="border-color: rgba(0, 113, 227, 0.28); color: var(--accent-apple);">
               <i class="fa-solid fa-qrcode"></i>
               <span data-i18n="qr.pill_label">Mã QR / vCard</span>
             </button>
@@ -384,19 +388,22 @@
         <span data-i18n="footer.copyright">© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả.</span>
       </div>
       <div class="home-minimal-links">
-        <a href="mailto:contact@dominhtri.id.vn" class="minimal-pill-link">
-          <i class="fa-solid fa-envelope"></i> <span>contact@dominhtri.id.vn</span>
+        <a href="mailto:contact@dominhtri.id.vn" class="minimal-pill-link dyn-email-link">
+          <i class="fa-solid fa-envelope"></i> <span class="dyn-email-text">contact@dominhtri.id.vn</span>
         </a>
-        <a href="https://www.linkedin.com/in/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-linkedin-link">
-          <i class="fa-brands fa-linkedin"></i> <span>LinkedIn</span>
+        <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-zalo dyn-zalo-link">
+          <i class="fa-solid fa-comment-dots"></i> <span>Zalo</span>
         </a>
-        <a href="https://www.facebook.com/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-facebook-link">
+        <a href="https://www.facebook.com/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-fb dyn-facebook-link">
           <i class="fa-brands fa-facebook"></i> <span>Facebook</span>
         </a>
-        <a href="https://github.com/dominhtri2206-create" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-github-link">
+        <a href="https://www.linkedin.com/in/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-li dyn-linkedin-link">
+          <i class="fa-brands fa-linkedin"></i> <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/dominhtri2206-create" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-gh dyn-github-link">
           <i class="fa-brands fa-github"></i> <span>GitHub</span>
         </a>
-        <button type="button" class="minimal-pill-link minimal-pill-qr" onclick="openBusinessCardModal()">
+        <button type="button" class="minimal-pill-link minimal-pill-qr dyn-qr-btn" onclick="openBusinessCardModal()">
           <i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.pill_label">Mã QR / vCard</span>
         </button>
       </div>
@@ -822,10 +829,10 @@
           <span data-i18n="qr.save_vcf">Lưu Danh Bạ (.vcf vào điện thoại)</span>
         </button>
         <div style="display: flex; gap: 10px; width: 100%;">
-          <a href="tel:0934454099" class="btn btn-outline flex-1" style="justify-content: center;">
+          <a href="tel:0934454099" id="vcard-call-btn" class="btn btn-outline flex-1" style="justify-content: center;">
             <i class="fa-solid fa-phone"></i> <span data-i18n="qr.call_now">Gọi điện</span>
           </a>
-          <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="btn btn-outline flex-1" style="justify-content: center;">
+          <a href="https://zalo.me/0934454099" id="vcard-zalo-btn" target="_blank" rel="noopener noreferrer" class="btn btn-outline flex-1" style="justify-content: center;">
             <i class="fa-solid fa-comment-dots"></i> Zalo
           </a>
         </div>

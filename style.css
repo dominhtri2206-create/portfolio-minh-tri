@@ -3468,23 +3468,131 @@ body.home-one-screen .hero-section {
   margin-bottom: 12px;
 }
 
-@media (max-width: 768px) {
-  .home-minimal-footer-inner {
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
+  @media (max-width: 768px) {
+    .home-minimal-footer-inner {
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+    }
+    .home-minimal-links {
+      justify-content: center;
+    }
+    .next-chapter-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 22px 20px;
+    }
+    .projects-standalone-section {
+      padding-top: 92px !important;
+    }
   }
-  .home-minimal-links {
-    justify-content: center;
-  }
-  .next-chapter-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 22px 20px;
-  }
-  .projects-standalone-section {
-    padding-top: 92px !important;
-  }
+
+/* ===================================================================
+   V4 CRITICAL FIXES: CRISP QR/CV MODALS ABOVE BACKDROP, INSTANT DARK
+   ACTIVE PILL ON ALL PAGES, & BRANDED FOOTER SOCIAL BUTTONS
+   =================================================================== */
+
+/* 1. Fix QR Business Card & CV PDF Preview Modals (sharp, solid card above z-index 2000 backdrop) */
+.vcard-modal-box,
+.cv-preview-modal-box {
+  z-index: 2020 !important;
+  background: var(--bg-card) !important;
+  border: var(--border-strong) !important;
+  border-radius: var(--radius-bento) !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.38) !important;
 }
+
+.vcard-header-badge {
+  background: var(--bg-pill) !important;
+  border: var(--border-subtle) !important;
+  color: var(--text-secondary) !important;
+}
+
+.vcard-avatar {
+  border: 3px solid var(--accent-apple) !important;
+  box-shadow: 0 8px 22px rgba(0, 113, 227, 0.22) !important;
+}
+
+.vcard-name {
+  color: var(--text-main) !important;
+}
+
+.vcard-alias {
+  color: var(--accent-apple) !important;
+}
+
+.vcard-qr-box {
+  background: #FFFFFF !important;
+  padding: 16px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+.cv-preview-header {
+  background: var(--bg-card) !important;
+  border-bottom: var(--border-subtle) !important;
+  color: var(--text-main) !important;
+}
+
+/* 2. Instant Dark Pill Highlight on Active Navbar Item Across All Pages */
+.nav-menu .nav-link.active {
+  background: var(--text-main);
+  color: var(--bg-card) !important;
+  font-weight: 700;
+}
+
+.nav-menu.pill-ready .nav-link.active {
+  background: transparent;
+}
+
+.mobile-menu-links .mobile-link.active {
+  background: var(--text-main) !important;
+  color: var(--bg-card) !important;
+  font-weight: 700;
+}
+
+.mobile-menu-links .mobile-link.active i {
+  color: var(--bg-card) !important;
+}
+
+/* 3. Compact Home Minimal Footer Override & Footer Social Brand Hover */
+.site-footer.home-minimal-footer {
+  padding: 18px 0 !important;
+  margin-top: 12px !important;
+  background: var(--bg-card);
+}
+
+.footer-social-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.minimal-pill-link.pill-fb:hover {
+  color: #1877F2;
+  border-color: rgba(24, 119, 242, 0.45);
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.14);
+}
+
+.minimal-pill-link.pill-li:hover {
+  color: #0A66C2;
+  border-color: rgba(10, 102, 194, 0.45);
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.14);
+}
+
+.minimal-pill-link.pill-gh:hover {
+  color: var(--text-main);
+  border-color: var(--text-main);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.minimal-pill-link.pill-zalo:hover {
+  color: #0068FF;
+  border-color: rgba(0, 104, 255, 0.45);
+  box-shadow: 0 4px 12px rgba(0, 104, 255, 0.14);
+}
+
 
 

@@ -977,7 +977,7 @@
           <i class="fa-solid fa-trophy"></i> <span>5. Giải Thưởng &amp; Chứng Chỉ</span> <span class="tab-badge" id="badge-count-certs">0</span>
         </button>
         <button class="tab-btn" data-tab="tab-contact" onclick="switchTab('tab-contact')">
-          <i class="fa-solid fa-paper-plane"></i> <span>6. Liên Hệ &amp; Tham Chiếu</span>
+          <i class="fa-solid fa-paper-plane"></i> <span>6. Liên Hệ &amp; Chân Web (Footer)</span>
         </button>
         <button class="tab-btn" data-tab="tab-raw" onclick="switchTab('tab-raw')">
           <i class="fa-solid fa-code"></i> <span>Hệ Thống &amp; JSON</span>
@@ -1140,6 +1140,198 @@
         </div>
 
         <!-- Bento Card: Contact Info, Quick Socials & CV PDF -->
+                <!-- Bento Card: Visual Index 4 Arch Cards (Trang Chủ) -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-compass"></i> Mục Lục Trực Quan 4 Thẻ Vòm (Visual Index — Trang Chủ)</h3>
+              <p class="card-subtitle">Chỉnh sửa nội dung, nhãn, ảnh nền và đường dẫn chuyển trang cho 4 thẻ vòm 01–04 trên Trang Chủ</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Visual Index</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            
+            <div class="form-group col-12" style="padding: 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-md); background: #F9F9FB;">
+              <strong style="display: block; color: var(--accent-apple); margin-bottom: 10px;"><i class="fa-solid fa-layer-group"></i> Thẻ Vòm 01</strong>
+              <div class="form-grid">
+                <div class="form-group col-3">
+                  <label class="form-label">Nhãn Badge (VI)</label>
+                  <input type="text" id="vi1-badge-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Badge (EN)</label>
+                  <input type="text" id="vi1-badge-en" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Tiêu đề (VI)</label>
+                  <input type="text" id="vi1-title-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Title (EN)</label>
+                  <input type="text" id="vi1-title-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Mô tả ngắn (VI)</label>
+                  <input type="text" id="vi1-sub-vi" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Subtitle (EN)</label>
+                  <input type="text" id="vi1-sub-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Trang đích khi bấm</label>
+                  <select id="vi1-href" class="form-control">
+                    <option value="about.html">about.html (Về tôi &amp; Kỹ năng)</option>
+                    <option value="projects.html">projects.html (Dự án tiêu biểu)</option>
+                    <option value="experience.html">experience.html (Kinh nghiệm &amp; Hoạt động)</option>
+                    <option value="awards.html">awards.html (Giải thưởng &amp; Chứng chỉ)</option>
+                    <option value="contact.html">contact.html (Liên hệ)</option>
+                  </select>
+                </div>
+                <div class="form-group col-12">
+                  <label class="form-label">Đường dẫn ảnh nền thẻ 01 (URL hoặc đường dẫn tương đối)</label>
+                  <input type="text" id="vi1-img" class="form-control" placeholder="images/hero-speaker.jpg">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-12" style="padding: 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-md); background: #F9F9FB;">
+              <strong style="display: block; color: var(--accent-apple); margin-bottom: 10px;"><i class="fa-solid fa-layer-group"></i> Thẻ Vòm 02</strong>
+              <div class="form-grid">
+                <div class="form-group col-3">
+                  <label class="form-label">Nhãn Badge (VI)</label>
+                  <input type="text" id="vi2-badge-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Badge (EN)</label>
+                  <input type="text" id="vi2-badge-en" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Tiêu đề (VI)</label>
+                  <input type="text" id="vi2-title-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Title (EN)</label>
+                  <input type="text" id="vi2-title-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Mô tả ngắn (VI)</label>
+                  <input type="text" id="vi2-sub-vi" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Subtitle (EN)</label>
+                  <input type="text" id="vi2-sub-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Trang đích khi bấm</label>
+                  <select id="vi2-href" class="form-control">
+                    <option value="about.html">about.html (Về tôi &amp; Kỹ năng)</option>
+                    <option value="projects.html">projects.html (Dự án tiêu biểu)</option>
+                    <option value="experience.html">experience.html (Kinh nghiệm &amp; Hoạt động)</option>
+                    <option value="awards.html">awards.html (Giải thưởng &amp; Chứng chỉ)</option>
+                    <option value="contact.html">contact.html (Liên hệ)</option>
+                  </select>
+                </div>
+                <div class="form-group col-12">
+                  <label class="form-label">Đường dẫn ảnh nền thẻ 02 (URL hoặc đường dẫn tương đối)</label>
+                  <input type="text" id="vi2-img" class="form-control" placeholder="images/hero-speaker.jpg">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-12" style="padding: 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-md); background: #F9F9FB;">
+              <strong style="display: block; color: var(--accent-apple); margin-bottom: 10px;"><i class="fa-solid fa-layer-group"></i> Thẻ Vòm 03</strong>
+              <div class="form-grid">
+                <div class="form-group col-3">
+                  <label class="form-label">Nhãn Badge (VI)</label>
+                  <input type="text" id="vi3-badge-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Badge (EN)</label>
+                  <input type="text" id="vi3-badge-en" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Tiêu đề (VI)</label>
+                  <input type="text" id="vi3-title-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Title (EN)</label>
+                  <input type="text" id="vi3-title-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Mô tả ngắn (VI)</label>
+                  <input type="text" id="vi3-sub-vi" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Subtitle (EN)</label>
+                  <input type="text" id="vi3-sub-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Trang đích khi bấm</label>
+                  <select id="vi3-href" class="form-control">
+                    <option value="about.html">about.html (Về tôi &amp; Kỹ năng)</option>
+                    <option value="projects.html">projects.html (Dự án tiêu biểu)</option>
+                    <option value="experience.html">experience.html (Kinh nghiệm &amp; Hoạt động)</option>
+                    <option value="awards.html">awards.html (Giải thưởng &amp; Chứng chỉ)</option>
+                    <option value="contact.html">contact.html (Liên hệ)</option>
+                  </select>
+                </div>
+                <div class="form-group col-12">
+                  <label class="form-label">Đường dẫn ảnh nền thẻ 03 (URL hoặc đường dẫn tương đối)</label>
+                  <input type="text" id="vi3-img" class="form-control" placeholder="images/hero-speaker.jpg">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-12" style="padding: 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-md); background: #F9F9FB;">
+              <strong style="display: block; color: var(--accent-apple); margin-bottom: 10px;"><i class="fa-solid fa-layer-group"></i> Thẻ Vòm 04</strong>
+              <div class="form-grid">
+                <div class="form-group col-3">
+                  <label class="form-label">Nhãn Badge (VI)</label>
+                  <input type="text" id="vi4-badge-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Badge (EN)</label>
+                  <input type="text" id="vi4-badge-en" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Tiêu đề (VI)</label>
+                  <input type="text" id="vi4-title-vi" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label class="form-label">Title (EN)</label>
+                  <input type="text" id="vi4-title-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Mô tả ngắn (VI)</label>
+                  <input type="text" id="vi4-sub-vi" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Subtitle (EN)</label>
+                  <input type="text" id="vi4-sub-en" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Trang đích khi bấm</label>
+                  <select id="vi4-href" class="form-control">
+                    <option value="about.html">about.html (Về tôi &amp; Kỹ năng)</option>
+                    <option value="projects.html">projects.html (Dự án tiêu biểu)</option>
+                    <option value="experience.html">experience.html (Kinh nghiệm &amp; Hoạt động)</option>
+                    <option value="awards.html">awards.html (Giải thưởng &amp; Chứng chỉ)</option>
+                    <option value="contact.html">contact.html (Liên hệ)</option>
+                  </select>
+                </div>
+                <div class="form-group col-12">
+                  <label class="form-label">Đường dẫn ảnh nền thẻ 04 (URL hoặc đường dẫn tương đối)</label>
+                  <input type="text" id="vi4-img" class="form-control" placeholder="images/hero-speaker.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Bento Card: Google Analytics 4 & Umami -->
         <div class="bento-card">
           <div class="card-header-row">
@@ -1333,6 +1525,112 @@
             </div>
           </div>
         </div>
+      
+        <!-- Bento Card: 3 Skill Proof Matrix Cards (about.html) -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-award"></i> 3 Thẻ Kỹ Năng Thực Chiến &amp; Minh Chứng (Skill Matrix)</h3>
+              <p class="card-subtitle">Quản lý 3 ô kỹ năng kèm con số minh chứng (+180% Engagement, 120K+ Views, MOS Certified) ở cuối trang about.html</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu thẻ kỹ năng</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            
+            <div class="form-group col-12" style="padding: 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-md); background: #F9F9FB;">
+              <strong style="display: block; color: var(--accent-apple); margin-bottom: 10px;">Thẻ Kỹ Năng #1</strong>
+              <div class="form-grid">
+                <div class="form-group col-4">
+                  <label class="form-label">Nhãn minh chứng (Proof Badge)</label>
+                  <input type="text" id="sk1-proof" class="form-control" placeholder="+180% Engagement">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Tiêu đề kỹ năng (VI)</label>
+                  <input type="text" id="sk1-title-vi" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Skill Title (EN)</label>
+                  <input type="text" id="sk1-title-en" class="form-control">
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Mô tả thực chiến (VI)</label>
+                  <textarea id="sk1-desc-vi" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Skill Description (EN)</label>
+                  <textarea id="sk1-desc-en" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group col-12">
+                  <label class="form-label">Tags công cụ (phân cách bằng dấu phẩy)</label>
+                  <input type="text" id="sk1-tools" class="form-control" placeholder="IMC Plan, Storytelling, Meta Suite">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-12" style="padding: 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-md); background: #F9F9FB;">
+              <strong style="display: block; color: var(--accent-apple); margin-bottom: 10px;">Thẻ Kỹ Năng #2</strong>
+              <div class="form-grid">
+                <div class="form-group col-4">
+                  <label class="form-label">Nhãn minh chứng (Proof Badge)</label>
+                  <input type="text" id="sk2-proof" class="form-control" placeholder="+180% Engagement">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Tiêu đề kỹ năng (VI)</label>
+                  <input type="text" id="sk2-title-vi" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Skill Title (EN)</label>
+                  <input type="text" id="sk2-title-en" class="form-control">
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Mô tả thực chiến (VI)</label>
+                  <textarea id="sk2-desc-vi" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Skill Description (EN)</label>
+                  <textarea id="sk2-desc-en" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group col-12">
+                  <label class="form-label">Tags công cụ (phân cách bằng dấu phẩy)</label>
+                  <input type="text" id="sk2-tools" class="form-control" placeholder="IMC Plan, Storytelling, Meta Suite">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-12" style="padding: 14px; border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius-md); background: #F9F9FB;">
+              <strong style="display: block; color: var(--accent-apple); margin-bottom: 10px;">Thẻ Kỹ Năng #3</strong>
+              <div class="form-grid">
+                <div class="form-group col-4">
+                  <label class="form-label">Nhãn minh chứng (Proof Badge)</label>
+                  <input type="text" id="sk3-proof" class="form-control" placeholder="+180% Engagement">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Tiêu đề kỹ năng (VI)</label>
+                  <input type="text" id="sk3-title-vi" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Skill Title (EN)</label>
+                  <input type="text" id="sk3-title-en" class="form-control">
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Mô tả thực chiến (VI)</label>
+                  <textarea id="sk3-desc-vi" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Skill Description (EN)</label>
+                  <textarea id="sk3-desc-en" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group col-12">
+                  <label class="form-label">Tags công cụ (phân cách bằng dấu phẩy)</label>
+                  <input type="text" id="sk3-tools" class="form-control" placeholder="IMC Plan, Storytelling, Meta Suite">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- TAB: EXPERIENCES TIMELINE -->
@@ -1436,73 +1734,112 @@
             <!-- TAB 6: CONTACT & REFERENCES (contact.html) -->
       <section class="tab-content" id="tab-contact" style="display: none;">
         <div class="page-context-pill">
-          <span><i class="fa-solid fa-link"></i> Quản lý nội dung trang: <strong>contact.html (Liên Hệ &amp; Hợp Tác)</strong></span>
-          <a href="contact.html" target="_blank" class="btn btn-outline btn-xs"><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem trang thực tế</a>
+          <span><i class="fa-solid fa-link"></i> Quản lý nội dung trang: <strong>contact.html</strong> &amp; <strong>Toàn bộ Chân Web (Footer) / Nút MXH / Mã QR</strong></span>
+          <a href="contact.html" target="_blank" class="btn btn-outline btn-xs"><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem trang Liên hệ</a>
         </div>
 
+        <!-- CARD 1: FOOTER SOCIAL BUTTONS & DIRECT CONTACT -->
         <div class="bento-card">
           <div class="card-header-row">
             <div>
-              <h3 class="card-title"><i class="fa-solid fa-paper-plane"></i> Thông Tin Liên Hệ Trực Tiếp, Tham Chiếu &amp; Bản CV PDF</h3>
-              <p class="card-subtitle">Quản lý Email, SĐT/Zalo, Địa chỉ, Người tham chiếu (Reference) và bản CV PDF hiển thị trên trang contact.html</p>
+              <h3 class="card-title"><i class="fa-solid fa-share-nodes"></i> Các Nút Bấm Dưới Chân Web (Footer), Hero &amp; Trang Liên Hệ</h3>
+              <p class="card-subtitle">Chỉnh sửa đường dẫn, kiểm tra link và bật/tắt các nút Facebook, LinkedIn, GitHub, Zalo, Email dưới chân toàn bộ các trang web</p>
             </div>
             <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
-              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu liên hệ lên GitHub</span>
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Liên Hệ &amp; Chân Web</span>
             </button>
           </div>
 
           <div class="form-grid">
             <div class="form-group col-4">
-              <label class="form-label">Email liên hệ</label>
+              <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span><i class="fa-solid fa-envelope text-primary-color"></i> Email liên hệ</span>
+                <label style="font-size: 0.76rem; cursor: pointer;"><input type="checkbox" id="chk-show-email" checked> Hiện nút</label>
+              </label>
               <input type="email" id="prof-email" class="form-control" placeholder="contact@dominhtri.id.vn">
             </div>
+
             <div class="form-group col-4">
-              <label class="form-label">Số điện thoại hiển thị</label>
+              <label class="form-label"><i class="fa-solid fa-phone text-primary-color"></i> Số điện thoại hiển thị</label>
               <input type="text" id="prof-phone" class="form-control" placeholder="0934 454 099">
             </div>
+
             <div class="form-group col-4">
-              <label class="form-label">Số Zalo (1-Click Chat)</label>
+              <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span><i class="fa-solid fa-comment-dots" style="color:#0068FF;"></i> Số Zalo (Nút Zalo chân web)</span>
+                <label style="font-size: 0.76rem; cursor: pointer;"><input type="checkbox" id="chk-show-zalo" checked> Hiện nút</label>
+              </label>
               <input type="text" id="prof-zalo" class="form-control" placeholder="0934454099">
             </div>
 
             <div class="form-group col-4">
-              <label class="form-label">Link LinkedIn cá nhân (URL)</label>
-              <input type="url" id="prof-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/dominhtri2206">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Link Facebook cá nhân (URL)</label>
-              <input type="url" id="prof-facebook" class="form-control" placeholder="https://www.facebook.com/dominhtri2206">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Link GitHub cá nhân (URL)</label>
-              <input type="url" id="prof-github" class="form-control" placeholder="https://github.com/dominhtri2206-create">
-            </div>
-            <div class="form-group col-12">
-              <label class="form-label">Địa chỉ hiển thị (Bảo mật)</label>
-              <input type="text" id="prof-address-vi" class="form-control" placeholder="Đà Nẵng, Việt Nam">
-            </div>
-            <!-- Người bảo chứng năng lực (Reference Person) -->
-            <div class="form-group col-12" style="margin-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 14px;">
-              <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;"><i class="fa-solid fa-user-check text-primary-color"></i> Người Bảo Chứng Năng Lực (Reference Person)</h4>
-              <p style="font-size: 0.78rem; color: var(--text-tertiary); margin-bottom: 12px;">Thông tin giảng viên hoặc quản lý bảo chứng uy tín trong CV và hồ sơ</p>
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Họ tên người bảo chứng</label>
-              <input type="text" id="ref-name" class="form-control" placeholder="Cô Nguyễn Thị Thanh Tâm">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Chức vụ / Bộ môn (VI)</label>
-              <input type="text" id="ref-role-vi" class="form-control" placeholder="Giảng viên bộ môn Digital Marketing">
-            </div>
-            <div class="form-group col-4">
-              <label class="form-label">Số điện thoại liên hệ</label>
-              <input type="text" id="ref-phone" class="form-control" placeholder="0937.272.236">
-            </div>
-            <div class="form-group col-12">
-              <label class="form-label">Ghi chú xác thực năng lực (VI)</label>
-              <input type="text" id="ref-note-vi" class="form-control" placeholder="Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật & thái độ làm việc tại trường.">
+              <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> Nút Facebook (URL)</span>
+                <label style="font-size: 0.76rem; cursor: pointer;"><input type="checkbox" id="chk-show-facebook" checked> Hiện nút</label>
+              </label>
+              <div style="display: flex; gap: 6px;">
+                <input type="text" id="prof-facebook" class="form-control" placeholder="https://www.facebook.com/...">
+                <button type="button" class="btn btn-outline btn-sm" title="Mở kiểm tra link Facebook" onclick="testAdminSocialUrl('prof-facebook')"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+              </div>
             </div>
 
+            <div class="form-group col-4">
+              <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span><i class="fa-brands fa-linkedin" style="color:#0A66C2;"></i> Nút LinkedIn (URL)</span>
+                <label style="font-size: 0.76rem; cursor: pointer;"><input type="checkbox" id="chk-show-linkedin" checked> Hiện nút</label>
+              </label>
+              <div style="display: flex; gap: 6px;">
+                <input type="text" id="prof-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/...">
+                <button type="button" class="btn btn-outline btn-sm" title="Mở kiểm tra link LinkedIn" onclick="testAdminSocialUrl('prof-linkedin')"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+              </div>
+            </div>
+
+            <div class="form-group col-4">
+              <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span><i class="fa-brands fa-github"></i> Nút GitHub (URL)</span>
+                <label style="font-size: 0.76rem; cursor: pointer;"><input type="checkbox" id="chk-show-github" checked> Hiện nút</label>
+              </label>
+              <div style="display: flex; gap: 6px;">
+                <input type="text" id="prof-github" class="form-control" placeholder="https://github.com/...">
+                <button type="button" class="btn btn-outline btn-sm" title="Mở kiểm tra link GitHub" onclick="testAdminSocialUrl('prof-github')"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+              </div>
+            </div>
+
+            <div class="form-group col-12">
+              <label class="form-label"><i class="fa-solid fa-location-dot text-primary-color"></i> Địa chỉ hiển thị (Bảo mật)</label>
+              <input type="text" id="prof-address-vi" class="form-control" placeholder="Đà Nẵng, Việt Nam">
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: QR BUSINESS CARD (vCard) & ATS CV PDF -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-qrcode"></i> Danh Thiếp Số Mã QR (vCard .vcf) &amp; Bản CV PDF</h3>
+              <p class="card-subtitle">Tùy chỉnh nội dung hộp thoại Mã QR / Lưu danh bạ (.vcf) và quản lý file CV PDF chuẩn ATS</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <label style="font-size: 0.82rem; font-weight: 600; cursor: pointer;"><input type="checkbox" id="chk-show-qr" checked> Hiện nút Mã QR / vCard</label>
+              <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu QR &amp; CV</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-6">
+              <label class="form-label">Chức danh hiển thị trên Thẻ QR (vCard Title)</label>
+              <input type="text" id="vcard-title-input" class="form-control" placeholder="Business &amp; Digital Marketing | AI Agent Solutions">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Đơn vị / Tên miền trên Thẻ QR</label>
+              <input type="text" id="vcard-org-input" class="form-control" placeholder="dominhtri.id.vn • Đà Nẵng, Việt Nam">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Ghi chú thành tích lưu trong Danh bạ điện thoại (.vcf)</label>
+              <input type="text" id="vcard-note-input" class="form-control" placeholder="Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing">
+            </div>
             <div class="form-group col-12">
               <label class="form-label">File CV định dạng PDF (Chuẩn ATS)</label>
               <div style="display: flex; gap: 12px; align-items: center;">
@@ -1512,6 +1849,70 @@
                   <i class="fa-solid fa-file-pdf"></i> Tải file PDF mới lên GitHub
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: FOOTER BIO & COPYRIGHT TEXT -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-shoe-prints"></i> Nội Dung Chữ Dưới Chân Web (Footer Bio &amp; Copyright)</h3>
+              <p class="card-subtitle">Chỉnh sửa lời giới thiệu ngắn và dòng bản quyền hiển thị ở chân các trang</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Chân Trang</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-6">
+              <label class="form-label"><span>Giới thiệu ngắn ở Footer</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <textarea id="footer-bio-vi" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Footer Short Bio</span> <span class="lang-indicator lang-en">EN</span></label>
+              <textarea id="footer-bio-en" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Dòng bản quyền (Copyright)</span> <span class="lang-indicator lang-vi">VI</span></label>
+              <input type="text" id="footer-copy-vi" class="form-control" placeholder="© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả.">
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label"><span>Copyright Line</span> <span class="lang-indicator lang-en">EN</span></label>
+              <input type="text" id="footer-copy-en" class="form-control" placeholder="© 2026 <strong>Do Minh Tri</strong>. All rights reserved.">
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: REFERENCE PERSON -->
+        <div class="bento-card">
+          <div class="card-header-row">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-user-check"></i> Người Bảo Chứng Năng Lực (Reference Person)</h3>
+              <p class="card-subtitle">Thông tin giảng viên hoặc quản lý bảo chứng uy tín trên trang contact.html</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-save-github" onclick="publishDataToGitHub()">
+              <i class="fa-solid fa-cloud-arrow-up"></i> <span>Lưu Người Tham Chiếu</span>
+            </button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-4">
+              <label class="form-label">Họ tên người bảo chứng</label>
+              <input type="text" id="ref-name" class="form-control" placeholder="Cô Nguyễn Thị Thanh Tâm">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Chức vụ / Bộ môn (VI)</label>
+              <input type="text" id="ref-role-vi" class="form-control" placeholder="Giảng viên bộ môn Digital Marketing">
+            </div>
+            <div class="form-group col-4">
+              <label class="form-label">Ghi chú SĐT / Bảo mật</label>
+              <input type="text" id="ref-phone" class="form-control" placeholder="Thông tin người tham chiếu sẽ được cung cấp khi có yêu cầu">
+            </div>
+            <div class="form-group col-12">
+              <label class="form-label">Ghi chú xác thực năng lực (VI)</label>
+              <input type="text" id="ref-note-vi" class="form-control" placeholder="Giảng viên trực tiếp giảng dạy và đánh giá năng lực học thuật &amp; thái độ làm việc tại trường.">
             </div>
           </div>
         </div>
@@ -1584,6 +1985,24 @@
           <div class="form-group col-4">
             <label class="form-label"><span>Nền tảng (Platform)</span></label>
             <input type="text" id="proj-platform-text" class="form-control" placeholder="Reels & TikTok">
+          </div>
+          <div class="form-group col-12">
+            <label class="form-label"><span>Nhóm Bộ Lọc trên trang Dự án (Filter Tab)</span></label>
+            <select id="proj-filter-cat" class="form-control">
+              <option value="auto">Tự động nhận diện theo từ khóa</option>
+              <option value="video">Video &amp; TikTok</option>
+              <option value="seo">SEO &amp; Website</option>
+              <option value="brand">Brand &amp; IMC</option>
+            </select>
+          </div>
+          <div class="form-group col-12">
+            <label class="form-label"><span>Nhóm Bộ Lọc trên trang Dự án (Filter Tab)</span></label>
+            <select id="proj-filter-cat" class="form-control">
+              <option value="auto">Tự động nhận diện theo từ khóa</option>
+              <option value="video">Video &amp; TikTok</option>
+              <option value="seo">SEO &amp; Website</option>
+              <option value="brand">Brand &amp; IMC</option>
+            </select>
           </div>
 
           <div class="form-group col-6">
@@ -2562,6 +2981,17 @@
       }
     }
 
+    
+    function testAdminSocialUrl(inputId) {
+      let val = getInputValue(inputId, '');
+      if (!val) {
+        showToast('Chưa nhập đường dẫn URL cho nút này!', 'warning');
+        return;
+      }
+      if (!/^https?:\/\//i.test(val)) val = 'https://' + val;
+      window.open(val, '_blank', 'noopener');
+    }
+
     function getInputValue(id, fallback = '') {
       const el = document.getElementById(id);
       return el ? el.value.trim() : fallback;
@@ -2668,6 +3098,69 @@
       setInputValue('ref-role-vi', ref.role ? (ref.role.vi || '') : '');
       setInputValue('ref-phone', ref.phone || '');
       setInputValue('ref-note-vi', ref.note ? (ref.note.vi || '') : '');
+
+      // Populate Headline, Role Tags, Visual Index, Skill Cards, Social Visibility, vCard & Footer
+      setInputValue('prof-headline-vi', p.headline ? (p.headline.vi || '') : '');
+      setInputValue('prof-headline-en', p.headline ? (p.headline.en || '') : '');
+      const rList = p.roles || [];
+      if (rList[0] && rList[0].text) { setInputValue('prof-role1-vi', rList[0].text.vi || ''); setInputValue('prof-role1-en', rList[0].text.en || ''); }
+      if (rList[1] && rList[1].text) { setInputValue('prof-role2-vi', rList[1].text.vi || ''); setInputValue('prof-role2-en', rList[1].text.en || ''); }
+      if (rList[2] && rList[2].text) { setInputValue('prof-role3-vi', rList[2].text.vi || ''); setInputValue('prof-role3-en', rList[2].text.en || ''); }
+
+      const defaultVi = [
+        { badge: { vi: 'Nền tảng', en: 'Foundation' }, title: { vi: 'Về tôi & Kỹ năng', en: 'About & Skills' }, sub: { vi: 'Quản trị KD × AI Agent', en: 'Business Admin × AI Agent' }, href: 'about.html', image: 'images/hero-speaker.jpg' },
+        { badge: { vi: 'Thực chiến', en: 'Execution' }, title: { vi: 'Case Studies', en: 'Case Studies' }, sub: { vi: 'TikTok • SEO • Brand IMC', en: 'TikTok • SEO • Brand IMC' }, href: 'projects.html', image: 'images/hero-pitching.jpg' },
+        { badge: { vi: 'Lãnh đạo', en: 'Leadership' }, title: { vi: 'Kinh nghiệm', en: 'Experience' }, sub: { vi: 'Phó Chủ tịch BBE & Sự kiện', en: 'Vice President BBE & Events' }, href: 'experience.html', image: 'images/hero-event.jpg' },
+        { badge: { vi: 'Xác thực', en: 'Verified' }, title: { vi: 'Giải thưởng', en: 'Honors & Certs' }, sub: { vi: 'Top 2 Khởi Nghiệp • MOS', en: 'Startup Runner-Up • MOS' }, href: 'awards.html', image: 'images/hero-award.jpg' }
+      ];
+      const viList = (Array.isArray(p.visualIndex) && p.visualIndex.length === 4) ? p.visualIndex : defaultVi;
+      viList.forEach((it, idx) => {
+        const n = idx + 1;
+        setInputValue(`vi${n}-badge-vi`, it.badge ? it.badge.vi : '');
+        setInputValue(`vi${n}-badge-en`, it.badge ? it.badge.en : '');
+        setInputValue(`vi${n}-title-vi`, it.title ? it.title.vi : '');
+        setInputValue(`vi${n}-title-en`, it.title ? it.title.en : '');
+        setInputValue(`vi${n}-sub-vi`, it.sub ? it.sub.vi : '');
+        setInputValue(`vi${n}-sub-en`, it.sub ? it.sub.en : '');
+        setInputValue(`vi${n}-href`, it.href || 'about.html');
+        setInputValue(`vi${n}-img`, it.image || '');
+      });
+
+      const defaultSkills = [
+        { proof: '+180% Engagement', title: { vi: 'Chiến lược IMC & Copywriting', en: 'IMC Strategy & Copywriting' }, desc: { vi: 'Xây dựng ma trận nội dung 70-20-10, thông điệp AIDA/PAS chạm đúng insight khách hàng trẻ.', en: '70-20-10 content matrix and AIDA/PAS messaging tailored to Gen Z insights.' }, tools: ['IMC Plan', 'Storytelling', 'Meta Suite'] },
+        { proof: '120K+ Organic Views', title: { vi: 'Sản xuất Video ngắn TikTok / Reels', en: 'Short-form Video (TikTok / Reels)' }, desc: { vi: 'Lên kịch bản Hook 3s đầu, trực tiếp quay dựng, xử lý nhịp điệu âm thanh & màu sắc bắt xu hướng.', en: '3-second hook scripting, shooting, and trend-driven pacing in CapCut & Premiere.' }, tools: ['CapCut Pro', 'Premiere Pro', 'Hook 3s'] },
+        { proof: 'MOS Certified', title: { vi: 'SEO Onpage & Phân tích Dữ liệu', en: 'Onpage SEO & Data Analytics' }, desc: { vi: 'Nghiên cứu 150+ từ khóa theo hành trình mua hàng, xử lý báo cáo KPI bằng Excel MOS chuẩn quốc tế.', en: 'Researching 150+ buyer-journey keywords and modeling KPI dashboards with certified MOS Excel.' }, tools: ['Search Console', 'Excel MOS', 'GA4'] }
+      ];
+      const skList = (currentData.about && Array.isArray(currentData.about.skillCards) && currentData.about.skillCards.length === 3) ? currentData.about.skillCards : defaultSkills;
+      skList.forEach((sk, idx) => {
+        const n = idx + 1;
+        setInputValue(`sk${n}-proof`, sk.proof || '');
+        setInputValue(`sk${n}-title-vi`, sk.title ? sk.title.vi : '');
+        setInputValue(`sk${n}-title-en`, sk.title ? sk.title.en : '');
+        setInputValue(`sk${n}-desc-vi`, sk.desc ? sk.desc.vi : '');
+        setInputValue(`sk${n}-desc-en`, sk.desc ? sk.desc.en : '');
+        setInputValue(`sk${n}-tools`, Array.isArray(sk.tools) ? sk.tools.join(', ') : '');
+      });
+
+      const vis = c.socialVisibility || {};
+      const setChk = (id, val) => { const el = document.getElementById(id); if (el) el.checked = (val !== false); };
+      setChk('chk-show-email', vis.email);
+      setChk('chk-show-zalo', vis.zalo);
+      setChk('chk-show-facebook', vis.facebook);
+      setChk('chk-show-linkedin', vis.linkedin);
+      setChk('chk-show-github', vis.github);
+      setChk('chk-show-qr', vis.qr);
+
+      const vc = p.vcard || {};
+      setInputValue('vcard-title-input', vc.title || 'Business & Digital Marketing | AI Agent Solutions');
+      setInputValue('vcard-org-input', vc.org || 'dominhtri.id.vn • Đà Nẵng, Việt Nam');
+      setInputValue('vcard-note-input', vc.note || 'Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing');
+
+      const ft = currentData.footer || {};
+      setInputValue('footer-bio-vi', ft.bio ? (ft.bio.vi || '') : 'Đỗ Minh Trí (Eric Do) — Business & Digital Marketing | Ứng dụng AI Agent. Sẵn sàng mang đến tư duy chiến lược, nội dung sáng tạo và giải pháp công nghệ thực chiến cho đội ngũ của bạn.');
+      setInputValue('footer-bio-en', ft.bio ? (ft.bio.en || '') : 'Do Minh Tri (Eric Do) — Business & Digital Marketing | AI Agent Solutions. Ready to deliver strategic thinking, creative content, and AI-powered execution to your team.');
+      setInputValue('footer-copy-vi', ft.copyright ? (ft.copyright.vi || '') : '© 2026 <strong>Đỗ Minh Trí</strong>. Bản quyền thuộc về tác giả.');
+      setInputValue('footer-copy-en', ft.copyright ? (ft.copyright.en || '') : '© 2026 <strong>Do Minh Tri</strong>. All rights reserved.');
 
       // 2. Render Highlights & Experiences
       renderHighlightsList();
@@ -2829,6 +3322,56 @@
       };
 
       if (p.contact) p.contact.reference = p.reference;
+      p.headline = {
+        vi: getInputValue('prof-headline-vi', p.headline ? p.headline.vi : ''),
+        en: getInputValue('prof-headline-en', p.headline ? p.headline.en : '')
+      };
+      p.roles = [
+        { icon: 'fa-solid fa-chart-line', href: 'projects.html', text: { vi: getInputValue('prof-role1-vi', 'Business & Digital Marketing'), en: getInputValue('prof-role1-en', 'Business & Digital Marketing') } },
+        { icon: 'fa-solid fa-robot', href: 'about.html', text: { vi: getInputValue('prof-role2-vi', 'Ứng dụng AI Agent'), en: getInputValue('prof-role2-en', 'AI Agent Solutions') } },
+        { icon: 'fa-solid fa-microphone-lines', href: 'about.html', text: { vi: getInputValue('prof-role3-vi', 'MC & Song ngữ Anh - Trung'), en: getInputValue('prof-role3-en', 'Public Speaker & EN - ZH') } }
+      ];
+      p.visualIndex = [1, 2, 3, 4].map(n => ({
+        badge: { vi: getInputValue(`vi${n}-badge-vi`), en: getInputValue(`vi${n}-badge-en`) || getInputValue(`vi${n}-badge-vi`) },
+        title: { vi: getInputValue(`vi${n}-title-vi`), en: getInputValue(`vi${n}-title-en`) || getInputValue(`vi${n}-title-vi`) },
+        sub: { vi: getInputValue(`vi${n}-sub-vi`), en: getInputValue(`vi${n}-sub-en`) || getInputValue(`vi${n}-sub-vi`) },
+        href: getInputValue(`vi${n}-href`, 'about.html'),
+        image: getInputValue(`vi${n}-img`, 'avatar.jpg')
+      }));
+      const getChk = (id) => { const el = document.getElementById(id); return el ? Boolean(el.checked) : true; };
+      if (!p.contact) p.contact = {};
+      p.contact.socialVisibility = {
+        email: getChk('chk-show-email'),
+        zalo: getChk('chk-show-zalo'),
+        facebook: getChk('chk-show-facebook'),
+        linkedin: getChk('chk-show-linkedin'),
+        github: getChk('chk-show-github'),
+        qr: getChk('chk-show-qr')
+      };
+      const normSocial = (u) => {
+        const s = (u || '').trim();
+        if (!s) return '';
+        if (/^(https?:\/\/|mailto:|tel:)/i.test(s)) return s;
+        return 'https://' + s;
+      };
+      p.contact.facebook = normSocial(getInputValue('prof-facebook', p.contact.facebook || ''));
+      p.contact.linkedin = normSocial(getInputValue('prof-linkedin', p.contact.linkedin || ''));
+      p.contact.github = normSocial(getInputValue('prof-github', p.contact.github || ''));
+      p.vcard = {
+        title: getInputValue('vcard-title-input', 'Business & Digital Marketing | AI Agent Solutions'),
+        org: getInputValue('vcard-org-input', 'dominhtri.id.vn • Đà Nẵng, Việt Nam'),
+        note: getInputValue('vcard-note-input', '')
+      };
+      ab.skillCards = [1, 2, 3].map(n => ({
+        proof: getInputValue(`sk${n}-proof`),
+        title: { vi: getInputValue(`sk${n}-title-vi`), en: getInputValue(`sk${n}-title-en`) || getInputValue(`sk${n}-title-vi`) },
+        desc: { vi: getInputValue(`sk${n}-desc-vi`), en: getInputValue(`sk${n}-desc-en`) || getInputValue(`sk${n}-desc-vi`) },
+        tools: getInputValue(`sk${n}-tools`).split(',').map(s => s.trim()).filter(Boolean)
+      }));
+      currentData.footer = {
+        bio: { vi: getInputValue('footer-bio-vi'), en: getInputValue('footer-bio-en') || getInputValue('footer-bio-vi') },
+        copyright: { vi: getInputValue('footer-copy-vi'), en: getInputValue('footer-copy-en') || getInputValue('footer-copy-vi') }
+      };
 
       currentData.analytics = {
         gaMeasurementId: getInputValue('ana-ga-id', ''),
@@ -3591,6 +4134,7 @@
         setInputValue('proj-badge-vi', 'Video Marketing');
         setInputValue('proj-role-vi', 'Trưởng nhóm');
         setInputValue('proj-platform-text', 'Reels & TikTok');
+        setInputValue('proj-filter-cat', 'auto');
         setInputValue('proj-excerpt-vi', '');
         setInputValue('proj-excerpt-en', '');
         setInputValue('proj-overview-vi', '');
@@ -3641,6 +4185,7 @@
         setInputValue('proj-thumb-image', p.bannerImage || '');
         setInputValue('proj-video-url', p.videoUrl || '');
         setInputValue('proj-demo-url', p.demoUrl || '');
+        setInputValue('proj-filter-cat', p.filterCategory || 'auto');
       }
 
       modal.classList.add('active');
@@ -3724,6 +4269,7 @@
         tools,
         videoUrl,
         demoUrl,
+        filterCategory: getInputValue('proj-filter-cat', 'auto'),
         duration: {
           vi: getInputValue('proj-duration'),
           en: getInputValue('proj-duration')

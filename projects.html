@@ -160,7 +160,7 @@
     </ul>
 
     <div class="drawer-footer">
-      <button type="button" class="btn btn-outline w-100 mb-2" onclick="closeDrawerSafe(); openBusinessCardModal();">
+      <button type="button" class="btn btn-outline w-100 mb-2 dyn-qr-btn" onclick="closeDrawerSafe(); openBusinessCardModal();">
         <i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.btn_open_card">Danh thiếp QR (.vcf)</span>
       </button>
       <a href="CV_DoMinhTri.pdf" target="_blank" class="btn btn-outline w-100 mb-2 cv-dynamic-link" download="CV_DoMinhTri.pdf">
@@ -234,11 +234,13 @@
         <p class="footer-bio" data-i18n="footer.bio">
           Đỗ Minh Trí (Eric Do) — Business &amp; Digital Marketing | Ứng dụng AI Agent. Sẵn sàng mang đến tư duy chiến lược, nội dung sáng tạo và giải pháp công nghệ thực chiến cho đội ngũ của bạn.
         </p>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
-          <a href="https://www.linkedin.com/in/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-linkedin-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="https://www.facebook.com/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-facebook-link"><i class="fa-brands fa-facebook"></i> Facebook</a>
-          <a href="https://github.com/dominhtri2206-create" target="_blank" rel="noopener noreferrer" class="minimal-pill-link dyn-github-link"><i class="fa-brands fa-github"></i> GitHub</a>
-          <button type="button" class="minimal-pill-link minimal-pill-qr" onclick="openBusinessCardModal()"><i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.pill_label">Mã QR / vCard</span></button>
+        <div class="footer-social-row">
+          <a href="mailto:contact@dominhtri.id.vn" class="minimal-pill-link dyn-email-link" title="Gửi Email"><i class="fa-solid fa-envelope"></i> <span>Email</span></a>
+          <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-zalo dyn-zalo-link" title="Chat Zalo"><i class="fa-solid fa-comment-dots"></i> <span>Zalo</span></a>
+          <a href="https://www.facebook.com/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-fb dyn-facebook-link" title="Facebook"><i class="fa-brands fa-facebook"></i> <span>Facebook</span></a>
+          <a href="https://www.linkedin.com/in/dominhtri2206" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-li dyn-linkedin-link" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> <span>LinkedIn</span></a>
+          <a href="https://github.com/dominhtri2206-create" target="_blank" rel="noopener noreferrer" class="minimal-pill-link pill-gh dyn-github-link" title="GitHub"><i class="fa-brands fa-github"></i> <span>GitHub</span></a>
+          <button type="button" class="minimal-pill-link minimal-pill-qr dyn-qr-btn" onclick="openBusinessCardModal()"><i class="fa-solid fa-qrcode"></i> <span data-i18n="qr.pill_label">Mã QR / vCard</span></button>
         </div>
       </div>
 
@@ -261,8 +263,8 @@
           <i class="fa-solid fa-file-pdf"></i> <span data-i18n="footer.download_cv">Tải bản CV (PDF)</span>
         </a>
         <div class="footer-contact-direct">
-          <p><i class="fa-solid fa-phone"></i> 0934 454 099</p>
-          <p><i class="fa-solid fa-envelope"></i> contact@dominhtri.id.vn</p>
+          <p><i class="fa-solid fa-phone"></i> <a href="tel:0934454099" class="dyn-footer-phone" style="color: inherit; text-decoration: none;">0934 454 099</a></p>
+          <p><i class="fa-solid fa-envelope"></i> <a href="mailto:contact@dominhtri.id.vn" class="dyn-email-link" style="color: inherit; text-decoration: none;"><span class="dyn-footer-email">contact@dominhtri.id.vn</span></a></p>
         </div>
       </div>
     </div>
@@ -696,10 +698,10 @@
           <span data-i18n="qr.save_vcf">Lưu Danh Bạ (.vcf vào điện thoại)</span>
         </button>
         <div style="display: flex; gap: 10px; width: 100%;">
-          <a href="tel:0934454099" class="btn btn-outline flex-1" style="justify-content: center;">
+          <a href="tel:0934454099" id="vcard-call-btn" class="btn btn-outline flex-1" style="justify-content: center;">
             <i class="fa-solid fa-phone"></i> <span data-i18n="qr.call_now">Gọi điện</span>
           </a>
-          <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="btn btn-outline flex-1" style="justify-content: center;">
+          <a href="https://zalo.me/0934454099" id="vcard-zalo-btn" target="_blank" rel="noopener noreferrer" class="btn btn-outline flex-1" style="justify-content: center;">
             <i class="fa-solid fa-comment-dots"></i> Zalo
           </a>
         </div>

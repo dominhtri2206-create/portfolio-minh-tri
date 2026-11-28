@@ -1842,6 +1842,7 @@ function renderAllDynamicSections() {
   if (!portfolioData) return;
   renderHeroDynamic();
   renderAboutDynamic();
+  renderFooterAndSocialsDynamic();
   // renderHighlightsGrid(); // Loai bo 4 the metric cards
   renderExperienceTimeline();
   renderProjectsGrid();
@@ -1981,6 +1982,25 @@ function renderAboutDynamic() {
     if (t && strs[2].title) t.textContent = strs[2].title[currentLang] || strs[2].title.vi;
     const d = document.querySelector('[data-i18n="about.str_mc_desc"]');
     if (d && strs[2].desc) d.textContent = strs[2].desc[currentLang] || strs[2].desc.vi;
+  }
+
+  // Dynamic 3 Skill Matrix Proof Cards
+  if (Array.isArray(ab.skillCards) && ab.skillCards.length > 0) {
+    const cardsDom = document.querySelectorAll('.skills-bento-matrix .skill-v2-card');
+    ab.skillCards.forEach((sc, idx) => {
+      const cardEl = cardsDom[idx];
+      if (!cardEl) return;
+      const proofEl = cardEl.querySelector('.skill-proof-tag');
+      if (proofEl && sc.proof) proofEl.textContent = sc.proof;
+      const h4El = cardEl.querySelector('h4');
+      if (h4El && sc.title) h4El.textContent = sc.title[currentLang] || sc.title.vi || '';
+      const pEl = cardEl.querySelector('p');
+      if (pEl && sc.desc) pEl.textContent = sc.desc[currentLang] || sc.desc.vi || '';
+      const toolsWrap = cardEl.querySelector('.skill-tools');
+      if (toolsWrap && Array.isArray(sc.tools) && sc.tools.length > 0) {
+        toolsWrap.innerHTML = sc.tools.map(t => `<span class="tool-pill">${t}</span>`).join('');
+      }
+    });
   }
 }
 
@@ -3306,19 +3326,173 @@ function resetContactForm() {
 /* -------------------------------------------------------------------
    14. DIGITAL BUSINESS CARD (vCard QR) & CV PDF MODAL
 ------------------------------------------------------------------- */
+function normalizeExternalUrl(raw) {
+  const s = (raw || '').trim();
+  if (!s) return '';
+  if (/^(https?:\/\/|mailto:|tel:|#|\/)/i.test(s)) return s;
+  return 'https://' + s;
+}
+
+function renderFooterAndSocialsDynamic() {
+  if (!portfolioData) return;
+  const p = portfolioData.profile || {};
+  const c = p.contact || {};
+  const vis = c.socialVisibility || {};
+  const vc = p.vcard || {};
+  const ft = portfolioData.footer || {};
+
+  const email = (c.email || 'contact@dominhtri.id.vn').trim();
+  const phone = (c.phone || '0934 454 099').trim();
+  const cleanPhone = phone.replace(/\s+/g, '');
+  const zaloNum = (c.zalo || cleanPhone).replace(/\s+/g, '');
+  const linkedin = normalizeExternalUrl(c.linkedin !== undefined ? c.linkedin : 'https://www.linkedin.com/in/dominhtri2206');
+  const facebook = normalizeExternalUrl(c.facebook !== undefined ? c.facebook : 'https://www.facebook.com/dominhtri2206');
+  const github = normalizeExternalUrl(c.github !== undefined ? c.github : 'https://github.com/dominhtri2206-create');
+
+  const showEmail = vis.email !== false && Boolean(email);
+  const showZalo = vis.zalo !== false && Boolean(zaloNum);
+  const showFb = vis.facebook !== false && Boolean(facebook);
+  const showLi = vis.linkedin !== false && Boolean(linkedin);
+  const showGh = vis.github !== false && Boolean(github);
+  const showQr = vis.qr !== false;
+
+  // Sync Email buttons across Footer & Pages
+  document.querySelectorAll('.dyn-email-link').forEach(el => {
+    el.style.display = showEmail ? '' : 'none';
+    if (showEmail) {
+      el.href = `mailto:${email}`;
+      const sp = el.querySelector('.dyn-email-text');
+      if (sp) sp.textContent = email;
+    }
+  });
+
+  // Sync Zalo buttons across Footer & Pages
+  document.querySelectorAll('.dyn-zalo-link').forEach(el => {
+    el.style.display = showZalo ? '' : 'none';
+    if (showZalo) {
+      el.href = `https://zalo.me/${zaloNum}`;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    }
+  });
+
+  // Sync Facebook buttons
+  document.querySelectorAll('.dyn-facebook-link').forEach(el => {
+    el.style.display = showFb ? '' : 'none';
+    if (showFb) {
+      el.href = facebook;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    }
+  });
+
+  // Sync LinkedIn buttons
+  document.querySelectorAll('.dyn-linkedin-link').forEach(el => {
+    el.style.display = showLi ? '' : 'none';
+    if (showLi) {
+      el.href = linkedin;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    }
+  });
+
+  // Sync GitHub buttons
+  document.querySelectorAll('.dyn-github-link').forEach(el => {
+    el.style.display = showGh ? '' : 'none';
+    if (showGh) {
+      el.href = github;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer';
+    }
+  });
+
+  // Sync QR / vCard trigger buttons
+  document.querySelectorAll('.dyn-qr-btn').forEach(el => {
+    el.style.display = showQr ? '' : 'none';
+  });
+
+  // Sync Subpage Footer Direct Phone & Email text
+  document.querySelectorAll('.dyn-footer-phone').forEach(el => { el.textContent = phone; });
+  document.querySelectorAll('.dyn-footer-email').forEach(el => { el.textContent = email; });
+
+  // Sync Footer Bio & Copyright text if configured in data.json
+  if (ft.bio && (ft.bio[currentLang] || ft.bio.vi)) {
+    document.querySelectorAll('[data-i18n="footer.bio"]').forEach(el => {
+      el.innerHTML = ft.bio[currentLang] || ft.bio.vi;
+    });
+  }
+  if (ft.copyright && (ft.copyright[currentLang] || ft.copyright.vi)) {
+    document.querySelectorAll('[data-i18n="footer.copyright"]').forEach(el => {
+      el.innerHTML = ft.copyright[currentLang] || ft.copyright.vi;
+    });
+  }
+
+  // Sync Digital Business Card Modal details
+  const vcardAvatar = document.querySelector('#business-card-modal .vcard-avatar');
+  if (vcardAvatar && p.avatar) vcardAvatar.src = p.avatar;
+  const vcardNameEl = document.querySelector('#business-card-modal .vcard-name');
+  if (vcardNameEl && p.name) {
+    const nm = p.name[currentLang] || p.name.vi || 'Đỗ Minh Trí';
+    const al = p.alias || '(Eric Do)';
+    vcardNameEl.innerHTML = `${nm} <span class="vcard-alias">${al}</span>`;
+  }
+  const vcardTitleEl = document.querySelector('#business-card-modal .vcard-title');
+  if (vcardTitleEl && (vc.title || p.headline)) {
+    const tVal = vc.title || (p.headline ? (p.headline[currentLang] || p.headline.vi) : '');
+    if (tVal) vcardTitleEl.textContent = tVal;
+  }
+  const vcardOrgEl = document.querySelector('#business-card-modal .vcard-org');
+  if (vcardOrgEl && vc.org) {
+    vcardOrgEl.innerHTML = `<i class="fa-solid fa-globe"></i> ${vc.org}`;
+  }
+  const vcardCallBtn = document.getElementById('vcard-call-btn');
+  if (vcardCallBtn) vcardCallBtn.href = `tel:${cleanPhone}`;
+  const vcardZaloBtn = document.getElementById('vcard-zalo-btn');
+  if (vcardZaloBtn) vcardZaloBtn.href = `https://zalo.me/${zaloNum}`;
+
+  // Sync Visual Index 4 Arch Cards on index.html if configured
+  if (Array.isArray(p.visualIndex) && p.visualIndex.length > 0) {
+    const archCards = document.querySelectorAll('.chapter-pills-grid .chapter-arch-card');
+    p.visualIndex.forEach((viItem, idx) => {
+      const card = archCards[idx];
+      if (!card) return;
+      if (viItem.href) card.setAttribute('href', viItem.href);
+      const badgeEl = card.querySelector('.arch-badge');
+      if (badgeEl && viItem.badge) badgeEl.textContent = viItem.badge[currentLang] || viItem.badge.vi || '';
+      const imgEl = card.querySelector('.arch-card-preview img');
+      if (imgEl && viItem.image) imgEl.src = viItem.image;
+      const h4El = card.querySelector('.arch-card-bottom h4');
+      if (h4El && viItem.title) h4El.textContent = viItem.title[currentLang] || viItem.title.vi || '';
+      const subEl = card.querySelector('.arch-card-bottom p');
+      if (subEl && viItem.sub) subEl.textContent = viItem.sub[currentLang] || viItem.sub.vi || '';
+    });
+  }
+}
+
 function downloadVCard() {
+  const p = (portfolioData && portfolioData.profile) || {};
+  const c = p.contact || {};
+  const vc = p.vcard || {};
+  const fullName = (p.name && (p.name.vi || p.name.en)) || 'Đỗ Minh Trí';
+  const alias = p.alias || '(Eric Do)';
+  const title = vc.title || (p.headline && (p.headline.en || p.headline.vi)) || 'Business & Digital Marketing | AI Agent Solutions';
+  const org = vc.org || 'BTEC FPT Đà Nẵng • dominhtri.id.vn';
+  const phone = (c.phone || '0934454099').replace(/\s+/g, '');
+  const email = (c.email || 'contact@dominhtri.id.vn').trim();
+  const addr = (c.address && (c.address.vi || c.address.en)) || 'Đà Nẵng';
+  const note = vc.note || 'Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing';
+
   const vcard = [
     'BEGIN:VCARD',
     'VERSION:3.0',
-    'N:Đỗ;Minh Trí;;;',
-    'FN:Đỗ Minh Trí (Eric Do)',
-    'TITLE:Business & Digital Marketing | AI Agent Solutions',
-    'ORG:BTEC FPT Đà Nẵng',
-    'TEL;TYPE=CELL,VOICE:0934454099',
-    'EMAIL;TYPE=PREF,INTERNET:contact@dominhtri.id.vn',
+    `FN:${fullName} ${alias}`,
+    `TITLE:${title}`,
+    `ORG:${org}`,
+    `TEL;TYPE=CELL,VOICE:${phone}`,
+    `EMAIL;TYPE=PREF,INTERNET:${email}`,
     'URL:https://dominhtri.id.vn/',
-    'ADR;TYPE=WORK:;;Đà Nẵng;;;Vietnam',
-    'NOTE:Á Quân Chân Trần Khởi Nghiệp Mùa 3 • Top 35 FPT Biz Talent • Tốt nghiệp Xuất Sắc Digital Marketing',
+    `ADR;TYPE=WORK:;;${addr};;;Vietnam`,
+    `NOTE:${note}`,
     'END:VCARD'
   ].join('\r\n');
 

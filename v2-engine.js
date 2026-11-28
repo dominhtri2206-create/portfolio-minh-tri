@@ -182,6 +182,7 @@
 
       window.currentProjectFilter = 'all';
       function classifyProjectCategory(p) {
+        if (p && p.filterCategory && p.filterCategory !== 'auto') return p.filterCategory;
         const pool = JSON.stringify(p).toLowerCase();
         if (/tiktok|reels|video|capcut/.test(pool)) return 'video';
         if (/seo|keyword|search console|từ khóa/.test(pool)) return 'seo';
@@ -341,29 +342,56 @@
         }).join('');
       };
 
-      // Sliding Pill Navbar Indicator (#1)
-      function updateNavSlidingPill() {
-        let page = window.location.pathname.split('/').pop().toLowerCase();
-        if (!page || page === '' || page === 'index.html') page = 'index.html';
-        if (page === 'certificates.html') page = 'awards.html';
-
-        document.querySelectorAll('.nav-menu .nav-link').forEach(link => {
-          const href = (link.getAttribute('href') || '').toLowerCase();
-          if (href === page) {
-            link.classList.add('active');
-          } else if (href.includes('.html')) {
-            link.classList.remove('active');
-          }
-        });
-
-        const pill = document.getElementById('nav-sliding-pill');
-        const activeLink = document.querySelector('.nav-menu .nav-link.active');
-        if (!pill || !activeLink) return;
-        const itemEl = activeLink.parentElement;
-        pill.style.width = `${activeLink.offsetWidth}px`;
-        pill.style.transform = `translateX(${itemEl.offsetLeft - 4}px)`;
-        pill.style.opacity = '1';
+      // Sliding Pill Navbar Indicator (#1 - Supports both .html & Clean URLs /about, /projects...)
+      function normalizeNavSlug(raw) {
+        let s = (raw || '').split('?')[0].split('#')[0].replace(/\/+$/, '').split('/').pop().toLowerCase();
+        s = s.replace(/\.html$/, '');
+        if (!s || s === 'index') return 'index';
+        if (s === 'certificates') return 'awards';
+        return s;
       }
+
+      function updateNavSlidingPill() {
+        const currentSlug = normalizeNavSlug(window.location.pathname);
+        const validSlugs = new Set(['index', 'about', 'experience', 'projects', 'awards', 'contact']);
+        const navMenu = document.getElementById('nav-menu');
+        const pill = document.getElementById('nav-sliding-pill');
+
+        if (validSlugs.has(currentSlug)) {
+          document.querySelectorAll('.nav-menu .nav-link').forEach(link => {
+            const linkSlug = normalizeNavSlug(link.getAttribute('href') || '');
+            link.classList.toggle('active', linkSlug === currentSlug);
+          });
+          document.querySelectorAll('.mobile-menu-links .mobile-link').forEach(link => {
+            const linkSlug = normalizeNavSlug(link.getAttribute('href') || '');
+            link.classList.toggle('active', linkSlug === currentSlug);
+          });
+        }
+
+        const activeLink = document.querySelector('.nav-menu .nav-link.active');
+        if (!pill || !activeLink || !navMenu) {
+          if (pill) pill.style.opacity = '0';
+          if (navMenu) navMenu.classList.remove('pill-ready');
+          return;
+        }
+        const itemEl = activeLink.parentElement;
+        if (activeLink.offsetWidth > 0) {
+          pill.style.width = `${activeLink.offsetWidth}px`;
+          pill.style.transform = `translateX(${itemEl.offsetLeft - 4}px)`;
+          pill.style.opacity = '1';
+          navMenu.classList.add('pill-ready');
+        } else {
+          navMenu.classList.remove('pill-ready');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        updateNavSlidingPill();
+        requestAnimationFrame(updateNavSlidingPill);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(updateNavSlidingPill).catch(() => {});
+        }
+      });
 
       // Subtle Mouse Spotlight on Bento Cards (#8)
       document.addEventListener('mousemove', (e) => {
