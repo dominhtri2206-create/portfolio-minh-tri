@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Liên Hệ & Kết Nối Hợp Tác | Đỗ Minh Trí — Portfolio 2026</title>
   <meta name="description" content="Kết nối với Đỗ Minh Trí (Eric Do) qua Email contact@dominhtri.id.vn, Zalo, LinkedIn, Facebook, GitHub hoặc tải danh thiếp số QR (.vcf).">
   <link rel="canonical" href="https://dominhtri.id.vn/contact.html">
@@ -173,7 +173,7 @@
   </aside>
 
   <main>
-    <div class="container" style="padding-top: 96px;">
+    <div class="container subpage-top-spacer">
       <nav class="subpage-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html"><i class="fa-solid fa-house"></i> <span data-i18n="bc.home">Trang chủ</span></a>
         <i class="fa-solid fa-chevron-right"></i>
@@ -420,13 +420,17 @@
   </footer>
   <!-- Mobile Floating Quick Dock (#10) -->
   <div class="mobile-floating-dock" id="mobile-floating-dock">
-    <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="dock-action-btn dock-zalo">
+    <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="dock-action-btn dock-zalo dyn-zalo-link">
       <i class="fa-solid fa-comment-dots"></i>
-      <span>Nhắn Zalo</span>
+      <span data-i18n="dock.zalo">Zalo</span>
     </a>
+    <button type="button" class="dock-action-btn dock-qr dyn-qr-btn" onclick="openBusinessCardModal()">
+      <i class="fa-solid fa-qrcode"></i>
+      <span data-i18n="dock.qr">Mã QR</span>
+    </button>
     <a href="CV_DoMinhTri.pdf" target="_blank" class="dock-action-btn dock-cv cv-dynamic-link">
       <i class="fa-solid fa-file-pdf"></i>
-      <span>Xem CV PDF</span>
+      <span data-i18n="dock.cv">CV PDF</span>
     </a>
   </div>
 

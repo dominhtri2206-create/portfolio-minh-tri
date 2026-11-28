@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Đỗ Minh Trí | Business & Digital Marketing — Ứng dụng AI Agent</title>
   <meta name="description" content="Portfolio cá nhân của Đỗ Minh Trí (Eric Do) — Business & Digital Marketing, Ứng dụng AI Agent. Sinh viên BTEC FPT Đà Nẵng, Tốt nghiệp Xuất Sắc Digital Marketing, Á Quân Chân Trần Khởi Nghiệp Mùa 3.">
   <link rel="canonical" href="https://dominhtri.id.vn/">
@@ -411,13 +411,17 @@
   </footer>
   <!-- Mobile Floating Quick Dock (#10) -->
   <div class="mobile-floating-dock" id="mobile-floating-dock">
-    <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="dock-action-btn dock-zalo">
+    <a href="https://zalo.me/0934454099" target="_blank" rel="noopener noreferrer" class="dock-action-btn dock-zalo dyn-zalo-link">
       <i class="fa-solid fa-comment-dots"></i>
-      <span>Nhắn Zalo</span>
+      <span data-i18n="dock.zalo">Zalo</span>
     </a>
+    <button type="button" class="dock-action-btn dock-qr dyn-qr-btn" onclick="openBusinessCardModal()">
+      <i class="fa-solid fa-qrcode"></i>
+      <span data-i18n="dock.qr">Mã QR</span>
+    </button>
     <a href="CV_DoMinhTri.pdf" target="_blank" class="dock-action-btn dock-cv cv-dynamic-link">
       <i class="fa-solid fa-file-pdf"></i>
-      <span>Xem CV PDF</span>
+      <span data-i18n="dock.cv">CV PDF</span>
     </a>
   </div>
 

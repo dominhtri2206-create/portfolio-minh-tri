@@ -46,6 +46,9 @@
           'skills.seo_title': 'SEO Onpage & Phân tích Dữ liệu',
           'skills.seo_desc': 'Nghiên cứu 150+ từ khóa theo hành trình mua hàng, xử lý báo cáo KPI bằng Excel MOS chuẩn quốc tế.',
           'dock.hint': 'Chạm công cụ để xem',
+          'dock.zalo': 'Nhắn Zalo',
+          'dock.qr': 'Mã QR',
+          'dock.cv': 'CV PDF',
           'qr.pill_label': 'Mã QR / vCard',
           'qr.btn_open_card': 'Danh thiếp QR (.vcf)',
           'qr.modal_badge': 'Danh Thiếp Số • Verified Card',
@@ -106,6 +109,9 @@
           'skills.seo_title': 'Onpage SEO & Data Analytics',
           'skills.seo_desc': 'Researching 150+ buyer-journey keywords and modeling KPI dashboards with certified MOS Excel.',
           'dock.hint': 'Hover or tap a tool to inspect',
+          'dock.zalo': 'Zalo Chat',
+          'dock.qr': 'QR Card',
+          'dock.cv': 'Resume',
           'qr.pill_label': 'QR / vCard',
           'qr.btn_open_card': 'Digital QR (.vcf)',
           'qr.modal_badge': 'Digital vCard • Verified Profile',
@@ -191,7 +197,11 @@
       window.filterProjects = function (cat) {
         window.currentProjectFilter = cat || 'all';
         document.querySelectorAll('.project-filter-pill').forEach(btn => {
-          btn.classList.toggle('active', btn.getAttribute('data-filter') === window.currentProjectFilter);
+          const isAct = btn.getAttribute('data-filter') === window.currentProjectFilter;
+          btn.classList.toggle('active', isAct);
+          if (isAct && window.innerWidth <= 768 && typeof btn.scrollIntoView === 'function') {
+            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
         });
         window.renderProjectsGrid();
       };
@@ -430,14 +440,17 @@
       function initMobileDock() {
         const dock = document.getElementById('mobile-floating-dock');
         if (!dock) return;
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 360) {
+        const syncDockVisibility = () => {
+          const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          if (window.scrollY > 130 || (scrollable > 0 && window.scrollY >= scrollable - 40)) {
             dock.classList.add('dock-visible');
           } else {
             dock.classList.remove('dock-visible');
           }
           updateNavSlidingPill();
-        }, { passive: true });
+        };
+        window.addEventListener('scroll', syncDockVisibility, { passive: true });
+        syncDockVisibility();
       }
 
       // Hero Multi-Photo Auto-Slide & Swipe Carousel (Dynamic from data.json profile.heroGallery)
