@@ -96,7 +96,7 @@
         "facebook": true,
         "linkedin": true,
         "github": true,
-        "qr": true
+        "qr": false
       }
     },
     "reference": {
